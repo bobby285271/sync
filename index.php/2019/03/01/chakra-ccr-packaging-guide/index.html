@@ -1,0 +1,509 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="theme-color" content="#EE9CA7"><meta charset="UTF-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><link media="all" href="../../../../../wp-content/cache/autoptimize/css/autoptimize_c54928e302693ad42fc46c29d72ab5aa.css" rel="stylesheet" /><title itemprop="name">Chakra CCR Packaging Guide &#8211; Dasyatis</title><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/favicon.ico" /><meta http-equiv="x-dns-prefetch-control" content="on"><link rel='dns-prefetch' href='https://cdn.jsdelivr.net/' /><link rel='dns-prefetch' href='https://s.w.org/' /><link rel='https://api.w.org/' href='../../../../wp-json/index.html' /><link rel='prev' title='Fake Proof of Goldbach&#8217;s Conjecture' href='../../../../../index.html%3Fp=991.html' /><link rel='next' title='NixOS 19.03 will support Pantheon Desktop' href='../../../../../index.html%3Fp=1073.html' /><link rel="canonical" href="../../../../../index.html%3Fp=1002.html" /><link rel='shortlink' href='../../../../../index.html%3Fp=1002.html' /><link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https%253A%252F%252Fwww.bobby285271.top%252Findex.php%252F2019%252F03%252F01%252Fchakra-ccr-packaging-guide%252F" /><link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=https%253A%252F%252Fwww.bobby285271.top%252Findex.php%252F2019%252F03%252F01%252Fchakra-ccr-packaging-guide%252F&amp;format=xml" /><link rel='dns-prefetch' href='https://i0.wp.com/' /><link rel='dns-prefetch' href='https://i1.wp.com/' /><link rel='dns-prefetch' href='https://i2.wp.com/' /><link rel='dns-prefetch' href='https://c0.wp.com/' /></head><body class="post-template-default single single-post postid-1002 single-format-standard chinese-font"><div id="preload"><li data-id="3" class="active"><div id="preloader_3"></div></li></div><div class="scrollbar" id="bar"></div><section id="main-container"><div class="headertop filter-undertint"><div id="banner_wave_1"></div><div id="banner_wave_2"></div><figure id="centerbg" class="centerbg"><div class="focusinfo"><div class="header-tou"><a href="../../../../../index.html"><img src="../../../../../wp-content/uploads/2020/04/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg"></a></div><div class="header-info"><p>Life / Love / Linux</p></div><div class="top-social"><li id="bg-pre"><img class="flipx" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/next.png" /></li><li><a href="https://github.com/bobby285271/" target="_blank" class="social-github" title="github"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/github.png" /></a></li><li class="qq"><a href="tencent://message/?uin=931189261" title="Initiate chat ?"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/qq.png" /></a></li><li><a onclick="if (!window.__cfRLUnblockHandlers) return false; mail_me()" class="social-wangyiyun" title="E-mail" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/mail.png" /></a></li><li id="bg-next"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/next.png" /></li></div></div></figure><div id="video-container" style="display:none;"><video id="bgvideo" class="video" video-name="" src="../../../../../index.html%3Fp=1002.html" width="auto" preload="auto"></video><div id="video-btn" class="loadvideo videolive"></div><div id="video-add"></div><div class="video-stu"></div></div><div class="headertop-down faa-float animated" onclick="if (!window.__cfRLUnblockHandlers) return false; headertop_down()" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><span><i class="fa fa-chevron-down" aria-hidden="true" style="color:"></i></span></div></div><div id="page" class="site wrapper"><header class="site-header no-select" role="banner"><div class="site-top"><div class="site-branding"><div class="site-title"> <a href="../../../../../index.html"><img src="../../../../../wp-content/uploads/2020/04/icon.png"></a></div></div><div class="header-user-avatar"> <a href="../../../../../wp-login.php.html"> <img class="faa-shake animated-hover" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/ui/none.png" width="30" height="30"> </a><div class="header-user-menu"><div class="herder-user-name no-logged"> <a href="../../../../../wp-login.php.html" target="_blank" style="color:#EE9CA7;font-weight:bold;text-decoration:none">登录</a></div></div></div><div class="searchbox"><i class="iconfont js-toggle-search iconsearch icon-search"></i></div><div class="lower"><nav><ul id="menu-primary" class="menu"><li><a href="../../../../../index.html">Home</a></li><li><a href="../../../../../index.html%3Fp=325.html">About</a></li><li><a href="../../../../../index.html%3Fp=1045.html">Timeline</a></li><li><a href="../../../../../index.html%3Fp=347.html">Projects</a><ul class="sub-menu"><li><a href="../../../../../index.html%3Fp=182.html">Archiso</a></li></ul></li><li><a href="../../../../../index.html%3Fp=369.html">Extras</a></li></ul></nav></div></div></header><div class="blank"></div><div id="content" class="site-content"><div id="primary" class="content-area"><main id="main" class="site-main" role="main"><article id="post-1002" class="post-1002 post type-post status-publish format-standard hentry category-linux tag-ccr tag-chakra tag-guide tag-linux tag-packaging"><header class="entry-header"><h1 class="entry-title">Chakra CCR Packaging Guide</h1><p class="entry-census">发布于 2019-03-01&nbsp;&nbsp;13 次阅读 本文共14189个字</p><hr></header><div class="entry-content"><blockquote class="wp-block-quote"><p><strong>2020 年更新：</strong>好了现在我大概会一点从零开始打 AUR / CCR 包了，但是整个过程自认为还是有点玄学，不太能整理出来，晚点再说吧（咕）。</p></blockquote><p>Chakra 的成功证明了只围绕 KDE 和 Qt 搭建一个简约的系统是完全可行的。但正是因为「简约」这一特性，一些用户需要的软件可能不被包含在我们的官方软件仓库中。<a href="https://ccr.chakralinux.org" target="_blank" rel="nofollow">Chakra 社区软件仓库</a>（CCR）也就因此诞生了，它由社区维护，为所有类型的软件都敞开了大门。</p><h2>搜索、安装、升级 CCR 软件包</h2><blockquote class="wp-block-quote"><p>老用户请注意：<code>ccr</code> 工具已经被弃用，请转而使用 <code>chaser</code>。</p></blockquote><p>Chakra 提供了一个叫 <code>chaser</code> 的工具供用户管理 CCR 软件包。它的一些常见用法如下：</p><pre class="wp-block-code"><code>&#91;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="dcbfb4bdb7aebd9cb0b3bfbdb0b4b3afa8">[email&#160;protected]</a> ~]$ chaser -h
+usage: chaser &#91;-h] &#91;-v] &#91;-b BUILD_DIR]
+              {get,install,listupdates,update,search,info} ...
+
+Next-generation community package management for Chakra.
+
+positional arguments:
+  {get,install,listupdates,update,search,info}
+    get                 download source files here
+    install             install a package from the CCR
+    listupdates         list available updates
+    update              search for and install updates for CCR packages
+    search              search CCR packages
+    info                display package information
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show version information and exit
+  -b BUILD_DIR, --build-dir BUILD_DIR
+                        build packages in BUILD_DIR. default = /tmp/chaser</code></pre><h3>搜索</h3><p>搜索 CCR 软件包有两种方式，一种是直接访问 <a href="https://ccr.chakralinux.org/" target="_blank" rel="nofollow">CCR</a> 站点并发起搜索，另一种是使用 <code>chaser search</code> 命令，比如搜索 <code>neofetch</code>：</p><pre class="wp-block-code"><code>&#91;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="c9aaa1a8a2bba889a5a6aaa8a5a1a6babd">[email&#160;protected]</a> ~]$ chaser search neofetch</code></pre><p><code>chaser</code> 既会扫描官方软件仓库，也会扫描 CCR。两处符合条件的软件包都会被输出。</p><ul><li>如果您没有在其中找到您所需要的包，请考虑阅读下一章节。</li><li>如果您找到的包位于 <code>[core]</code>、<code>[desktop]</code>、<code>[gtk]</code>、<code>[lib32]</code>、<code>[testing]</code> 之一，这意味着您所需的包已经存在于官方软件仓库，请使用 <a href="https://community.chakralinux.org/t/chakra-package-manager-simplified-chinese/7341" target="_blank" rel="nofollow">Pacman</a> 进行后续操作。</li><li>如果您找到的包位于 <code>[ccr]</code>，请继续阅读。</li></ul><p>下面可以使用 <code>chaser info</code> 进一步了解软件包信息。</p><pre class="wp-block-code"><code>&#91;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="bad9d2dbd1c8dbfad6d5d9dbd6d2d5c9ce">[email&#160;protected]</a> ~]$ chaser info neofetch</code></pre><p>下面是一个示例输出：</p><pre class="wp-block-code"><code>Name           : neofetch
+Version        : 5.0.0-1
+URL            : https://github.com/dylanaraps/neofetch
+Licenses       : MIT
+Category       : utils
+Votes          : 2
+Maintainer     : bobby285271
+OutOfDate      : False
+Description    : A CLI system information tool written in BASH that supports displaying images.</code></pre><p>由于 CCR 活跃用户不多，请务必通过 <code>Version</code> 和 <code>OutOfDate</code> 了解清楚软件包维护情况，如果这个软件包过旧，考虑帮忙维护它（请阅读下一章节）。</p><h3>安装</h3><p>如果您决定安装，使用 <code>chaser install</code> 命令。<strong>不要</strong>使用 <code>root</code> 运行以下命令，当 <code>chaser</code> 需要管理员权限的时候会要求您输入密码。</p><pre class="wp-block-code"><code>&#91;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="620e0b1407220e0d01030e0a0d1116">[email&#160;protected]</a> ~]$ chaser install neofetch</code></pre><p>大致的安装流程如下（以安装 <code>neofetch</code> 为例，部分输出被省略）。</p><ul><li>确认构建软件包：请在此处回答 <code>y</code>（是）。</li></ul><pre class="wp-block-code"><code>resolving dependencies...
+Downloading neofetch
+
+Targets (1) neofetch
+
+:: Proceed with installation? &#91;Y/n]</code></pre><ul><li>定制软件包：PKGBUILD 是 Arch Linux 的一大特色，也被 Chakra 很好地继承了下来。感兴趣的请阅读 <a href="https://www.archlinux.org/pacman/PKGBUILD.5.html" target="_blank" rel="nofollow">PKGBUILD 语法</a>，一般用户直接回答 <code>n</code>（否）。</li></ul><pre class="wp-block-code"><code>Downloading neofetch
+Edit neofetch PKGBUILD with $EDITOR? &#91;Y/n]</code></pre><ul><li>构建软件包：此过程全自动，无需用户干预。</li></ul><pre class="wp-block-code"><code>==> Making package: neofetch 5.0.0-1
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+==> Validating source files with sha256sums...
+==> Extracting sources...
+==> Entering fakeroot environment...
+==> Starting package()...
+==> Tidying install...
+==> Checking for packaging issue...
+==> WARNING: backup entry file not in package : etc/neofetch/config.conf
+==> Creating package "neofetch"...
+==> Leaving fakeroot environment.
+==> Finished making: neofetch 5.0.0-1
+==> Installing package neofetch with pacman -U...</code></pre><ul><li>确认安装软件包：后续的工作将自动交由 Pacman 完成。请在此处回答 <code>y</code>（是）。</li></ul><pre class="wp-block-code"><code>loading packages...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) neofetch-5.0.0-1
+
+Total Installed Size:  0.26 MiB
+
+:: Proceed with installation? &#91;Y/n] </code></pre><ul><li>安装软件包：此过程全自动，无需用户干预。</li></ul><pre class="wp-block-code"><code>(1/1) checking keys in keyring                                                                                                                                     &#91;#####################################################################################################] 100%
+(1/1) checking package integrity                                                                                                                                   &#91;#####################################################################################################] 100%
+(1/1) loading package files                                                                                                                                        &#91;#####################################################################################################] 100%
+(1/1) checking for file conflicts                                                                                                                                  &#91;#####################################################################################################] 100%
+(1/1) checking available disk space                                                                                                                                &#91;#####################################################################################################] 100%
+:: Processing package changes...
+(1/1) installing neofetch                                                                                                                                          &#91;#####################################################################################################] 100%
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...</code></pre><h3>升级</h3><p>使用 <code>chaser listupdates</code> 查看可用的更新，使用 <code>chaser update</code> 检查并应用更新 CCR 软件包。</p><h3>移除</h3><p>要查看您安装的 CCR 软件包，使用 <code>pacman -Qm</code> 命令。</p><blockquote class="wp-block-quote"><p>这个命令可能会输出一些您觉得很陌生的软件包，这很有可能是从官方软件仓库仓库移除且不再受 Chakra 团队支持的包。</p></blockquote><p>使用 Pacman 移除您不再需要的包，详见 <a href="https://community.chakralinux.org/t/chakra-package-manager-simplified-chinese/7341" target="_blank" rel="nofollow">这篇文章</a>。</p><h2>提交、维护 CCR 软件包（初阶）</h2><p>感谢您为 Chakra 做出贡献！接下来，您将了解到如何准备 PKGBUILD，制作源码包并上传到 CCR 上。首先，请先前往 CCR 的 <a href="https://ccr.chakralinux.org/account.php" target="_blank" rel="nofollow">帐户页面</a> 注册一个帐号。</p><h3>准备 PKGBUILD：概述</h3><p>PKGBUILD 是整个 CCR 包的灵魂所在。要知道的是，所谓的「制作源码包」不过是将 PKGBUILD 和几个补丁捆起来制作一个压缩包罢了。用户试图安装一个 CCR 包，本质上来说，其实是将 PKGBUILD 给下载下来，并执行里面的命令，从而编译安装真正的软件包。</p><h4>PKGBUILD 示例</h4><p>编写 PKGBUILD 并不是一件容易事，这里提供一个示例文件：</p><blockquote class="wp-block-quote"><p>如果您知道分包是什么，请注意：<strong>CCR 不支持分包，一个 PKGBUILD 只能对应一个软件包</strong>。</p></blockquote><pre class="wp-block-code"><code># This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name &lt;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="572e382225323a363e3b1733383a363e397934383a">[email&#160;protected]</a>>
+pkgname=NAME
+pkgver=VERSION
+pkgrel=1
+epoch=
+pkgdesc=""
+arch=()
+url=""
+license=('GPL')
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=("$pkgname-$pkgver.tar.gz"
+        "$pkgname-$pkgver.patch")
+noextract=()
+md5sums=()
+validpgpkeys=()
+
+prepare() {
+        cd "$pkgname-$pkgver"
+        patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
+}
+
+build() {
+        cd "$pkgname-$pkgver"
+        ./configure --prefix=/usr
+        make
+}
+
+check() {
+        cd "$pkgname-$pkgver"
+        make -k check
+}
+
+package() {
+        cd "$pkgname-$pkgver"
+        make DESTDIR="$pkgdir/" install
+}</code></pre><h4>简要说明</h4><p>基本信息：</p><ul><li><code>pkgbase</code>： 软件包的名称，名称由小写字母、数字和任意以下字符组成： <code>@ . _ + -</code>；</li><li><code>pkgver</code>：软件包的版本号，应该与软件原作者发布的版本号一致；</li><li><code>pkgrel</code>：发布号，一个正整数，用来区分同一版本软件的多次构建；</li><li><code>epoch</code>：当一个软件的版本编号方式改变，使用此数值进行强制升级。</li></ul><p>描述：</p><ul><li><code>pkgdesc</code>：软件包描述，合理使用关键字以方便搜索；</li><li><code>arch</code>： PKGBUILD 可以编译和使用的架构（Chakra 仅支持 <code>x86_64</code>） ；</li><li><code>url</code>：软件官方站点的网址；</li><li><code>license</code>：软件发布许可证；</li><li><code>groups</code>：软件包所在的组。</li></ul><p>依赖关系：</p><ul><li><code>depends</code>：软件的运行时依赖列表；</li><li><code>optdepends</code>：一组不影响软件主要功能，但能提供额外特性的软件包；</li><li><code>makedepends</code>：仅在软件编译时需要的软件包列表；</li><li><code>checkdepends</code>：运行测试组件时需要，而运行时不需要的包列表。</li></ul><p>相关性：</p><ul><li><code>provides</code>：这个变量说明当前包能提供的功能（或者像 cron、sh 这样的虚包）；</li><li><code>conflicts</code>：与当前软件包发生冲突的包列表；</li><li><code>replaces</code>：会因安装当前包而取代的包列表。</li></ul><p>其它：</p><ul><li><code>backup</code>：当包被升级或卸载时，应当备份的文件；</li><li><code>options</code>：这个变量允许您重置 <code>makepkg</code> 的部分默认行为；</li><li><code>install</code>：<code>.install</code> 脚本的名称，应该和 <code>pkgname</code> 相同；</li><li><code>changelog</code>：软件包 changelog 的名称。</li></ul><p>源码：</p><ul><li><code>source</code>：构建软件包时需要的文件列表；</li><li><code>noextract</code>：一些列举于 <code>source</code> 中，但不需要在运行 <code>makepkg</code> 时解包的文件；</li><li><code>validpgpkeys</code>：PGP 指纹列表；</li></ul><p>完整性：</p><ul><li><code>md5sums</code>：<code>source</code> 列表文件中的 128 位 MD5 校验和；</li><li><code>sha1sums</code>：<code>source</code> 列表文件中 160 位 SHA-1 校验和；</li><li><code>sha224sums</code>、<code>sha256sums</code>、<code>sha384sums</code>、<code>sha512sums</code>：<code>source</code> 列表文件中224、256、384 或 512 位 SHA-2 校验和。</li></ul><p>想要了解更多，可以阅读 ArchWiki 上的 <a href="https://wiki.archlinux.org/index.php/PKGBUILD" target="_blank" rel="nofollow">相关页面</a>。</p><h3>准备 PKGBUILD：从零开始（进阶）</h3><p>准备好大干一场？如果您打算从零开始编写一个 PKGBUILD，建议继续阅读以下文章：</p><ul><li><a href="https://wiki.archlinux.org/index.php/Arch_package_guidelines" target="_blank" rel="nofollow">AUR 打包准则</a>（对 CCR 也是同样适用的）；</li><li><a href="https://www.archlinux.org/pacman/PKGBUILD.5.html" target="_blank" rel="nofollow">PKGBUILD 官方手册</a>。</li></ul><p>请确认您已经彻底了解清楚您所维护的软件包<strong>依赖什么包</strong>以及<strong>如何编译安装</strong>，否则还是建议先往下阅读。</p><h3>准备 PKGBUILD：从外部导入</h3><p>要知道现实情况是：CCR 的成熟程度远远落后于 AUR，和 <a href="https://kaos-community-packages.github.io/" target="_blank" rel="nofollow">KCP</a>（KaOS 社区软件仓库）差不多。AUR 的生态就摆在那里，<strong>几乎所有原生支持 Linux 的应用程序都能在 AUR 找到对应的软件包</strong>。而 KaOS 的定位和 Chakra 类似，也是围绕 KDE 和 Qt 搭建的发行版。所以说，在大部分情况下是没有必要自己造轮子的。<strong>有些轮子说不定 Chakra 团队已经为您造好了，在 Chakra 官方软件仓库里，不要重复提交这些软件包！</strong></p><p>请从 <strong>Arch Linux 官方软件仓库 &amp; AUR</strong> 和 <strong>KaOS 官方软件仓库 &amp; KCP</strong> 两个来源选择一个，并继续阅读下面的教程。</p><h4>Arch Linux 官方软件仓库 &amp; AUR</h4><p>前往 <a href="https://www.archlinux.org/packages/" target="_blank" rel="nofollow">Arch Linux 软件包页面</a> 和 <a href="https://aur.archlinux.org/" target="_blank" rel="nofollow">AUR 首页</a> 发起搜索，直到您找到您打算提交到 CCR 的软件包。点击软件包名进入软件包详情页，定位到页面右侧的「Package Actions」方框：</p><figure class="wp-block-image"><script data-cfasync="false" src="../../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/1.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i1.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/1.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><figure class="wp-block-image"><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/2.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i0.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/2.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><p>对于 AUR 软件包页面，选择「View PKGBUILD」，当页面加载完毕后还需要点击「summary」链接前往 Git 仓库概览页面。</p><p>对于 Arch Linux 官方软件包，直接选择「Source Files」。</p><p>AUR 的软件包是一个软件包对应一个 Git 仓库的，而 Arch Linux 官方软件包则是 [core]、[extra] 仓库中的<strong>所有软件包</strong>放一个 Git 仓库，[community]、[multilib] 仓库中的<strong>所有软件包</strong>放另一个 Git 仓库。为了效率最大化，对于 AUR 包我们会选择 Clone 整个 Git 仓库，而官方软件包我们会选择逐个文件拷贝。</p><p>对于 AUR 软件包，找到 Clone 这一栏，下面有一个地址，将它复制下来：</p><figure class="wp-block-image"><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/3.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i1.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/3.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><p>打开终端，输入 <code>git clone &lt;刚刚复制的 URL 地址&gt; --depth=1</code>，例如：</p><pre class="wp-block-code"><code>git clone https://aur.archlinux.org/wps-office.git/ --depth=1</code></pre><p>至于 Arch Linux 官方软件包，新建一个文件夹（名字随意），然后回到浏览器，<strong>逐个文件</strong>点击文件名旁边的「plain」链接（如图所示），如果是文本文件复制一下，在刚刚新建的文件夹新建一个<strong>同样名称</strong>的文件（千万不要随意改名），将文本粘贴下去。</p><figure class="wp-block-image"><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/4.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i1.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/4.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><p>至于二进制文件，浏览器应该会弹出下载窗口，将文件下载后放入文件夹中。</p><p>记得检查文件权限是否正常，如果发现文件权限和浏览器中「Mode」显示的是否一致。如果不一致，使用 <code>chmod</code> 修正妥当（<a href="http://linux.vbird.org/linux_basic/0210filepermission.php#chmod" target="_blank" rel="nofollow">这里</a> 有这个命令相关的介绍）。</p><h4>KaOS 官方软件仓库 &amp; KCP</h4><p>和前面 Arch Linux 官方软件仓库 &amp; AUR 大同小异。<a href="https://kaosx.us/packages/" target="_blank" rel="nofollow">KaOS 软件包页面</a> 和 <a href="https://kaos-community-packages.github.io/" target="_blank" rel="nofollow">KCP</a> 同样提供了搜索框，发起搜索后进入软件包详情页。</p><p>同样，官方包建议逐个文件获取，点击右栏的「Source Files」，剩下的操作估计大家很熟悉了，毕竟 GitHub 大家都用过，逐个查看「Raw」文件即可。</p><figure class="wp-block-image"><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/5.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i0.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/5.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><p>KCP 包可以整个仓库 Clone 下来（原因同 AUR），点击右上角的「View on GitHub」，后面的我也不再多说了，依然是 <code>git clone &lt;刚刚复制的 URL 地址&gt; --depth=1</code>。</p><figure class="wp-block-image"><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/6.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i2.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/6.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><h3>准备 PKGBUILD：收尾 &amp; 检查工作</h3><p><strong>这一步很关键，一定要重视！</strong></p><p>上一步完成后，我们得到了一个文件夹，里面有些什么取决于您选择的包，大多数情况下里面可能只有一个 <code>PKGBUILD</code> 文件。没关系，<strong>反正一定要有 PKGBUILD</strong>，剩下的无需我们来检查。再次强调，PKGBUILD 非常关键，所以我们一定要进行检查。</p><p>这里是一份 <code>PKGBUILD</code>：</p><pre class="wp-block-code"><code># Maintainer: Jan de Groot &lt;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="a7cdc0c4e7c6d5c4cfcbcec9d2df89c8d5c0">[email&#160;protected]</a>>
+
+pkgname=xorg-xprop
+pkgver=1.2.3
+pkgrel=1
+pkgdesc="Property displayer for X"
+arch=(x86_64)
+url="https://xorg.freedesktop.org/"
+license=('custom')
+depends=('libx11')
+makedepends=('xorg-util-macros')
+groups=('xorg-apps' 'xorg')
+source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2{,.sig})
+sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a'
+            'SKIP')
+validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # "Alan Coopersmith &lt;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="fb9a979a95d59894948b9e898896928f93bb94899a98979ed5989496">[email&#160;protected]</a>>"
+
+build() {
+  cd xprop-${pkgver}
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd xprop-${pkgver}
+  make DESTDIR="${pkgdir}" install
+  install -m755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -m644 COPYING "${pkgdir}/usr/share/licenses/${pkgname}/"
+}</code></pre><p>聪明人看完第一行就应该知道这份 <code>PKGBUILD</code> 是从 Arch Linux 官方仓库上抓取下来的。如果您刚才「 简要说明」，大概就知道我们要重点检查什么了。</p><h4>依赖关系</h4><p>首先是 <code>depends</code> 和 <code>makedepends</code>，这两项都是针对 Arch Linux 来写的。例如说一个包依赖 <code>foo</code>，到了 Chakra 这边，可能会有这几种情况：</p><ul><li>Chakra 官方软件仓库正好有 <code>foo</code>，提供的是同样的功能；</li><li>Chakra 官方软件仓库没有 <code>foo</code>，但 CCR 有；</li><li>Chakra 官方软件仓库或 CCR 提供了提供同样功能，但包名不同的 <code>foo1</code>；</li><li>Chakra 官方软件仓库或 CCR 不提供 <code>foo</code>。</li></ul><p>第一、二种情况可以直接给过不用管，因为 <code>chaser</code> 会自动从官方软件仓库和 CCR 获取相应的依赖。</p><p>第三种情况要小心一点，并不是所有情况下简单地将 <code>foo</code> 改成 <code>foo1</code> 就可以的，看一下下面这个案例：</p><figure class="wp-block-image"><script data-cfasync="false" src="../../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/7.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i1.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/7.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><p>注意到在 Arch Linux 这里同时存在 <code>openssl</code> 和 <code>openssl-1.0</code> 两个软件包，观察版本号，我们知道后者是为了兼容性而单独打包的。<code>openssl</code> 的版本号（截至 20190201）是 1.1.1.a-1，<code>openssl-1.0</code> 则是 1.0.2.q-1。</p><p>接下来看看 AUR 里 <code>wps-office</code> 这个包：</p><figure class="wp-block-image"><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/8.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i0.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/8.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><p>它依赖的是 <code>openssl-1.0</code>。我们可以搜索 Chakra 官方软件仓库（省略部分输出）：</p><pre class="wp-block-code"><code>&#91;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="214249404a5340614d4e42404d494e5255">[email&#160;protected]</a> ~]$ pacman -Ss openssl
+lib32/lib32-openssl 1.0.2.q-1
+    The Open Source toolkit for Secure Sockets Layer and Transport Layer Security (32-bit)
+core/openssl 1.0.2.q-1 &#91;已安装]
+    The Open Source toolkit for Secure Sockets Layer and Transport Layer Security
+core/perl-crypt-openssl-bignum 0.04-3
+    OpenSSL's multiprecision integer arithmetic
+core/perl-crypt-openssl-random 0.04-8
+    Interface to OpenSSL PRNG methods
+core/perl-crypt-openssl-rsa 0.28-2
+    Interface to OpenSSL RSA methods
+core/perl-net-ssleay 1.63-1
+    Perl extension for using OpenSSL
+core/pkcs11-helper 1.25.1-1
+    A library that simplifies the interaction with PKCS11 providers for end-user applications using a simple API and optional OpenSSL engine
+core/python2-characteristic 14.3.0-1
+    Service identity verification for pyOpenSSL
+core/python2-service-identity 17.0.0-1
+    Service identity verification for pyOpenSSL
+core/python3-characteristic 14.3.0-1
+    Service identity verification for pyOpenSSL
+core/python3-service-identity 17.0.0-1
+    Service identity verification for pyOpenSSL
+core/tls 1.6.7-1
+    OpenSSL extension to Tcl
+desktop/python2-ndg-httpsclient 0.4.3-1
+    Provides enhanced HTTPS support for httplib and urllib2 using PyOpenSSL
+desktop/python2-pyopenssl 17.3.0-1
+    Python2 wrapper module around the OpenSSL library
+desktop/python3-ndg-httpsclient 0.4.3-1
+    Provides enhanced HTTPS support for httplib and urllib2 using PyOpenSSL
+desktop/python3-pyopenssl 17.3.0-1
+    Python3 wrapper module around the OpenSSL library
+&#91;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="13707b72786172537f7c70727f7b7c6067">[email&#160;protected]</a> ~]$</code></pre><p>这就是所有的搜索结果了，有 <code>openssl</code> 却没有 <code>openssl-1.0</code>，但是要注意 Chakra 提供的 <code>openssl</code> 版本是 1.0.2.q-1，和 Arch 中 <code>openssl-1.0</code> 是一致的。从中我们可以得出以下信息：</p><p>Chakra 是半滚动更新发行版，更新一般来说会滞后于 Arch Linux，Chakra 的 OpenSSL 打包落后于 Arch Linux，所以目前来说我们要将 <code>PKGBUILD</code> 文件中的 <code>openssl-1.0</code> 修改为 <code>openssl</code>，但当 Chakra 将 <code>openssl</code> 升级到 1.1+ 之后，我们要实时监测 Chakra 动态，做好两手准备：</p><ul><li>如果 <code>openssl-1.0</code> 可用，我们要重新打包 <code>wps-office</code>，将 PKGBUILD 改回 <code>openssl-1.0</code>；</li><li>如果 Chakra 不提供 <code>openssl-1.0</code>，我们得为 <code>openssl-1.0</code> 打包并提交到 CCR。</li></ul><p>注意：在这个案例中，只要 Chakra 的 <code>openssl</code> 不更新，用户就不能提前将 <code>openssl-1.0</code> 提交到 CCR，因为<strong>它和官方源所提供的重复了</strong>。</p><p>第四种情况，您需要前往<strong>您刚刚所选的来源</strong>（<strong>Arch Linux 官方软件仓库 &amp; AUR</strong> 或 <strong>KaOS 官方软件仓库 &amp; KCP</strong>），按照上面提供的步骤，获取这个依赖包的相关文件，在稍后一起进行打包。</p><h4>PGP 密钥</h4><p>如果您从 Arch Linux 或 KaOS 官方软件仓库获取软件包的要特意留意 <code>validpgpkeys</code> 这一项，如果有所填写，要注意的是，Charka 的 <code>chakra-keyring</code> 软件包只提供了 Chakra 维护者的签名，没有 Arch Linux 或 KaOS 的。这样会导致打包失败，因为打包工具 <code>makepkg</code> 是会检查 PGP 密钥的。</p><p>规避检查很简单，将 <code>validpgpkeys</code> 所在的那一行删掉。当然也别忘了将相关的文件删掉，还是上面 <code>xorg-xprop</code> 的那个例子：</p><pre class="wp-block-code"><code>...
+source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2{,.sig})
+sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a'
+            'SKIP')
+validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # "Alan Coopersmith &lt;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="71101d101f5f121e1e011403021c180519311e0310121d145f121e1c">[email&#160;protected]</a>>"
+...</code></pre><p>在删除下面这一行之后：</p><pre class="wp-block-code"><code>validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # "Alan Coopersmith &lt;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="6c0d000d02420f03031c091e1f010518042c031e0d0f0009420f0301">[email&#160;protected]</a>>"</code></pre><p>我们留意到 <code>source</code> 那一行，<code>{,.sig}</code> 意味着它同时包含了两个文件：<code>xprop-${pkgver}.tar.bz2</code> 和 <code>xprop-${pkgver}.tar.bz2.sig</code>，后者是用于验证密钥的，删除它。</p><p>而 <code>sha512sums</code> 那里，所有的检验值都和 <code>source</code> 的文件逐一对应，所以我们得把 <code>xprop-${pkgver}.tar.bz2.sig</code> 的校验值给相应地删除，即使它是 <code>SKIP</code>，意为「跳过校验值检查」。</p><p>这个文件最终被修改成了这样：</p><pre class="wp-block-code"><code># Maintainer: Jan de Groot &lt;<a href="../../../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="22484541624350414a4e4b4c575a0c4d5045">[email&#160;protected]</a>>
+
+pkgname=xorg-xprop
+pkgver=1.2.3
+pkgrel=1
+pkgdesc="Property displayer for X"
+arch=(x86_64)
+url="https://xorg.freedesktop.org/"
+license=('custom')
+depends=('libx11')
+makedepends=('xorg-util-macros')
+groups=('xorg-apps' 'xorg')
+source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2)
+sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a')
+
+build() {
+  cd xprop-${pkgver}
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd xprop-${pkgver}
+  make DESTDIR="${pkgdir}" install
+  install -m755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -m644 COPYING "${pkgdir}/usr/share/licenses/${pkgname}/"
+}</code></pre><h4>其它</h4><p>如果您是从外部导入的软件包，案例来说您是无需检查校验值的，如果是自己创建的软件包就一定要检查校验值了：打开 Konsole，使用 <code>cd</code> 命令进入您的文件夹，然后执行 <code>updpkgsums</code> 命令即可。</p><p>另外我们还建议您将 Maintainer 后面的姓名和邮箱改成您自己的。</p><h4>亲自测试（建议）</h4><p>打开 Konsole，使用 <code>cd</code> 命令进入您的文件夹，然后执行 <code>makepkg</code> 命令。 如果 <code>PKGBUILD</code> 没有错误，将会生成一个包，但是如果 <code>PKGBUILD</code> 被破坏或未完成，它将抛出一个错误。</p><p><code>makepkg</code> 的用法如下：</p><pre class="wp-block-code"><code>用法：/usr/bin/makepkg &#91;选项]
+
+选项：
+  -A, --ignorearch      忽略不完整的 arch 字段 (位于 PKGBUILD 中)
+  -c, --clean           编译后清理工作文件
+  -C, --cleanbuild      在编译软件包之前删除 $srcdir/ 文件夹
+  -d, --nodeps          跳过所有依赖关系检查
+  -e, --noextract       不解压源文件 (使用现存的 $srcdir/ 目录)
+  -f, --force           覆盖现存的软件包
+  -g, --geninteg        为源码文件生成完整性检查值
+  -h, --help            显示本帮助信息并退出
+  -i, --install         成功编译后安装软件包
+  -L, --log             记录软件包编译过程
+  -m, --nocolor         禁止彩色输出信息
+  -o, --nobuild         仅下载和解压缩文件
+  -p &lt;文件>             使用另外的编译脚本 (而不是 'PKGBUILD' ) 
+  -r, --rmdeps          编译成功后删除安装的依赖关系
+  -R, --repackage       不编译而重新打包软件包内容
+  -s, --syncdeps        使用 pacman 安装缺失的依赖关系
+  -S, --source          不下载源文件只生成仅包含源的包
+  -V, --version         显示版本信息并退出
+  --allsource           只生成源码包 (包括有已下载的源码) 
+  --check               运行 check() 函数 (包含于 PKGBUILD 中)
+  --config &lt;文件>       使用另外的配置文件 (而不是 '/etc/makepkg.conf')
+  --holdver             不升级版本控制系统源
+  --key &lt;密匙>          指定签名 gpg 使用的密匙而不用默认密匙
+  --noarchive           不生成软件包归档
+  --nocheck             不执行 check() 函数在 PKGBUILD 中
+  --noprepare           不执行 prepare() 函数在 PKGBUILD 中
+  --nosign              不为该软件包创建签名
+  --packagelist         只列出将会产生的包，不带PKGEXT
+  --printsrcinfo        打印出生成的 SRCINFO 并退出
+  --sign                使用 gpg 签名生成的软件包
+  --skipchecksums       不验证源文件的检验值
+  --skipinteg           不对源文件执行任何验证检查
+  --skippgpcheck        不验证有 PGP 签名的源文件
+ --verifysource         下载源文件(如果需要)并进行完整性检查
+
+这些选项可以传递给 pacman：
+  --asdeps              作为依赖安装
+  --needed              不重装已是最新的目标软件包
+  --noconfirm           当解决依赖关系时不询问确认
+  --noprogressbar       下载文件时不显示进度条
+
+如果没有指定 -p，makepkg 将寻找 'PKGBUILD'</code></pre><p>如果运行 <code>makepkg</code> 成功，在您工作的目录下将会生成一个名为 <code>$pkgname-$pkgver.pkg.tar.gz</code> 的新文件。这个文件可以使用 <code>pacman -U</code> 或 <code>pacman -A</code> 安装。如果包看起来是正确的，那您的工作就完成了。</p><h4>一个实用的检查工具（建议）</h4><p>Namcap 是 Arch Linux 推荐的检查工具，它将会做以下工作：</p><ul><li>检查 PKGBUILD 文件里的一些常见错误；</li><li>用 <code>ldd</code> 扫描包中所有的ELF文件，自动报告缺失或可去除的依赖；</li><li>启发式搜寻缺失或冗余的依赖。</li></ul><p>要养成用 Namcap 检查包的习惯，以避免提交包后再做修复的麻烦。</p><p>打开 Konsole，使用 <code>cd</code> 命令进入您的文件夹，然后执行：</p><pre class="wp-block-code"><code>namcap PKGBUILD</code></pre><h3>制作源码包</h3><p>后面的步骤都很简单了！打开 Konsole，使用 <code>cd</code> 命令进入您的文件夹，执行以下命令：</p><pre class="wp-block-code"><code>makepkg --source</code></pre><p>这个命令实际上就是将文件夹里的文件打成一个包，但为了确认您的 PKGBUILD 中的校验值准确无误，PKGBUILD 中 <code>source</code> 一栏所有文件都会被下载下来以校验完整性，耐心等待就好。</p><p>输出内容大概是：</p><pre class="wp-block-code"><code>==> 正在进入 fakeroot 环境...
+==> 正在创建源码包...
+  -> 正在添加 PKGBUILD...
+  -> 正在生成 .SRCINFO 文件...
+  -> 正在压缩源码包...
+==> 正在离开 fakeroot 环境。
+==> 源代码包已创建：foo</code></pre><h3>将源码包上传到 CCR</h3><p>请确认您已经登录 CCR 帐户，接下来访问 <a href="https://ccr.chakralinux.org/pkgsubmit.php" target="_blank" rel="nofollow">上传页面</a>，选择软件包分类，接下来选择源码包，源码包应该位于您的文件夹中，包名应该是 <code>$pkgname-$pkgver.src.tar.gz</code>。</p><figure class="wp-block-image"><script data-cfasync="false" src="../../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49"></script><img class="lazyload" data-src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/9.png" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/inload.svg" onerror="imgError(this)" alt="" /></figure > <noscript><img src="https://i0.wp.com/bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/9.png?w=640&#038;ssl=1" alt="" data-recalc-dims="1"/></figure></noscript><p>点击「上传」即可。如果 CCR 里面本身没有这个包或这个包是一个无人维护的包（孤儿包），您将会成为维护者。CCR 里面旧版本的软件包将会被您的新软件包取代。如果这个包已经有维护者，CCR 会拒绝您的提交。如果您发现 CCR 里的包已经被标记为「过期」一段时间而维护者没有采取任何动作，您可以联系 Chakra 团队将该包重置为无人维护状态。</p></div><footer class="post-footer"><div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div><div class="post-tags"> <i class="iconfont icon-tags"></i> <a href="../../../../tag/ccr/index.html" rel="tag">CCR</a> <a href="../../../../tag/chakra/index.html" rel="tag">Chakra</a> <a href="../../../../tag/guide/index.html" rel="tag">Guide</a> <a href="../../../../tag/linux/index.html" rel="tag">Linux</a> <a href="../../../../tag/packaging/index.html" rel="tag">Packaging</a></div><div class="post-like"> <a href="javascript:;" data-action="ding" data-id="1002" class="specsZan "> <i class="iconfont icon-like"></i> <span class="count"> 0</span> </a></div><div class="post-share"><div class="social-share sharehidden"></div> <i class="iconfont show-share icon-forward"></i></div></footer></article><div class="toc-container"><div class="toc"></div></div><section class="post-squares nextprev"><div class="post-nepre half previous"> <a href="../../../../../index.html%3Fp=991.html" rel="prev"><div class="background lazyload" style="background-image:url(https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/outload.svg);" data-src="https://bobby285271.github.io/index.php/wp-json/sakura/v1/image/feature?350"></div><span class="label">Previous Post</span><div class="info"><h3>Fake Proof of Goldbach&#8217;s Conjecture</h3><hr></div></a></div><div class="post-nepre half next"> <a href="../../../../../index.html%3Fp=1073.html" rel="next"><div class="background lazyload" style="background-image:url(https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/outload.svg);" data-src="https://bobby285271.github.io/index.php/wp-json/sakura/v1/image/feature?698"></div><span class="label">Next Post</span><div class="info"><h3>NixOS 19.03 will support Pantheon Desktop</h3><hr></div></a></div></section><section class="author-profile"><div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person"> <a href="https://www.Bobby%20Rong.top/index.php/author/Bobby%20Rong/" class="profile gravatar"><img src="../../../../../wp-content/uploads/2020/04/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg" itemprop="image" alt="Bobby Rong" height="70" width="70"></a><div class="meta"> <span class="title">Author</span><h3 itemprop="name"> <a href="https://www.Bobby%20Rong.top/index.php/author/Bobby%20Rong/" itemprop="url" rel="author">Bobby Rong</a></h3></div></div><hr><p><i class="iconfont icon-write"></i>沧海如澜冰雪消融 云淡风轻浮沉若梦</p></section></main></div></div><section id="comments" class="comments"><div class="commentwrap comments-hidden"><div class="notification"><i class="iconfont icon-mark"></i>查看评论 - <span class="noticom">NOTHING </span></div></div><div class="comments-main"><h3 id="comments-list-title">Comments | <span class="noticom">NOTHING </span></h3><div id="loading-comments"><span></span></div><div class="commentwrap"><div class="notification-hidden"><i class="iconfont icon-mark"></i> 暂无评论</div></div><div id="respond" class="comment-respond"><h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="../../../../../index.html%3Fp=1002.html#respond" style="display:none;">取消回复</a></small></h3><form action="https://bobby285271.github.io/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p style="font-style:italic"><a href="https://segmentfault.com/markdown" target="_blank"><i class="iconfont icon-markdown" style="color:#000"></i></a> Markdown Supported while <i class="fa fa-code" aria-hidden="true"></i> Forbidden</p><div class="comment-textarea"><textarea placeholder="你是我一生只会遇见一次的惊喜 ..." name="comment" class="commentbody" id="comment" rows="5" tabindex="4"></textarea><label class="input-label">你是我一生只会遇见一次的惊喜 ...</label></div><div id="upload-img-show"></div><p id="emotion-toggle" class="no-select"> <span class="emotion-toggle-off">戳我试试 OωO</span> <span class="emotion-toggle-on">嘿嘿嘿 ヾ(≧∇≦*)ゝ</span></p><div class="emotion-box no-select"><table class="motion-switcher-table"><tr><th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.bili')" class="bili-bar on-hover" data-cf-modified-7f6fe576b505d1d20bbe8fef-="">bilibili~</th><th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.menhera')" class="menhera-bar" data-cf-modified-7f6fe576b505d1d20bbe8fef-="">(=・ω・=)</th><th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.tieba')" class="tieba-bar" data-cf-modified-7f6fe576b505d1d20bbe8fef-="">Tieba</th></tr></table><div class="bili-container motion-container"><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('baiyan',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_baiyan.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/baiyan.png);
+ animation-duration: 1800ms;
+ animation-timing-function: steps(45);
+ transform: translateY(-1408px);
+ height: 1440px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('fadai',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_fadai.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/fadai.png);
+ animation-duration: 1080ms;
+ animation-timing-function: steps(27);
+ transform: translateY(-832px);
+ height: 864px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('koubi',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_koubi.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/koubi.png);
+ animation-duration: 1200ms;
+ animation-timing-function: steps(30);
+ transform: translateY(-928px);
+ height: 960px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('qinqin',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_qinqin.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/qinqin.png);
+ animation-duration: 280ms;
+ animation-timing-function: steps(7);
+ transform: translateY(-192px);
+ height: 224px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('weiqu',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_weiqu.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/weiqu.png);
+ animation-duration: 800ms;
+ animation-timing-function: steps(20);
+ transform: translateY(-608px);
+ height: 640px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bishi',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_bishi.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/bishi.png);
+ animation-duration: 360ms;
+ animation-timing-function: steps(9);
+ transform: translateY(-256px);
+ height: 288px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('fanu',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_fanu.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/fanu.png);
+ animation-duration: 1320ms;
+ animation-timing-function: steps(33);
+ transform: translateY(-1024px);
+ height: 1056px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('kun',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_kun.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/kun.png);
+ animation-duration: 1760ms;
+ animation-timing-function: steps(44);
+ transform: translateY(-1376px);
+ height: 1408px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('se',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_se.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/se.png);
+ animation-duration: 400ms;
+ animation-timing-function: steps(10);
+ transform: translateY(-288px);
+ height: 320px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('weixiao',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_weixiao.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/weixiao.png);
+ animation-duration: 800ms;
+ animation-timing-function: steps(20);
+ transform: translateY(-608px);
+ height: 640px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bizui',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_bizui.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/bizui.png);
+ animation-duration: 1240ms;
+ animation-timing-function: steps(31);
+ transform: translateY(-960px);
+ height: 992px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('ganga',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_ganga.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/ganga.png);
+ animation-duration: 1520ms;
+ animation-timing-function: steps(38);
+ transform: translateY(-1184px);
+ height: 1216px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('lengmo',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_lengmo.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/lengmo.png);
+ animation-duration: 40ms;
+ animation-timing-function: steps(1);
+ transform: translateY(-0px);
+ height: 32px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shengbing',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_shengbing.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/shengbing.png);
+ animation-duration: 1400ms;
+ animation-timing-function: steps(35);
+ transform: translateY(-1088px);
+ height: 1120px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('wunai',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_wunai.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/wunai.png);
+ animation-duration: 920ms;
+ animation-timing-function: steps(23);
+ transform: translateY(-704px);
+ height: 736px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('chan',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_chan.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/chan.png);
+ animation-duration: 1600ms;
+ animation-timing-function: steps(40);
+ transform: translateY(-1248px);
+ height: 1280px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('guilian',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_guilian.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/guilian.png);
+ animation-duration: 40ms;
+ animation-timing-function: steps(1);
+ transform: translateY(-0px);
+ height: 32px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liubixue',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_liubixue.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/liubixue.png);
+ animation-duration: 1400ms;
+ animation-timing-function: steps(35);
+ transform: translateY(-1088px);
+ height: 1120px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shengqi',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_shengqi.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/shengqi.png);
+ animation-duration: 440ms;
+ animation-timing-function: steps(11);
+ transform: translateY(-320px);
+ height: 352px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('xiaoku',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_xiaoku.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/xiaoku.png);
+ animation-duration: 600ms;
+ animation-timing-function: steps(15);
+ transform: translateY(-448px);
+ height: 480px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('daku',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_daku.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/daku.png);
+ animation-duration: 320ms;
+ animation-timing-function: steps(8);
+ transform: translateY(-224px);
+ height: 256px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('guzhang',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_guzhang.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/guzhang.png);
+ animation-duration: 680ms;
+ animation-timing-function: steps(17);
+ transform: translateY(-512px);
+ height: 544px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liuhan',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_liuhan.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/liuhan.png);
+ animation-duration: 1080ms;
+ animation-timing-function: steps(27);
+ transform: translateY(-832px);
+ height: 864px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shuizhao',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_shuizhao.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/shuizhao.png);
+ animation-duration: 960ms;
+ animation-timing-function: steps(24);
+ transform: translateY(-736px);
+ height: 768px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('xieyanxiao',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_xieyanxiao.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/xieyanxiao.png);
+ animation-duration: 320ms;
+ animation-timing-function: steps(8);
+ transform: translateY(-224px);
+ height: 256px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dalao',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_dalao.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/dalao.png);
+ animation-duration: 1320ms;
+ animation-timing-function: steps(33);
+ transform: translateY(-1024px);
+ height: 1056px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('haixiu',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_haixiu.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/haixiu.png);
+ animation-duration: 1240ms;
+ animation-timing-function: steps(31);
+ transform: translateY(-960px);
+ height: 992px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liulei',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_liulei.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/liulei.png);
+ animation-duration: 40ms;
+ animation-timing-function: steps(1);
+ transform: translateY(-0px);
+ height: 32px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('sikao',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_sikao.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/sikao.png);
+ animation-duration: 1440ms;
+ animation-timing-function: steps(36);
+ transform: translateY(-1120px);
+ height: 1152px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('yiwen',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_yiwen.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/yiwen.png);
+ animation-duration: 840ms;
+ animation-timing-function: steps(21);
+ transform: translateY(-640px);
+ height: 672px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dalian',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_dalian.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/dalian.png);
+ animation-duration: 1480ms;
+ animation-timing-function: steps(37);
+ transform: translateY(-1152px);
+ height: 1184px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('heirenwenhao',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_heirenwenhao.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/heirenwenhao.png);
+ animation-duration: 1040ms;
+ animation-timing-function: steps(26);
+ transform: translateY(-800px);
+ height: 832px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('miantian',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_miantian.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/miantian.png);
+ animation-duration: 1120ms;
+ animation-timing-function: steps(28);
+ transform: translateY(-864px);
+ height: 896px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tiaokan',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_tiaokan.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/tiaokan.png);
+ animation-duration: 40ms;
+ animation-timing-function: steps(1);
+ transform: translateY(-0px);
+ height: 32px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('yun',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_yun.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/yun.png);
+ animation-duration: 480ms;
+ animation-timing-function: steps(12);
+ transform: translateY(-352px);
+ height: 384px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dianzan',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_dianzan.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/dianzan.png);
+ animation-duration: 800ms;
+ animation-timing-function: steps(20);
+ transform: translateY(-608px);
+ height: 640px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('huaixiao',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_huaixiao.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/huaixiao.png);
+ animation-duration: 1240ms;
+ animation-timing-function: steps(31);
+ transform: translateY(-960px);
+ height: 992px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('mudengkoudai',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_mudengkoudai.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/mudengkoudai.png);
+ animation-duration: 40ms;
+ animation-timing-function: steps(1);
+ transform: translateY(-0px);
+ height: 32px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tiaopi',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_tiaopi.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/tiaopi.png);
+ animation-duration: 2000ms;
+ animation-timing-function: steps(50);
+ transform: translateY(-1568px);
+ height: 1600px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zaijian',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_zaijian.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/zaijian.png);
+ animation-duration: 960ms;
+ animation-timing-function: steps(24);
+ transform: translateY(-736px);
+ height: 768px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('doge',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_doge.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/doge.png);
+ animation-duration: 800ms;
+ animation-timing-function: steps(20);
+ transform: translateY(-608px);
+ height: 640px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('jingxia',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_jingxia.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/jingxia.png);
+ animation-duration: 1280ms;
+ animation-timing-function: steps(32);
+ transform: translateY(-992px);
+ height: 1024px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('nanguo',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_nanguo.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/nanguo.png);
+ animation-duration: 1120ms;
+ animation-timing-function: steps(28);
+ transform: translateY(-864px);
+ height: 896px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('touxiao',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_touxiao.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/touxiao.png);
+ animation-duration: 240ms;
+ animation-timing-function: steps(6);
+ transform: translateY(-160px);
+ height: 192px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zhoumei',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_zhoumei.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/zhoumei.png);
+ animation-duration: 40ms;
+ animation-timing-function: steps(1);
+ transform: translateY(-0px);
+ height: 32px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('facai',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_facai.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/facai.png);
+ animation-duration: 1200ms;
+ animation-timing-function: steps(30);
+ transform: translateY(-928px);
+ height: 960px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('keai',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_keai.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/keai.png);
+ animation-duration: 680ms;
+ animation-timing-function: steps(17);
+ transform: translateY(-512px);
+ height: 544px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('outu',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_outu.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/outu.png);
+ animation-duration: 1680ms;
+ animation-timing-function: steps(42);
+ transform: translateY(-1312px);
+ height: 1344px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tuxue',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_tuxue.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/tuxue.png);
+ animation-duration: 320ms;
+ animation-timing-function: steps(8);
+ transform: translateY(-224px);
+ height: 256px;
+ "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zhuakuang',type = 'Math')" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_zhuakuang.png);" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/zhuakuang.png);
+ animation-duration: 760ms;
+ animation-timing-function: steps(19);
+ transform: translateY(-576px);
+ height: 608px;
+ "></div></span></div><div class="menhera-container motion-container" style="display:none;"> <a class="emoji-item">(⌒▽⌒)</a> <a class="emoji-item">（￣▽￣）</a> <a class="emoji-item">(=・ω・=)</a> <a class="emoji-item">(｀・ω・´)</a> <a class="emoji-item">(〜￣△￣)〜</a> <a class="emoji-item">(･∀･)</a> <a class="emoji-item">(°∀°)ﾉ</a> <a class="emoji-item">(￣3￣)</a> <a class="emoji-item">╮(￣▽￣)╭</a> <a class="emoji-item">(´_ゝ｀)</a> <a class="emoji-item">←_←</a> <a class="emoji-item">→_→</a> <a class="emoji-item">(&lt;_&lt;)</a> <a class="emoji-item">(&gt;_&gt;)</a> <a class="emoji-item">(;¬_¬)</a> <a class="emoji-item">("▔□▔)/</a> <a class="emoji-item">(ﾟДﾟ≡ﾟдﾟ)!?</a> <a class="emoji-item">Σ(ﾟдﾟ;)</a> <a class="emoji-item">Σ(￣□￣||)</a> <a class="emoji-item">(’；ω；‘)</a> <a class="emoji-item">（/TДT)/</a> <a class="emoji-item">(^・ω・^ )</a> <a class="emoji-item">(｡･ω･｡)</a> <a class="emoji-item">(●￣(ｴ)￣●)</a> <a class="emoji-item">ε=ε=(ノ≧∇≦)ノ</a> <a class="emoji-item">(’･_･‘)</a> <a class="emoji-item">(-_-#)</a> <a class="emoji-item">（￣へ￣）</a> <a class="emoji-item">(￣ε(#￣)Σ</a> <a class="emoji-item">ヽ(‘Д’)ﾉ</a> <a class="emoji-item">（#-_-)┯━┯</a> <a class="emoji-item">(╯°口°)╯(┴—┴</a> <a class="emoji-item">←◡←</a> <a class="emoji-item">( ♥д♥)</a> <a class="emoji-item">_(:3」∠)_</a> <a class="emoji-item">Σ&gt;―(〃°ω°〃)♡→</a> <a class="emoji-item">⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄</a> <a class="emoji-item">(╬ﾟдﾟ)▄︻┻┳═一</a> <a class="emoji-item">･*･:≡(　ε:)</a> <a class="emoji-item">(笑)</a> <a class="emoji-item">(汗)</a> <a class="emoji-item">(泣)</a> <a class="emoji-item">(苦笑)</a></div><div class="tieba-container motion-container" style="display:none;"><span title="tongue" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tongue')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_tongue.gif" /></span><span title="theblackline" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('theblackline')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_theblackline.gif" /></span><span title="tear" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tear')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_tear.gif" /></span><span title="surprised" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('surprised')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_surprised.gif" /></span><span title="surprised2" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('surprised2')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_surprised2.gif" /></span><span title="spray" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('spray')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_spray.gif" /></span><span title="spit" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('spit')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_spit.gif" /></span><span title="smilingeyes" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('smilingeyes')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_smilingeyes.gif" /></span><span title="shui" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shui')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_shui.gif" /></span><span title="shame" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shame')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_shame.gif" /></span><span title="se" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('se')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_se.gif" /></span><span title="rmb" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('rmb')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_rmb.gif" /></span><span title="reluctantly" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('reluctantly')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_reluctantly.gif" /></span><span title="rbq" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('rbq')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_rbq.gif" /></span><span title="niconiconit" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconit')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_niconiconit.gif" /></span><span title="niconiconi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconi')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_niconiconi.gif" /></span><span title="niconiconi-t" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconi-t')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_niconiconi_t.gif" /></span><span title="naive" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('naive')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_naive.gif" /></span><span title="ku" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('ku')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_ku.gif" /></span><span title="huaji" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('huaji')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_huaji.gif" /></span><span title="hu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('hu')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_hu.gif" /></span><span title="han" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('han')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_han.gif" /></span><span title="haha" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('haha')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_haha.gif" /></span><span title="good" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('good')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_good.gif" /></span><span title="doubt" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('doubt')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_doubt.gif" /></span><span title="britan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('britan')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_britan.gif" /></span><span title="bbd" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bbd')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_bbd.gif" /></span><span title="awesome" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('awesome')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_awesome.gif" /></span><span title="anger" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('anger')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_anger.gif" /></span><span title="aa" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('aa')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_aa.gif" /></span><span title="Happy" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('Happy')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_Happy.gif" /></span><span title="Grievance" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('Grievance')" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_Grievance.gif" /></span></div></div><div class="cmt-info-container"><div class="comment-user-avatar"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/avatar.jpeg"><div class="socila-check qq-check"><i class="fa fa-qq" aria-hidden="true"></i></div><div class="socila-check gravatar-check"><i class="fa fa-google" aria-hidden="true"></i></div></div><div class="popup cmt-popup cmt-author" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><span class="popuptext" id="thePopup" style="margin-left: -115px;width: 230px;">输入QQ号将自动拉取昵称和头像</span><input type="text" placeholder="昵称或QQ号 (昵称 )" name="author" id="author" value="" size="22" autocomplete="off" tabindex="1" aria-required='true' /></div><div class="popup cmt-popup" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><span class="popuptext" id="thePopup" style="margin-left: -65px;width: 130px;">你将收到回复通知</span><input type="text" placeholder="邮箱 (必须* )" name="email" id="email" value="" size="22" tabindex="1" autocomplete="off" aria-required='true' /></div><div class="popup cmt-popup" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-7f6fe576b505d1d20bbe8fef-=""><span class="popuptext" id="thePopup" style="margin-left: -55px;width: 110px;">禁止小广告😀</span><input type="text" placeholder="网站" name="url" id="url" value="" size="22" autocomplete="off" tabindex="1" /></div></div> <input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off" /><p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">在此浏览器中保存我的名字、电邮和网站。</label></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="BiuBiuBiu~" /> <input type='hidden' name='comment_post_ID' value='1002' id='comment_post_ID' /> <input type='hidden' name='comment_parent' id='comment_parent' value='0' /></p></form></div></div></section></div><footer id="colophon" class="site-footer" role="contentinfo"><div class="site-info" theme-info="Sakurairo v1.9.3"><div class="footertext"><div class="img-preload"> <img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/load/ball.svg"> <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/disqus-preloader.svg"></div> <i class="iconfont icon-sakura rotating" style="color: #EE9CA7;display:inline-block;font-size:26px"></i></p><p style="color: #666666;">Copyright &copy; by Bobby Rong / All Rights Reserved</p></div><div class="footer-device"><p style="font-family: 'Ubuntu', sans-serif;"> <span style="color: #b9b9b9;"> <script type="7f6fe576b505d1d20bbe8fef-text/javascript" src="https://api.btstu.cn/yan/api.php?charset=utf-8&encode=js"></script> <div id="yan"></div></p> Theme <a href="https://2heng.xin/theme-sakura/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakurairo</a> by <a href="https://asuhe.jp/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hitomi</a> </span></p></div></div></footer><div class="openNav no-select"><div class="iconflat no-select"><div class="icon"></div></div><div class="site-branding"><div class="site-title"></div></div></section><div id="mo-nav"><div class="m-avatar"> <img src="../../../../../wp-content/uploads/2020/04/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg"></div><div class="m-search"><form class="m-search-form" method="get" action="../../../../../index.html" role="search"> <input class="m-search-input" type="search" name="s" placeholder="搜索..." required></form></div><ul id="menu-primary-1" class="menu"><li><a href="../../../../../index.html">Home</a></li><li><a href="../../../../../index.html%3Fp=325.html">About</a></li><li><a href="../../../../../index.html%3Fp=1045.html">Timeline</a></li><li><a href="../../../../../index.html%3Fp=347.html">Projects</a><ul class="sub-menu"><li><a href="../../../../../index.html%3Fp=182.html">Archiso</a></li></ul></li><li><a href="../../../../../index.html%3Fp=369.html">Extras</a></li></ul></div> <a class="cd-top faa-float animated "></a> <button id="moblieGoTop" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button> <button id="changskin" style="bottom: 15px;"><i class="iconfont icon-gear inline-block rotating"></i></button><form class="js-search search-form search-form--modal" method="get" action="../../../../../index.html" role="search"><div class="search-form__inner"><div class="micro"> <i class="iconfont icon-search"></i> <input id="search-input" class="text-input" type="search" name="s" placeholder="想要找点什么呢？" required></div><div class="ins-section-wrapper"> <a id="Ty" href="../../../../../index.html%3Fp=1002.html#"></a><div class="ins-section-container" id="PostlistBox"></div></div></div><div class="search_close"></div></form> <script type="7f6fe576b505d1d20bbe8fef-text/javascript">var Poi = {"pjax":"1","movies":"close","windowheight":"auto","codelamp":"close","ajaxurl":"https:\/\/www.bobby285271.top\/wp-admin\/admin-ajax.php","order":"asc","formpostion":"bottom","reply_link_version":"new","api":"https:\/\/www.bobby285271.top\/index.php\/wp-json\/","nonce":"69b6a37974","google_analytics_id":"","gravatar_url":"secure.gravatar.com\/avatar"};</script> <script type="7f6fe576b505d1d20bbe8fef-text/javascript" src='https://cdn.jsdelivr.net/github-cards/latest/widget.js'></script> <script type="7f6fe576b505d1d20bbe8fef-text/javascript" src='https://stats.wp.com/e-202015.js' async='async' defer='defer'></script> <script type="7f6fe576b505d1d20bbe8fef-text/javascript">_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:8.4.1',blog:'172618889',post:'1002',tz:'8',srv:'www.bobby285271.top'} ]);
+	_stq.push([ 'clickTrackerInit', '172618889', '1002' ]);</script> <div class="skin-menu no-select"><div class="theme-controls row-container"><ul class="menu-list"><li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li><li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li><li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li><li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li><li id="totem-bg"> <i class="fa fa-superpowers" aria-hidden="true"></i></li><li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li><li id="bing-bg"> <i class="iconfont icon-bing"></i></li><li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li></ul></div><div class="font-family-controls row-container"> <button type="button" class="control-btn-serif selected" data-mode="serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-7f6fe576b505d1d20bbe8fef-="">Serif</button> <button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-7f6fe576b505d1d20bbe8fef-="">Sans Serif</button></div></div><canvas id="night-mode-cover"></canvas><div id="aplayer-float" style="z-index: 100;" class="aplayer" data-id="4957367484" data-server="netease" data-type="playlist" data-fixed="true" data-volume="0.5" data-order="random" data-theme="#EE9CA7"></div> <script type="7f6fe576b505d1d20bbe8fef-text/javascript" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/js/hana.js"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/css/bolang.css"> <script type="7f6fe576b505d1d20bbe8fef-text/javascript" src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/acai66/mydl/fonts/wenyihei/wenyihei-subfont.css" media="all"> <script defer src="../../../../../wp-content/cache/autoptimize/js/autoptimize_9219f55083367c2a241d17b4ee20443b.js" type="7f6fe576b505d1d20bbe8fef-text/javascript"></script><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="7f6fe576b505d1d20bbe8fef-|49" defer=""></script></body></html>
