@@ -1,4 +1,602 @@
-<!DOCTYPE html><html lang="zh-CN"><head><link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all"><meta name="theme-color" content="#EE9CA7"><meta charset="UTF-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><link media="all" href="wp-content/cache/autoptimize/css/autoptimize_95a5d53c780d8c8ef68e85f48cf2ffc6.css" rel="stylesheet" /><title itemprop="name">NixOS Beginners&#8217; Guide &#8211; Dasyatis</title><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/favicon.ico" /><meta http-equiv="x-dns-prefetch-control" content="on"><link rel='dns-prefetch' href='https://cdn.jsdelivr.net/' /><link rel='dns-prefetch' href='https://s.w.org/' /><link rel='https://api.w.org/' href='index.php/wp-json/index.html' /><link rel='prev' title='密码保护：[WIP] SCNUSE 2020 GPLT Tryouts Level 2-3 Solution' href='index.html%3Fp=819.html' /><link rel='next' title='Lanqiao' href='index.html%3Fp=1405.html' /><link rel="canonical" href="index.php/2019/01/02/nixos-installation-guide-chinese/index.html" /><link rel='shortlink' href='index.html%3Fp=439.html' /><link rel="alternate" type="application/json+oembed" href="index.php/wp-json/oembed/1.0/embed%3Furl=https%253A%252F%252Fwww.bobby285271.top%252Findex.php%252F2020%252F04%252F15%252Fnixos-beginners-guide%252F" /><link rel="alternate" type="text/xml+oembed" href="index.php/wp-json/oembed/1.0/embed%3Furl=https%253A%252F%252Fwww.bobby285271.top%252Findex.php%252F2020%252F04%252F15%252Fnixos-beginners-guide%252F&amp;format=xml" /><link rel='dns-prefetch' href='https://i0.wp.com/' /><link rel='dns-prefetch' href='https://i1.wp.com/' /><link rel='dns-prefetch' href='https://i2.wp.com/' /><link rel='dns-prefetch' href='https://c0.wp.com/' /></head><body class="post-template-default single single-post postid-439 single-format-standard chinese-font  "><div id="preload"><li data-id="3" class="active"><div id="preloader_3"></div></li></div><div class="scrollbar" id="bar"></div><section id="main-container"><div class="headertop filter-undertint"><div id="banner_wave_1"></div><div id="banner_wave_2"></div><figure id="centerbg" class="centerbg"><div class="focusinfo"><div class="header-tou"><a href="index.html"><img src="wp-content/uploads/2020/04/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg"></a></div><div class="header-info"><p>Life / Love / Linux</p></div><div class="top-social"><li id="bg-pre"><img class="flipx" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/next.png" /></li><li><a href="https://github.com/bobby285271/" target="_blank" class="social-github" title="github"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/github.png" /></a></li><li class="qq"><a href="tencent://message/?uin=931189261" title="Initiate chat ?"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/qq.png" /></a></li><li><a onclick="if (!window.__cfRLUnblockHandlers) return false; mail_me()" class="social-wangyiyun" title="E-mail" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/mail.png" /></a></li><li id="bg-next"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/next.png" /></li></div></div></figure><div id="video-container" style="display:none;"><video id="bgvideo" class="video" video-name="" src="index.php/2019/01/02/nixos-installation-guide-chinese/index.html" width="auto" preload="auto"></video><div id="video-btn" class="loadvideo videolive"></div><div id="video-add"></div><div class="video-stu"></div></div><div class="headertop-down faa-float animated" onclick="if (!window.__cfRLUnblockHandlers) return false; headertop_down()" data-cf-modified-8ea121672a1a68c01854c93d-=""><span><i class="fa fa-chevron-down" aria-hidden="true" style="color:"></i></span></div></div><div id="page" class="site wrapper"><header class="site-header no-select" role="banner"><div class="site-top"><div class="site-branding"><div class="site-title"> <a href="index.html"><img src="wp-content/uploads/2020/04/icon.png"></a></div></div><div class="header-user-avatar"> <a href="wp-login.php.html"> <img class="faa-shake animated-hover" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/ui/none.png" width="30" height="30"> </a><div class="header-user-menu"><div class="herder-user-name no-logged"> <a href="wp-login.php.html" target="_blank" style="color:#EE9CA7;font-weight:bold;text-decoration:none">登录</a></div></div></div><div class="searchbox"><i class="iconfont js-toggle-search iconsearch icon-search"></i></div><div class="lower"><nav><ul id="menu-primary" class="menu"><li><a href="index.html">Home</a></li><li><a href="index.html%3Fp=325.html">Info</a></li><li><a href="index.html%3Fp=1045.html">Timeline</a></li><li><a href="index.html%3Fp=347.html">Studio</a><ul class="sub-menu"><li><a href="index.html%3Fp=182.html">Archiso</a></li></ul></li></ul></nav></div></div></header><div class="blank"></div><div id="content" class="site-content"><div id="primary" class="content-area"><main id="main" class="site-main" role="main"><article id="post-439" class="post-439 post type-post status-publish format-standard hentry category-linux tag-installation tag-nixos"><header class="entry-header"><h1 class="entry-title">NixOS Beginners&#8217; Guide</h1><p class="entry-census">发布于 9 天前&nbsp;&nbsp;517 次阅读 本文共14282个字</p><hr></header><div class="entry-content"><p>这是 <strong>NixOS 入坑指南（第二版</strong>），基于 NixOS 20.03 Beta 和 <a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/" target="_blank" rel="nofollow">NixOS Manual 20.03</a> 撰写。本文的写作缘由是 NixOS Manual 的编排设计很容易导致习惯了其它发行版安装和配置流程的新人入坑失败。本篇指南给出的解决方案基本能满足<strong><span style="text-decoration: underline;">大一软工专业课程学习</span></strong>和<strong><span style="text-decoration: underline;">日常使用</span></strong>的需要。</p><p><strong>本文将假定你已经独立安装和配置过 Arch Linux、Gentoo 或任一官方不提供 GUI 安装程序的 Linux 发行版并掌握安装过程中涉及的大部分命令。</strong></p><h2>了解 NixOS</h2><p><a rel="noreferrer noopener" href="https://distrowatch.com/table.php?distribution=nixos" target="_blank" rel="nofollow">可以先从 DistroWatch 开始了解 NixOS 这个发行版</a>，<a rel="noreferrer noopener" href="https://nixos.org/nixos/about.html" target="_blank" rel="nofollow">接下来建议阅读 NixOS 官方的介绍</a>。有一个不太恰当的比喻，NixOS 相对于其它发行版有点像使用 Git + Markdown + Hexo 相对于无版本管理 + 手撸 HTML 文件，<a rel="noreferrer noopener" href="https://nixos.wiki/wiki/NixOS#Comparison_with_traditional_Linux_Distributions" target="_blank" rel="nofollow">NixOS Wiki 也给出了 NixOS 和其它发行版的最大区别所在</a>。而这一切实现的基础是 <strong>Nix</strong>，事实上 NixOS 中所有软件包（<strong>Nixpkgs</strong>）和系统配置都由 Nix 管理。要想了解 Nix，<a rel="noreferrer noopener" href="https://www.zhihu.com/question/279855101/answer/475896416" target="_blank" rel="nofollow">建议阅读 dram 大佬在知乎相关问题下的回答</a>。dram 是 TUNA 镜像站镜像 NixOS / Nix / Nixpkgs 的主要推动者之一。至于 NixOS 是否适合你，<a rel="noreferrer noopener" href="https://zhuanlan.zhihu.com/p/50623869" target="_blank" rel="nofollow">可以阅读这篇文章自行判断</a>。</p> <span id="more-439"></span><h2>准备工作</h2><p>准备好安装 NixOS 了？让我们开始吧。前期的准备工作包括：数据备份、下载镜像、将镜像写入 U 盘、引导安装介质、连接到网络、建立分区、格式化分区、挂载分区，<strong>这一部分和其它（不带 GUI 安装程序的）Linux 发行版的安装几乎是一样的</strong>，这里不会细讲。</p><p>2020 年 3 月后清华镜像站就有 Nix / NixOS / Nixpkgs 的镜像了，<a rel="noreferrer noopener" href="https://mirrors.tuna.tsinghua.edu.cn/nixos-images/" target="_blank" rel="nofollow">NixOS 的安装介质可在这里下载</a>，建议选带桌面环境的镜像（可以通过文件名判断）。将写入 U 盘可以使用 <code>dd</code> 命令，具体用法（<code>path-to-image</code> 是 NixOS 安装介质的路径，<code>/dev/sdX</code> 则是写入目标）：</p><pre class="wp-block-code"><code>sudo dd if=path-to-image of=/dev/sdX</code></pre><p>引导安装介质后，按照 <code>/etc/issue</code> 的提示操作即可进入桌面环境（启动登录管理器），注意默认搭载的账户 <code>nixos</code> 和 <code>root</code> 都没有密码：</p><pre class="wp-block-code"><code>sudo systemctl start display-manager</code></pre><p>因为在线安装，联网是必须的。通常情况使用 NetworkManager 联网即可，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-installation-booting-networking" target="_blank" rel="nofollow">当然这里还有其它的联网方式</a>。</p><p>可选的分区工具除了熟悉的 GDisk 和 GNU Parted 这些 CLI 的分区工具之外，还有 GUI 的分区工具 GParted。<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-installation-partitioning" target="_blank" rel="nofollow">NixOS Manual 对在命令行下分区做了详细的介绍</a>，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-installation-summary" target="_blank" rel="nofollow">还配有不少的例子</a>，<a rel="noreferrer noopener" href="https://wiki.archlinux.org/index.php/Partitioning" target="_blank" rel="nofollow">可以配合 ArchWiki 的相关文章进行阅读</a>。因为 Nix 并不会自动删除历史的软件包安装，<strong>根目录尽可能分大一些</strong>，否则随着时间推移 <code>/nix</code> 可能会占用较大空间。<strong>除了 Home 和 EFI 分区之外不建议（也没必要）设置独立分区</strong>。<strong>另外 NixOS 的回滚功能是由 Nix 实现的，和 Btrfs 无关</strong>，如果你选择 Btrfs 仅仅是因为它的快照特性，那么没有必要给根分区使用 Btrfs。</p><p>格式化分区之后就可以挂载分区了。分区应该挂载到 <code>/mnt</code> 下，例如根分区就挂载到 <code>/mnt</code>，Home 分区则 <code>/mnt/home</code>。<strong>特别留意 NixOS 下 EFI 分区应该挂载到 <code>/mnt/boot</code>。</strong>Swap 分区使用 <code>swapon</code> 启用即可。</p><h3>初始化 NixOS 配置文件</h3><p>接下来就是后期的准备工作了。事实上，如果你点开了前面的几个链接，你会发现 <code>/etc/nixos/configuration.nix</code> 是整个系统的灵魂所在。你的系统<strong><span style="text-decoration: underline;">全局搭载</span></strong>的软件包和系统配置都取决于这个文件。<a rel="noreferrer noopener" href="https://linux.cn/article-8976-1.html" target="_blank" rel="nofollow">因此我们说这个发行版是「先配置后安装」的</a>。</p><p><strong>所以接下来的主要任务，就是配置 <code>configuration.nix</code>，这个文件会一直伴随着你的系统。</strong>一旦配置完成，你会使用到 <code>nixos-install</code> 脚本，这个脚本会读取这个文件，并调用 Nix 让其根据这个文件「造出对应的系统来」。而在安装好 NixOS 之后，你可以随时改动 <code>configuration.nix</code> 这个文件，然后使用 <code>nixos-rebuild</code> 脚本，这个脚本同样也是调用 Nix，让 Nix <strong>处理所有的变化</strong>，以「造出对应的系统来」。「造出来的系统」会<strong><span style="text-decoration: underline;">和当前系统的状态无关</span></strong> 。这两个脚本笔者在后面会介绍其用法。</p><p>当然了，如果在 Live 环境里面直接编辑 <code>/etc/nixos/configuration.nix</code>，打开的是 Live 环境的配置文件。而现在我们需要为新的系统创建一个默认的 NixOS 的配置文件，在进入新系统之前，应该通过 <code>/mnt</code> 访问其文件<strong>（本文后续的命令，除非特别注明，否则一律需要在 <code>root</code> 账户下执行，可以使用 <code>su</code> 命令从普通用户切换到 <code>root</code> 账户）</strong>：</p><pre class="wp-block-code"><code>nixos-generate-config --root /mnt</code></pre><p>运行这个命令之后，<code>/mnt/etc/nixos/</code> 目录会被创建，里面会放置自动生成的两个文件：<code>configuration.nix</code> 和 <code>hardware-configuration.nix</code> 。我们待会再看 <code>hardware-configuration.nix</code>，先看看前面已经提到无数次的 <code>configuration.nix</code>，<a rel="noreferrer noopener" href="https://paste.ubuntu.com/p/JHsyTczk3m/" target="_blank" rel="nofollow">这个文件在 NixOS 20.03 下默认长这样</a>。当然了，在你安装系统之后，可以使用 <code>nixos-generate-config --force</code> 重新生成一个 <code>configuration.nix</code>。</p><h3>初识 <strong>NixOS 模块</strong></h3><p>让我们来打开 <code>configuration.nix</code> 这个文件：</p><pre class="wp-block-code"><code>nano /mnt/etc/nixos/configuration.nix</code></pre><p>以 <code>#</code> 开头的都是注释，我们先不要管注释，看看没有注释的内容。实际上，这是一个简化的 <strong>NixOS 模块</strong>（NixOS Module）。我们尝试分析一下它的结构：</p><pre class="wp-block-code"><code>{ config, pkgs, ... }:
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+<meta name="theme-color" content="#EE9CA7">
+<meta charset="UTF-8">
+
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<title itemprop="name">NixOS Beginners&#8217; Guide &#8211; Dasyatis</title>
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/favicon.ico" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel='dns-prefetch' href='https://cdn.jsdelivr.net/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link rel='stylesheet' id='wp-block-library-css' href='https://c0.wp.com/c/5.4/wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='saukra_css-css' href='wp-content/themes/Sakurairo/style.css%3Fver=1.11.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css' href='https://c0.wp.com/p/jetpack/8.4.2/css/jetpack.css' type='text/css' media='all' />
+<link rel='https://api.w.org/' href='index.php/wp-json/index.html' />
+<link rel='prev' title='密码保护：[WIP] SCNUSE 2020 GPLT Tryouts Level 2-3 Solution' href='index.html%3Fp=819.html' />
+<link rel='next' title='Lanqiao' href='index.html%3Fp=1405.html' />
+<link rel="canonical" href="index.php/2019/01/02/nixos-installation-guide-chinese/index.html" />
+<link rel='shortlink' href='index.html%3Fp=439.html' />
+<link rel="alternate" type="application/json+oembed" href="index.php/wp-json/oembed/1.0/embed%3Furl=https%253A%252F%252Fwww.bobby285271.top%252Findex.php%252F2020%252F04%252F15%252Fnixos-beginners-guide%252F" />
+<link rel="alternate" type="text/xml+oembed" href="index.php/wp-json/oembed/1.0/embed%3Furl=https%253A%252F%252Fwww.bobby285271.top%252Findex.php%252F2020%252F04%252F15%252Fnixos-beginners-guide%252F&amp;format=xml" />
+<link rel='dns-prefetch' href='https://i0.wp.com/' />
+<link rel='dns-prefetch' href='https://i1.wp.com/' />
+<link rel='dns-prefetch' href='https://i2.wp.com/' />
+<link rel='dns-prefetch' href='https://c0.wp.com/' />
+<style type='text/css'>img#wpstats{display:none}</style><style type="text/css">
+.site-top .lower nav {display: block !important;}
+.author-profile i , .post-like a , .post-share .show-share , .sub-text , .we-info a , span.sitename , .post-more i:hover , #pagination a:hover , .post-content a:hover , .float-content i:hover{ color: #EE9CA7 }
+.feature i , /*.feature-title span ,*/ .download , .navigator i:hover , .links ul li:before , .ar-time i , span.ar-circle , .object , .comment .comment-reply-link , .siren-checkbox-radio:checked + .siren-checkbox-radioInput:after { background: #EE9CA7 }
+::-webkit-scrollbar-thumb { background: #EE9CA7 }
+.download , .navigator i:hover , .link-title , .links ul li:hover , #pagination a:hover , .comment-respond input[type='submit']:hover { border-color: #EE9CA7 }
+.entry-content a:hover , .site-info a:hover , .comment h4 a , #comments-navi a.prev , #comments-navi a.next , .comment h4 a:hover , .site-top ul li a:hover , .entry-title a:hover , #archives-temp h3 , span.page-numbers.current , .sorry li a:hover , .site-title a:hover , i.iconfont.js-toggle-search.iconsearch:hover , .comment-respond input[type='submit']:hover, blockquote:before, blockquote:after { color: #EE9CA7 }
+
+#aplayer-float .aplayer-lrc-current { color: #EE9CA7 !important}
+
+.linkdes { border-top: 1px dotted #EE9CA7 !important}
+
+.the-feature.from_left_and_right .info{background: #FFEEEB }
+
+.is-active-link::before, .commentbody:not(:placeholder-shown)~.input-label, .commentbody:focus~.input-label {
+    background-color: #EE9CA7 !important
+}
+.links ul li {
+    border: 1px solid #EE9CA7;
+}
+.links ul li img {
+    box-shadow: inset 0 0 10px #EE9CA7;
+}
+.commentbody:focus {
+    border-color: #EE9CA7 !important
+}
+
+.insert-image-tips:hover, .insert-image-tips-hover{ 
+    color: #EE9CA7;
+    border: 1px solid #EE9CA7}
+.search_close:after,
+.search_close:before {
+    background-color: #EE9CA7}
+.site-top ul li a:after {
+    background-color: #EE9CA7}
+.search-form input::-webkit-input-placeholder {
+    color: #EE9CA7}
+.search-form input::-moz-placeholder {
+    color: #EE9CA7}
+.search-form input::-webkit-input-placeholder {
+    color: #EE9CA7}
+.search-form input:-ms-input-placeholder {
+    color: #EE9CA7}
+.s-search i {
+    color: #EE9CA7}
+i.iconfont.js-toggle-search.iconsearch {
+    color: #EE9CA7;
+}
+.ins-section .fa {
+    color: #EE9CA7}
+.ins-section .ins-search-item:hover .ins-slug,.ins-section .ins-search-item.active .ins-slug,.ins-section .ins-search-item:hover .ins-search-preview,.ins-section .ins-search-item.active .ins-search-preview,.ins-section .ins-search-item:hover header,.ins-section .ins-search-item:hover .iconfont {
+	color: #EE9CA7}
+.ins-section .ins-section-header {
+    color: #EE9CA7;
+    border-bottom: 3px solid #EE9CA7;
+    border-color: #EE9CA7;
+}
+.the-feature.from_left_and_right .info p {
+    color: #EE9CA7;
+}
+.sorry li a {
+    color: #EE9CA7;
+}
+.sorry li a:hover {
+    color: #EE9CA7;
+}
+.sorry-inner {
+    border: 1px solid #EE9CA7;
+}
+.err-button.back a {
+    border: 1px solid #EE9CA7;
+    color: #EE9CA7;
+}
+
+.sorry {
+    color: #EE9CA7;
+}
+.site-top ul li a:hover {
+    color: #EE9CA7}
+.site-top ul li a {
+    color: #EE9CA7}
+.header-info {
+    color: #EE9CA7;
+    background: ;
+}
+.top-social img {
+    background: ;
+}
+body,
+button,
+input,
+select,
+textarea {
+    color: #EE9CA7}
+input[type=color],
+input[type=date],
+input[type=datetime-local],
+input[type=datetime],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=range],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+textarea {
+    border: 1px solid #EE9CA7;
+}
+.post-date {
+    background-color: #FFEEEB;
+    color: #EE9CA7}
+.post-tags a:hover {
+    color: #EE9CA7}
+.post-share ul li a:hover {
+    color: #EE9CA7}
+.linkdes {
+    color: #EE9CA7}
+.link-title span.link-fix {
+    border-left:3px solid #EE9CA7;
+}
+.scrollbar,.butterBar-message {
+    background: #EE9CA7 !important
+}
+h1.cat-title {
+    color: #EE9CA7}
+h1.fes-title,
+h1.main-title {
+    color: #EE9CA7;
+    border-bottom: 6px dotted #FFEEEB;
+}
+.comment .body .comment-at {
+    color: #EE9CA7}
+.focusinfo .header-tou img {
+    box-shadow: inset 0 0 10px #EE9CA7;
+}
+.double-bounce1, .double-bounce2 {
+    background-color: #EE9CA7;
+  }
+  
+#pagination .loading {
+    background: url(https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/load/ball.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #555;
+    border: none;
+    background-size: auto 100%
+}
+#pagination .loading,#bangumi-pagination .loading {
+    background: url(https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/load/ball.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #555;
+    border: none;
+    background-size: auto 100%
+}
+#nprogress .spinner-icon {
+    border-top-color: #EE9CA7;
+    border-left-color: #EE9CA7;
+}
+#pagination a:hover {
+    border: 1px solid #EE9CA7;
+    color: #EE9CA7}
+#nprogress .peg {
+    box-shadow: 0 0 10px #EE9CA7, 0 0 5px #EE9CA7;
+}
+#nprogress .bar {
+    background: #EE9CA7;
+}
+#gohome {
+    background: #EE9CA7;
+}
+#archives-temp h2 {
+    color: #EE9CA7}
+#archives-temp h3 {
+    color: #EE9CA7}
+#moblieGoTop {
+    color: #EE9CA7}
+#changskin {
+    color: #EE9CA7}
+#show-nav .line {
+    background: #EE9CA7}
+#nprogress .spinner-icon{ 
+    border-top-color: #EE9CA7; 
+    border-left-color: #EE9CA7}
+#nprogress .bar {
+    background: #EE9CA7}
+#aplayer-float .aplayer-lrc-current {
+    color: #EE9CA7;
+}
+@media (max-width:860px) {
+    .links ul li:hover .sitename {
+        color: #EE9CA7    }
+    .openNav .icon {
+     background-color: #EE9CA7;
+    }
+    .openNav .icon:after,
+    .openNav .icon:before {
+     background-color: #EE9CA7;
+    }
+    #mo-nav ul li a {
+        color: #EE9CA7;
+    }
+    #mo-nav ul li a:hover {
+        color: #EE9CA7;
+    }
+    ::-webkit-scrollbar-thumb {
+    background-color: #EE9CA7;
+    }
+}
+.ex-login input.login-button:hover,
+.ex-register input.register-button:hover {
+    background-color: #EE9CA7;
+    border-color: #EE9CA7;
+}
+.herder-user-name {
+	color: #EE9CA7;
+}
+.header-user-menu a {
+    color: #EE9CA7;
+}
+.no-logged a {
+    color: #EE9CA7;
+}
+/*logocss*/
+
+.logolink a {
+    color: #EE9CA7;
+}
+
+.art .art-content .al_mon_list .al_post_list>li:after {
+    background: #EE9CA7;
+}
+@media (min-width:861px) {
+    .hide-live2d {
+        background-color: #EE9CA7;
+    }
+}
+.art-content #archives .al_mon_list .al_mon:after {
+    background: #EE9CA7;
+}
+.art-content #archives .al_mon_list:before {
+    background: #EE9CA7;
+}
+.changeSkin-gear {
+    color: #EE9CA7;
+}
+.art .art-content .al_mon_list .al_post_list>li:after,
+.art-content #archives .al_mon_list .al_mon:after {
+    background: #EE9CA7;
+}
+.is-active-link::before {
+    background-color: #EE9CA7; /*!important*/ /*mark*/
+}
+.motion-switcher-table th:hover {
+    color: #EE9CA7;
+}
+.motion-switcher-table .on-hover {
+    color: #EE9CA7;
+}
+.menhera-container .emoji-item {
+    color: #EE9CA7;
+}
+.float-content i {
+    color: #EE9CA7;
+}
+.scrollbar {
+    background: #EE9CA7;
+}
+.insert-image-tips:hover {
+    color: #EE9CA7;
+    border: 1px solid #EE9CA7;
+}
+.insert-image-tips-hover {
+    color: #EE9CA7;
+    border: 1px solid #EE9CA7;
+}
+.the-feature a {
+    color: #EE9CA7;
+}
+.menu-list li:hover {
+    background-color: #EE9CA7;
+}
+.menu-list li {
+    background-color: ;
+}
+.post-list-thumb {
+    box-shadow: 0 1px 30px -4px #FFEEEB;
+}
+.font-family-controls button {
+    color: #EE9CA7;
+    background-color: ;
+}
+.art .art-content #archives a:hover {
+    color: #EE9CA7;
+}
+.art .art-content .al_mon_list .al_post_list>li,
+.art-content #archives .al_mon_list .al_mon {
+	color: #EE9CA7;
+}
+.font-family-controls button.selected {
+    background-color: #EE9CA7;
+}
+.art-content #archives .al_mon_list .al_mon,
+.art-content #archives .al_mon_list span {
+    color: #EE9CA7;
+}
+.entry-content th {
+    background-color: #EE9CA7}
+
+.post-list-thumb{opacity: 0}
+.post-list-show {opacity: 1}
+
+.centerbg{background-image: url("index.php/wp-json/sakura/v1/image/cover");background-position: center center;background-attachment: inherit;}
+.rotating {
+    -webkit-animation: rotating 6s linear infinite;
+    -moz-animation: rotating 6s linear infinite;
+    -ms-animation: rotating 6s linear infinite;
+    -o-animation: rotating 6s linear infinite;
+    animation: rotating 6s linear infinite;
+}
+/*预加载部分*/
+
+
+body.dark #main-container,body.dark .pattern-center:after,body.dark #mo-nav,body.dark .headertop-bar::after,body.dark .site-content,body.dark .comments,body.dark .site-footer{background:#31363b !important;}
+body.dark .pattern-center-blank,body.dark .yya,body.dark .blank,body.dark .toc,body.dark .search-form input{background:rgba(49,54,59,0.85);}
+body.dark .single-reward .reward-row{background:#bebebe;}
+body.dark .ins-section .ins-search-item:hover,body.dark .ins-section .ins-search-item.active,body.dark .ins-section .ins-search-item:hover .ins-slug,body.dark .ins-section .ins-search-item.active .ins-slug,body.dark .ins-section .ins-search-item:hover .ins-search-preview,body.dark .ins-section .ins-search-item.active .ins-search-preview,body.dark .ins-section .ins-search-item:hover header,body.dark .herder-user-name-u,body.dark .herder-user-name,body.dark .ins-section .ins-search-item:hover .iconfont,body.dark .header-user-menu .user-menu-option{color:#fff;background:#31363b;}
+body.dark .single-reward .reward-row:before{border-bottom:13px solid #bebebe;}
+body.dark .search-form--modal,body.dark .ins-section .ins-section-header{border-bottom:none;background:rgba(49,54,59,0.95);}
+body.dark .search_close:after,body.dark .search_close:before{background-color:#eee;}
+body.dark input.m-search-input{background:#bebebe;}
+body.dark .openNav .icon,body.dark .openNav .icon:after,body.dark .openNav .icon:before{background-color:#eee;}
+body.dark .site-header:hover{background:#31363b;}
+body.dark .centerbg{background-blend-mode:hard-light;background-color:#31363b;}
+body.dark input[type=color]:focus,body.dark input[type=date]:focus,body.dark input[type=datetime-local]:focus,body.dark input[type=datetime]:focus,body.dark input[type=email]:focus,body.dark input[type=month]:focus,body.dark input[type=number]:focus,body.dark input[type=password]:focus,body.dark input[type=range]:focus,body.dark input[type=search]:focus,body.dark input[type=tel]:focus,body.dark input[type=text]:focus,body.dark input[type=time]:focus,body.dark input[type=url]:focus,body.dark input[type=week]:focus,body.dark textarea:focus,body.dark .post-date,body.dark .header-info,body.dark .top-social img,body.dark #mo-nav .m-search form{color:#eee;background-color:#31363b;}
+body.dark .lower li ul,body.dark .header-user-avatar:hover,.header-user-menu{background:#31363b;}
+body.dark .header-user-menu::before,body.dark .lower li ul::before{border-color:transparent transparent #31363b transparent;}
+body.dark .post-date,body.dark .header-user-menu .user-menu-option,body.dark .post-list-thumb a,body.dark .menhera-container .emoji-item:hover{color:#424952;}
+body.dark .entry-content p,body.dark .entry-content ul,body.dark .entry-content ol,body.dark .comments .body p,body.dark .float-content,body.dark .post-list p,body.dark .link-title{color:#bebebe !important;}
+body.dark .entry-title a,body.dark .post-list-thumb .post-title,body.dark .post-list-thumb,body.dark .art-content #archives .al_mon_list .al_mon,body.dark .art-content #archives .al_mon_list span,body.dark .art .art-content #archives a,body.dark .menhera-container .emoji-item{color:#bebebe;}
+body.dark .site-top ul li a,body.dark .header-user-menu a,body.dark #mo-nav ul li a,body.dark .site-title a,body.dark header.page-header,body.dark h1.cat-title{color:#eee;}
+body.dark .art .art-content #archives .al_year,body.dark .comment-respond input,body.dark .comment-respond textarea,body.dark .siren-checkbox-label{color:#eee;}
+body.dark .post-date,body.dark .post-list-thumb a,body.dark .post-meta,body.dark .info-meta a,body.dark .info-meta span{color:#888;}
+body.dark img,body.dark .highlight-wrap,body.dark iframe,body.dark .entry-content .aplayer{filter:brightness(0.6);}
+body.dark .post-list-thumb{box-shadow:0 1px 35px -8px rgba(0,0,0,0.8);}
+body.dark .notice{color:#EFF0F1;background:#232629;border:none;}
+body.dark h1.fes-title,body.dark h1.main-title{border-bottom:6px dotted #ababab;}
+body.dark #moblieGoTop,body.dark .notification,body.dark .the-feature.from_left_and_right .info,body.dark #changskin{color:#eee;background-color:#232629;}
+body.dark #moblieGoTop:hover,body.dark #changskin:hover{background-color:#232629;opacity:.8;}
+body.dark .widget-area{background-color:rgba(35,38,41,0.8);}
+body.dark .skin-menu,body.dark .menu-list li,body.dark .widget-area .heading,body.dark .widget-area .show-hide svg,body.dark #aplayer-float,body.dark .aplayer.aplayer-fixed .aplayer-body,body.dark .aplayer .aplayer-miniswitcher,body.dark .aplayer .aplayer-pic{color:#eee;background-color:#232629 !important;}
+body.dark .aplayer .aplayer-list ol li .aplayer-list-author{color:#eee;}
+body.dark #aplayer-float .aplayer-lrc-current{color:transparent !important;}
+body.dark .aplayer.aplayer-fixed .aplayer-lrc{text-shadow:-1px -1px 0 #989898;}
+body.dark .aplayer.aplayer-fixed .aplayer-list{border:none !important;}
+body.dark .aplayer.aplayer-fixed .aplayer-info,body.dark .aplayer .aplayer-list ol li{border-top:none !important;}
+body.dark .yya{box-shadow: 0 1px 40px -8px #21252b;}
+body.dark .font-family-controls button.selected{background-color:#31363b;}
+body.dark .user-menu-option a:hover{background-color:#535a63;}
+body.dark .font-family-controls button{background-color:#535a63;}
+body.dark #banner_wave_1,body.dark #banner_wave_2{display:none;}
+body.dark .skin-menu::after{display:none;}
+body.dark .ex-login-username,body.dark .admin-login-check p,body.dark .user-login-check p,body.dark .ex-logout a, .ex-new-account a{color:#bebebe;}
+body.dark .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:hover path,body.dark .widget-area .show-hide svg path{fill:#fafafa;}
+body.dark,body.dark button,body.dark input,body.dark select,body.dark textarea{color:#eee;}
+body.dark button,body.dark input[type=button],body.dark input[type=reset],body.dark input[type=submit]{box-shadow:none;}
+body.dark .comment .info,body.dark .comment-respond .logged-in-as,body.dark .notification,body.dark .comment-respond .logged-in-as a,body.dark .comment-respond .logged-in-as a:hover{color:#9499a8;}
+html,#main-container,.pattern-center:after,#mo-nav,.headertop-bar::after,.site-content,.comments,.site-footer,.pattern-center-blank,.yya,.blank,.toc,.search-form input{transition:background 1s;}
+.entry-content p,.entry-content ul,.entry-content ol,.comments .body p,.float-content,.post-list p,.link-title{transition:color 1s;}
+
+/*字重*/
+
+h1,small,sub,sup,code,kbd,pre,samp,body,button,input,select,textarea,blockquote:before,blockquote:after,code,kbd,tt,var,big,button,input[type=button],input[type=reset],input[type=submit],.video-stu,.pattern-center h1.cat-title,.pattern-center h1.entry-title,.pattern-center .cat-des,.single-center .single-header h1.entry-title,.single-center .entry-census,.pattern-center-sakura h1.cat-title,.pattern-center-sakura h1.entry-title,.pattern-center-sakura .cat-des,.single-center .single-header h1.entry-title,.single-center .entry-census,.site-top .lower,.site-top .menu-item-has-children li a,.feature i,.p-time,.p-time i,i.iconfont.hotpost,.post-list p,.post-more i,.info-meta span,.post-list-thumb i,.post-date,.post-meta,.post-meta a,.float-content .post-text,.float-content i,.s-time,.s-time i,.navigator i,.site-info,.entry-census,h1.page-title,.post-lincenses,.post-tags,.post-like a,.post-like i,.post-share ul li i ,.post-squares .category,.post-squares h3,.post-squares .label,.author-profile .meta h3 a,.author-profile p,.author-profile i,.mashiro-profile .box a,#comments-list-title span,.butterBar-message ,h1.works-title,.works-p-time,.works-p-time i,.works-meta i,.works-meta span,#archives-temp h3,h1.cat-title,span.sitename,span.linkss-title,.comment .commeta,.comment .comment-reply-link,.comment .info,.comment .info .useragent-info-m,.comment h4,.comment h4 a,.comment-respond #cancel-comment-reply-link,.comment-respond input,.comment-respond textarea,.comment-respond .logged-in-as i,.notification i,.notification span,.siren-checkbox-label,h1.fes-title,h1.main-title,.foverlay-bg,.feature-title .foverlay,.notice i,.bio-text,.header-info,.site-header.iconsearch,i.iconfont.js-toggle-search.iconsearch,.search-form i ,.search-form input,.s-search input,.s-search i,.ins-section,.ins-section .iconfont.icon-mark,.ins-section .fa ,.ins-section.ins-search-item .search-keyword,.ins-section .ins-search-item .ins-search-preview,i.iconfont.down,#pagination span,#bangumi-pagination span,.ex-login-title ,.ex-register-title h3,.ex-login input,.ex-register input,.admin-login-check,.user-login-check,.ex-login-username,.ex-new-account a,.ex-register .user-error,.register-close,.herder-user-name,.header-user-menu a,.no-logged,.no-logged a,.single-reward .reward-open,.reward-row li::after ,.botui-container,button.botui-actions-buttons-button,input.botui-actions-text-input,.load-button span,.prpr,.mashiro-tips,.live2d-tool,.center-text,.bb-comment,.finish-icon-container,.skill div,#footer-sponsor,.comment-user-avatar .socila-check ,.insert-image-tips ,.the-feature.from_left_and_right .info h3,.the-feature.from_left_and_right .info p,.highlight-wrap .copy-code ,#bangumi-pagination {font-weight:  !important}
+
+/*字体*/
+.serif{font-family: !important ;}
+
+body{font-family: !important;}
+
+h1.main-title,h1.fes-title{font-family: !important;}
+
+.header-info p{font-family: !important;}
+
+.header-info p {font-size: px !important;}
+
+/*鼠标*/
+body {cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/normal.cur), auto}
+
+.botui-actions-buttons-button,.headertop-down i,.faa-parent.animated-hover:hover>.faa-spin, .faa-spin.animated, .faa-spin.animated-hover:hover,i.iconfont.js-toggle-search.iconsearch,#waifu #live2d,.aplayer svg,.aplayer.aplayer-narrow .aplayer-body, .aplayer.aplayer-narrow .aplayer-pic,button.botui-actions-buttons-button,#emotion-toggle,.emoji-item, .emotion-box,.emotion-item,.on-hover,.tieba-container span,#moblieGoTop,#changskin{cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/No_Disponible.cur), auto;}
+
+a,.ins-section .ins-section-header,.font-family-controls button,.menu-list li,.ins-section .ins-search-item,.ins-section .ins-search-item .ins-search-preview{cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/ayuda.cur), auto}
+
+p ,.highlight-wrap code,.highlight-wrap,.hljs-ln-code .hljs-ln-line,.hljs-ln-code .hljs-ln-line{cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/texto.cur), auto}
+
+a:active {cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/work.cur), alias}
+
+/*其他*/
+.comment-respond textarea {
+background-image: url(index.php/2019/01/02/nixos-installation-guide-chinese/index.html); 
+}
+.search-form.is-visible{
+background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.2.1/img/other/iloli.gif);
+}
+
+</style>
+<script type="c71a966085c75bb6a058aacb-text/javascript">
+/*Initial Variables*/
+var mashiro_option = new Object();
+var mashiro_global = new Object();
+mashiro_option.NProgressON = true;
+mashiro_option.audio = false;
+mashiro_option.darkmode = true;
+mashiro_option.email_domain = "";
+mashiro_option.email_name = "";
+mashiro_option.cookie_version_control = "";
+mashiro_option.qzone_autocomplete = false;
+mashiro_option.site_name = "Dasyatis";
+mashiro_option.author_name = "Bobby Rong";
+mashiro_option.template_url = "https://static.bobby285271.top/wp-content/themes/Sakurairo";
+mashiro_option.site_url = "https://static.bobby285271.top";
+mashiro_option.qq_api_url = "https://static.bobby285271.top/index.php/wp-json/sakura/v1/qqinfo/json"; 
+// mashiro_option.qq_avatar_api_url = "https://api.2heng.xin/qqinfo/";
+mashiro_option.live_search = false;
+
+mashiro_option.skin_bg0 = "none";
+mashiro_option.skin_bg1 = "https://cdn.jsdelivr.net/gh/spirit1431007/cdn@1.6/img/sakura.png";
+mashiro_option.skin_bg2 = "https://cdn.jsdelivr.net/gh/spirit1431007/cdn@1.6/img/plaid2dbf8.jpg";
+mashiro_option.skin_bg3 = "https://cdn.jsdelivr.net/gh/spirit1431007/cdn@1.6/img/star02.png";
+mashiro_option.skin_bg4 = "https://cdn.jsdelivr.net/gh/spirit1431007/cdn@1.6/img/kyotoanimation.png";
+mashiro_option.skin_bg5 = "https://cdn.jsdelivr.net/gh/spirit1431007/cdn@1.6/img/dot_orange.gif";
+mashiro_option.skin_bg6 = "https://api.mashiro.top/bing/";
+mashiro_option.skin_bg7 = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.2/other-sites/api-index/images/me.png";
+
+mashiro_option.land_at_home = false;
+
+mashiro_option.baguetteBoxON = false;
+
+mashiro_option.clipboardCopyright = true;
+
+mashiro_option.entry_content_theme_src = "https://static.bobby285271.top/wp-content/themes/Sakurairo/cdn/theme/sakura.css?1.11.4";
+mashiro_option.entry_content_theme = "sakurairo";
+
+mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/mirai-mamori/Sakurairo@1.11.4/cdn/css/lib.min.css";
+
+mashiro_option.cover_api = "https://static.bobby285271.top/index.php/wp-json/sakura/v1/image/cover";
+
+mashiro_option.windowheight ='auto';
+/*End of Initial Variables*/
+</script>
+<style type="text/css">
+				/* If html does not have either class, do not show lazy loaded images. */
+				html:not( .jetpack-lazy-images-js-enabled ):not( .js ) .jetpack-lazy-image {
+					display: none;
+				}
+			</style>
+<script type="c71a966085c75bb6a058aacb-text/javascript">
+				document.documentElement.classList.add(
+					'jetpack-lazy-images-js-enabled'
+				);
+			</script>
+<script type="c71a966085c75bb6a058aacb-text/javascript">
+if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+  alert('朋友，IE浏览器未适配哦~\n如果是 360、QQ 等双核浏览器，请关闭 IE 模式！');
+}
+</script>
+</head>
+<body class="post-template-default single single-post postid-439 single-format-standard chinese-font  ">
+<div class="scrollbar" id="bar"></div>
+<section id="main-container">
+<div class="headertop filter-undertint">
+<style>.header-info::before{display: none !important;opacity: 0 !important;}</style>
+<div id="banner_wave_1"></div><div id="banner_wave_2"></div>
+<figure id="centerbg" class="centerbg">
+<div class="focusinfo">
+<div class="header-tou"><a href="index.html"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/avatar.jpg"></a></div>
+<div class="header-info">
+
+<p>粉色的花瓣，美丽地缠绕在身上。依在风里。</p>
+</div>
+<div class="top-social">
+<li id="bg-pre"><img class="flipx" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/next.png" /></li>
+<li id="bg-next"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/next.png" /></li>
+</div>
+</div>
+</figure>
+<div id="video-container" style="display:none;"><video id="bgvideo" class="video" video-name="" src="index.php/2019/01/02/nixos-installation-guide-chinese/index.html" width="auto" preload="auto"></video><div id="video-btn" class="loadvideo videolive"></div><div id="video-add"></div><div class="video-stu"></div></div>
+<div class="headertop-down faa-float animated" onclick="if (!window.__cfRLUnblockHandlers) return false; headertop_down()" data-cf-modified-c71a966085c75bb6a058aacb-=""><span><i class="fa fa-chevron-down" aria-hidden="true" style="color:"></i></span></div>
+</div>
+<div id="page" class="site wrapper">
+<header class="site-header no-select" role="banner">
+<div class="site-top">
+<div class="site-branding">
+<span class="site-title">
+<span class="logolink moe-mashiro">
+<a href="index.html">
+<ruby>
+
+<span class="sakuraso" style="font-family: 'wenyihei-subfont', 'Merriweather Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei', sans-serif;;"></span>
+<span class="no" style="font-family: 'wenyihei-subfont', 'Merriweather Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei', sans-serif;"></span>
+<span class="shironeko" style="font-family: 'wenyihei-subfont', 'Merriweather Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei', sans-serif;"></span>
+<rp></rp><rt class="chinese-font"></rt><rp></rp></ruby>
+</a>
+</span>
+</span>
+
+</div>
+<div class="header-user-avatar">
+<a href="wp-login.php.html">
+<img class="faa-shake animated-hover" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/ui/none.png" width="30" height="30">
+</a>
+<div class="header-user-menu">
+<div class="herder-user-name no-logged"> <a href="wp-login.php.html" target="_blank" style="color:#EE9CA7;font-weight:bold;text-decoration:none">登录</a>
+</div>
+</div>
+</div>
+<div class="searchbox"><i class="iconfont js-toggle-search iconsearch icon-search"></i></div>
+<div class="lower"> <nav><ul id="menu-primary" class="menu"><li><a href="index.html">Home</a></li>
+<li><a href="index.html%3Fp=325.html">Info</a></li>
+<li><a href="index.html%3Fp=1045.html">Timeline</a></li>
+<li><a href="index.html%3Fp=347.html">Studio</a>
+<ul class="sub-menu">
+<li><a href="index.html%3Fp=182.html">Archiso</a></li>
+</ul>
+</li>
+</ul></nav>
+</div>
+</div>
+</header>
+<div class="blank"></div> <div id="content" class="site-content">
+<div id="primary" class="content-area">
+<main id="main" class="site-main" role="main">
+<article id="post-439" class="post-439 post type-post status-publish format-standard hentry category-linux tag-installation tag-nixos">
+<header class="entry-header">
+<h1 class="entry-title">NixOS Beginners&#8217; Guide</h1>
+<p class="entry-census">发布于 10 天前&nbsp;&nbsp;504 次阅读 本文共14282个字 </p>
+<hr>
+</header>
+
+<div class="entry-content">
+<p>这是 <strong>NixOS 入坑指南（第二版</strong>），基于 NixOS 20.03 Beta 和 <a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/" target="_blank" rel="nofollow">NixOS Manual 20.03</a> 撰写。本文的写作缘由是 NixOS Manual 的编排设计很容易导致习惯了其它发行版安装和配置流程的新人入坑失败。本篇指南给出的解决方案基本能满足<strong><span style="text-decoration: underline;">大一软工专业课程学习</span></strong>和<strong><span style="text-decoration: underline;">日常使用</span></strong>的需要。</p>
+<p><strong>本文将假定你已经独立安装和配置过 Arch Linux、Gentoo 或任一官方不提供 GUI 安装程序的 Linux 发行版并掌握安装过程中涉及的大部分命令。</strong></p>
+<h2>了解 NixOS</h2>
+<p><a rel="noreferrer noopener" href="https://distrowatch.com/table.php?distribution=nixos" target="_blank" rel="nofollow">可以先从 DistroWatch 开始了解 NixOS 这个发行版</a>，<a rel="noreferrer noopener" href="https://nixos.org/nixos/about.html" target="_blank" rel="nofollow">接下来建议阅读 NixOS 官方的介绍</a>。有一个不太恰当的比喻，NixOS 相对于其它发行版有点像使用 Git + Markdown + Hexo 相对于无版本管理 + 手撸 HTML 文件，<a rel="noreferrer noopener" href="https://nixos.wiki/wiki/NixOS#Comparison_with_traditional_Linux_Distributions" target="_blank" rel="nofollow">NixOS Wiki 也给出了 NixOS 和其它发行版的最大区别所在</a>。而这一切实现的基础是 <strong>Nix</strong>，事实上 NixOS 中所有软件包（<strong>Nixpkgs</strong>）和系统配置都由 Nix 管理。要想了解 Nix，<a rel="noreferrer noopener" href="https://www.zhihu.com/question/279855101/answer/475896416" target="_blank" rel="nofollow">建议阅读 dram 大佬在知乎相关问题下的回答</a>。dram 是 TUNA 镜像站镜像 NixOS / Nix / Nixpkgs 的主要推动者之一。至于 NixOS 是否适合你，<a rel="noreferrer noopener" href="https://zhuanlan.zhihu.com/p/50623869" target="_blank" rel="nofollow">可以阅读这篇文章自行判断</a>。</p>
+<span id="more-439"></span>
+<h2>准备工作</h2>
+<p>准备好安装 NixOS 了？让我们开始吧。前期的准备工作包括：数据备份、下载镜像、将镜像写入 U 盘、引导安装介质、连接到网络、建立分区、格式化分区、挂载分区，<strong>这一部分和其它（不带 GUI 安装程序的）Linux 发行版的安装几乎是一样的</strong>，这里不会细讲。</p>
+<p>2020 年 3 月后清华镜像站就有 Nix / NixOS / Nixpkgs 的镜像了，<a rel="noreferrer noopener" href="https://mirrors.tuna.tsinghua.edu.cn/nixos-images/" target="_blank" rel="nofollow">NixOS 的安装介质可在这里下载</a>，建议选带桌面环境的镜像（可以通过文件名判断）。将写入 U 盘可以使用 <code>dd</code> 命令，具体用法（<code>path-to-image</code> 是 NixOS 安装介质的路径，<code>/dev/sdX</code> 则是写入目标）：</p>
+<pre class="wp-block-code"><code>sudo dd if=path-to-image of=/dev/sdX</code></pre>
+<p>引导安装介质后，按照 <code>/etc/issue</code> 的提示操作即可进入桌面环境（启动登录管理器），注意默认搭载的账户 <code>nixos</code> 和 <code>root</code> 都没有密码：</p>
+<pre class="wp-block-code"><code>sudo systemctl start display-manager</code></pre>
+<p>因为在线安装，联网是必须的。通常情况使用 NetworkManager 联网即可，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-installation-booting-networking" target="_blank" rel="nofollow">当然这里还有其它的联网方式</a>。</p>
+<p>可选的分区工具除了熟悉的 GDisk 和 GNU Parted 这些 CLI 的分区工具之外，还有 GUI 的分区工具 GParted。<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-installation-partitioning" target="_blank" rel="nofollow">NixOS Manual 对在命令行下分区做了详细的介绍</a>，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-installation-summary" target="_blank" rel="nofollow">还配有不少的例子</a>，<a rel="noreferrer noopener" href="https://wiki.archlinux.org/index.php/Partitioning" target="_blank" rel="nofollow">可以配合 ArchWiki 的相关文章进行阅读</a>。因为 Nix 并不会自动删除历史的软件包安装，<strong>根目录尽可能分大一些</strong>，否则随着时间推移 <code>/nix</code> 可能会占用较大空间。<strong>除了 Home 和 EFI 分区之外不建议（也没必要）设置独立分区</strong>。<strong>另外 NixOS 的回滚功能是由 Nix 实现的，和 Btrfs 无关</strong>，如果你选择 Btrfs 仅仅是因为它的快照特性，那么没有必要给根分区使用 Btrfs。</p>
+<p>格式化分区之后就可以挂载分区了。分区应该挂载到 <code>/mnt</code> 下，例如根分区就挂载到 <code>/mnt</code>，Home 分区则 <code>/mnt/home</code>。<strong>特别留意 NixOS 下 EFI 分区应该挂载到 <code>/mnt/boot</code>。</strong>Swap 分区使用 <code>swapon</code> 启用即可。</p>
+<h3>初始化 NixOS 配置文件</h3>
+<p>接下来就是后期的准备工作了。事实上，如果你点开了前面的几个链接，你会发现 <code>/etc/nixos/configuration.nix</code> 是整个系统的灵魂所在。你的系统<strong><span style="text-decoration: underline;">全局搭载</span></strong>的软件包和系统配置都取决于这个文件。<a rel="noreferrer noopener" href="https://linux.cn/article-8976-1.html" target="_blank" rel="nofollow">因此我们说这个发行版是「先配置后安装」的</a>。</p>
+<p><strong>所以接下来的主要任务，就是配置 <code>configuration.nix</code>，这个文件会一直伴随着你的系统。</strong>一旦配置完成，你会使用到 <code>nixos-install</code> 脚本，这个脚本会读取这个文件，并调用 Nix 让其根据这个文件「造出对应的系统来」。而在安装好 NixOS 之后，你可以随时改动 <code>configuration.nix</code> 这个文件，然后使用 <code>nixos-rebuild</code> 脚本，这个脚本同样也是调用 Nix，让 Nix <strong>处理所有的变化</strong>，以「造出对应的系统来」。「造出来的系统」会<strong><span style="text-decoration: underline;">和当前系统的状态无关</span></strong> 。这两个脚本笔者在后面会介绍其用法。</p>
+<p>当然了，如果在 Live 环境里面直接编辑 <code>/etc/nixos/configuration.nix</code>，打开的是 Live 环境的配置文件。而现在我们需要为新的系统创建一个默认的 NixOS 的配置文件，在进入新系统之前，应该通过 <code>/mnt</code> 访问其文件<strong>（本文后续的命令，除非特别注明，否则一律需要在 <code>root</code> 账户下执行，可以使用 <code>su</code> 命令从普通用户切换到 <code>root</code> 账户）</strong>：</p>
+<pre class="wp-block-code"><code>nixos-generate-config --root /mnt</code></pre>
+<p>运行这个命令之后，<code>/mnt/etc/nixos/</code> 目录会被创建，里面会放置自动生成的两个文件：<code>configuration.nix</code> 和 <code>hardware-configuration.nix</code> 。我们待会再看 <code>hardware-configuration.nix</code>，先看看前面已经提到无数次的 <code>configuration.nix</code>，<a rel="noreferrer noopener" href="https://paste.ubuntu.com/p/JHsyTczk3m/" target="_blank" rel="nofollow">这个文件在 NixOS 20.03 下默认长这样</a>。当然了，在你安装系统之后，可以使用 <code>nixos-generate-config --force</code> 重新生成一个 <code>configuration.nix</code>。 </p>
+<h3>初识 <strong>NixOS 模块</strong></h3>
+<p>让我们来打开 <code>configuration.nix</code> 这个文件：</p>
+<pre class="wp-block-code"><code>nano /mnt/etc/nixos/configuration.nix</code></pre>
+<p>以 <code>#</code> 开头的都是注释，我们先不要管注释，看看没有注释的内容。实际上，这是一个简化的 <strong>NixOS 模块</strong>（NixOS Module）。我们尝试分析一下它的结构：</p>
+<pre class="wp-block-code"><code>{ config, pkgs, ... }:
 
 {
     imports = &#91;
@@ -10,8 +608,20 @@
     networking.interfaces.docker0.useDHCP = true;
     networking.interfaces.wlo1.useDHCP = true;
     system.stateVersion = "20.03";
-}</code></pre><p>第一行的 <code>{ config, pkgs, ... }:</code> 表示这是一个至少接受两个参数 <code>config</code> 和 <code>pkgs</code> 的函数。<code>config</code> 主要用于在多个 NixOS 模块的情形下<strong>引用</strong>其它模块定义的配置值，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-modularity" target="_blank" rel="nofollow">这里有相关的例子</a>，可以说是引入了完整的系统配置。<code>pkgs</code> 主要用于引用 Nixpkgs 中的软件包，例如 <code>pkgs.fcitx</code>。<strong>当然我们现在简单地认为第一行就是要这样写的好了</strong>，即使在本文中不会使用到 <code>config</code>。说实话在第一次接触 C++ 时对着 <code>using namespace std;</code> 自闭了半天，其实到后面需要到名称空间的时候自然就懂了。</p><p><code>imports</code> 导入了其它的 NixOS 模块，这里它导入了 <code>./hardware-configuration.nix</code>。另外 <code>modules/module-list.nix</code> 里面定义了一系列的模块，<strong>这些模块会被自动导入</strong>。<code>modules/module-list.nix</code> 的绝对路径是啥呢，可以看回 <a rel="noreferrer noopener" href="https://nixos.org/nixos/about.html" target="_blank" rel="nofollow">NixOS 官方的介绍</a>，阅读 <code>How does NixOS work?</code>，你会发现 <code>/nix/store/</code> 下的目录都带上了 Hash 值，这是为了避免新的安装覆盖旧的安装（便于需要的时候回滚啊！事实上这也是开始时我说根目录尽可能分大一些的原因，后面会提供旧安装清理的方法）。所以要想找到这个 <code>modules/module-list.nix</code>，不妨用点小技巧：</p><pre class="wp-block-code"><code>find / | grep "modules/module-list.nix"</code></pre><p><code>cat</code> 查看相应的文件就可以看到这个列表了，事实上还真导入了不少的 NixOS 模块。当然我们现在先打开 <code>hardware-configuration.nix</code> 看看（要注意上面的 <code>./hardware-configuration.nix</code> 是相对于 <code>/mnt/etc/nixos/configuration.nix</code> 的路径）：</p><pre class="wp-block-code"><code>cat /mnt/etc/nixos/hardware-configuration.nix</code></pre><p>你会发现上面记录了你的分区信息，<strong>如果不是那就是你分区过程中出了差错</strong>，可以调整分区后按照上面的步骤重新 <code>nixos-generate-config</code>。这个文件将用于生成 Fstab 等文件。这个文件被单独分出来原因也是为了避免错误地编辑了这个文件。<strong>事实上 NixOS 官方只建议使用 <code>nixos-generate-config</code> 更新这个文件。</strong></p><p>接下来我们来看 <code>configuration.nix</code> 剩余的部分。这些行的格式都是 <code>name = value</code>，我们称这是定义（<strong><em>define</em></strong>）操作。我们称 <code>configuration.nix</code> 为简化的 NixOS 模块，<strong>原因是它只有定义操作</strong>。事实上还有声明（<strong><em>declare</em></strong>）操作，这一个一个的 <code>name</code> 其实在其它文件声明过，这样才可以被定义。笔者接下来会详细介绍定义操作和声明操作，如果想要深入了解 NixOS 模块，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-writing-modules" target="_blank" rel="nofollow">可以查看这里</a>。</p><h3>定义操作</h3><p>我们来继续来研究上面 <code>configuration.nix</code> 涉及到的 Nix 表达式：</p><pre class="wp-block-code"><code>boot.loader.systemd-boot.enable = true;
-boot.loader.efi.canTouchEfiVariables = true;</code></pre><p>我们已经知道它们格式都是 <code>name = value</code>，进一步分析它的结构，这两个表达式中我们把 <code>boot</code>、<code>loader</code>、<code>systemd-boot</code> 还有 <code>efi</code> 称之为集合（<em><strong>set</strong></em>），把 <code>enable</code> 和 <code>canTouchEfiVariables</code> 称为选项（<em><strong>option</strong></em>），把 <code>true</code> 称为值（<strong><em>value</em></strong>）。<strong>一个集合里面可能有子集合，也有可能有选项，我们给选项定义值。</strong>集合与子集合、集合与选项之间可以像上面一样，使用 <code>.</code> 连接。同时也可以使用下面的使用花括号嵌套的方式（<strong>注意分号出现的位置</strong>）：</p><pre class="wp-block-code"><code>boot = {
+}</code></pre>
+<p>第一行的 <code>{ config, pkgs, ... }:</code> 表示这是一个至少接受两个参数 <code>config</code> 和 <code>pkgs</code> 的函数。<code>config</code> 主要用于在多个 NixOS 模块的情形下<strong>引用</strong>其它模块定义的配置值，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-modularity" target="_blank" rel="nofollow">这里有相关的例子</a>，可以说是引入了完整的系统配置。<code>pkgs</code> 主要用于引用 Nixpkgs 中的软件包，例如 <code>pkgs.fcitx</code>。<strong>当然我们现在简单地认为第一行就是要这样写的好了</strong>，即使在本文中不会使用到 <code>config</code>。说实话在第一次接触 C++ 时对着 <code>using namespace std;</code> 自闭了半天，其实到后面需要到名称空间的时候自然就懂了。</p>
+<p><code>imports</code> 导入了其它的 NixOS 模块，这里它导入了 <code>./hardware-configuration.nix</code>。另外 <code>modules/module-list.nix</code> 里面定义了一系列的模块，<strong>这些模块会被自动导入</strong>。<code>modules/module-list.nix</code> 的绝对路径是啥呢，可以看回 <a rel="noreferrer noopener" href="https://nixos.org/nixos/about.html" target="_blank" rel="nofollow">NixOS 官方的介绍</a>，阅读 <code>How does NixOS work?</code>，你会发现 <code>/nix/store/</code> 下的目录都带上了 Hash 值，这是为了避免新的安装覆盖旧的安装（便于需要的时候回滚啊！事实上这也是开始时我说根目录尽可能分大一些的原因，后面会提供旧安装清理的方法）。所以要想找到这个 <code>modules/module-list.nix</code>，不妨用点小技巧：</p>
+<pre class="wp-block-code"><code>find / | grep "modules/module-list.nix"</code></pre>
+<p><code>cat</code> 查看相应的文件就可以看到这个列表了，事实上还真导入了不少的 NixOS 模块。当然我们现在先打开 <code>hardware-configuration.nix</code> 看看（要注意上面的 <code>./hardware-configuration.nix</code> 是相对于 <code>/mnt/etc/nixos/configuration.nix</code> 的路径）：</p>
+<pre class="wp-block-code"><code>cat /mnt/etc/nixos/hardware-configuration.nix</code></pre>
+<p>你会发现上面记录了你的分区信息，<strong>如果不是那就是你分区过程中出了差错</strong>，可以调整分区后按照上面的步骤重新 <code>nixos-generate-config</code>。这个文件将用于生成 Fstab 等文件。这个文件被单独分出来原因也是为了避免错误地编辑了这个文件。<strong>事实上 NixOS 官方只建议使用 <code>nixos-generate-config</code> 更新这个文件。</strong></p>
+<p>接下来我们来看 <code>configuration.nix</code> 剩余的部分。这些行的格式都是 <code>name = value</code>，我们称这是定义（<strong><em>define</em></strong>）操作。我们称 <code>configuration.nix</code> 为简化的 NixOS 模块，<strong>原因是它只有定义操作</strong>。事实上还有声明（<strong><em>declare</em></strong>）操作，这一个一个的 <code>name</code> 其实在其它文件声明过，这样才可以被定义。笔者接下来会详细介绍定义操作和声明操作，如果想要深入了解 NixOS 模块，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-writing-modules" target="_blank" rel="nofollow">可以查看这里</a>。</p>
+<h3>定义操作</h3>
+<p>我们来继续来研究上面 <code>configuration.nix</code> 涉及到的 Nix 表达式：</p>
+<pre class="wp-block-code"><code>boot.loader.systemd-boot.enable = true;
+boot.loader.efi.canTouchEfiVariables = true;</code></pre>
+<p>我们已经知道它们格式都是 <code>name = value</code>，进一步分析它的结构，这两个表达式中我们把 <code>boot</code>、<code>loader</code>、<code>systemd-boot</code> 还有 <code>efi</code> 称之为集合（<em><strong>set</strong></em>），把 <code>enable</code> 和 <code>canTouchEfiVariables</code> 称为选项（<em><strong>option</strong></em>），把 <code>true</code> 称为值（<strong><em>value</em></strong>）。<strong>一个集合里面可能有子集合，也有可能有选项，我们给选项定义值。</strong>集合与子集合、集合与选项之间可以像上面一样，使用 <code>.</code> 连接。同时也可以使用下面的使用花括号嵌套的方式（<strong>注意分号出现的位置</strong>）：</p>
+<pre class="wp-block-code"><code>boot = {
     loader = {
         systemd-boot = {
             enable = true;
@@ -20,14 +630,25 @@ boot.loader.efi.canTouchEfiVariables = true;</code></pre><p>我们已经知道�
             canTouchEfiVariables = true;
         };
     };
-};</code></pre><p>当然了可以两种方式混合使用：</p><pre class="wp-block-code"><code>boot = {
+};</code></pre>
+<p>当然了可以两种方式混合使用：</p>
+<pre class="wp-block-code"><code>boot = {
     loader.systemd-boot = {
         enable = true;
     };
     loader = {
         efi.canTouchEfiVariables = true;
     };
-};</code></pre><p>如果是还有疑问的，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-configuration-syntax" target="_blank" rel="nofollow">NixOS Manual 给出了更多的相关例子</a>。至于是使用花括号还是半角句号，我认为不重要。但在我看来，<strong>如果有两个选项它们属于同一个集合，它们应该尽量在一起被定义</strong>，而不是一个在文件开头定义，一个在文件末尾定义。<strong>同一集合的两个选项会有一定的关联性，放在一起可以更好地维护。</strong></p><p>当然了，当配置文件足够复杂之后，还可以像 <code>hardware-configuration.nix</code> 一样将一部分拆分出来，在 <code>imports</code> 部分导入相关文件，这里就不细讲了。</p><p>至于 <code>value</code>，上面的给出的 <code>configuration.nix</code> 中涉及到的值有 <code>true</code>、<code>false</code>、<code>"20.03"</code>。和其它编程语言的数据类型类似，我们称 <code>true</code> 和 <code>false</code> 是<strong>布尔值</strong>，称 <code>”20.03"</code> 是<strong>字符串</strong>（注意两个引号），每一个 <code>name</code> 都有对应的可接受的类型。是事实上，对于其它的选项，可以接受的值的类型也有可能是列表、浮点数、软件包等等。<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-configuration-file" target="_blank" rel="nofollow">这里详细地介绍了 <code>value</code> 的各种类型</a>，并给出了相关的例子。</p><p>这里问题就来了，怎样知道在一个 NixOS 系统中我有哪些 <code>name</code> 可以用呢？这些 <code>name</code> 又接受那些 <code>value</code> 呢？让我们继续来了解「声明操作」。</p><h3>声明操作</h3><p>和其它编程语言类似，<strong>声明就是要告诉人家我叫啥、我接受什么样的 <code>value</code>。</strong>怎样查看一个 <code>name</code> 的声明呢？第一个方法是<strong>使用命令 <code>nixos-option</code></strong>，例如我要查看 <code>system.stateVersion</code> 的声明：</p><pre class="wp-block-code"><code>nixos-option system.stateVersion</code></pre><p>这个是在我系统上的输出，当然了在 Live 环境下输出不一定相同：</p><pre class="wp-block-code"><code>Value:
+};</code></pre>
+<p>如果是还有疑问的，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-configuration-syntax" target="_blank" rel="nofollow">NixOS Manual 给出了更多的相关例子</a>。至于是使用花括号还是半角句号，我认为不重要。但在我看来，<strong>如果有两个选项它们属于同一个集合，它们应该尽量在一起被定义</strong>，而不是一个在文件开头定义，一个在文件末尾定义。<strong>同一集合的两个选项会有一定的关联性，放在一起可以更好地维护。</strong></p>
+<p>当然了，当配置文件足够复杂之后，还可以像 <code>hardware-configuration.nix</code> 一样将一部分拆分出来，在 <code>imports</code> 部分导入相关文件，这里就不细讲了。</p>
+<p>至于 <code>value</code>，上面的给出的 <code>configuration.nix</code> 中涉及到的值有 <code>true</code>、<code>false</code>、<code>"20.03"</code>。和其它编程语言的数据类型类似，我们称 <code>true</code> 和 <code>false</code> 是<strong>布尔值</strong>，称 <code>”20.03"</code> 是<strong>字符串</strong>（注意两个引号），每一个 <code>name</code> 都有对应的可接受的类型。是事实上，对于其它的选项，可以接受的值的类型也有可能是列表、浮点数、软件包等等。<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-configuration-file" target="_blank" rel="nofollow">这里详细地介绍了 <code>value</code> 的各种类型</a>，并给出了相关的例子。</p>
+<p>这里问题就来了，怎样知道在一个 NixOS 系统中我有哪些 <code>name</code> 可以用呢？这些 <code>name</code> 又接受那些 <code>value</code> 呢？让我们继续来了解「声明操作」。</p>
+<h3>声明操作</h3>
+<p>和其它编程语言类似，<strong>声明就是要告诉人家我叫啥、我接受什么样的 <code>value</code>。</strong>怎样查看一个 <code>name</code> 的声明呢？第一个方法是<strong>使用命令 <code>nixos-option</code></strong>，例如我要查看 <code>system.stateVersion</code> 的声明：</p>
+<pre class="wp-block-code"><code>nixos-option system.stateVersion</code></pre>
+<p>这个是在我系统上的输出，当然了在 Live 环境下输出不一定相同：</p>
+<pre class="wp-block-code"><code>Value:
 "20.03"
 
 Default:
@@ -48,7 +669,10 @@ Declared by:
 
 Defined by:
 &#91; "/etc/nixos/configuration.nix" ]
-</code></pre><p>我们会看到 <code>system.stateVersion</code> 在 <code>/nix/var/nix/profiles/per-user/root/channels/nixos/nixos/modules/misc/version.nix</code> 声明过，而笔者刚开始的时候说过 <code>configuration.nix</code> 会自动导入 <code>modules/module-list.nix</code> 里包含的所有文件，里面就有 <code>version.nix</code>，因此我们才可以在 <code>/etc/nixos/configuration.nix</code> 定义它。另外我们也能得到其它有用的信息，例如它接受一个字符串作为它的值，<code>system.stateVersion</code> 默认定义的值是 <code>"20.03"</code>，事实上这些信息就是在声明它的时候提供的。</p><p>我们打开这个 <code>version.nix</code>，这就是一个声明的真面目了：</p><pre class="wp-block-code"><code>options.system = {
+</code></pre>
+<p>我们会看到 <code>system.stateVersion</code> 在 <code>/nix/var/nix/profiles/per-user/root/channels/nixos/nixos/modules/misc/version.nix</code> 声明过，而笔者刚开始的时候说过 <code>configuration.nix</code> 会自动导入 <code>modules/module-list.nix</code> 里包含的所有文件，里面就有 <code>version.nix</code>，因此我们才可以在 <code>/etc/nixos/configuration.nix</code> 定义它。另外我们也能得到其它有用的信息，例如它接受一个字符串作为它的值，<code>system.stateVersion</code> 默认定义的值是 <code>"20.03"</code>，事实上这些信息就是在声明它的时候提供的。</p>
+<p>我们打开这个 <code>version.nix</code>，这就是一个声明的真面目了：</p>
+<pre class="wp-block-code"><code>options.system = {
     stateVersion = mkOption {
         type = types.str;
         default = cfg.release;
@@ -58,7 +682,10 @@ Defined by:
             data...（后面的省略）
         '';
     };
-};</code></pre><p>当然笔者在本文中并不会要求用户创建一个声明。但我们还是会继续探究这个文件，我们发现 <code>version.nix</code> 给多个选项提供了声明，例如 <a><code>system.nixos.release</code></a>、<a><code>system.nixos.codeName</code></a> 等等。</p><p>我们接着再往下翻一点：</p><pre class="wp-block-code"><code>config = {
+};</code></pre>
+<p>当然笔者在本文中并不会要求用户创建一个声明。但我们还是会继续探究这个文件，我们发现 <code>version.nix</code> 给多个选项提供了声明，例如 <a><code>system.nixos.release</code></a>、<a><code>system.nixos.codeName</code></a> 等等。</p>
+<p>我们接着再往下翻一点：</p>
+<pre class="wp-block-code"><code>config = {
     system.nixos = {
         version = mkDefault (cfg.release + cfg.versionSuffix);
     };
@@ -77,7 +704,9 @@ Defined by:
         SUPPORT_URL="https://nixos.org/nixos/support.html"
         BUG_REPORT_URL="https://github.com/NixOS/nixpkgs/issues"
     '';
-};</code></pre><p>你会在里面找到 <code>${cfg.version}</code> 和 <code>${cfg.codeName}</code>。<code>cfg</code> 是什么呢，我们回到文件开头：</p><pre class="wp-block-code"><code>{ config, lib, pkgs, ... }:
+};</code></pre>
+<p>你会在里面找到 <code>${cfg.version}</code> 和 <code>${cfg.codeName}</code>。<code>cfg</code> 是什么呢，我们回到文件开头：</p>
+<pre class="wp-block-code"><code>{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -86,13 +715,48 @@ let
 in
 {
     ...
-}</code></pre><p>还记得 <code>config</code> 是啥吗？我们说它引入了完整的系统配置。现在，即使我没有告诉你 <code>environment.etc.os-release.text</code> 是个啥，相信你也能猜出来，Nix 使用了 <a><code>system.nixos.release</code></a>、<a><code>system.nixos.codeName</code></a> 创建了 <code>/etc/os-release</code> 这个文件。至于前面提到的 <code>system.stateVersion</code> 呢，则被用于其它的地方了（毕竟有了 <code>config</code>，我们在任何地方都可以引用它）。<strong>事实上，就是这样声明和定义一个又一个的选项，组成了最终的系统。</strong></p><p>关于怎样查看一个 <code>name</code> 的声明，<a rel="noreferrer noopener" href="https://nixos.org/nixos/options.html#" target="_blank" rel="nofollow">第二个方法是<strong>使用 NixOS Options 网页</strong></a>。输入 <code>name</code> 同样可以查看到使用 <code>nixos-options</code> 能看到的内容。<strong>关键是它还非常适合给我们模糊搜素用。</strong>另外点击 <code>Declared in</code> 旁边的超链接，会跳转到 GitHub 的 NixOS/nixpkgs 仓库。例如说我们查找 <code>system.stateVersion</code>，<a href="https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/misc/version.nix" target="_blank" rel="nofollow">我们会被带到这里</a>。同样也可以查看 <code>version.nix</code> 文件，还可以切换 Git 分支查看不同 NixOS 版本下这个文件的历史状态。我们在后面会经常使用到 NixOS Options 网页和 <code>nixos-option</code> 命令。</p><h2>开始编辑 <code>configuration.nix</code></h2><p>讲了这么多，让我们尝试把刚刚学到的东西应用到实际当中吧！接下来我们要写很多很多的 <code>name = value</code> 表达式。我们已经知道，当我们有一个需求，我们可以尝试去 NixOS Options 进行模糊搜索，看看有没有对应的选项。此外，我们多次提到的 NixOS Manual 提供了很多的常见需求对应的解决方案。这里还会另外推荐一些寻找解决方案的地方：</p><ul><li><a rel="noreferrer noopener" href="https://nixos.org/nixos/manual" target="_blank" rel="nofollow">NixOS Manual</a> - NixOS 官方文档值得阅读值得信赖。</li><li><a rel="noreferrer noopener" href="https://nixos.org/nixos/options.html" target="_blank" rel="nofollow">NixOS Options</a> - 列出了所有可用的选项、其声明、可以接受的值。</li><li><a rel="noreferrer noopener" href="https://discourse.nixos.org/" target="_blank" rel="nofollow">NixOS Discourse Forum</a> - 用户论坛，有官方开发者答疑。</li><li><a rel="noreferrer noopener" href="https://nixos.org/nixos/packages.html" target="_blank" rel="nofollow">NixOS Packages</a> - 列出了所有可用的 Nixpkgs 软件包。</li><li><a href="https://nixos.wiki/" target="_blank" rel="noreferrer noopener" rel="nofollow">NixOS Wiki</a> - 社区维护的维基。</li><li><a rel="noreferrer noopener" href="https://github.com/" target="_blank" rel="nofollow">GitHub</a> - 查看其它用户的配置，或查看官方的 NixOS/nixpkgs 仓库。</li><li><a rel="noreferrer noopener" href="https://stackoverflow.com/questions/tagged/nixos" target="_blank" rel="nofollow">Stack Overflow</a> - 查看打有 <code>nixos</code> 标签的问题和回答。</li><li>各大搜索引擎 - 这个也不用我多说吧……</li></ul><p>当然了，如果实在找不到，可以去 <a rel="noreferrer noopener" href="https://discourse.nixos.org/" target="_blank" rel="nofollow">NixOS Discourse Forum</a> 提问，因为官方开发者在这个论坛非常活跃，很多问题都能在短时间内得到答案。</p><p>要注意的是，因为 <code>configuration.nix</code> 会一直伴随着你的 NixOS 安装，所以这个章节既适用于安装时进行初始化配置，也适用于安装后的日常维护进行配置。下面结合两个自认为比较实际的需求来展开介绍，我会着重说明我是<strong><span style="text-decoration: underline;">如何找到</span></strong>解决方案的，希望能给到大家一些帮助。</p><h3>桌面环境</h3><p>会发现 NixOS Manual 有多个对应的章节，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-x11" target="_blank" rel="nofollow">有讲 X11 的</a>，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#chap-pantheon" target="_blank" rel="nofollow">有专门讲 Pantheon 桌面环境的</a>，<a href="https://nixos.org/nixos/manual/index.html#sec-xfce" target="_blank" rel="nofollow">有专门讲 XFCE 桌面环境的</a>。个人非常喜欢 Pantheon，我们也知道 X11 是一切桌面环境的基础（假设我们把 Wayland 忽略掉）。我们来看看 X11。首先看到的是这样一句：</p><p>The X Window System (X11) provides the basis of NixOS’ graphical user interface. It can be enabled as follows:</p><pre class="wp-block-code"><code>services.xserver.enable = true;</code></pre><p>看上去是不是很熟悉？事实上默认的 <code>configuration.nix</code> 里面已经有了这样的一行，只是被注释掉了。上面还配有注释 <code>Enable the X11 windowing system.</code> 让我们取消注释 <code>services.xserver.enable = true;</code>。</p><p>搞定！就这么简单。先继续看看 Pantheon 桌面对应的章节。根据 NixOS Manual，要想使用 Pantheon 桌面，需要在 <code>configuration.nix</code> 加入：</p><pre class="wp-block-code"><code>services.xserver.desktopManager.pantheon.enable = true;</code></pre><p>这也很简单，复制粘贴过去就完成了，搞定！在 <code>configuration.nix</code> 加入这个 Nix 是怎样处理的呢？还记得前面提到的 <a><code>system.nixos.release</code></a>、<a><code>system.nixos.codeName</code></a>和 <code>/etc/os-release</code> 吗？可以按照当时我所给的思路一探究竟，我们在后面揭晓。</p><h3>软件包</h3><p><a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-declarative-package-mgmt" target="_blank" rel="nofollow">会发现 NixOS Manual 有对应的章节</a>。它的要求是定义 <code>environment.systemPackages</code> 这个选项。它给出的例子是这样的：</p><pre class="wp-block-code"><code>environment.systemPackages = &#91; pkgs.thunderbird ];</code></pre><p>感觉有点迷？那不妨前往 <a rel="noreferrer noopener" href="https://nixos.org/nixos/options.html#environment.systempackages" target="_blank" rel="nofollow">NixOS Options</a> 查找 <code>environment.systemPackages</code>，这时就应该知道它要求你提供 <code>list of packages</code>。我们回到 <a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-configuration-file" target="_blank" rel="nofollow">NixOS Manual</a>，查看 Package 小节。这时就可以大致推断出这个 <code>name</code> 怎么填了。</p><p><a rel="noreferrer noopener" href="https://github.com/search?l=Nix&amp;q=environment.systemPackages&amp;type=Code" target="_blank" rel="nofollow">接下来我们去 GitHub 参考一下别人的配置文件</a>，注意语言要选择 Nix，关键字将 Option 填入即可。查看搜索结果的时候只看定义操作相关的代码（而不是声明操作），这时你会发现另一个用法：</p><pre class="wp-block-code"><code>environment.systemPackages = with pkgs; &#91;
+}</code></pre>
+<p>还记得 <code>config</code> 是啥吗？我们说它引入了完整的系统配置。现在，即使我没有告诉你 <code>environment.etc.os-release.text</code> 是个啥，相信你也能猜出来，Nix 使用了 <a><code>system.nixos.release</code></a>、<a><code>system.nixos.codeName</code></a> 创建了 <code>/etc/os-release</code> 这个文件。至于前面提到的 <code>system.stateVersion</code> 呢，则被用于其它的地方了（毕竟有了 <code>config</code>，我们在任何地方都可以引用它）。<strong>事实上，就是这样声明和定义一个又一个的选项，组成了最终的系统。</strong></p>
+<p>关于怎样查看一个 <code>name</code> 的声明，<a rel="noreferrer noopener" href="https://nixos.org/nixos/options.html#" target="_blank" rel="nofollow">第二个方法是<strong>使用 NixOS Options 网页</strong></a>。输入 <code>name</code> 同样可以查看到使用 <code>nixos-options</code> 能看到的内容。<strong>关键是它还非常适合给我们模糊搜素用。</strong>另外点击 <code>Declared in</code> 旁边的超链接，会跳转到 GitHub 的 NixOS/nixpkgs 仓库。例如说我们查找 <code>system.stateVersion</code>，<a href="https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/misc/version.nix" target="_blank" rel="nofollow">我们会被带到这里</a>。同样也可以查看 <code>version.nix</code> 文件，还可以切换 Git 分支查看不同 NixOS 版本下这个文件的历史状态。我们在后面会经常使用到 NixOS Options 网页和 <code>nixos-option</code> 命令。</p>
+<h2>开始编辑 <code>configuration.nix</code></h2>
+<p>讲了这么多，让我们尝试把刚刚学到的东西应用到实际当中吧！接下来我们要写很多很多的 <code>name = value</code> 表达式。我们已经知道，当我们有一个需求，我们可以尝试去 NixOS Options 进行模糊搜索，看看有没有对应的选项。此外，我们多次提到的 NixOS Manual 提供了很多的常见需求对应的解决方案。这里还会另外推荐一些寻找解决方案的地方：</p>
+<ul><li><a rel="noreferrer noopener" href="https://nixos.org/nixos/manual" target="_blank" rel="nofollow">NixOS Manual</a> - NixOS 官方文档值得阅读值得信赖。</li><li><a rel="noreferrer noopener" href="https://nixos.org/nixos/options.html" target="_blank" rel="nofollow">NixOS Options</a> - 列出了所有可用的选项、其声明、可以接受的值。</li><li><a rel="noreferrer noopener" href="https://discourse.nixos.org/" target="_blank" rel="nofollow">NixOS Discourse Forum</a> - 用户论坛，有官方开发者答疑。</li><li><a rel="noreferrer noopener" href="https://nixos.org/nixos/packages.html" target="_blank" rel="nofollow">NixOS Packages</a> - 列出了所有可用的 Nixpkgs 软件包。</li><li><a href="https://nixos.wiki/" target="_blank" rel="noreferrer noopener" rel="nofollow">NixOS Wiki</a> - 社区维护的维基。</li><li><a rel="noreferrer noopener" href="https://github.com/" target="_blank" rel="nofollow">GitHub</a> - 查看其它用户的配置，或查看官方的 NixOS/nixpkgs 仓库。</li><li><a rel="noreferrer noopener" href="https://stackoverflow.com/questions/tagged/nixos" target="_blank" rel="nofollow">Stack Overflow</a> - 查看打有 <code>nixos</code> 标签的问题和回答。</li><li>各大搜索引擎 - 这个也不用我多说吧……</li></ul>
+<p>当然了，如果实在找不到，可以去 <a rel="noreferrer noopener" href="https://discourse.nixos.org/" target="_blank" rel="nofollow">NixOS Discourse Forum</a> 提问，因为官方开发者在这个论坛非常活跃，很多问题都能在短时间内得到答案。</p>
+<p>要注意的是，因为 <code>configuration.nix</code> 会一直伴随着你的 NixOS 安装，所以这个章节既适用于安装时进行初始化配置，也适用于安装后的日常维护进行配置。下面结合两个自认为比较实际的需求来展开介绍，我会着重说明我是<strong><span style="text-decoration: underline;">如何找到</span></strong>解决方案的，希望能给到大家一些帮助。</p>
+<h3>桌面环境</h3>
+<p>会发现 NixOS Manual 有多个对应的章节，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-x11" target="_blank" rel="nofollow">有讲 X11 的</a>，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#chap-pantheon" target="_blank" rel="nofollow">有专门讲 Pantheon 桌面环境的</a>，<a href="https://nixos.org/nixos/manual/index.html#sec-xfce" target="_blank" rel="nofollow">有专门讲 XFCE 桌面环境的</a>。个人非常喜欢 Pantheon，我们也知道 X11 是一切桌面环境的基础（假设我们把 Wayland 忽略掉）。我们来看看 X11。首先看到的是这样一句：</p>
+<p>The X Window System (X11) provides the basis of NixOS’ graphical user interface. It can be enabled as follows:</p>
+<pre class="wp-block-code"><code>services.xserver.enable = true;</code></pre>
+<p>看上去是不是很熟悉？事实上默认的 <code>configuration.nix</code> 里面已经有了这样的一行，只是被注释掉了。上面还配有注释 <code>Enable the X11 windowing system.</code> 让我们取消注释 <code>services.xserver.enable = true;</code>。</p>
+<p>搞定！就这么简单。先继续看看 Pantheon 桌面对应的章节。根据 NixOS Manual，要想使用 Pantheon 桌面，需要在 <code>configuration.nix</code> 加入：</p>
+<pre class="wp-block-code"><code>services.xserver.desktopManager.pantheon.enable = true;</code></pre>
+<p>这也很简单，复制粘贴过去就完成了，搞定！在 <code>configuration.nix</code> 加入这个 Nix 是怎样处理的呢？还记得前面提到的 <a><code>system.nixos.release</code></a>、<a><code>system.nixos.codeName</code></a>和 <code>/etc/os-release</code> 吗？可以按照当时我所给的思路一探究竟，我们在后面揭晓。</p>
+<h3>软件包</h3>
+<p><a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-declarative-package-mgmt" target="_blank" rel="nofollow">会发现 NixOS Manual 有对应的章节</a>。它的要求是定义 <code>environment.systemPackages</code> 这个选项。它给出的例子是这样的：</p>
+<pre class="wp-block-code"><code>environment.systemPackages = &#91; pkgs.thunderbird ];</code></pre>
+<p>感觉有点迷？那不妨前往 <a rel="noreferrer noopener" href="https://nixos.org/nixos/options.html#environment.systempackages" target="_blank" rel="nofollow">NixOS Options</a> 查找 <code>environment.systemPackages</code>，这时就应该知道它要求你提供 <code>list of packages</code>。我们回到 <a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-configuration-file" target="_blank" rel="nofollow">NixOS Manual</a>，查看 Package 小节。这时就可以大致推断出这个 <code>name</code> 怎么填了。</p>
+<p><a rel="noreferrer noopener" href="https://github.com/search?l=Nix&amp;q=environment.systemPackages&amp;type=Code" target="_blank" rel="nofollow">接下来我们去 GitHub 参考一下别人的配置文件</a>，注意语言要选择 Nix，关键字将 Option 填入即可。查看搜索结果的时候只看定义操作相关的代码（而不是声明操作），这时你会发现另一个用法：</p>
+<pre class="wp-block-code"><code>environment.systemPackages = with pkgs; &#91;
     vscode
     freemind
-];</code></pre><p>事实上这样写，在后面就不用每个软件包前面加上 <code>pkgs.</code> 了，<code>pkgs.vscode</code> 可以直接写成 <code>vscode</code>。</p><p>胜利在望！接下来去 <a rel="noreferrer noopener" href="https://nixos.org/nixos/packages.html" target="_blank" rel="nofollow">NixOS Packages</a>，查找自己需要的软件包填入。你会发现有 Package name 和 Attribute name，填哪个呢？不妨回到 GitHub 继续翻配置文件，当你发现所有配置填的都是 Attribute name，我们就可以开始了，下面的就是我的配置：</p><pre class="wp-block-code"><code>environment.systemPackages = with pkgs; 
+];</code></pre>
+<p>事实上这样写，在后面就不用每个软件包前面加上 <code>pkgs.</code> 了，<code>pkgs.vscode</code> 可以直接写成 <code>vscode</code>。</p>
+<p>胜利在望！接下来去 <a rel="noreferrer noopener" href="https://nixos.org/nixos/packages.html" target="_blank" rel="nofollow">NixOS Packages</a>，查找自己需要的软件包填入。你会发现有 Package name 和 Attribute name，填哪个呢？不妨回到 GitHub 继续翻配置文件，当你发现所有配置填的都是 Attribute name，我们就可以开始了，下面的就是我的配置：</p>
+<pre class="wp-block-code"><code>environment.systemPackages = with pkgs; 
 &#91;
     dos2unix chromium fcitx fcitx-configtool firefox gcc git gptfdisk libreoffice-fresh neofetch pciutils python transmission vim wget vscode-with-extensions
-];</code></pre><p>你会发现这里面没有 X11 和 Pantheon 相关的包，<strong>事实上， <code>services.xserver.desktopManager.pantheon.enable = true;</code> 这一行已经为你安装了相应的包。</strong><a rel="noreferrer noopener" href="https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/x11/desktop-managers/pantheon.nix" target="_blank" rel="nofollow">可以查看一下包含这个选项声明的文件</a>，我们定位到 <code>config =</code> 往下的内容。虽然有些选项我们没有讨论过，例如 <code>fonts.fontconfig.defaultFonts</code> 等等，但是你可以通过搜索 NixOS Options 或者直接按照它的字面意思知道这些选项是干什么的。有安装软件包的、设置系统服务的、设置字体的等等。</p><p>有了这么一行，我们也就没有必要在我们自己的 <code>configuration.nix</code> 中设置它了。所以说 NixOS Options 的优先级是会高于 NixOS Packages 的，笔者才会用很大的篇幅介绍前者。<strong>当你需要一个软件或功能，首先考虑的应该是有没有对应的 NixOS Option，而不是直接安装一个 Nixpkg。</strong></p><hr class="wp-block-separator is-style-default" /><p>下面是另外两个比较玄学的案例，都是我安装完成之后才开始折腾的问题，<strong>当然了安装的时候也没有必要纠结这些问题</strong>，因为安装完后还可以随时编辑 <code>configuration.nix</code>，后面还会再介绍。同样，我会着重说明我是<strong>如何找到</strong>解决方案的，希望能给到大家一些帮助。<strong>介绍这些案例，不是为了劝退，而是为了说明，只要合理利用我在本章介绍的各类资源，善用搜索，必要时勇敢提问、开 Issue，甚至发 PR</strong>（<a rel="noreferrer noopener" href="https://discourse.nixos.org/t/language-packs-for-libreoffice-and-firefox/698/" target="_blank" rel="nofollow">这里有笔者本人的例子</a>）<strong>，大部分的问题都能很快地得到解决。</strong></p><h3>禁用 N 卡</h3><p>单纯出于想要省电的原因，打算禁用 N 卡。网上给出的禁用 N 卡的方案是都是使用 BBSwitch，四处搜索之。最后在 <a rel="noreferrer noopener" href="https://discourse.nixos.org/t/external-monitors-not-working-dell-xps/1799" target="_blank" rel="nofollow">Discourse Forum</a> 里面找到了一个有一定关联的。提到的选项包括 <code>extraModprobeConfig</code>、<code>blacklistedKernelModules</code>、<code>extraModulePackages</code>。</p><p>我们知道在其它发行版下要使用 BBSwitch 禁用 N 卡是这样操作的：</p><pre class="wp-block-code"><code>options bbswitch load_state=0 unload_state=1</code></pre><p>和帖子中 <code>extraModprobeConfig</code> 的值高度类似。而 <code>extraModulePackages</code> 在帖子里的值是 <code>config.boot.kernelPackages.nvidia_x11</code>，我们搜索到 BBSwitch 的 Attribute name 是 <code>linuxPackages.bbswitch</code>，相信也有一定关联。</p><p>接下来我们去 NixOS Options 继续搜索，发现上面几个选项都在 <code>boot</code> 集合下，查找 <code>boot module</code> 关键词，又发现了一个 <a><code>boot.kernelModules</code></a>，我认为这个选项和我的需求也是高度关联的。于是我写下了以下的配置：</p><pre class="wp-block-code"><code>boot = {
+];</code></pre>
+<p>你会发现这里面没有 X11 和 Pantheon 相关的包，<strong>事实上， <code>services.xserver.desktopManager.pantheon.enable = true;</code> 这一行已经为你安装了相应的包。</strong><a rel="noreferrer noopener" href="https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/x11/desktop-managers/pantheon.nix" target="_blank" rel="nofollow">可以查看一下包含这个选项声明的文件</a>，我们定位到 <code>config =</code> 往下的内容。虽然有些选项我们没有讨论过，例如 <code>fonts.fontconfig.defaultFonts</code> 等等，但是你可以通过搜索 NixOS Options 或者直接按照它的字面意思知道这些选项是干什么的。有安装软件包的、设置系统服务的、设置字体的等等。</p>
+<p>有了这么一行，我们也就没有必要在我们自己的 <code>configuration.nix</code> 中设置它了。所以说 NixOS Options 的优先级是会高于 NixOS Packages 的，笔者才会用很大的篇幅介绍前者。<strong>当你需要一个软件或功能，首先考虑的应该是有没有对应的 NixOS Option，而不是直接安装一个 Nixpkg。</strong></p>
+<hr class="wp-block-separator is-style-default" />
+<p>下面是另外两个比较玄学的案例，都是我安装完成之后才开始折腾的问题，<strong>当然了安装的时候也没有必要纠结这些问题</strong>，因为安装完后还可以随时编辑 <code>configuration.nix</code>，后面还会再介绍。同样，我会着重说明我是<strong>如何找到</strong>解决方案的，希望能给到大家一些帮助。<strong>介绍这些案例，不是为了劝退，而是为了说明，只要合理利用我在本章介绍的各类资源，善用搜索，必要时勇敢提问、开 Issue，甚至发 PR</strong>（<a rel="noreferrer noopener" href="https://discourse.nixos.org/t/language-packs-for-libreoffice-and-firefox/698/" target="_blank" rel="nofollow">这里有笔者本人的例子</a>）<strong>，大部分的问题都能很快地得到解决。</strong></p>
+<h3>禁用 N 卡</h3>
+<p>单纯出于想要省电的原因，打算禁用 N 卡。网上给出的禁用 N 卡的方案是都是使用 BBSwitch，四处搜索之。最后在 <a rel="noreferrer noopener" href="https://discourse.nixos.org/t/external-monitors-not-working-dell-xps/1799" target="_blank" rel="nofollow">Discourse Forum</a> 里面找到了一个有一定关联的。提到的选项包括 <code>extraModprobeConfig</code>、<code>blacklistedKernelModules</code>、<code>extraModulePackages</code>。</p>
+<p>我们知道在其它发行版下要使用 BBSwitch 禁用 N 卡是这样操作的：</p>
+<pre class="wp-block-code"><code>options bbswitch load_state=0 unload_state=1</code></pre>
+<p>和帖子中 <code>extraModprobeConfig</code> 的值高度类似。而 <code>extraModulePackages</code> 在帖子里的值是 <code>config.boot.kernelPackages.nvidia_x11</code>，我们搜索到 BBSwitch 的 Attribute name 是 <code>linuxPackages.bbswitch</code>，相信也有一定关联。</p>
+<p>接下来我们去 NixOS Options 继续搜索，发现上面几个选项都在 <code>boot</code> 集合下，查找 <code>boot module</code> 关键词，又发现了一个 <a><code>boot.kernelModules</code></a>，我认为这个选项和我的需求也是高度关联的。于是我写下了以下的配置：</p>
+<pre class="wp-block-code"><code>boot = {
     extraModprobeConfig = ''
         options bbswitch load_state=0 unload_state=1
     '';
@@ -106,7 +770,13 @@ in
         "nv"
         "uvcvideo"
     ];
-};</code></pre><p>确实是可行的，因为我后面运行 <code>lspci</code> 的时候显示已经是 <code>rev ff</code> 了：</p><pre class="wp-block-code"><code>01:00.0 3D controller: NVIDIA Corporation GP107M &#91;GeForce GTX 1050 3 GB Max-Q] (rev ff)</code></pre><h3>Visual Studio Code 插件</h3><p>你可能会问这也要提及？情况是这样的，安装了 VS Code（<code>pkgs.vscode-with-extensions</code>）之后我安装了几个插件，发现 C++ 插件不工作。我对这个插件提供的补全功能有较大的依赖，第一时间我想到的是这是 NixOS 目录结构和其它发行版不一致的问题。于是去搜索 Discourse Forum，<a rel="noreferrer noopener" href="https://discourse.nixos.org/t/vscode-extensions-setup/1801" target="_blank" rel="nofollow">找到了这个帖子</a>。下面有官方开发者给出了一个 Dirty Hack，尝试之。</p><p>结果发现 <code>fetchTarball https://github.com/nixos/nixpkgs-channels/archive/nixpkgs-unstable.tar.gz</code> 会消耗不少时间。一个解决方案是将整个 GitHub 仓库同步到其它 Git 托管平台，但我们还是希望有更高效的解决方案。留意到了楼主的解决方案，虽然它会覆盖原有的自己在 Marketplace 安装的 VS Code 插件，但是按照楼主的描述它确实是可行的：</p><pre class="wp-block-code"><code>self: super:
+};</code></pre>
+<p>确实是可行的，因为我后面运行 <code>lspci</code> 的时候显示已经是 <code>rev ff</code> 了：</p>
+<pre class="wp-block-code"><code>01:00.0 3D controller: NVIDIA Corporation GP107M &#91;GeForce GTX 1050 3 GB Max-Q] (rev ff)</code></pre>
+<h3>Visual Studio Code 插件</h3>
+<p>你可能会问这也要提及？情况是这样的，安装了 VS Code（<code>pkgs.vscode-with-extensions</code>）之后我安装了几个插件，发现 C++ 插件不工作。我对这个插件提供的补全功能有较大的依赖，第一时间我想到的是这是 NixOS 目录结构和其它发行版不一致的问题。于是去搜索 Discourse Forum，<a rel="noreferrer noopener" href="https://discourse.nixos.org/t/vscode-extensions-setup/1801" target="_blank" rel="nofollow">找到了这个帖子</a>。下面有官方开发者给出了一个 Dirty Hack，尝试之。</p>
+<p>结果发现 <code>fetchTarball https://github.com/nixos/nixpkgs-channels/archive/nixpkgs-unstable.tar.gz</code> 会消耗不少时间。一个解决方案是将整个 GitHub 仓库同步到其它 Git 托管平台，但我们还是希望有更高效的解决方案。留意到了楼主的解决方案，虽然它会覆盖原有的自己在 Marketplace 安装的 VS Code 插件，但是按照楼主的描述它确实是可行的：</p>
+<pre class="wp-block-code"><code>self: super:
 {
     mycode = super.vscode-with-extensions.override {
         # When the extension is already available in the default extensions set.
@@ -114,7 +784,9 @@ in
             ms-vscode.cpptools
         ];
     };
-}</code></pre><p>但是你并不知道第一行是啥，也不知道如何添加这个方案，<a rel="noreferrer noopener" href="https://github.com/search?l=Nix&amp;q=vscode-with-extensions.override&amp;type=Code" target="_blank" rel="nofollow">于是去 GitHub 搜索相关的内容</a>。结果搜出来的结果比上面这个还要再复杂一点，而且这样写的不只一个：</p><pre class="wp-block-code"><code>self: super: {
+}</code></pre>
+<p>但是你并不知道第一行是啥，也不知道如何添加这个方案，<a rel="noreferrer noopener" href="https://github.com/search?l=Nix&amp;q=vscode-with-extensions.override&amp;type=Code" target="_blank" rel="nofollow">于是去 GitHub 搜索相关的内容</a>。结果搜出来的结果比上面这个还要再复杂一点，而且这样写的不只一个：</p>
+<pre class="wp-block-code"><code>self: super: {
     vscode-with-extensions = super.vscode-with-extensions.override {
         vscodeExtensions = with super.vscode-extensions;
         &#91; 
@@ -136,7 +808,15 @@ in
             }
         ];
     };
-}</code></pre><p>这时可以猜出来官方应该有相应的文档，于是就去搜索 NixOS Manual、NixOS Options 还有 NixOS Packages，发现都找不到。终于，<a rel="noreferrer noopener" href="https://github.com/NixOS/nixpkgs" target="_blank" rel="nofollow">笔者开始查找 GitHub 的 NixOS/nixpkgs 仓库</a>。<a rel="noreferrer noopener" href="https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vscode/with-extensions.nix" target="_blank" rel="nofollow">找到了这样一个文件</a>。你会发现第一行没了，后面的内容还是类似的。现在我们可以把关注点放在这个 <code>override</code> 上了。我们重新发起一次搜索，<a href="https://nixos.org/nixos/manual/#sec-customising-packages" target="_blank" rel="nofollow">在 NixOS Manual 找到了有关 <code>override</code> 的说明</a>。</p><p>太妙了！但是接下来又有一个问题，这里的 <code>name</code>、<code>publisher</code>、<code>version</code> 和 <code>sha256</code> 又该怎么填呢？为什么 <code>ms-vscode.cpptools</code> 不需要填 <code>version</code> 和 <code>sha256</code> 呢？阅读还是刚才的文件，阅读上面的注释：</p><p>This expression should fetch:</p><ul><li> the <code>nix</code> vscode extension from whatever source defined in the default nixpkgs extensions set <code>vscodeExtensions</code>.</li><li>the <code>code-runner</code> vscode extension from the marketplace using the following url: <a rel="noreferrer noopener" href="https://bbenoist.gallery.vsassets.io/_apis/public/gallery/publisher/bbenoist/extension/nix/1.0.1/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage" target="_blank" rel="nofollow">(link)</a>.</li></ul><p>The original <code>code</code> executable will be wrapped so that it uses the set of pre-installed / unpacked extensions as its <code>--extensions-dir</code>.</p><p>然而我们却找不到 <code>vscodeExtensions</code>，但是我们可以搜索 <code>ms-vscode.cpptools</code> 啊！<a href="https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/vscode-extensions/default.nix" target="_blank" rel="nofollow">终于笔者找到了这个文件</a>。事实上在这个文件中涉及到的所有插件都无需我们再配置 <code>publisher</code>、<code>version</code> 和 <code>sha256</code> 了。<strong>这和我们使用了 <code>services.xserver.desktopManager.pantheon.enable = true;</code> 就不需要在 <code>environment.systemPackages</code> 添加相关的包是一个道理。</strong></p><p>至于这个文件里没有的插件呢？例如说 <code>ms-vscode.cpptools</code> 的 <code>name</code> 就是 <code>cpptools</code>，<code>publisher</code> 就是 <code>ms-vscode</code>。我们可以去 <a rel="noreferrer noopener" href="https://marketplace.visualstudio.com/vscode" target="_blank" rel="nofollow">Marketplace</a> 下载这个插件（找到 Download Extension 按钮即可），用 <code>sha256sum</code> 命令计算下载下来的文件的 <code>sha256</code>，而版本号在文件名有。好了，你已经准备好了！让我们来继续完善 <code>environment.systemPackages</code>：</p><pre class="wp-block-code"><code>environment.systemPackages = with pkgs; 
+}</code></pre>
+<p>这时可以猜出来官方应该有相应的文档，于是就去搜索 NixOS Manual、NixOS Options 还有 NixOS Packages，发现都找不到。终于，<a rel="noreferrer noopener" href="https://github.com/NixOS/nixpkgs" target="_blank" rel="nofollow">笔者开始查找 GitHub 的 NixOS/nixpkgs 仓库</a>。<a rel="noreferrer noopener" href="https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vscode/with-extensions.nix" target="_blank" rel="nofollow">找到了这样一个文件</a>。你会发现第一行没了，后面的内容还是类似的。现在我们可以把关注点放在这个 <code>override</code> 上了。我们重新发起一次搜索，<a href="https://nixos.org/nixos/manual/#sec-customising-packages" target="_blank" rel="nofollow">在 NixOS Manual 找到了有关 <code>override</code> 的说明</a>。</p>
+<p>太妙了！但是接下来又有一个问题，这里的 <code>name</code>、<code>publisher</code>、<code>version</code> 和 <code>sha256</code> 又该怎么填呢？为什么 <code>ms-vscode.cpptools</code> 不需要填 <code>version</code> 和 <code>sha256</code> 呢？阅读还是刚才的文件，阅读上面的注释：</p>
+<p>This expression should fetch:</p>
+<ul><li> the <code>nix</code> vscode extension from whatever source defined in the default nixpkgs extensions set <code>vscodeExtensions</code>.</li><li>the <code>code-runner</code> vscode extension from the marketplace using the following url: <a rel="noreferrer noopener" href="https://bbenoist.gallery.vsassets.io/_apis/public/gallery/publisher/bbenoist/extension/nix/1.0.1/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage" target="_blank" rel="nofollow">(link)</a>.</li></ul>
+<p>The original <code>code</code> executable will be wrapped so that it uses the set of pre-installed / unpacked extensions as its <code>--extensions-dir</code>.</p>
+<p>然而我们却找不到 <code>vscodeExtensions</code>，但是我们可以搜索 <code>ms-vscode.cpptools</code> 啊！<a href="https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/vscode-extensions/default.nix" target="_blank" rel="nofollow">终于笔者找到了这个文件</a>。事实上在这个文件中涉及到的所有插件都无需我们再配置 <code>publisher</code>、<code>version</code> 和 <code>sha256</code> 了。<strong>这和我们使用了 <code>services.xserver.desktopManager.pantheon.enable = true;</code> 就不需要在 <code>environment.systemPackages</code> 添加相关的包是一个道理。</strong></p>
+<p>至于这个文件里没有的插件呢？例如说 <code>ms-vscode.cpptools</code> 的 <code>name</code> 就是 <code>cpptools</code>，<code>publisher</code> 就是 <code>ms-vscode</code>。我们可以去 <a rel="noreferrer noopener" href="https://marketplace.visualstudio.com/vscode" target="_blank" rel="nofollow">Marketplace</a> 下载这个插件（找到 Download Extension 按钮即可），用 <code>sha256sum</code> 命令计算下载下来的文件的 <code>sha256</code>，而版本号在文件名有。好了，你已经准备好了！让我们来继续完善 <code>environment.systemPackages</code>：</p>
+<pre class="wp-block-code"><code>environment.systemPackages = with pkgs; 
 &#91;
     dos2unix chromium fcitx fcitx-configtool firefox gcc git gptfdisk libreoffice-fresh neofetch pciutils python transmission vim wget
     ( vscode-with-extensions.override {
@@ -168,6 +848,278 @@ in
             }
         ];
     } )
-];</code></pre><hr class="wp-block-separator is-style-default" /><p>相信对于其它的需求大家也能举一反三。<a rel="noreferrer noopener" href="https://github.com/bobby285271/nixos-configuration/blob/master/configuration.nix" target="_blank" rel="nofollow">这里是我的 <code>configuration.nix</code></a>，供大家参考。</p><h2>执行安装</h2><p>前面已经提及过 <code>nixos-install</code> 这个命令了，让我们使用它执行安装，不需要带上任何参数：</p><pre class="wp-block-code"><code>nixos-install</code></pre><p>如果 <code>configuration.nix</code> 存在任何错误，安装会在一开始的时候就中断，修改好后重新运行上面的命令即可。<strong>网络出现问题同理。</strong>接下来安装程序会提示你设置一个密码，这个密码是给管理员用的（<strong>密码当然是不能在 <code>configuration.nix</code> 上设置的</strong>），盲打两次即可。重启并进入新系统：</p><pre class="wp-block-code"><code>reboot</code></pre><p>当然，重启后别忘了为你的普通用户设置密码（如 <code>passwd bobby285271</code>）。</p><h2>系统维护</h2><p>笔者之前讲过 <code>configuration.nix</code> 是可以随时修改的。当然了现在你应该处于你的新系统中了，所以你不应该编辑 <code>/mnt/etc/nixos/configuration.nix</code> 了，而是应该编辑 <code>/etc/nixos/configuration.nix</code>。</p><pre class="wp-block-code"><code>nano /etc/nixos/configuration.nix</code></pre><p>要使这个配置生效，应该使用 <code>nixos-rebuild switch</code> 命令，如果你希望在构建这个配置的时候顺便升级自己的系统（当然如果你不改动 <code>configuration.nix</code> 单纯想升级系统，同样可以执行这个命令） ：</p><pre class="wp-block-code"><code>nixos-rebuild switch --upgrade</code></pre><p>关于这个，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-changing-config" target="_blank" rel="nofollow">可以查看 NixOS Manual 了解详情</a>。</p></div><footer class="post-footer"><div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div><div class="post-tags"> <i class="iconfont icon-tags"></i> <a href="index.php/tag/installation/index.html" rel="tag">Installation</a> <a href="index.php/tag/nixos/index.html" rel="tag">NixOS</a></div><div class="post-like"> <a href="javascript:;" data-action="ding" data-id="439" class="specsZan "> <i class="iconfont icon-like"></i> <span class="count"> 0</span> </a></div><div class="post-share"><div class="social-share sharehidden"></div> <i class="iconfont show-share icon-forward"></i></div></footer></article><div class="toc-container"><div class="toc"></div></div><section class="post-squares nextprev"><div class="post-nepre half previous"> <a href="index.html%3Fp=819.html" rel="prev"><div class="background lazyload" style="background-image:url(https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/outload.svg);" data-src="https://static.bobby285271.top/index.php/wp-json/sakura/v1/image/feature?58"></div><span class="label">Previous Post</span><div class="info"><h3>[WIP] SCNUSE 2020 GPLT Tryouts Level 2-3 Solution</h3><hr></div></a></div><div class="post-nepre half next"> <a href="index.html%3Fp=1405.html" rel="next"><div class="background lazyload" style="background-image:url(https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/outload.svg);" data-src="https://static.bobby285271.top/index.php/wp-json/sakura/v1/image/feature?540"></div><span class="label">Next Post</span><div class="info"><h3>Lanqiao</h3><hr></div></a></div></section><section class="author-profile"><div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person"> <a href="https://www.Bobby%20Rong.top/index.php/author/Bobby%20Rong/" class="profile gravatar"><img src="wp-content/uploads/2020/04/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg" itemprop="image" alt="Bobby Rong" height="70" width="70"></a><div class="meta"> <span class="title">Author</span><h3 itemprop="name"> <a href="https://www.Bobby%20Rong.top/index.php/author/Bobby%20Rong/" itemprop="url" rel="author">Bobby Rong</a></h3></div></div><hr><p><i class="iconfont icon-write"></i>沧海如澜冰雪消融 云淡风轻浮沉若梦</p></section></main></div></div><section id="comments" class="comments"><div class="commentwrap comments-hidden"><div class="notification"><i class="iconfont icon-mark"></i>查看评论 - <span class="noticom">NOTHING </span></div></div><div class="comments-main"><h3 id="comments-list-title">Comments | <span class="noticom">NOTHING </span></h3><div id="loading-comments"><span></span></div><div class="commentwrap"><div class="notification-hidden"><i class="iconfont icon-mark"></i> 暂无评论</div></div><div id="respond" class="comment-respond"><h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.php/2019/01/02/nixos-installation-guide-chinese/index.html#respond" style="display:none;">取消回复</a></small></h3><form action="https://static.bobby285271.top/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p style="font-style:italic"><a href="https://segmentfault.com/markdown" target="_blank"><i class="iconfont icon-markdown" style="color:#000"></i></a> Markdown Supported while <i class="fa fa-code" aria-hidden="true"></i> Forbidden</p><div class="comment-textarea"><textarea placeholder="你是我一生只会遇见一次的惊喜 ..." name="comment" class="commentbody" id="comment" rows="5" tabindex="4"></textarea><label class="input-label">你是我一生只会遇见一次的惊喜 ...</label></div><div id="upload-img-show"></div><p id="emotion-toggle" class="no-select"> <span class="emotion-toggle-off">戳我呀 OωO</span> <span class="emotion-toggle-on">嘿嘿嘿 ヾ(≧∇≦*)ゝ</span></p><div class="emotion-box no-select"><table class="motion-switcher-table"><tr><th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.bili')" class="bili-bar on-hover" data-cf-modified-8ea121672a1a68c01854c93d-="">bilibili~</th><th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.menhera')" class="menhera-bar" data-cf-modified-8ea121672a1a68c01854c93d-="">(=・ω・=)</th><th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.tieba')" class="tieba-bar" data-cf-modified-8ea121672a1a68c01854c93d-="">Tieba</th></tr></table><div class="bili-container motion-container"><span title="baiyan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('baiyan',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_baiyan.png" /></span><span title="bishi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bishi',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_bishi.png" /></span><span title="bizui" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bizui',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_bizui.png" /></span><span title="chan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('chan',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_chan.png" /></span><span title="dai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dai',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_dai.png" /></span><span title="daku" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('daku',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_daku.png" /></span><span title="dalao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dalao',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_dalao.png" /></span><span title="dalian" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dalian',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_dalian.png" /></span><span title="dianzan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dianzan',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_dianzan.png" /></span><span title="doge" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('doge',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_doge.png" /></span><span title="facai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('facai',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_facai.png" /></span><span title="fanu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('fanu',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_fanu.png" /></span><span title="ganga" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('ganga',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_ganga.png" /></span><span title="guilian" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('guilian',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_guilian.png" /></span><span title="guzhang" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('guzhang',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_guzhang.png" /></span><span title="haixiu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('haixiu',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_haixiu.png" /></span><span title="heirenwenhao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('heirenwenhao',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_heirenwenhao.png" /></span><span title="huaixiao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('huaixiao',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_huaixiao.png" /></span><span title="jingxia" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('jingxia',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_jingxia.png" /></span><span title="keai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('keai',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_keai.png" /></span><span title="koubizi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('koubizi',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_koubizi.png" /></span><span title="kun" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('kun',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_kun.png" /></span><span title="lengmo" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('lengmo',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_lengmo.png" /></span><span title="liubixue" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liubixue',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_liubixue.png" /></span><span title="liuhan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liuhan',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_liuhan.png" /></span><span title="liulei" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liulei',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_liulei.png" /></span><span title="miantian" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('miantian',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_miantian.png" /></span><span title="mudengkoudai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('mudengkoudai',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_mudengkoudai.png" /></span><span title="nanguo" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('nanguo',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_nanguo.png" /></span><span title="outu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('outu',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_outu.png" /></span><span title="qinqin" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('qinqin',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_qinqin.png" /></span><span title="se" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('se',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_se.png" /></span><span title="shengbing" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shengbing',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_shengbing.png" /></span><span title="shengqi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shengqi',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_shengqi.png" /></span><span title="shuizhao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shuizhao',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_shuizhao.png" /></span><span title="sikao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('sikao',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_sikao.png" /></span><span title="tiaokan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tiaokan',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_tiaokan.png" /></span><span title="tiaopi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tiaopi',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_tiaopi.png" /></span><span title="touxiao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('touxiao',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_touxiao.png" /></span><span title="tuxue" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tuxue',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_tuxue.png" /></span><span title="weiqu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('weiqu',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_weiqu.png" /></span><span title="weixiao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('weixiao',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_weixiao.png" /></span><span title="wunai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('wunai',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_wunai.png" /></span><span title="xiaoku" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('xiaoku',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_xiaoku.png" /></span><span title="xieyanxiao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('xieyanxiao',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_xieyanxiao.png" /></span><span title="yiwen" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('yiwen',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_yiwen.png" /></span><span title="yun" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('yun',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_yun.png" /></span><span title="zaijian" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zaijian',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_zaijian.png" /></span><span title="zhoumei" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zhoumei',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_zhoumei.png" /></span><span title="zhuakuang" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zhuakuang',type = 'Math')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_zhuakuang.png" /></span></div><div class="menhera-container motion-container" style="display:none;"> <a class="emoji-item">(⌒▽⌒)</a> <a class="emoji-item">（￣▽￣）</a> <a class="emoji-item">(=・ω・=)</a> <a class="emoji-item">(｀・ω・´)</a> <a class="emoji-item">(〜￣△￣)〜</a> <a class="emoji-item">(･∀･)</a> <a class="emoji-item">(°∀°)ﾉ</a> <a class="emoji-item">(￣3￣)</a> <a class="emoji-item">╮(￣▽￣)╭</a> <a class="emoji-item">(´_ゝ｀)</a> <a class="emoji-item">←_←</a> <a class="emoji-item">→_→</a> <a class="emoji-item">(&lt;_&lt;)</a> <a class="emoji-item">(&gt;_&gt;)</a> <a class="emoji-item">(;¬_¬)</a> <a class="emoji-item">("▔□▔)/</a> <a class="emoji-item">(ﾟДﾟ≡ﾟдﾟ)!?</a> <a class="emoji-item">Σ(ﾟдﾟ;)</a> <a class="emoji-item">Σ(￣□￣||)</a> <a class="emoji-item">(’；ω；‘)</a> <a class="emoji-item">（/TДT)/</a> <a class="emoji-item">(^・ω・^ )</a> <a class="emoji-item">(｡･ω･｡)</a> <a class="emoji-item">(●￣(ｴ)￣●)</a> <a class="emoji-item">ε=ε=(ノ≧∇≦)ノ</a> <a class="emoji-item">(’･_･‘)</a> <a class="emoji-item">(-_-#)</a> <a class="emoji-item">（￣へ￣）</a> <a class="emoji-item">(￣ε(#￣)Σ</a> <a class="emoji-item">ヽ(‘Д’)ﾉ</a> <a class="emoji-item">（#-_-)┯━┯</a> <a class="emoji-item">(╯°口°)╯(┴—┴</a> <a class="emoji-item">←◡←</a> <a class="emoji-item">( ♥д♥)</a> <a class="emoji-item">_(:3」∠)_</a> <a class="emoji-item">Σ&gt;―(〃°ω°〃)♡→</a> <a class="emoji-item">⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄</a> <a class="emoji-item">(╬ﾟдﾟ)▄︻┻┳═一</a> <a class="emoji-item">･*･:≡(　ε:)</a> <a class="emoji-item">(笑)</a> <a class="emoji-item">(汗)</a> <a class="emoji-item">(泣)</a> <a class="emoji-item">(苦笑)</a></div><div class="tieba-container motion-container" style="display:none;"><span title="good" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('good',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_good.png" /></span><span title="han" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('han',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_han.png" /></span><span title="spray" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('spray',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_spray.png" /></span><span title="Grievance" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('Grievance',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_Grievance.png" /></span><span title="shui" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shui',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_shui.png" /></span><span title="reluctantly" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('reluctantly',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_reluctantly.png" /></span><span title="anger" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('anger',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_anger.png" /></span><span title="tongue" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tongue',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_tongue.png" /></span><span title="se" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('se',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_se.png" /></span><span title="haha" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('haha',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_haha.png" /></span><span title="rmb" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('rmb',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_rmb.png" /></span><span title="doubt" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('doubt',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_doubt.png" /></span><span title="tear" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tear',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_tear.png" /></span><span title="surprised2" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('surprised2',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_surprised2.png" /></span><span title="Happy" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('Happy',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_Happy.png" /></span><span title="ku" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('ku',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_ku.png" /></span><span title="surprised" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('surprised',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_surprised.png" /></span><span title="theblackline" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('theblackline',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_theblackline.png" /></span><span title="smilingeyes" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('smilingeyes',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_smilingeyes.png" /></span><span title="spit" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('spit',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_spit.png" /></span><span title="huaji" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('huaji',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_huaji.png" /></span><span title="bbd" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bbd',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_bbd.png" /></span><span title="hu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('hu',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_hu.png" /></span><span title="shame" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shame',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_shame.png" /></span><span title="naive" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('naive',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_naive.png" /></span><span title="rbq" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('rbq',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_rbq.png" /></span><span title="britan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('britan',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_britan.png" /></span><span title="aa" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('aa',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_aa.png" /></span><span title="niconiconi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconi',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_niconiconi.png" /></span><span title="niconiconi_t" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconi_t',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_niconiconi_t.png" /></span><span title="niconiconit" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconit',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_niconiconit.png" /></span><span title="awesome" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('awesome',type = 'tieba')" data-cf-modified-8ea121672a1a68c01854c93d-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_awesome.png" /></span></div></div><div class="cmt-info-container"><div class="comment-user-avatar"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/avatar.jpeg"><div class="socila-check qq-check"><i class="fa fa-qq" aria-hidden="true"></i></div><div class="socila-check gravatar-check"><i class="fa fa-google" aria-hidden="true"></i></div></div><div class="popup cmt-popup cmt-author" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-8ea121672a1a68c01854c93d-=""><span class="popuptext" id="thePopup" style="margin-left: -115px;width: 230px;">输入QQ号将自动拉取昵称和头像</span><input type="text" placeholder="昵称或QQ号 (昵称 )" name="author" id="author" value="" size="22" autocomplete="off" tabindex="1" aria-required='true' /></div><div class="popup cmt-popup" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-8ea121672a1a68c01854c93d-=""><span class="popuptext" id="thePopup" style="margin-left: -65px;width: 130px;">你将收到回复通知</span><input type="text" placeholder="邮箱 (必须* )" name="email" id="email" value="" size="22" tabindex="1" autocomplete="off" aria-required='true' /></div><div class="popup cmt-popup" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-8ea121672a1a68c01854c93d-=""><span class="popuptext" id="thePopup" style="margin-left: -55px;width: 110px;">禁止小广告😀</span><input type="text" placeholder="网站" name="url" id="url" value="" size="22" autocomplete="off" tabindex="1" /></div></div><label class="siren-checkbox-label"><input class="siren-checkbox-radio" type="checkbox" name="no-robot"><span class="siren-no-robot-checkbox siren-checkbox-radioInput"></span>我不是机器人对吧？</label> <input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off" /><p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">在此浏览器中保存我的名字、电邮和网站。</label></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="BiuBiuBiu~" /> <input type='hidden' name='comment_post_ID' value='439' id='comment_post_ID' /> <input type='hidden' name='comment_parent' id='comment_parent' value='0' /></p></form></div></div></section></div><footer id="colophon" class="site-footer" role="contentinfo"><div class="site-info" theme-info="Sakurairo v1.11.4"><div class="footertext"><div class="img-preload"> <img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/load/ball.svg"> <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/disqus-preloader.svg"></div> <i class="iconfont icon-sakura rotating" style="color: #EE9CA7;display:inline-block;font-size:26px"></i></p><p style="color: #666666;">Copyright &copy; by Bobby Rong / All Rights Reserved</p></div><div class="footer-device"><p style="font-family: 'Ubuntu', sans-serif;"> <span style="color: #b9b9b9;"> <script type="8ea121672a1a68c01854c93d-text/javascript" src="https://api.btstu.cn/yan/api.php?charset=utf-8&encode=js"></script> <div id="yan"></div></p> Theme <a href="https://asuhe.jp/daily/sakurairo-user-manual/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakurairo</a> by <a href="https://asuhe.jp/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hitomi</a> </span></p></div></div></footer><div class="openNav no-select"><div class="iconflat no-select"><div class="icon"></div></div><div class="site-branding"><div class="site-title"></div></div></section><div id="mo-nav"><div class="m-avatar"> <img src="wp-content/uploads/2020/04/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg"></div><div class="m-search"><form class="m-search-form" method="get" action="index.html" role="search"> <input class="m-search-input" type="search" name="s" placeholder="搜索..." required></form></div><ul id="menu-primary-1" class="menu"><li><a href="index.html">Home</a></li><li><a href="index.html%3Fp=325.html">Info</a></li><li><a href="index.html%3Fp=1045.html">Timeline</a></li><li><a href="index.html%3Fp=347.html">Studio</a><ul class="sub-menu"><li><a href="index.html%3Fp=182.html">Archiso</a></li></ul></li></ul></div> <a class="cd-top faa-float animated "></a> <button id="moblieGoTop" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button> <button id="changskin" style="bottom: 15px;"><i class="iconfont icon-gear inline-block rotating"></i></button><form class="js-search search-form search-form--modal" method="get" action="index.html" role="search"><div class="search-form__inner"><div class="micro"><p class="micro mb-">想要找点什么呢？</p> <i class="iconfont icon-search"></i> <input class="text-input" type="search" name="s" placeholder="搜索" required></div></div><div class="search_close"></div></form> <script type="8ea121672a1a68c01854c93d-text/javascript">var Poi = {"pjax":"1","movies":"close","windowheight":"auto","codelamp":"close","ajaxurl":"https:\/\/www.bobby285271.top\/wp-admin\/admin-ajax.php","order":"asc","formpostion":"bottom","reply_link_version":"new","api":"https:\/\/www.bobby285271.top\/index.php\/wp-json\/","nonce":"73b9fc94d3","google_analytics_id":"","gravatar_url":"secure.gravatar.com\/avatar"};</script> <script type="8ea121672a1a68c01854c93d-text/javascript" src='https://cdn.jsdelivr.net/github-cards/latest/widget.js'></script> <script type="8ea121672a1a68c01854c93d-text/javascript" src='https://stats.wp.com/e-202017.js' async='async' defer='defer'></script> <script type="8ea121672a1a68c01854c93d-text/javascript">_stq = window._stq || [];
+];</code></pre>
+<hr class="wp-block-separator is-style-default" />
+<p>相信对于其它的需求大家也能举一反三。<a rel="noreferrer noopener" href="https://github.com/bobby285271/nixos-configuration/blob/master/configuration.nix" target="_blank" rel="nofollow">这里是我的 <code>configuration.nix</code></a>，供大家参考。</p>
+<h2>执行安装</h2>
+<p>前面已经提及过 <code>nixos-install</code> 这个命令了，让我们使用它执行安装，不需要带上任何参数：</p>
+<pre class="wp-block-code"><code>nixos-install</code></pre>
+<p>如果 <code>configuration.nix</code> 存在任何错误，安装会在一开始的时候就中断，修改好后重新运行上面的命令即可。<strong>网络出现问题同理。</strong>接下来安装程序会提示你设置一个密码，这个密码是给管理员用的（<strong>密码当然是不能在 <code>configuration.nix</code> 上设置的</strong>），盲打两次即可。重启并进入新系统：</p>
+<pre class="wp-block-code"><code>reboot</code></pre>
+<p>当然，重启后别忘了为你的普通用户设置密码（如 <code>passwd bobby285271</code>）。</p>
+<h2>系统维护</h2>
+<p>笔者之前讲过 <code>configuration.nix</code> 是可以随时修改的。当然了现在你应该处于你的新系统中了，所以你不应该编辑 <code>/mnt/etc/nixos/configuration.nix</code> 了，而是应该编辑 <code>/etc/nixos/configuration.nix</code>。</p>
+<pre class="wp-block-code"><code>nano /etc/nixos/configuration.nix</code></pre>
+<p>要使这个配置生效，应该使用 <code>nixos-rebuild switch</code> 命令，如果你希望在构建这个配置的时候顺便升级自己的系统（当然如果你不改动 <code>configuration.nix</code> 单纯想升级系统，同样可以执行这个命令） ：</p>
+<pre class="wp-block-code"><code>nixos-rebuild switch --upgrade</code></pre>
+<p>关于这个，<a rel="noreferrer noopener" href="https://nixos.org/nixos/manual/index.html#sec-changing-config" target="_blank" rel="nofollow">可以查看 NixOS Manual 了解详情</a>。</p>
+
+
+</div>
+<footer class="post-footer">
+<div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+<div class="post-tags">
+<i class="iconfont icon-tags"></i> <a href="index.php/tag/installation/index.html" rel="tag">Installation</a> <a href="index.php/tag/nixos/index.html" rel="tag">NixOS</a> </div>
+<div class="post-like">
+<a href="javascript:;" data-action="ding" data-id="439" class="specsZan ">
+<i class="iconfont icon-like"></i> <span class="count">
+0</span>
+</a>
+</div>
+<div class="post-share">
+<div class="social-share sharehidden"></div>
+<i class="iconfont show-share icon-forward"></i>
+</div>
+</footer>
+</article>
+<div class="toc-container"><div class="toc"></div></div>
+<section class="post-squares nextprev">
+<div class="post-nepre half previous">
+<a href="index.html%3Fp=819.html" rel="prev"><div class="background lazyload" style="background-image:url(https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/outload.svg);" data-src="https://static.bobby285271.top/index.php/wp-json/sakura/v1/image/feature?928"></div><span class="label">Previous Post</span><div class="info"><h3>[WIP] SCNUSE 2020 GPLT Tryouts Level 2-3 Solution</h3><hr></div></a> </div>
+<div class="post-nepre half next">
+<a href="index.html%3Fp=1405.html" rel="next"><div class="background lazyload" style="background-image:url(https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/loadimg/outload.svg);" data-src="https://static.bobby285271.top/index.php/wp-json/sakura/v1/image/feature?897"></div><span class="label">Next Post</span><div class="info"><h3>Lanqiao</h3><hr></div></a> </div>
+</section>
+<section class="author-profile">
+<div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+<a href="index.php/author/bobby285271/index.html" class="profile gravatar"><img src="https://cn.gravatar.com/avatar/1d4930fdc37d3baf980e8e6e8ffc224e?s=96&d=mm&r=g" itemprop="image" alt="bobby285271" height="70" width="70"></a>
+<div class="meta">
+<span class="title">Author</span>
+<h3 itemprop="name">
+<a href="index.php/author/bobby285271/index.html" itemprop="url" rel="author">bobby285271</a>
+</h3>
+</div>
+</div>
+<hr>
+<p><i class="iconfont icon-write"></i>粉色的花瓣，美丽地缠绕在身上。依在风里。</p>
+</section>
+</main>
+</div>
+</div>
+<section id="comments" class="comments">
+<div class="commentwrap comments-hidden">
+<div class="notification"><i class="iconfont icon-mark"></i>查看评论 -
+<span class="noticom">NOTHING </span>
+</div>
+</div>
+<div class="comments-main">
+<h3 id="comments-list-title">Comments | <span class="noticom">NOTHING </span></h3>
+<div id="loading-comments"><span></span></div>
+<div class="commentwrap">
+<div class="notification-hidden"><i class="iconfont icon-mark"></i> 暂无评论</div>
+</div>
+<div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.php/2019/01/02/nixos-installation-guide-chinese/index.html#respond" style="display:none;">取消回复</a></small></h3><form action="https://static.bobby285271.top/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p style="font-style:italic"><a href="https://segmentfault.com/markdown" target="_blank"><i class="iconfont icon-markdown" style="color:#000"></i></a> Markdown Supported while <i class="fa fa-code" aria-hidden="true"></i> Forbidden</p><div class="comment-textarea"><textarea placeholder="你是我一生只会遇见一次的惊喜 ..." name="comment" class="commentbody" id="comment" rows="5" tabindex="4"></textarea><label class="input-label">你是我一生只会遇见一次的惊喜 ...</label></div>
+<div id="upload-img-show"></div>
+
+<p id="emotion-toggle" class="no-select">
+<span class="emotion-toggle-off">戳我呀 OωO</span>
+<span class="emotion-toggle-on">嘿嘿嘿 ヾ(≧∇≦*)ゝ</span>
+</p>
+<div class="emotion-box no-select">
+<table class="motion-switcher-table">
+<tr>
+<th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.bili')" class="bili-bar on-hover" data-cf-modified-c71a966085c75bb6a058aacb-="">bilibili~</th>
+<th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.menhera')" class="menhera-bar" data-cf-modified-c71a966085c75bb6a058aacb-="">(=・ω・=)</th>
+<th onclick="if (!window.__cfRLUnblockHandlers) return false; motionSwitch('.tieba')" class="tieba-bar" data-cf-modified-c71a966085c75bb6a058aacb-="">Tieba</th>
+</tr>
+</table>
+<div class="bili-container motion-container"><span title="baiyan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('baiyan',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_baiyan.png" /></span><span title="bishi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bishi',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_bishi.png" /></span><span title="bizui" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bizui',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_bizui.png" /></span><span title="chan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('chan',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_chan.png" /></span><span title="dai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dai',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_dai.png" /></span><span title="daku" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('daku',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_daku.png" /></span><span title="dalao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dalao',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_dalao.png" /></span><span title="dalian" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dalian',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_dalian.png" /></span><span title="dianzan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('dianzan',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_dianzan.png" /></span><span title="doge" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('doge',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_doge.png" /></span><span title="facai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('facai',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_facai.png" /></span><span title="fanu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('fanu',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_fanu.png" /></span><span title="ganga" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('ganga',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_ganga.png" /></span><span title="guilian" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('guilian',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_guilian.png" /></span><span title="guzhang" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('guzhang',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_guzhang.png" /></span><span title="haixiu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('haixiu',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_haixiu.png" /></span><span title="heirenwenhao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('heirenwenhao',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_heirenwenhao.png" /></span><span title="huaixiao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('huaixiao',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_huaixiao.png" /></span><span title="jingxia" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('jingxia',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_jingxia.png" /></span><span title="keai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('keai',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_keai.png" /></span><span title="koubizi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('koubizi',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_koubizi.png" /></span><span title="kun" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('kun',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_kun.png" /></span><span title="lengmo" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('lengmo',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_lengmo.png" /></span><span title="liubixue" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liubixue',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_liubixue.png" /></span><span title="liuhan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liuhan',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_liuhan.png" /></span><span title="liulei" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('liulei',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_liulei.png" /></span><span title="miantian" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('miantian',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_miantian.png" /></span><span title="mudengkoudai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('mudengkoudai',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_mudengkoudai.png" /></span><span title="nanguo" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('nanguo',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_nanguo.png" /></span><span title="outu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('outu',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_outu.png" /></span><span title="qinqin" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('qinqin',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_qinqin.png" /></span><span title="se" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('se',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_se.png" /></span><span title="shengbing" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shengbing',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_shengbing.png" /></span><span title="shengqi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shengqi',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_shengqi.png" /></span><span title="shuizhao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shuizhao',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_shuizhao.png" /></span><span title="sikao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('sikao',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_sikao.png" /></span><span title="tiaokan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tiaokan',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_tiaokan.png" /></span><span title="tiaopi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tiaopi',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_tiaopi.png" /></span><span title="touxiao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('touxiao',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_touxiao.png" /></span><span title="tuxue" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tuxue',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_tuxue.png" /></span><span title="weiqu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('weiqu',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_weiqu.png" /></span><span title="weixiao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('weixiao',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_weixiao.png" /></span><span title="wunai" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('wunai',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_wunai.png" /></span><span title="xiaoku" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('xiaoku',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_xiaoku.png" /></span><span title="xieyanxiao" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('xieyanxiao',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_xieyanxiao.png" /></span><span title="yiwen" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('yiwen',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_yiwen.png" /></span><span title="yun" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('yun',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_yun.png" /></span><span title="zaijian" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zaijian',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_zaijian.png" /></span><span title="zhoumei" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zhoumei',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_zhoumei.png" /></span><span title="zhuakuang" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('zhuakuang',type = 'Math')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/bilipng/emoji_zhuakuang.png" /></span></div>
+<div class="menhera-container motion-container" style="display:none;">
+<a class="emoji-item">(⌒▽⌒)</a>
+<a class="emoji-item">（￣▽￣）</a>
+<a class="emoji-item">(=・ω・=)</a>
+<a class="emoji-item">(｀・ω・´)</a>
+<a class="emoji-item">(〜￣△￣)〜</a>
+<a class="emoji-item">(･∀･)</a>
+<a class="emoji-item">(°∀°)ﾉ</a>
+<a class="emoji-item">(￣3￣)</a>
+<a class="emoji-item">╮(￣▽￣)╭</a>
+<a class="emoji-item">(´_ゝ｀)</a>
+<a class="emoji-item">←_←</a>
+<a class="emoji-item">→_→</a>
+<a class="emoji-item">(&lt;_&lt;)</a>
+<a class="emoji-item">(&gt;_&gt;)</a>
+<a class="emoji-item">(;¬_¬)</a>
+<a class="emoji-item">("▔□▔)/</a>
+<a class="emoji-item">(ﾟДﾟ≡ﾟдﾟ)!?</a>
+<a class="emoji-item">Σ(ﾟдﾟ;)</a>
+<a class="emoji-item">Σ(￣□￣||)</a>
+<a class="emoji-item">(’；ω；‘)</a>
+<a class="emoji-item">（/TДT)/</a>
+<a class="emoji-item">(^・ω・^ )</a>
+<a class="emoji-item">(｡･ω･｡)</a>
+<a class="emoji-item">(●￣(ｴ)￣●)</a>
+<a class="emoji-item">ε=ε=(ノ≧∇≦)ノ</a>
+<a class="emoji-item">(’･_･‘)</a>
+<a class="emoji-item">(-_-#)</a>
+<a class="emoji-item">（￣へ￣）</a>
+<a class="emoji-item">(￣ε(#￣)Σ</a>
+<a class="emoji-item">ヽ(‘Д’)ﾉ</a>
+<a class="emoji-item">（#-_-)┯━┯</a>
+<a class="emoji-item">(╯°口°)╯(┴—┴</a>
+<a class="emoji-item">←◡←</a>
+<a class="emoji-item">( ♥д♥)</a>
+<a class="emoji-item">_(:3」∠)_</a>
+<a class="emoji-item">Σ&gt;―(〃°ω°〃)♡→</a>
+<a class="emoji-item">⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄</a>
+<a class="emoji-item">(╬ﾟдﾟ)▄︻┻┳═一</a>
+<a class="emoji-item">･*･:≡(　ε:)</a>
+<a class="emoji-item">(笑)</a>
+<a class="emoji-item">(汗)</a>
+<a class="emoji-item">(泣)</a>
+<a class="emoji-item">(苦笑)</a>
+</div>
+<div class="tieba-container motion-container" style="display:none;"><span title="good" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('good',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_good.png" /></span><span title="han" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('han',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_han.png" /></span><span title="spray" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('spray',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_spray.png" /></span><span title="Grievance" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('Grievance',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_Grievance.png" /></span><span title="shui" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shui',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_shui.png" /></span><span title="reluctantly" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('reluctantly',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_reluctantly.png" /></span><span title="anger" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('anger',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_anger.png" /></span><span title="tongue" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tongue',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_tongue.png" /></span><span title="se" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('se',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_se.png" /></span><span title="haha" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('haha',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_haha.png" /></span><span title="rmb" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('rmb',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_rmb.png" /></span><span title="doubt" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('doubt',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_doubt.png" /></span><span title="tear" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('tear',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_tear.png" /></span><span title="surprised2" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('surprised2',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_surprised2.png" /></span><span title="Happy" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('Happy',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_Happy.png" /></span><span title="ku" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('ku',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_ku.png" /></span><span title="surprised" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('surprised',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_surprised.png" /></span><span title="theblackline" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('theblackline',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_theblackline.png" /></span><span title="smilingeyes" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('smilingeyes',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_smilingeyes.png" /></span><span title="spit" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('spit',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_spit.png" /></span><span title="huaji" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('huaji',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_huaji.png" /></span><span title="bbd" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('bbd',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_bbd.png" /></span><span title="hu" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('hu',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_hu.png" /></span><span title="shame" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('shame',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_shame.png" /></span><span title="naive" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('naive',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_naive.png" /></span><span title="rbq" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('rbq',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_rbq.png" /></span><span title="britan" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('britan',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_britan.png" /></span><span title="aa" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('aa',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_aa.png" /></span><span title="niconiconi" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconi',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_niconiconi.png" /></span><span title="niconiconi_t" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconi_t',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_niconiconi_t.png" /></span><span title="niconiconit" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('niconiconit',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_niconiconit.png" /></span><span title="awesome" onclick="if (!window.__cfRLUnblockHandlers) return false; grin('awesome',type = 'tieba')" data-cf-modified-c71a966085c75bb6a058aacb-=""><img src="https://cdn.jsdelivr.net/gh/bymoye/cdn@1.2/sakura/images/smilies/tiebapng/icon_awesome.png" /></span></div>
+</div>
+<div class="cmt-info-container"><div class="comment-user-avatar"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/avatar.jpeg"><div class="socila-check qq-check"><i class="fa fa-qq" aria-hidden="true"></i></div><div class="socila-check gravatar-check"><i class="fa fa-google" aria-hidden="true"></i></div></div>
+<div class="popup cmt-popup cmt-author" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-c71a966085c75bb6a058aacb-=""><span class="popuptext" id="thePopup" style="margin-left: -115px;width: 230px;">输入QQ号将自动拉取昵称和头像</span><input type="text" placeholder="昵称或QQ号 (昵称 )" name="author" id="author" value="" size="22" autocomplete="off" tabindex="1" aria-required='true' /></div>
+<div class="popup cmt-popup" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-c71a966085c75bb6a058aacb-=""><span class="popuptext" id="thePopup" style="margin-left: -65px;width: 130px;">你将收到回复通知</span><input type="text" placeholder="邮箱 (必须* )" name="email" id="email" value="" size="22" tabindex="1" autocomplete="off" aria-required='true' /></div>
+<div class="popup cmt-popup" onclick="if (!window.__cfRLUnblockHandlers) return false; cmt_showPopup(this)" data-cf-modified-c71a966085c75bb6a058aacb-=""><span class="popuptext" id="thePopup" style="margin-left: -55px;width: 110px;">禁止小广告😀</span><input type="text" placeholder="网站" name="url" id="url" value="" size="22" autocomplete="off" tabindex="1" /></div></div>
+<input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off" />
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">在此浏览器中保存我的名字、电邮和网站。</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="BiuBiuBiu~" /> <input type='hidden' name='comment_post_ID' value='439' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p></form> </div>
+</div>
+</section>
+</div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+<div class="site-info" theme-info="Sakurairo v1.11.4">
+<div class="footertext">
+<div class="img-preload">
+<img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/load/ball.svg">
+<img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/disqus-preloader.svg">
+</div>
+<i class="iconfont icon-sakura rotating" style="color: #EE9CA7;display:inline-block;font-size:26px"></i></p>
+<p style="color: #666666;">Copyright &copy; by Mashiro All Rights Reserved.</p>
+</div>
+<div class="footer-device">
+<p style="font-family: 'Ubuntu', sans-serif;">
+<span style="color: #b9b9b9;">
+</p>
+Theme <a href="https://asuhe.jp/daily/sakurairo-user-manual/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakurairo</a> by <a href="https://asuhe.jp/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hitomi</a>
+</span>
+</p>
+</div>
+</div>
+</footer>
+<div class="openNav no-select">
+<div class="iconflat no-select">
+<div class="icon"></div>
+</div>
+<div class="site-branding">
+<h1 class="site-title"></h1>
+</div>
+</div>
+</section>
+
+<div id="mo-nav">
+<div class="m-avatar">
+<img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/avatar.jpg">
+</div>
+<div class="m-search">
+<form class="m-search-form" method="get" action="index.html" role="search">
+<input class="m-search-input" type="search" name="s" placeholder="搜索..." required>
+</form>
+</div>
+<ul id="menu-primary-1" class="menu"><li><a href="index.html">Home</a></li>
+<li><a href="index.html%3Fp=325.html">Info</a></li>
+<li><a href="index.html%3Fp=1045.html">Timeline</a></li>
+<li><a href="index.html%3Fp=347.html">Studio</a>
+<ul class="sub-menu">
+<li><a href="index.html%3Fp=182.html">Archiso</a></li>
+</ul>
+</li>
+</ul> </div>
+<a class="cd-top faa-float animated "></a>
+<button id="moblieGoTop" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+<button id="changskin" style="bottom: 15px;"><i class="iconfont icon-gear inline-block rotating"></i></button>
+
+<form class="js-search search-form search-form--modal" method="get" action="index.html" role="search">
+<div class="search-form__inner">
+<div class="micro">
+<p class="micro mb-">想要找点什么呢？</p>
+<i class="iconfont icon-search"></i>
+<input class="text-input" type="search" name="s" placeholder="搜索" required>
+</div>
+</div>
+<div class="search_close"></div>
+</form>
+
+<script type="c71a966085c75bb6a058aacb-text/javascript" src='https://c0.wp.com/p/jetpack/8.4.2/_inc/build/photon/photon.min.js'></script>
+<script type="c71a966085c75bb6a058aacb-text/javascript" src='https://cdn.jsdelivr.net/gh/mirai-mamori/Sakurairo@1.11.4/cdn/js/lib.min.js?ver=1.11.4'></script>
+<script type="c71a966085c75bb6a058aacb-text/javascript">
+/* <![CDATA[ */
+var Poi = {"pjax":"1","movies":"close","windowheight":"auto","codelamp":"close","ajaxurl":"https:\/\/www.bobby285271.top\/wp-admin\/admin-ajax.php","order":"asc","formpostion":"bottom","reply_link_version":"new","api":"https:\/\/www.bobby285271.top\/index.php\/wp-json\/","nonce":"06ae42df82","google_analytics_id":"","gravatar_url":"cn.gravatar.com"};
+/* ]]> */
+</script>
+<script type="c71a966085c75bb6a058aacb-text/javascript" src='wp-content/themes/Sakurairo/js/sakura-app.js%3Fver=1.11.4'></script>
+<script type="c71a966085c75bb6a058aacb-text/javascript" src='https://cdn.jsdelivr.net/github-cards/latest/widget.js?ver=1.11.4'></script>
+<script type="c71a966085c75bb6a058aacb-text/javascript" src='https://c0.wp.com/c/5.4/wp-includes/js/comment-reply.min.js'></script>
+<script type="c71a966085c75bb6a058aacb-text/javascript" src='https://c0.wp.com/p/jetpack/8.4.2/_inc/build/lazy-images/js/lazy-images.min.js'></script>
+<script type="c71a966085c75bb6a058aacb-text/javascript" src='https://c0.wp.com/c/5.4/wp-includes/js/wp-embed.min.js'></script>
+<script type="c71a966085c75bb6a058aacb-text/javascript" src='https://stats.wp.com/e-202017.js' async='async' defer='defer'></script>
+<script type="c71a966085c75bb6a058aacb-text/javascript">
+	_stq = window._stq || [];
 	_stq.push([ 'view', {v:'ext',j:'1:8.4.2',blog:'172618889',post:'439',tz:'8',srv:'www.bobby285271.top'} ]);
-	_stq.push([ 'clickTrackerInit', '172618889', '439' ]);</script> <div class="skin-menu no-select"><div class="theme-controls row-container"><ul class="menu-list"><li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li><li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li><li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li><li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li><li id="totem-bg"> <i class="fa fa-superpowers" aria-hidden="true"></i></li><li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li><li id="bing-bg"> <i class="iconfont icon-bing"></i></li><li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li></ul></div><div class="font-family-controls row-container"> <button type="button" class="control-btn-serif selected" data-mode="serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-8ea121672a1a68c01854c93d-="">Font A</button> <button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-8ea121672a1a68c01854c93d-="">Font B</button></div></div><canvas id="night-mode-cover"></canvas> <script type="8ea121672a1a68c01854c93d-text/javascript" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/js/hana.js"></script> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/css/bolang.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/acai66/mydl/fonts/wenyihei/wenyihei-subfont.css" media="all"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all"> <script defer src="wp-content/cache/autoptimize/js/autoptimize_ed872de3373d4c5c62fc864abd79868a.js" type="8ea121672a1a68c01854c93d-text/javascript"></script><script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="8ea121672a1a68c01854c93d-|49" defer=""></script></body></html>
+	_stq.push([ 'clickTrackerInit', '172618889', '439' ]);
+</script>
+<div class="skin-menu no-select">
+<div class="theme-controls row-container">
+<ul class="menu-list">
+<li id="white-bg">
+<i class="fa fa-television" aria-hidden="true"></i>
+</li>
+<li id="sakura-bg">
+<i class="iconfont icon-sakura"></i>
+</li>
+<li id="gribs-bg">
+<i class="fa fa-slack" aria-hidden="true"></i>
+</li>
+<li id="KAdots-bg">
+<i class="iconfont icon-dots"></i>
+</li>
+<li id="totem-bg">
+<i class="fa fa-superpowers" aria-hidden="true"></i>
+</li>
+<li id="pixiv-bg">
+<i class="iconfont icon-pixiv"></i>
+</li>
+<li id="bing-bg">
+<i class="iconfont icon-bing"></i>
+</li>
+<li id="dark-bg">
+<i class="fa fa-moon-o" aria-hidden="true"></i>
+</li>
+</ul>
+</div>
+<div class="font-family-controls row-container">
+<button type="button" class="control-btn-serif selected" data-mode="serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-c71a966085c75bb6a058aacb-="">Font A</button>
+<button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-c71a966085c75bb6a058aacb-="">Font B</button>
+</div>
+</div>
+<canvas id="night-mode-cover"></canvas>
+<script type="c71a966085c75bb6a058aacb-text/javascript" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/js/hana.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/css/bolang.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/acai66/mydl/fonts/wenyihei/wenyihei-subfont.css" media="all">
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+
+<script type="c71a966085c75bb6a058aacb-text/javascript">jQuery(document).ready(
+function(jQuery){
+jQuery('.collapseButton').click(function(){
+jQuery(this).parent().parent().find('.xContent').slideToggle('slow');
+});
+});</script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="c71a966085c75bb6a058aacb-|49" defer=""></script></body>
+</html>
