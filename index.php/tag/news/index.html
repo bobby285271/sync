@@ -16,7 +16,7 @@
 <style id='wp-block-library-inline-css' type='text/css'>
 .has-text-align-justify{text-align:justify;}
 </style>
-<link rel='stylesheet' id='saukra_css-css' href='../../../wp-content/themes/Sakurairo/style.css%3Fver=1.11.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='saukra_css-css' href='../../../wp-content/themes/Sakurairo/style.css%3Fver=1.12.0.css' type='text/css' media='all' />
 <link rel='stylesheet' id='jetpack_css-css' href='https://c0.wp.com/p/jetpack/8.4.2/css/jetpack.css' type='text/css' media='all' />
 <link rel='https://api.w.org/' href='../../wp-json/index.html' />
 <link rel='dns-prefetch' href='https://i0.wp.com/' />
@@ -250,7 +250,8 @@ h1.main-title {
 .no-logged a {
     color: #EE9CA7;
 }
-/*logocss*/
+
+/*Logo 特效*/
 
 .logolink a {
     color: #EE9CA7;
@@ -347,8 +348,11 @@ h1.main-title {
     -o-animation: rotating 6s linear infinite;
     animation: rotating 6s linear infinite;
 }
+
 /*预加载部分*/
 
+
+/*暗黑模式*/
 
 body.dark #main-container,body.dark .pattern-center:after,body.dark #mo-nav,body.dark .headertop-bar::after,body.dark .site-content,body.dark .comments,body.dark .site-footer{background:#31363b !important;}
 body.dark .pattern-center-blank,body.dark .yya,body.dark .blank,body.dark .toc,body.dark .search-form input{background:rgba(49,54,59,0.85);}
@@ -402,45 +406,111 @@ html,#main-container,.pattern-center:after,#mo-nav,.headertop-bar::after,.site-c
 h1,small,sub,sup,code,kbd,pre,samp,body,button,input,select,textarea,blockquote:before,blockquote:after,code,kbd,tt,var,big,button,input[type=button],input[type=reset],input[type=submit],.video-stu,.pattern-center h1.cat-title,.pattern-center h1.entry-title,.pattern-center .cat-des,.single-center .single-header h1.entry-title,.single-center .entry-census,.pattern-center-sakura h1.cat-title,.pattern-center-sakura h1.entry-title,.pattern-center-sakura .cat-des,.single-center .single-header h1.entry-title,.single-center .entry-census,.site-top .lower,.site-top .menu-item-has-children li a,.feature i,.p-time,.p-time i,i.iconfont.hotpost,.post-list p,.post-more i,.info-meta span,.post-list-thumb i,.post-date,.post-meta,.post-meta a,.float-content .post-text,.float-content i,.s-time,.s-time i,.navigator i,.site-info,.entry-census,h1.page-title,.post-lincenses,.post-tags,.post-like a,.post-like i,.post-share ul li i ,.post-squares .category,.post-squares h3,.post-squares .label,.author-profile .meta h3 a,.author-profile p,.author-profile i,.mashiro-profile .box a,#comments-list-title span,.butterBar-message ,h1.works-title,.works-p-time,.works-p-time i,.works-meta i,.works-meta span,#archives-temp h3,h1.cat-title,span.sitename,span.linkss-title,.comment .commeta,.comment .comment-reply-link,.comment .info,.comment .info .useragent-info-m,.comment h4,.comment h4 a,.comment-respond #cancel-comment-reply-link,.comment-respond input,.comment-respond textarea,.comment-respond .logged-in-as i,.notification i,.notification span,.siren-checkbox-label,h1.fes-title,h1.main-title,.foverlay-bg,.feature-title .foverlay,.notice i,.bio-text,.header-info,.site-header.iconsearch,i.iconfont.js-toggle-search.iconsearch,.search-form i ,.search-form input,.s-search input,.s-search i,.ins-section,.ins-section .iconfont.icon-mark,.ins-section .fa ,.ins-section.ins-search-item .search-keyword,.ins-section .ins-search-item .ins-search-preview,i.iconfont.down,#pagination span,#bangumi-pagination span,.ex-login-title ,.ex-register-title h3,.ex-login input,.ex-register input,.admin-login-check,.user-login-check,.ex-login-username,.ex-new-account a,.ex-register .user-error,.register-close,.herder-user-name,.header-user-menu a,.no-logged,.no-logged a,.single-reward .reward-open,.reward-row li::after ,.botui-container,button.botui-actions-buttons-button,input.botui-actions-text-input,.load-button span,.prpr,.mashiro-tips,.live2d-tool,.center-text,.bb-comment,.finish-icon-container,.skill div,#footer-sponsor,.comment-user-avatar .socila-check ,.insert-image-tips ,.the-feature.from_left_and_right .info h3,.the-feature.from_left_and_right .info p,.highlight-wrap .copy-code ,#bangumi-pagination {font-weight:  !important}
 
 /*字体*/
-.serif{font-family: !important ;}
+.serif{
+font-family: !important ;
+font-size: px !important;
+}
 
-body{font-family: !important;}
+body{
+font-family: !important;
+font-size: px !important;
+}
 
-h1.main-title,h1.fes-title{font-family: !important;}
+h1.main-title,h1.fes-title{
+font-family: !important;
+}
 
-.header-info p{font-family: !important;}
+.header-info p{
+font-family: !important;
+font-size: px !important;
+}
 
-.header-info p {font-size: px !important;}
+.post-list-thumb .post-title h3{
+font-size: px !important;
+}
+
+.post-meta, .post-meta a{
+font-size: px !important;
+}
+
+.Ubuntu-font,.center-text{
+font-family: ;
+}
+
+.center-text{
+font-size: 80px;
+color: ;
+}
 
 /*鼠标*/
-body {cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/normal.cur), auto}
+body{
+cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/normal.cur), auto;
+}
 
-.botui-actions-buttons-button,.headertop-down i,.faa-parent.animated-hover:hover>.faa-spin, .faa-spin.animated, .faa-spin.animated-hover:hover,i.iconfont.js-toggle-search.iconsearch,#waifu #live2d,.aplayer svg,.aplayer.aplayer-narrow .aplayer-body, .aplayer.aplayer-narrow .aplayer-pic,button.botui-actions-buttons-button,#emotion-toggle,.emoji-item, .emotion-box,.emotion-item,.on-hover,.tieba-container span,#moblieGoTop,#changskin{cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/No_Disponible.cur), auto;}
+.botui-actions-buttons-button,
+.headertop-down i,
+.faa-parent.animated-hover:hover>.faa-spin,
+.faa-spin.animated,
+.faa-spin.animated-hover:hover,
+i.iconfont.js-toggle-search.iconsearch,
+#waifu #live2d,
+.aplayer svg,
+.aplayer.aplayer-narrow .aplayer-body,
+.aplayer.aplayer-narrow .aplayer-pic,
+button.botui-actions-buttons-button,
+#emotion-toggle,
+.emoji-item,
+.emotion-box,
+.emotion-item,
+.on-hover,
+.tieba-container span,
+#moblieGoTop,
+#changskin{
+cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/No_Disponible.cur), auto;
+}
 
-a,.ins-section .ins-section-header,.font-family-controls button,.menu-list li,.ins-section .ins-search-item,.ins-section .ins-search-item .ins-search-preview{cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/ayuda.cur), auto}
+a,
+.ins-section .ins-section-header,
+.font-family-controls button,
+.menu-list li,.ins-section .ins-search-item,
+.ins-section .ins-search-item .ins-search-preview{
+cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/ayuda.cur), auto;
+}
 
-p ,.highlight-wrap code,.highlight-wrap,.hljs-ln-code .hljs-ln-line,.hljs-ln-code .hljs-ln-line{cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/texto.cur), auto}
+p,
+.highlight-wrap code,
+.highlight-wrap,
+.hljs-ln-code .hljs-ln-line,
+.hljs-ln-code .hljs-ln-line{
+cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/texto.cur), auto;
+}
 
-a:active {cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/work.cur), alias}
+a:active{
+cursor: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/cursor/work.cur), alias;
+}
 
-/*其他*/
+/*图片类*/
 .comment-respond textarea {
 background-image: url(index.html); 
 }
+
 .search-form.is-visible{
 background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.2.1/img/other/iloli.gif);
 }
 
+/*其他*/
+
+
 </style>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript">
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript">
 /*Initial Variables*/
 var mashiro_option = new Object();
 var mashiro_global = new Object();
 mashiro_option.NProgressON = true;
 mashiro_option.audio = false;
 mashiro_option.darkmode = true;
-mashiro_option.email_domain = "";
-mashiro_option.email_name = "";
+mashiro_option.email_domain = "bobby285271.top";
+mashiro_option.email_name = "admin";
 mashiro_option.cookie_version_control = "";
 mashiro_option.qzone_autocomplete = false;
 mashiro_option.site_name = "Dasyatis";
@@ -466,10 +536,10 @@ mashiro_option.baguetteBoxON = false;
 
 mashiro_option.clipboardCopyright = true;
 
-mashiro_option.entry_content_theme_src = "https://static.bobby285271.top/wp-content/themes/Sakurairo/cdn/theme/sakura.css?1.11.4";
+mashiro_option.entry_content_theme_src = "https://static.bobby285271.top/wp-content/themes/Sakurairo/cdn/theme/sakura.css?1.12.0";
 mashiro_option.entry_content_theme = "sakurairo";
 
-mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/mirai-mamori/Sakurairo@1.11.4/cdn/css/lib.min.css";
+mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/mirai-mamori/Sakurairo@1.12.0/cdn/css/lib.min.css";
 
 mashiro_option.cover_api = "https://static.bobby285271.top/index.php/wp-json/sakura/v1/image/cover";
 
@@ -482,12 +552,12 @@ mashiro_option.windowheight ='auto';
 					display: none;
 				}
 			</style>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript">
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript">
 				document.documentElement.classList.add(
 					'jetpack-lazy-images-js-enabled'
 				);
 			</script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript">
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript">
 if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
   alert('朋友，IE浏览器未适配哦~\n如果是 360、QQ 等双核浏览器，请关闭 IE 模式！');
 }
@@ -501,36 +571,31 @@ if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
 <div id="banner_wave_1"></div><div id="banner_wave_2"></div>
 <figure id="centerbg" class="centerbg">
 <div class="focusinfo">
-<div class="header-tou"><a href="../../../index.html"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/avatar.jpg"></a></div>
+<div class="header-tou"><a href="../../../index.html"><img src="../../../wp-content/uploads/2020/04/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg"></a></div>
 <div class="header-info">
 
-<p>粉色的花瓣，美丽地缠绕在身上。依在风里。</p>
+<p>沧海如澜冰雪消融 云淡风轻浮沉若梦</p>
 </div>
 <div class="top-social">
 <li id="bg-pre"><img class="flipx" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/next.png" /></li>
+<li><a href="https://github.com/bobby285271/" target="_blank" class="social-github" title="github"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/github.png" /></a></li>
+<li class="qq"><a href="tencent://message/?uin=931189261" title="Initiate chat ?"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/qq.png" /></a></li>
+<li><a href="https://www.zhihu.com/people/rong-jia-lin-24" target="_blank" class="social-wangyiyun" title="Zhihu"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/zhihu.png" /></a></li>
+<li><a onclick="if (!window.__cfRLUnblockHandlers) return false; mail_me()" class="social-wangyiyun" title="E-mail" data-cf-modified-1bbb9be80cd8a2c2fa965ef6-=""><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/mail.png" /></a></li>
 <li id="bg-next"><img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/sns/next.png" /></li>
 </div>
 </div>
 </figure>
 <div id="video-container" style="display:none;"><video id="bgvideo" class="video" video-name="" src="index.html" width="auto" preload="auto"></video><div id="video-btn" class="loadvideo videolive"></div><div id="video-add"></div><div class="video-stu"></div></div>
-<div class="headertop-down faa-float animated" onclick="if (!window.__cfRLUnblockHandlers) return false; headertop_down()" data-cf-modified-b3ae0a71d8361f1740e4b6b9-=""><span><i class="fa fa-chevron-down" aria-hidden="true" style="color:"></i></span></div>
+<div class="headertop-down faa-float animated" onclick="if (!window.__cfRLUnblockHandlers) return false; headertop_down()" data-cf-modified-1bbb9be80cd8a2c2fa965ef6-=""><span><i class="fa fa-chevron-down" aria-hidden="true" style="color:"></i></span></div>
 </div>
 <div id="page" class="site wrapper">
 <header class="site-header no-select" role="banner">
 <div class="site-top">
 <div class="site-branding">
-<span class="site-title">
-<span class="logolink moe-mashiro">
-<a href="../../../index.html">
-<ruby>
-
-<span class="sakuraso" style="font-family: 'wenyihei-subfont', 'Merriweather Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei', sans-serif;;"></span>
-<span class="no" style="font-family: 'wenyihei-subfont', 'Merriweather Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei', sans-serif;"></span>
-<span class="shironeko" style="font-family: 'wenyihei-subfont', 'Merriweather Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei', sans-serif;"></span>
-<rp></rp><rt class="chinese-font"></rt><rp></rp></ruby>
-</a>
-</span>
-</span>
+<div class="site-title">
+<a href="../../../index.html"><img src="../../../wp-content/uploads/2020/04/favicon.png"></a>
+</div>
 
 </div>
 <div class="header-user-avatar">
@@ -566,7 +631,7 @@ if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
 <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
 <div class="post-entry">
 <div class="feature">
-<a href="../../../index.html%3Fp=1073.html"><div class="overlay"><i class="iconfont icon-text"></i></div><img src="../../../wp-content/themes/Sakurairo/images/random/d-3.jpg" /></a>
+<a href="../../../index.html%3Fp=1073.html"><div class="overlay"><i class="iconfont icon-text"></i></div><img src="../../../wp-content/themes/Sakurairo/images/random/d-4.jpg" /></a>
 </div>
 <h1 class="entry-title"><a href="../../../index.html%3Fp=1073.html">NixOS 19.03 will support Pantheon Desktop</a></h1>
 <div class="p-time">
@@ -580,7 +645,7 @@ if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
 <span><i class="iconfont icon-mark"></i><a href="../../../index.html%3Fp=1073.html#respond">NOTHING</a></span>
 </div>
 <div class="views">
-<span><i class="iconfont icon-attention"></i>64 热度</span>
+<span><i class="iconfont icon-attention"></i>66 热度</span>
 </div>
 </div>
 </footer>
@@ -589,19 +654,18 @@ if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
 </article> <div class="clearer"></div>
 </main>
 <div id="pagination"></div>
-<div id="add_post"><span id="add_post_time" style="visibility: hidden;" title="233"></span></div>
+<div id="add_post"><span id="add_post_time" style="visibility: hidden;" title="0"></span></div>
 </div>
 </div>
 </div>
 <footer id="colophon" class="site-footer" role="contentinfo">
-<div class="site-info" theme-info="Sakurairo v1.11.4">
+<div class="site-info" theme-info="Sakurairo v1.12.0">
 <div class="footertext">
 <div class="img-preload">
 <img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/color-img/pink/load/ball.svg">
-<img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/disqus-preloader.svg">
 </div>
 <i class="iconfont icon-sakura rotating" style="color: #EE9CA7;display:inline-block;font-size:26px"></i></p>
-<p style="color: #666666;">Copyright &copy; by Mashiro All Rights Reserved.</p>
+<p style="color: #666666;">Copyright &copy; by Bobby Rong / All Rights Reserved.</p>
 </div>
 <div class="footer-device">
 <p style="font-family: 'Ubuntu', sans-serif;">
@@ -618,14 +682,14 @@ Theme <a href="https://asuhe.jp/daily/sakurairo-user-manual/" target="_blank" st
 <div class="icon"></div>
 </div>
 <div class="site-branding">
-<h1 class="site-title"></h1>
+<div class="site-title">
 </div>
 </div>
 </section>
 
 <div id="mo-nav">
 <div class="m-avatar">
-<img src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/img/avatar.jpg">
+<img src="../../../wp-content/uploads/2020/04/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg">
 </div>
 <div class="m-search">
 <form class="m-search-form" method="get" action="../../../index.html" role="search">
@@ -656,19 +720,19 @@ Theme <a href="https://asuhe.jp/daily/sakurairo-user-manual/" target="_blank" st
 <div class="search_close"></div>
 </form>
 
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript" src='https://c0.wp.com/p/jetpack/8.4.2/_inc/build/photon/photon.min.js'></script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript" src='https://cdn.jsdelivr.net/gh/mirai-mamori/Sakurairo@1.11.4/cdn/js/lib.min.js?ver=1.11.4'></script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript">
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript" src='https://c0.wp.com/p/jetpack/8.4.2/_inc/build/photon/photon.min.js'></script>
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript" src='https://cdn.jsdelivr.net/gh/mirai-mamori/Sakurairo@1.12.0/cdn/js/lib.min.js?ver=1.12.0'></script>
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript">
 /* <![CDATA[ */
-var Poi = {"pjax":"1","movies":"close","windowheight":"auto","codelamp":"close","ajaxurl":"https:\/\/www.bobby285271.top\/wp-admin\/admin-ajax.php","order":"asc","formpostion":"bottom","reply_link_version":"new","api":"https:\/\/www.bobby285271.top\/index.php\/wp-json\/","nonce":"06ae42df82","google_analytics_id":"","gravatar_url":"cn.gravatar.com"};
+var Poi = {"pjax":"1","movies":"close","windowheight":"auto","codelamp":"close","ajaxurl":"https:\/\/www.bobby285271.top\/wp-admin\/admin-ajax.php","order":"asc","formpostion":"bottom","reply_link_version":"new","api":"https:\/\/www.bobby285271.top\/index.php\/wp-json\/","nonce":"439ee0bd72","google_analytics_id":"","gravatar_url":"cn.gravatar.com"};
 /* ]]> */
 </script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript" src='../../../wp-content/themes/Sakurairo/js/sakura-app.js%3Fver=1.11.4'></script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript" src='https://cdn.jsdelivr.net/github-cards/latest/widget.js?ver=1.11.4'></script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript" src='https://c0.wp.com/p/jetpack/8.4.2/_inc/build/lazy-images/js/lazy-images.min.js'></script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript" src='https://c0.wp.com/c/5.4/wp-includes/js/wp-embed.min.js'></script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript" src='https://stats.wp.com/e-202017.js' async='async' defer='defer'></script>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript">
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript" src='../../../wp-content/themes/Sakurairo/js/sakura-app.js%3Fver=1.12.0'></script>
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript" src='https://cdn.jsdelivr.net/github-cards/latest/widget.js?ver=1.12.0'></script>
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript" src='https://c0.wp.com/p/jetpack/8.4.2/_inc/build/lazy-images/js/lazy-images.min.js'></script>
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript" src='https://c0.wp.com/c/5.4/wp-includes/js/wp-embed.min.js'></script>
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript" src='https://stats.wp.com/e-202017.js' async='async' defer='defer'></script>
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript">
 	_stq = window._stq || [];
 	_stq.push([ 'view', {v:'ext',j:'1:8.4.2',blog:'172618889',post:'0',tz:'8',srv:'www.bobby285271.top'} ]);
 	_stq.push([ 'clickTrackerInit', '172618889', '0' ]);
@@ -703,22 +767,25 @@ var Poi = {"pjax":"1","movies":"close","windowheight":"auto","codelamp":"close",
 </ul>
 </div>
 <div class="font-family-controls row-container">
-<button type="button" class="control-btn-serif selected" data-mode="serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-b3ae0a71d8361f1740e4b6b9-="">Font A</button>
-<button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-b3ae0a71d8361f1740e4b6b9-="">Font B</button>
+<button type="button" class="control-btn-serif selected" data-mode="serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-1bbb9be80cd8a2c2fa965ef6-="">Font A</button>
+<button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="if (!window.__cfRLUnblockHandlers) return false; mashiro_global.font_control.change_font()" data-cf-modified-1bbb9be80cd8a2c2fa965ef6-="">Font B</button>
 </div>
 </div>
 <canvas id="night-mode-cover"></canvas>
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/js/hana.js"></script>
+
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript" src="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/js/sakura-native.js"></script>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mirai-mamori/web-img/css/bolang.css">
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/acai66/mydl/fonts/wenyihei/wenyihei-subfont.css" media="all">
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
 
-<script type="b3ae0a71d8361f1740e4b6b9-text/javascript">jQuery(document).ready(
+<script type="1bbb9be80cd8a2c2fa965ef6-text/javascript">jQuery(document).ready(
 function(jQuery){
 jQuery('.collapseButton').click(function(){
 jQuery(this).parent().parent().find('.xContent').slideToggle('slow');
 });
 });</script>
-<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="b3ae0a71d8361f1740e4b6b9-|49" defer=""></script></body>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="1bbb9be80cd8a2c2fa965ef6-|49" defer=""></script></body>
 </html>
