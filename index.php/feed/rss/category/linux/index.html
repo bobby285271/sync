@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns="http://purl.org/rss/1.0/"
+xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel rdf:about="https://static.bobby285271.top/index.php/feed/rss/category/linux/">
+<title>Dasyatis - Linux 发行版</title>
+<link>https://static.bobby285271.top/index.php/category/linux/</link>
+<description></description>
+<items>
+<rdf:Seq>
+<rdf:li resource="https://static.bobby285271.top/index.php/2020/04/15/nixos-installation-and-configuration-guide.html"/>
+<rdf:li resource="https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html"/>
+<rdf:li resource="https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html"/>
+</rdf:Seq>
+</items>
+</channel>
+<item rdf:about="https://static.bobby285271.top/index.php/2020/04/15/nixos-installation-and-configuration-guide.html">
+<title>NixOS 安装与配置笔记</title>
+<link>https://static.bobby285271.top/index.php/2020/04/15/nixos-installation-and-configuration-guide.html</link>
+<dc:date>2020-04-14T16:00:00+00:00</dc:date>
+<description>本文基于 NixOS 20.03 Beta 和 NixOS Manual 20.03 撰写。本文的写作缘由是 NixOS Manual 的编排设计很容易导致习惯了其它发行版安装和配置流程的新人入坑失败。本篇指南给出的解决方案基本能满足大一软工专业课程学习和日常使用的需要。本文将假定你已经独立安装和配置过 Arch Linux、Gentoo 或任一官方不提供 GUI 安装程序的 Linux 发行版并掌握安装过程中涉及的大部分命令。了解 NixOS可以先从 DistroWatch 开始了解 NixOS 这个发行版，接下来建议阅读 NixOS 官方的介绍。有一个不太恰当的比喻，NixOS 相对于其它发行版有点像使用 Git + Markdown + Hexo 相对于无版本管理 + 手撸 HTML 文件，NixOS Wiki 也给出了 NixOS 和其它发行版的最大区别所在。而这一切实现的基础是 Nix，事实上 NixOS 中所有软件包（Nixpkgs）和系统配置都由 Nix 管理。要想了解 Nix，建议阅读 dram 大佬在知乎相关问题下的回答。dram 是 TUNA 镜像站镜像 NixOS / Nix / Nixpkgs 的主要推动者之一。至于 NixOS 是否适合你，可以阅读这篇文章自行判断。准备工作准备好安装 NixOS 了？让我们开始吧。前期的准备工作包括：数据备份、下载镜像、将镜像写入 U 盘、引导安装介质、连接到网络、建立分区、格式化分区、挂载分区，这一部分和其它（不带 GUI 安装程序的）Linux 发行版的安装几乎是一样的，这里不会细讲。2020 年 3 月后清华镜像站就有 Nix / NixOS / Nixpkgs 的镜像了，NixOS 的安装介质可在这里下载，建议选带桌面环境的镜像（可以通过文件名判断）。将写入 U 盘可以使用 dd 命令，具体用法（path-to-image 是 NixOS 安装介质的路径，/dev/sdX 则是写入目标）：sudo dd if=path-to-image of=/dev/sdX
+引导安装介质后，按照 /etc/issue 的提示操作即可进入桌面环境（启动登录管理器），注意默认搭载的账户 nixos 和 root 都没有密码：sudo systemctl start display-manager
+因为在线安装，联网是必须的。通常情况使用 NetworkManager 联网即可，当然这里还有其它的联网方式。可选的分区工具除了熟悉的 GDisk 和 GNU Parted 这些 CLI 的分区工具之外，还有 GUI 的分区工具 GParted。NixOS Manual 对在命令行下分区做了详细的介绍，还配有不少的例子，可以配合 ArchWiki 的相关文章进行阅读。因为 Nix 并不会自动删除历史的软件包安装，根目录尽可能分大一些，否则随着时间推移 /nix 可能会占用较大空间。除了 Home 和 EFI 分区之外不建议（也没必要）设置独立分区。另外 NixOS 的回滚功能是由 Nix 实现的，和 Btrfs 无关，如果你选择 Btrfs 仅仅是因为它的快照特性，那么没有必要给根分区使用 Btrfs。格式化分区之后就可以挂载分区了。分区应该挂载到 /mnt 下，例如根分区就挂载到 /mnt，Home 分区则 /mnt/home。特别留意 NixOS 下 EFI 分区应该挂载到 /mnt/boot。Swap 分区使用 swapon 启用即可。初始化 NixOS 配置文件接下来就是后期的准备工作了。事实上，如果你点开了前面的几个链接，你会发现 /etc/nixos/configuration.nix 是整个系统的灵魂所在。你的系统全局搭载的软件包和系统配置都取决于这个文件。因此我们说这个发行版是「先配置后安装」的。所以接下来的主要任务，就是配置 configuration.nix，这个文件会一直伴随着你的系统。一旦配置完成，你会使用到 nixos-install 脚本，这个脚本会读取这个文件，并调用 Nix 让其根据这个文件「造出对应的系统来」。而在安装好 NixOS 之后，你可以随时改动 configuration.nix 这个文件，然后使用 nixos-rebuild 脚本，这个脚本同样也是调用 Nix，让 Nix 处理所有的变化，以「造出对应的系统来」。「造出来的系统」会和当前系统的状态无关 。这两个脚本笔者在后面会介绍其用法。当然了，如果在 Live 环境里面直接编辑 /etc/nixos/configuration.nix，打开的是 Live 环境的配置文件。而现在我们需要为新的系统创建一个默认的 NixOS 的配置文件，在进入新系统之前，应该通过 /mnt 访问其文件（本文后续的命令，除非特别注明，否则一律需要在 root 账户下执行，可以使用 su 命令从普通用户切换到 root 账户）：nixos-generate-config --root /mnt
+运行这个命令之后，/mnt/etc/nixos/ 目录会被创建，里面会放置自动生成的两个文件：configuration.nix 和 hardware-configuration.nix 。我们待会再看 hardware-configuration.nix，先看看前面已经提到无数次的 configuration.nix，这个文件在 NixOS 20.03 下默认长这样。当然了，在你安装系统之后，可以使用 nixos-generate-config --force 重新生成一个 configuration.nix。初识 NixOS 模块让我们来打开 configuration.nix 这个文件：nano /mnt/etc/nixos/configuration.nix
+以 # 开头的都是注释，我们先不要管注释，看看没有注释的内容。实际上，这是一个简化的 NixOS 模块（NixOS Module）。我们尝试分析一下它的结构：{ config, pkgs, ... }:
+
+{
+    imports = [
+        ./hardware-configuration.nix
+    ];
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+    networking.useDHCP = false;
+    networking.interfaces.docker0.useDHCP = true;
+    networking.interfaces.wlo1.useDHCP = true;
+    system.stateVersion = &quot;20.03&quot;;
+}
+第一行的 { config, pkgs, ... }: 表示这是一个至少接受两个参数 config 和 pkgs 的函数。config 主要用于在多个 NixOS 模块的情形下引用其它模块定义的配置值，这里有相关的例子，可以说是引入了完整的系统配置。pkgs 主要用于引用 Nixpkgs 中的软件包，例如 pkgs.fcitx。当然我们现在简单地认为第一行就是要这样写的好了，即使在本文中不会使用到 config。说实话在第一次接触 C++ 时对着 using namespace std; 自闭了半天，其实到后面需要到名称空间的时候自然就懂了。imports 导入了其它的 NixOS 模块，这里它导入了 ./hardware-configuration.nix。另外 modules/module-list.nix 里面定义了一系列的模块，这些模块会被自动导入。modules/module-list.nix 的绝对路径是啥呢，可以看回 NixOS 官方的介绍，阅读 How does NixOS work?，你会发现 /nix/store/ 下的目录都带上了 Hash 值，这是为了避免新的安装覆盖旧的安装（便于需要的时候回滚啊！事实上这也是开始时我说根目录尽可能分大一些的原因，后面会提供旧安装清理的方法）。所以要想找到这个 modules/module-list.nix，不妨用点小技巧：find / | grep &quot;modules/module-list.nix&quot;
+cat 查看相应的文件就可以看到这个列表了，事实上还真导入了不少的 NixOS 模块。当然我们现在先打开 hardware-configuration.nix 看看（要注意上面的 ./hardware-configuration.nix 是相对于 /mnt/etc/nixos/configuration.nix 的路径）：cat /mnt/etc/nixos/hardware-configuration.nix
+你会发现上面记录了你的分区信息，如果不是那就是你分区过程中出了差错，可以调整分区后按照上面的步骤重新 nixos-generate-config。这个文件将用于生成 Fstab 等文件。这个文件被单独分出来原因也是为了避免错误地编辑了这个文件。事实上 NixOS 官方只建议使用 nixos-generate-config 更新这个文件。接下来我们来看 configuration.nix 剩余的部分。这些行的格式都是 name = value，我们称这是定义（define）操作。我们称 configuration.nix 为简化的 NixOS 模块，原因是它只有定义操作。事实上还有声明（declare）操作，这一个一个的 name 其实在其它文件声明过，这样才可以被定义。笔者接下来会详细介绍定义操作和声明操作，如果想要深入了解 NixOS 模块，可以查看这里。定义操作我们来继续来研究上面 configuration.nix 涉及到的 Nix 表达式：boot.loader.systemd-boot.enable = true;
+boot.loader.efi.canTouchEfiVariables = true;
+我们已经知道它们格式都是 name = value，进一步分析它的结构，这两个表达式中我们把 boot、loader、systemd-boot 还有 efi 称之为集合（_set_），把 enable 和 canTouchEfiVariables 称为选项（_option_），把 true 称为值（value）。一个集合里面可能有子集合，也有可能有选项，我们给选项定义值。集合与子集合、集合与选项之间可以像上面一样，使用 . 连接。同时也可以使用下面的使用花括号嵌套的方式（注意分号出现的位置）：boot = {
+    loader = {
+        systemd-boot = {
+            enable = true;
+        };
+        efi = {
+            canTouchEfiVariables = true;
+        };
+    };
+};
+当然了可以两种方式混合使用：boot = {
+    loader.systemd-boot = {
+        enable = true;
+    };
+    loader = {
+        efi.canTouchEfiVariables = true;
+    };
+};
+如果是还有疑问的，NixOS Manual 给出了更多的相关例子。至于是使用花括号还是半角句号，我认为不重要。但在我看来，如果有两个选项它们属于同一个集合，它们应该尽量在一起被定义，而不是一个在文件开头定义，一个在文件末尾定义。同一集合的两个选项会有一定的关联性，放在一起可以更好地维护。当然了，当配置文件足够复杂之后，还可以像 hardware-configuration.nix 一样将一部分拆分出来，在 imports 部分导入相关文件，这里就不细讲了。至于 value，上面的给出的 configuration.nix 中涉及到的值有 true、false、&quot;20.03&quot;。和其它编程语言的数据类型类似，我们称 true 和 false 是布尔值，称 ”20.03&quot; 是字符串（注意两个引号），每一个 name 都有对应的可接受的类型。是事实上，对于其它的选项，可以接受的值的类型也有可能是列表、浮点数、软件包等等。这里详细地介绍了 value 的各种类型，并给出了相关的例子。这里问题就来了，怎样知道在一个 NixOS 系统中我有哪些 name 可以用呢？这些 name 又接受那些 value 呢？让我们继续来了解「声明操作」。声明操作和其它编程语言类似，声明就是要告诉人家我叫啥、我接受什么样的 value。怎样查看一个 name 的声明呢？第一个方法是使用命令 nixos-option，例如我要查看 system.stateVersion 的声明：nixos-option system.stateVersion
+这个是在我系统上的输出，当然了在 Live 环境下输出不一定相同：Value:
+&quot;20.03&quot;
+
+Default:
+&quot;20.03&quot;
+
+Type:
+&quot;string&quot;
+
+Description:
+''
+    Every once in a while, a new NixOS release may change
+    configuration defaults in a way incompatible with stateful
+    data...（后面的省略）
+''
+
+Declared by:
+[ &quot;/nix/var/nix/profiles/per-user/root/channels/nixos/nixos/modules/misc/version.nix&quot; ]
+
+Defined by:
+[ &quot;/etc/nixos/configuration.nix&quot; ]
+
+我们会看到 system.stateVersion 在 /nix/var/nix/profiles/per-user/root/channels/nixos/nixos/modules/misc/version.nix 声明过，而笔者刚开始的时候说过 configuration.nix 会自动导入 modules/module-list.nix 里包含的所有文件，里面就有 version.nix，因此我们才可以在 /etc/nixos/configuration.nix 定义它。另外我们也能得到其它有用的信息，例如它接受一个字符串作为它的值，system.stateVersion 默认定义的值是 &quot;20.03&quot;，事实上这些信息就是在声明它的时候提供的。我们打开这个 version.nix，这就是一个声明的真面目了：options.system = {
+    stateVersion = mkOption {
+        type = types.str;
+        default = cfg.release;
+        description = ''
+            Every once in a while, a new NixOS release may change
+            configuration defaults in a way incompatible with stateful
+            data...（后面的省略）
+        '';
+    };
+};
+当然笔者在本文中并不会要求用户创建一个声明。但我们还是会继续探究这个文件，我们发现 version.nix 给多个选项提供了声明，例如 system.nixos.release、system.nixos.codeName 等等。我们接着再往下翻一点：config = {
+    system.nixos = {
+        version = mkDefault (cfg.release + cfg.versionSuffix);
+    };
+
+    # Generate /etc/os-release.
+    environment.etc.os-release.text = ''
+        NAME=NixOS
+        ID=nixos
+        VERSION=&quot;${cfg.version} (${cfg.codeName})&quot;
+        VERSION_CODENAME=${toLower cfg.codeName}
+        VERSION_ID=&quot;${cfg.version}&quot;
+        PRETTY_NAME=&quot;NixOS ${cfg.release} (${cfg.codeName})&quot;
+        LOGO=&quot;nix-snowflake&quot;
+        HOME_URL=&quot;https://nixos.org/&quot;
+        DOCUMENTATION_URL=&quot;https://nixos.org/nixos/manual/index.html&quot;
+        SUPPORT_URL=&quot;https://nixos.org/nixos/support.html&quot;
+        BUG_REPORT_URL=&quot;https://github.com/NixOS/nixpkgs/issues&quot;
+    '';
+};
+你会在里面找到 ${cfg.version} 和 ${cfg.codeName}。cfg 是什么呢，我们回到文件开头：{ config, lib, pkgs, ... }:
+
+with lib;
+
+let
+    cfg = config.system.nixos;
+in
+{
+    ...
+}
+还记得 config 是啥吗？我们说它引入了完整的系统配置。现在，即使我没有告诉你 environment.etc.os-release.text 是个啥，相信你也能猜出来，Nix 使用了 system.nixos.release、system.nixos.codeName 创建了 /etc/os-release 这个文件。至于前面提到的 system.stateVersion 呢，则被用于其它的地方了（毕竟有了 config，我们在任何地方都可以引用它）。事实上，就是这样声明和定义一个又一个的选项，组成了最终的系统。关于怎样查看一个 name 的声明，第二个方法是使用 NixOS Options 网页。输入 name 同样可以查看到使用 nixos-options 能看到的内容。关键是它还非常适合给我们模糊搜素用。另外点击 Declared in 旁边的超链接，会跳转到 GitHub 的 NixOS/nixpkgs 仓库。例如说我们查找 system.stateVersion，我们会被带到这里。同样也可以查看 version.nix 文件，还可以切换 Git 分支查看不同 NixOS 版本下这个文件的历史状态。我们在后面会经常使用到 NixOS Options 网页和 nixos-option 命令。开始编辑 configuration.nix讲了这么多，让我们尝试把刚刚学到的东西应用到实际当中吧！接下来我们要写很多很多的 name = value 表达式。我们已经知道，当我们有一个需求，我们可以尝试去 NixOS Options 进行模糊搜索，看看有没有对应的选项。此外，我们多次提到的 NixOS Manual 提供了很多的常见需求对应的解决方案。这里还会另外推荐一些寻找解决方案的地方：NixOS Manual - NixOS 官方文档值得阅读值得信赖。NixOS Options - 列出了所有可用的选项、其声明、可以接受的值。NixOS Discourse Forum - 用户论坛，有官方开发者答疑。NixOS Packages - 列出了所有可用的 Nixpkgs 软件包。NixOS Wiki - 社区维护的维基。GitHub - 查看其它用户的配置，或查看官方的 NixOS/nixpkgs 仓库。Stack Overflow - 查看打有 nixos 标签的问题和回答。各大搜索引擎 - 这个也不用我多说吧……当然了，如果实在找不到，可以去 NixOS Discourse Forum 提问，因为官方开发者在这个论坛非常活跃，很多问题都能在短时间内得到答案。要注意的是，因为 configuration.nix 会一直伴随着你的 NixOS 安装，所以这个章节既适用于安装时进行初始化配置，也适用于安装后的日常维护进行配置。下面结合两个自认为比较实际的需求来展开介绍，我会着重说明我是如何找到解决方案的，希望能给到大家一些帮助。桌面环境会发现 NixOS Manual 有多个对应的章节，有讲 X11 的，有专门讲 Pantheon 桌面环境的，有专门讲 XFCE 桌面环境的。个人非常喜欢 Pantheon，我们也知道 X11 是一切桌面环境的基础（假设我们把 Wayland 忽略掉）。我们来看看 X11。首先看到的是这样一句：The X Window System (X11) provides the basis of NixOS’ graphical user interface. It can be enabled as follows:services.xserver.enable = true;
+看上去是不是很熟悉？事实上默认的 configuration.nix 里面已经有了这样的一行，只是被注释掉了。上面还配有注释 Enable the X11 windowing system. 让我们取消注释 services.xserver.enable = true;。搞定！就这么简单。先继续看看 Pantheon 桌面对应的章节。根据 NixOS Manual，要想使用 Pantheon 桌面，需要在 configuration.nix 加入：services.xserver.desktopManager.pantheon.enable = true;
+这也很简单，复制粘贴过去就完成了，搞定！在 configuration.nix 加入这个 Nix 是怎样处理的呢？还记得前面提到的 system.nixos.release、system.nixos.codeName和 /etc/os-release 吗？可以按照当时我所给的思路一探究竟，我们在后面揭晓。软件包会发现 NixOS Manual 有对应的章节。它的要求是定义 environment.systemPackages 这个选项。它给出的例子是这样的：environment.systemPackages = [ pkgs.thunderbird ];
+感觉有点迷？那不妨前往 NixOS Options 查找 environment.systemPackages，这时就应该知道它要求你提供 list of packages。我们回到 NixOS Manual，查看 Package 小节。这时就可以大致推断出这个 name 怎么填了。接下来我们去 GitHub 参考一下别人的配置文件，注意语言要选择 Nix，关键字将 Option 填入即可。查看搜索结果的时候只看定义操作相关的代码（而不是声明操作），这时你会发现另一个用法：environment.systemPackages = with pkgs; [
+    vscode
+    freemind
+];
+事实上这样写，在后面就不用每个软件包前面加上 pkgs. 了，pkgs.vscode 可以直接写成 vscode。胜利在望！接下来去 NixOS Packages，查找自己需要的软件包填入。你会发现有 Package name 和 Attribute name，填哪个呢？不妨回到 GitHub 继续翻配置文件，当你发现所有配置填的都是 Attribute name，我们就可以开始了，下面的就是我的配置：environment.systemPackages = with pkgs; 
+[
+    dos2unix chromium fcitx fcitx-configtool firefox gcc git gptfdisk libreoffice-fresh neofetch pciutils python transmission vim wget vscode-with-extensions
+];
+你会发现这里面没有 X11 和 Pantheon 相关的包，事实上， services.xserver.desktopManager.pantheon.enable = true; 这一行已经为你安装了相应的包。可以查看一下包含这个选项声明的文件，我们定位到 config = 往下的内容。虽然有些选项我们没有讨论过，例如 fonts.fontconfig.defaultFonts 等等，但是你可以通过搜索 NixOS Options 或者直接按照它的字面意思知道这些选项是干什么的。有安装软件包的、设置系统服务的、设置字体的等等。有了这么一行，我们也就没有必要在我们自己的 configuration.nix 中设置它了。所以说 NixOS Options 的优先级是会高于 NixOS Packages 的，笔者才会用很大的篇幅介绍前者。当你需要一个软件或功能，首先考虑的应该是有没有对应的 NixOS Option，而不是直接安装一个 Nixpkg。*下面是另外两个比较玄学的案例，都是我安装完成之后才开始折腾的问题，当然了安装的时候也没有必要纠结这些问题，因为安装完后还可以随时编辑 configuration.nix，后面还会再介绍。同样，我会着重说明我是如何找到解决方案的，希望能给到大家一些帮助。介绍这些案例，不是为了劝退，而是为了说明，只要合理利用我在本章介绍的各类资源，善用搜索，必要时勇敢提问、开 Issue，甚至发 PR（这里有笔者本人的例子），大部分的问题都能很快地得到解决。禁用 N 卡单纯出于想要省电的原因，打算禁用 N 卡。网上给出的禁用 N 卡的方案是都是使用 BBSwitch，四处搜索之。最后在 Discourse Forum 里面找到了一个有一定关联的。提到的选项包括 extraModprobeConfig、blacklistedKernelModules、extraModulePackages。我们知道在其它发行版下要使用 BBSwitch 禁用 N 卡是这样操作的：options bbswitch load_state=0 unload_state=1
+和帖子中 extraModprobeConfig 的值高度类似。而 extraModulePackages 在帖子里的值是 config.boot.kernelPackages.nvidia_x11，我们搜索到 BBSwitch 的 Attribute name 是 linuxPackages.bbswitch，相信也有一定关联。接下来我们去 NixOS Options 继续搜索，发现上面几个选项都在 boot 集合下，查找 boot module 关键词，又发现了一个 boot.kernelModules，我认为这个选项和我的需求也是高度关联的。于是我写下了以下的配置：boot = {
+    extraModprobeConfig = ''
+        options bbswitch load_state=0 unload_state=1
+    '';
+    extraModulePackages = [ pkgs.linuxPackages.bbswitch ];
+    kernelModules = [ &quot;bbswitch&quot; ];
+    blacklistedKernelModules = [
+        &quot;nouveau&quot;
+        &quot;rivafb&quot;
+        &quot;nvidiafb&quot;
+        &quot;rivatv&quot;
+        &quot;nv&quot;
+        &quot;uvcvideo&quot;
+    ];
+};
+确实是可行的，因为我后面运行 lspci 的时候显示已经是 rev ff 了：01:00.0 3D controller: NVIDIA Corporation GP107M [GeForce GTX 1050 3 GB Max-Q] (rev ff)
+Visual Studio Code 插件你可能会问这也要提及？情况是这样的，安装了 VS Code（pkgs.vscode-with-extensions）之后我安装了几个插件，发现 C++ 插件不工作。我对这个插件提供的补全功能有较大的依赖，第一时间我想到的是这是 NixOS 目录结构和其它发行版不一致的问题。于是去搜索 Discourse Forum，找到了这个帖子。下面有官方开发者给出了一个 Dirty Hack，尝试之。结果发现 fetchTarball https://github.com/nixos/nixpkgs-channels/archive/nixpkgs-unstable.tar.gz 会消耗不少时间。一个解决方案是将整个 GitHub 仓库同步到其它 Git 托管平台，但我们还是希望有更高效的解决方案。留意到了楼主的解决方案，虽然它会覆盖原有的自己在 Marketplace 安装的 VS Code 插件，但是按照楼主的描述它确实是可行的：self: super:
+{
+    mycode = super.vscode-with-extensions.override {
+        # When the extension is already available in the default extensions set.
+        vscodeExtensions = with super.vscode-extensions; [
+            ms-vscode.cpptools
+        ];
+    };
+}
+但是你并不知道第一行是啥，也不知道如何添加这个方案，于是去 GitHub 搜索相关的内容。结果搜出来的结果比上面这个还要再复杂一点，而且这样写的不只一个：self: super: {
+    vscode-with-extensions = super.vscode-with-extensions.override {
+        vscodeExtensions = with super.vscode-extensions;
+        [ 
+            bbenoist.Nix
+            ms-vscode.cpptools
+        ]
+        ++ super.vscode-utils.extensionsFromVscodeMarketplace [ {
+                name = &quot;vim&quot;;
+                publisher = &quot;vscodevim&quot;;
+                version = &quot;1.0.8&quot;;
+                sha256 = &quot;0yqfn8b2jfrijzf731sggyvik2immlx9hfgmsgp1mx01hpyisd9r&quot;;
+            } {
+                name = &quot;doxdocgen&quot;;
+                publisher = &quot;cschlosser&quot;;
+                version = &quot;0.4.1&quot;;
+                sha256 = &quot;06f4nxjd5ph66bhlyjim87haams286sjhrw7vmiv2rckzinygh1h&quot;;
+            } {
+                ...
+            }
+        ];
+    };
+}
+这时可以猜出来官方应该有相应的文档，于是就去搜索 NixOS Manual、NixOS Options 还有 NixOS Packages，发现都找不到。终于，笔者开始查找 GitHub 的 NixOS/nixpkgs 仓库。找到了这样一个文件。你会发现第一行没了，后面的内容还是类似的。现在我们可以把关注点放在这个 override 上了。我们重新发起一次搜索，在 NixOS Manual 找到了有关 override 的说明。太妙了！但是接下来又有一个问题，这里的 name、publisher、version 和 sha256 又该怎么填呢？为什么 ms-vscode.cpptools 不需要填 version 和 sha256 呢？阅读还是刚才的文件，阅读上面的注释：This expression should fetch:the nix vscode extension from whatever source defined in the default nixpkgs extensions set vscodeExtensions.the code-runner vscode extension from the marketplace using the following url: (link).The original code executable will be wrapped so that it uses the set of pre-installed / unpacked extensions as its --extensions-dir.然而我们却找不到 vscodeExtensions，但是我们可以搜索 ms-vscode.cpptools 啊！终于笔者找到了这个文件。事实上在这个文件中涉及到的所有插件都无需我们再配置 publisher、version 和 sha256 了。这和我们使用了 services.xserver.desktopManager.pantheon.enable = true; 就不需要在 environment.systemPackages 添加相关的包是一个道理。至于这个文件里没有的插件呢？例如说 ms-vscode.cpptools 的 name 就是 cpptools，publisher 就是 ms-vscode。我们可以去 Marketplace 下载这个插件（找到 Download Extension 按钮即可），用 sha256sum 命令计算下载下来的文件的 sha256，而版本号在文件名有。好了，你已经准备好了！让我们来继续完善 environment.systemPackages：environment.systemPackages = with pkgs; 
+[
+    dos2unix chromium fcitx fcitx-configtool firefox gcc git gptfdisk libreoffice-fresh neofetch pciutils python transmission vim wget
+    ( vscode-with-extensions.override {
+        vscodeExtensions = with vscode-extensions; [
+            bbenoist.Nix
+            ms-vscode.cpptools
+            ms-azuretools.vscode-docker
+        ]
+        ++ vscode-utils.extensionsFromVscodeMarketplace [ {
+                name = &quot;bracket-pair-colorizer-2&quot;;
+                publisher = &quot;CoenraadS&quot;;
+                version = &quot;0.0.29&quot;;
+                sha256 = &quot;cadb50a21944e6e0293e3872d2fe23b5d2fd2b603ed2bf4a0675fd29bcfb130c&quot;;
+            } {
+                name = &quot;python&quot;;
+                publisher = &quot;ms-python&quot;;
+                version = &quot;2020.3.71113&quot;;
+                sha256 = &quot;1d8a98a1eed7588dd3b57e4bbe518fcc88f883e066f1b3342453e9bc1a283fdb&quot;;
+            } {
+                name = &quot;php-intellisense&quot;;
+                publisher = &quot;felixfbecker&quot;;
+                version = &quot;2.3.14&quot;;
+                sha256 = &quot;3798a5de1172b5803877357d0057e3e129d8d82b8fbe0b53ae28c777a0075ca6&quot;;
+            } {
+                name = &quot;vscode-language-pack-zh-hans&quot;;
+                publisher = &quot;MS-CEINTL&quot;;
+                version = &quot;1.44.2&quot;;
+                sha256 = &quot;4f6ee18ada0e71dd1545ef49f8810f52fe872d2074612faa908d8bf2687400a0&quot;;
+            }
+        ];
+    } )
+];
+*相信对于其它的需求大家也能举一反三。这里是我的 configuration.nix，供大家参考。执行安装前面已经提及过 nixos-install 这个命令了，让我们使用它执行安装，不需要带上任何参数：nixos-install
+如果 configuration.nix 存在任何错误，安装会在一开始的时候就中断，修改好后重新运行上面的命令即可。网络出现问题同理。接下来安装程序会提示你设置一个密码，这个密码是给管理员用的（密码当然是不能在 configuration.nix 上设置的），盲打两次即可。重启并进入新系统：reboot
+当然，重启后别忘了为你的普通用户设置密码（如 passwd bobby285271）。系统维护笔者之前讲过 configuration.nix 是可以随时修改的。当然了现在你应该处于你的新系统中了，所以你不应该编辑 /mnt/etc/nixos/configuration.nix 了，而是应该编辑 /etc/nixos/configuration.nix。nano /etc/nixos/configuration.nix
+要使这个配置生效，应该使用 nixos-rebuild switch 命令，如果你希望在构建这个配置的时候顺便升级自己的系统（当然如果你不改动 configuration.nix 单纯想升级系统，同样可以执行这个命令） ：nixos-rebuild switch --upgrade
+关于这个，可以查看 NixOS Manual 了解详情。</description>
+</item>
+<item rdf:about="https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html">
+<title>WSL 2 配置桌面环境（使用 Windows 自带远程桌面应用）简易教程</title>
+<link>https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html</link>
+<dc:date>2019-10-04T16:00:00+00:00</dc:date>
+<description>WSL 2 是 WSL 中体系结构的新版本，它改变了 Linux 发行版与 Windows 交互的方式。WSL 2 的主要目标是提高文件系统性能并增加系统调用的完全兼容性。 每个 Linux 发行版都可以作为 WSL 1 或 WSL 2 发行版运行，并可随时进行切换。WSL 2 是底层体系结构的主要功能，它使用虚拟化技术和 Linux 内核来实现其新功能。准备为了使用 WSL 2，你需要 Windows 10 内部版本 18917 或更高版本。要想了解目前使用的版本是什么，可以到设置页面查看。首先，右击任务栏 Windows 图标，选择 Windows Powershell（管理员），输入以下命令：Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux或者前往控制面板 - 程序 - 启用或关闭 Windows 功能，然后勾选虚拟机平台和执行 Linux 程序的 Windows 子系统。完成设置后需要重启计算机！安装前往 Microsoft Store 下载并安装 Ubuntu。接下来使 WSL 2 成为你的默认体系结构。打开 Windows Powershell 或命令提示符：wsl --set-default-version 2接下来在开始菜单找到 Ubuntu，点击后稍作等候。当一切准备好后，Ubuntu 会提示你新建一个账户和密码，注意输入密码时是不会有回显的。此时你可以验证刚刚安装好的 Ubuntu 所使用的 WSL 版本：wsl --list --verbose如果你在 Windows Powershell 或命令提示符下运行 wsl，同样也是可以进入 WSL 环境的。软件切换到 Root：$ sudo -i编辑 APT 软件源（nano 大法好，不接受反驳） ：# nano /etc/apt/sources.listdeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse更新可用软件包列表，随后升级系统：# apt update &amp;&amp; apt dist-upgrade -y安装基本开发环境、Xubuntu 桌面和远程桌面支持：# apt install build-essential xubuntu-desktop xrdp安装的软件包比较多，可能要等上一段时间。这里的 Xubuntu 桌面实际为 XFCE 桌面环境，换成别的问题不大但还是建议选择轻量级桌面。保存 Xsession 配置：# exit #切换回普通用户。
+$ echo xfce4-session &gt; ~/.xsession远程桌面需要使用远程桌面时均要执行本节内容。启用 Xrdp 服务（这里不能使用 systemctl，因为 SystemD 不是默认的 Init 系统），记录端口信息：$ sudo service xrdp start在 Windows 开始菜单栏中找到 Windows 附件 - 远程桌面连接，输入 localhost:端口，如 localhost:3389。应该会出现如下警告，选择是即可：如果你没有看到这个警告，可能需要查找虚拟机的 IP 地址并替代 localhost 再试一次：$ ip address在这里，IP 地址查找到是 172.18.221.157，端口是 3389。注意每次重启 WSL 实例后这个 IP 地址都会换。输入 IP 地址:端口，如 172.18.221.157:3389。接下来输入自己的账户密码：然后就是很熟悉的界面了：本地化直接在终端下就可以完成设置了（以下命令在 Root 下运行）：# dpkg-reconfigure locales确认 en_US.UTF-8 UTF-8 和 zh_CN.UTF-8 UTF-8 被勾选，然后将 zh_CN.UTF-8 UTF-8 设定为默认值。然后安装语言包和输入法（按理来说装完就能用）：# apt install language-pack-zh-hans language-pack-gnome-zh-hans fcitx fcitx-table彩蛋Windows 应用能访问 Linux 根文件系统啦，包括文件资源管理器！尝试在 WSL 中使用普通用户运行 explorer.exe .（在远程桌面会话中这样做是没有用滴！），看看会发生什么。另外内部错误大法又怎能缺席呢（逃）。</description>
+</item>
+<item rdf:about="https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html">
+<title>CCR 使用与 AUR 包移植简易教程</title>
+<link>https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html</link>
+<dc:date>2019-02-01T16:00:00+00:00</dc:date>
+<description>Chakra 的成功证明了只围绕 KDE 和 Qt 搭建一个简约的系统是完全可行的。但正是因为「简约」这一特性，一些用户需要的软件可能不被包含在我们的官方软件仓库中。Chakra 社区软件仓库（CCR）也就因此诞生了，它由社区维护，为所有类型的软件都敞开了大门。搜索、安装、升级 CCR 软件包老用户请注意：ccr 工具已经被弃用，请转而使用 chaser。Chakra 提供了一个叫 chaser 的工具供用户管理 CCR 软件包。它的一些常见用法如下：[chakra@localhost ~]$ chaser -h
+usage: chaser [-h] [-v] [-b BUILD_DIR]
+              {get,install,listupdates,update,search,info} ...
+
+Next-generation community package management for Chakra.
+
+positional arguments:
+  {get,install,listupdates,update,search,info}
+    get                 download source files here
+    install             install a package from the CCR
+    listupdates         list available updates
+    update              search for and install updates for CCR packages
+    search              search CCR packages
+    info                display package information
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show version information and exit
+  -b BUILD_DIR, --build-dir BUILD_DIR
+                        build packages in BUILD_DIR. default = /tmp/chaser搜索搜索 CCR 软件包有两种方式，一种是直接访问 CCR 站点并发起搜索，另一种是使用 chaser search 命令，比如搜索 neofetch：[chakra@localhost ~]$ chaser search neofetchchaser 既会扫描官方软件仓库，也会扫描 CCR。两处符合条件的软件包都会被输出。如果您没有在其中找到您所需要的包，请考虑阅读下一章节。如果您找到的包位于 [core]、[desktop]、[gtk]、[lib32]、[testing] 之一，这意味着您所需的包已经存在于官方软件仓库，请使用 Pacman 进行后续操作。如果您找到的包位于 [ccr]，请继续阅读。下面可以使用 chaser info 进一步了解软件包信息。[chakra@localhost ~]$ chaser info neofetch下面是一个示例输出：Name           : neofetch
+Version        : 5.0.0-1
+URL            : https://github.com/dylanaraps/neofetch
+Licenses       : MIT
+Category       : utils
+Votes          : 2
+Maintainer     : bobby285271
+OutOfDate      : False
+Description    : A CLI system information tool written in BASH that supports displaying images.由于 CCR 活跃用户不多，请务必通过 Version 和 OutOfDate 了解清楚软件包维护情况，如果这个软件包过旧，考虑帮忙维护它（请阅读下一章节）。安装如果您决定安装，使用 chaser install 命令。不要使用 root 运行以下命令，当 chaser 需要管理员权限的时候会要求您输入密码。[live@localhost ~]$ chaser install neofetch大致的安装流程如下（以安装 neofetch 为例，部分输出被省略）。确认构建软件包：请在此处回答 y（是）。resolving dependencies...
+Downloading neofetch
+
+Targets (1) neofetch
+
+:: Proceed with installation? [Y/n]定制软件包：PKGBUILD 是 Arch Linux 的一大特色，也被 Chakra 很好地继承了下来。感兴趣的请阅读 PKGBUILD 语法，一般用户直接回答 n（否）。Downloading neofetch
+Edit neofetch PKGBUILD with $EDITOR? [Y/n]构建软件包：此过程全自动，无需用户干预。==&gt; Making package: neofetch 5.0.0-1
+==&gt; Checking runtime dependencies...
+==&gt; Checking buildtime dependencies...
+==&gt; Retrieving sources...
+==&gt; Validating source files with sha256sums...
+==&gt; Extracting sources...
+==&gt; Entering fakeroot environment...
+==&gt; Starting package()...
+==&gt; Tidying install...
+==&gt; Checking for packaging issue...
+==&gt; WARNING: backup entry file not in package : etc/neofetch/config.conf
+==&gt; Creating package &quot;neofetch&quot;...
+==&gt; Leaving fakeroot environment.
+==&gt; Finished making: neofetch 5.0.0-1
+==&gt; Installing package neofetch with pacman -U...确认安装软件包：后续的工作将自动交由 Pacman 完成。请在此处回答 y（是）。loading packages...
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) neofetch-5.0.0-1
+
+Total Installed Size:  0.26 MiB
+
+:: Proceed with installation? [Y/n] 安装软件包：此过程全自动，无需用户干预。(1/1) checking keys in keyring                                                                                                                                     [#####################################################################################################] 100%
+(1/1) checking package integrity                                                                                                                                   [#####################################################################################################] 100%
+(1/1) loading package files                                                                                                                                        [#####################################################################################################] 100%
+(1/1) checking for file conflicts                                                                                                                                  [#####################################################################################################] 100%
+(1/1) checking available disk space                                                                                                                                [#####################################################################################################] 100%
+:: Processing package changes...
+(1/1) installing neofetch                                                                                                                                          [#####################################################################################################] 100%
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...升级使用 chaser listupdates 查看可用的更新，使用 chaser update 检查并应用更新 CCR 软件包。移除要查看您安装的 CCR 软件包，使用 pacman -Qm 命令。这个命令可能会输出一些您觉得很陌生的软件包，这很有可能是从官方软件仓库仓库移除且不再受 Chakra 团队支持的包。使用 Pacman 移除您不再需要的包，详见 这篇文章。提交、维护 CCR 软件包（初阶）感谢您为 Chakra 做出贡献！接下来，您将了解到如何准备 PKGBUILD，制作源码包并上传到 CCR 上。首先，请先前往 CCR 的 帐户页面 注册一个帐号。准备 PKGBUILD：概述PKGBUILD 是整个 CCR 包的灵魂所在。要知道的是，所谓的「制作源码包」不过是将 PKGBUILD 和几个补丁捆起来制作一个压缩包罢了。用户试图安装一个 CCR 包，本质上来说，其实是将 PKGBUILD 给下载下来，并执行里面的命令，从而编译安装真正的软件包。PKGBUILD 示例编写 PKGBUILD 并不是一件容易事，这里提供一个示例文件：如果您知道分包是什么，请注意：CCR 不支持分包，一个 PKGBUILD 只能对应一个软件包。# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name &lt;youremail@domain.com&gt;
+pkgname=NAME
+pkgver=VERSION
+pkgrel=1
+epoch=
+pkgdesc=&quot;&quot;
+arch=()
+url=&quot;&quot;
+license=('GPL')
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=(&quot;$pkgname-$pkgver.tar.gz&quot;
+        &quot;$pkgname-$pkgver.patch&quot;)
+noextract=()
+md5sums=()
+validpgpkeys=()
+
+prepare() {
+        cd &quot;$pkgname-$pkgver&quot;
+        patch -p1 -i &quot;$srcdir/$pkgname-$pkgver.patch&quot;
+}
+
+build() {
+        cd &quot;$pkgname-$pkgver&quot;
+        ./configure --prefix=/usr
+        make
+}
+
+check() {
+        cd &quot;$pkgname-$pkgver&quot;
+        make -k check
+}
+
+package() {
+        cd &quot;$pkgname-$pkgver&quot;
+        make DESTDIR=&quot;$pkgdir/&quot; install
+}简要说明基本信息：pkgbase： 软件包的名称，名称由小写字母、数字和任意以下字符组成： @ . _ + -；pkgver：软件包的版本号，应该与软件原作者发布的版本号一致；pkgrel：发布号，一个正整数，用来区分同一版本软件的多次构建；epoch：当一个软件的版本编号方式改变，使用此数值进行强制升级。描述：pkgdesc：软件包描述，合理使用关键字以方便搜索；arch： PKGBUILD 可以编译和使用的架构（Chakra 仅支持 x86_64） ；url：软件官方站点的网址；license：软件发布许可证；groups：软件包所在的组。依赖关系：depends：软件的运行时依赖列表；optdepends：一组不影响软件主要功能，但能提供额外特性的软件包；makedepends：仅在软件编译时需要的软件包列表；checkdepends：运行测试组件时需要，而运行时不需要的包列表。相关性：provides：这个变量说明当前包能提供的功能（或者像 cron、sh 这样的虚包）；conflicts：与当前软件包发生冲突的包列表；replaces：会因安装当前包而取代的包列表。其它：backup：当包被升级或卸载时，应当备份的文件；options：这个变量允许您重置 makepkg 的部分默认行为；install：.install 脚本的名称，应该和 pkgname 相同；changelog：软件包 changelog 的名称。源码：source：构建软件包时需要的文件列表；noextract：一些列举于 source 中，但不需要在运行 makepkg 时解包的文件；validpgpkeys：PGP 指纹列表；完整性：md5sums：source 列表文件中的 128 位 MD5 校验和；sha1sums：source 列表文件中 160 位 SHA-1 校验和；sha224sums、sha256sums、sha384sums、sha512sums：source 列表文件中224、256、384 或 512 位 SHA-2 校验和。想要了解更多，可以阅读 ArchWiki 上的 相关页面。准备 PKGBUILD：从零开始（进阶）准备好大干一场？如果您打算从零开始编写一个 PKGBUILD，建议继续阅读以下文章：AUR 打包准则（对 CCR 也是同样适用的）；PKGBUILD 官方手册。请确认您已经彻底了解清楚您所维护的软件包依赖什么包以及如何编译安装，否则还是建议先往下阅读。准备 PKGBUILD：从外部导入要知道现实情况是：CCR 的成熟程度远远落后于 AUR，和 KCP（KaOS 社区软件仓库）差不多。AUR 的生态就摆在那里，几乎所有原生支持 Linux 的应用程序都能在 AUR 找到对应的软件包。而 KaOS 的定位和 Chakra 类似，也是围绕 KDE 和 Qt 搭建的发行版。所以说，在大部分情况下是没有必要自己造轮子的。有些轮子说不定 Chakra 团队已经为您造好了，在 Chakra 官方软件仓库里，不要重复提交这些软件包！请从 Arch Linux 官方软件仓库 & AUR 和 KaOS 官方软件仓库 & KCP 两个来源选择一个，并继续阅读下面的教程。Arch Linux 官方软件仓库 & AUR前往 Arch Linux 软件包页面 和 AUR 首页 发起搜索，直到您找到您打算提交到 CCR 的软件包。点击软件包名进入软件包详情页，定位到页面右侧的「Package Actions」方框：对于 AUR 软件包页面，选择「View PKGBUILD」，当页面加载完毕后还需要点击「summary」链接前往 Git 仓库概览页面。对于 Arch Linux 官方软件包，直接选择「Source Files」。AUR 的软件包是一个软件包对应一个 Git 仓库的，而 Arch Linux 官方软件包则是 [core]、[extra] 仓库中的所有软件包放一个 Git 仓库，[community]、[multilib] 仓库中的所有软件包放另一个 Git 仓库。为了效率最大化，对于 AUR 包我们会选择 Clone 整个 Git 仓库，而官方软件包我们会选择逐个文件拷贝。对于 AUR 软件包，找到 Clone 这一栏，下面有一个地址，将它复制下来：打开终端，输入 git clone &lt;刚刚复制的 URL 地址&gt; --depth=1，例如：git clone https://aur.archlinux.org/wps-office.git/ --depth=1至于 Arch Linux 官方软件包，新建一个文件夹（名字随意），然后回到浏览器，逐个文件点击文件名旁边的「plain」链接（如图所示），如果是文本文件复制一下，在刚刚新建的文件夹新建一个同样名称的文件（千万不要随意改名），将文本粘贴下去。至于二进制文件，浏览器应该会弹出下载窗口，将文件下载后放入文件夹中。记得检查文件权限是否正常，如果发现文件权限和浏览器中「Mode」显示的是否一致。如果不一致，使用 chmod 修正妥当（这里 有这个命令相关的介绍）。KaOS 官方软件仓库 & KCP和前面 Arch Linux 官方软件仓库 & AUR 大同小异。KaOS 软件包页面 和 KCP 同样提供了搜索框，发起搜索后进入软件包详情页。同样，官方包建议逐个文件获取，点击右栏的「Source Files」，剩下的操作估计大家很熟悉了，毕竟 GitHub 大家都用过，逐个查看「Raw」文件即可。KCP 包可以整个仓库 Clone 下来（原因同 AUR），点击右上角的「View on GitHub」，后面的我也不再多说了，依然是 git clone &lt;刚刚复制的 URL 地址&gt; --depth=1。准备 PKGBUILD：收尾 & 检查工作这一步很关键，一定要重视！上一步完成后，我们得到了一个文件夹，里面有些什么取决于您选择的包，大多数情况下里面可能只有一个 PKGBUILD 文件。没关系，反正一定要有 PKGBUILD，剩下的无需我们来检查。再次强调，PKGBUILD 非常关键，所以我们一定要进行检查。这里是一份 PKGBUILD：# Maintainer: Jan de Groot &lt;jgc@archlinux.org&gt;
+
+pkgname=xorg-xprop
+pkgver=1.2.3
+pkgrel=1
+pkgdesc=&quot;Property displayer for X&quot;
+arch=(x86_64)
+url=&quot;https://xorg.freedesktop.org/&quot;
+license=('custom')
+depends=('libx11')
+makedepends=('xorg-util-macros')
+groups=('xorg-apps' 'xorg')
+source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2{,.sig})
+sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a'
+            'SKIP')
+validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # &quot;Alan Coopersmith &lt;alan.coopersmith@oracle.com&gt;&quot;
+
+build() {
+  cd xprop-${pkgver}
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd xprop-${pkgver}
+  make DESTDIR=&quot;${pkgdir}&quot; install
+  install -m755 -d &quot;${pkgdir}/usr/share/licenses/${pkgname}&quot;
+  install -m644 COPYING &quot;${pkgdir}/usr/share/licenses/${pkgname}/&quot;
+}聪明人看完第一行就应该知道这份 PKGBUILD 是从 Arch Linux 官方仓库上抓取下来的。如果您刚才「 简要说明」，大概就知道我们要重点检查什么了。依赖关系首先是 depends 和 makedepends，这两项都是针对 Arch Linux 来写的。例如说一个包依赖 foo，到了 Chakra 这边，可能会有这几种情况：Chakra 官方软件仓库正好有 foo，提供的是同样的功能；Chakra 官方软件仓库没有 foo，但 CCR 有；Chakra 官方软件仓库或 CCR 提供了提供同样功能，但包名不同的 foo1；Chakra 官方软件仓库或 CCR 不提供 foo。第一、二种情况可以直接给过不用管，因为 chaser 会自动从官方软件仓库和 CCR 获取相应的依赖。第三种情况要小心一点，并不是所有情况下简单地将 foo 改成 foo1 就可以的，看一下下面这个案例：注意到在 Arch Linux 这里同时存在 openssl 和 openssl-1.0 两个软件包，观察版本号，我们知道后者是为了兼容性而单独打包的。openssl 的版本号（截至 20190201）是 1.1.1.a-1，openssl-1.0 则是 1.0.2.q-1。接下来看看 AUR 里 wps-office 这个包：它依赖的是 openssl-1.0。我们可以搜索 Chakra 官方软件仓库（省略部分输出）：[chakra@localhost ~]$ pacman -Ss openssl
+lib32/lib32-openssl 1.0.2.q-1
+    The Open Source toolkit for Secure Sockets Layer and Transport Layer Security (32-bit)
+core/openssl 1.0.2.q-1 [已安装]
+    The Open Source toolkit for Secure Sockets Layer and Transport Layer Security
+core/perl-crypt-openssl-bignum 0.04-3
+    OpenSSL's multiprecision integer arithmetic
+core/perl-crypt-openssl-random 0.04-8
+    Interface to OpenSSL PRNG methods
+core/perl-crypt-openssl-rsa 0.28-2
+    Interface to OpenSSL RSA methods
+core/perl-net-ssleay 1.63-1
+    Perl extension for using OpenSSL
+core/pkcs11-helper 1.25.1-1
+    A library that simplifies the interaction with PKCS11 providers for end-user applications using a simple API and optional OpenSSL engine
+core/python2-characteristic 14.3.0-1
+    Service identity verification for pyOpenSSL
+core/python2-service-identity 17.0.0-1
+    Service identity verification for pyOpenSSL
+core/python3-characteristic 14.3.0-1
+    Service identity verification for pyOpenSSL
+core/python3-service-identity 17.0.0-1
+    Service identity verification for pyOpenSSL
+core/tls 1.6.7-1
+    OpenSSL extension to Tcl
+desktop/python2-ndg-httpsclient 0.4.3-1
+    Provides enhanced HTTPS support for httplib and urllib2 using PyOpenSSL
+desktop/python2-pyopenssl 17.3.0-1
+    Python2 wrapper module around the OpenSSL library
+desktop/python3-ndg-httpsclient 0.4.3-1
+    Provides enhanced HTTPS support for httplib and urllib2 using PyOpenSSL
+desktop/python3-pyopenssl 17.3.0-1
+    Python3 wrapper module around the OpenSSL library
+[chakra@localhost ~]$这就是所有的搜索结果了，有 openssl 却没有 openssl-1.0，但是要注意 Chakra 提供的 openssl 版本是 1.0.2.q-1，和 Arch 中 openssl-1.0 是一致的。从中我们可以得出以下信息：Chakra 是半滚动更新发行版，更新一般来说会滞后于 Arch Linux，Chakra 的 OpenSSL 打包落后于 Arch Linux，所以目前来说我们要将 PKGBUILD 文件中的 openssl-1.0 修改为 openssl，但当 Chakra 将 openssl 升级到 1.1+ 之后，我们要实时监测 Chakra 动态，做好两手准备：如果 openssl-1.0 可用，我们要重新打包 wps-office，将 PKGBUILD 改回 openssl-1.0；如果 Chakra 不提供 openssl-1.0，我们得为 openssl-1.0 打包并提交到 CCR。注意：在这个案例中，只要 Chakra 的 openssl 不更新，用户就不能提前将 openssl-1.0 提交到 CCR，因为它和官方源所提供的重复了。第四种情况，您需要前往您刚刚所选的来源（Arch Linux 官方软件仓库 & AUR 或 KaOS 官方软件仓库 & KCP），按照上面提供的步骤，获取这个依赖包的相关文件，在稍后一起进行打包。PGP 密钥如果您从 Arch Linux 或 KaOS 官方软件仓库获取软件包的要特意留意 validpgpkeys 这一项，如果有所填写，要注意的是，Charka 的 chakra-keyring 软件包只提供了 Chakra 维护者的签名，没有 Arch Linux 或 KaOS 的。这样会导致打包失败，因为打包工具 makepkg 是会检查 PGP 密钥的。规避检查很简单，将 validpgpkeys 所在的那一行删掉。当然也别忘了将相关的文件删掉，还是上面 xorg-xprop 的那个例子：...
+source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2{,.sig})
+sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a'
+            'SKIP')
+validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # &quot;Alan Coopersmith &lt;alan.coopersmith@oracle.com&gt;&quot;
+...在删除下面这一行之后：validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # &quot;Alan Coopersmith &lt;alan.coopersmith@oracle.com&gt;&quot;我们留意到 source 那一行，{,.sig} 意味着它同时包含了两个文件：xprop-${pkgver}.tar.bz2 和 xprop-${pkgver}.tar.bz2.sig，后者是用于验证密钥的，删除它。而 sha512sums 那里，所有的检验值都和 source 的文件逐一对应，所以我们得把 xprop-${pkgver}.tar.bz2.sig 的校验值给相应地删除，即使它是 SKIP，意为「跳过校验值检查」。这个文件最终被修改成了这样：# Maintainer: Jan de Groot &lt;jgc@archlinux.org&gt;
+
+pkgname=xorg-xprop
+pkgver=1.2.3
+pkgrel=1
+pkgdesc=&quot;Property displayer for X&quot;
+arch=(x86_64)
+url=&quot;https://xorg.freedesktop.org/&quot;
+license=('custom')
+depends=('libx11')
+makedepends=('xorg-util-macros')
+groups=('xorg-apps' 'xorg')
+source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2)
+sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a')
+
+build() {
+  cd xprop-${pkgver}
+  ./configure --prefix=/usr
+  make
+}
+
+package() {
+  cd xprop-${pkgver}
+  make DESTDIR=&quot;${pkgdir}&quot; install
+  install -m755 -d &quot;${pkgdir}/usr/share/licenses/${pkgname}&quot;
+  install -m644 COPYING &quot;${pkgdir}/usr/share/licenses/${pkgname}/&quot;
+}其它如果您是从外部导入的软件包，案例来说您是无需检查校验值的，如果是自己创建的软件包就一定要检查校验值了：打开 Konsole，使用 cd 命令进入您的文件夹，然后执行 updpkgsums 命令即可。另外我们还建议您将 Maintainer 后面的姓名和邮箱改成您自己的。亲自测试（建议）打开 Konsole，使用 cd 命令进入您的文件夹，然后执行 makepkg 命令。 如果 PKGBUILD 没有错误，将会生成一个包，但是如果 PKGBUILD 被破坏或未完成，它将抛出一个错误。makepkg 的用法如下：用法：/usr/bin/makepkg [选项]
+
+选项：
+  -A, --ignorearch      忽略不完整的 arch 字段 (位于 PKGBUILD 中)
+  -c, --clean           编译后清理工作文件
+  -C, --cleanbuild      在编译软件包之前删除 $srcdir/ 文件夹
+  -d, --nodeps          跳过所有依赖关系检查
+  -e, --noextract       不解压源文件 (使用现存的 $srcdir/ 目录)
+  -f, --force           覆盖现存的软件包
+  -g, --geninteg        为源码文件生成完整性检查值
+  -h, --help            显示本帮助信息并退出
+  -i, --install         成功编译后安装软件包
+  -L, --log             记录软件包编译过程
+  -m, --nocolor         禁止彩色输出信息
+  -o, --nobuild         仅下载和解压缩文件
+  -p &lt;文件&gt;             使用另外的编译脚本 (而不是 'PKGBUILD' ) 
+  -r, --rmdeps          编译成功后删除安装的依赖关系
+  -R, --repackage       不编译而重新打包软件包内容
+  -s, --syncdeps        使用 pacman 安装缺失的依赖关系
+  -S, --source          不下载源文件只生成仅包含源的包
+  -V, --version         显示版本信息并退出
+  --allsource           只生成源码包 (包括有已下载的源码) 
+  --check               运行 check() 函数 (包含于 PKGBUILD 中)
+  --config &lt;文件&gt;       使用另外的配置文件 (而不是 '/etc/makepkg.conf')
+  --holdver             不升级版本控制系统源
+  --key &lt;密匙&gt;          指定签名 gpg 使用的密匙而不用默认密匙
+  --noarchive           不生成软件包归档
+  --nocheck             不执行 check() 函数在 PKGBUILD 中
+  --noprepare           不执行 prepare() 函数在 PKGBUILD 中
+  --nosign              不为该软件包创建签名
+  --packagelist         只列出将会产生的包，不带PKGEXT
+  --printsrcinfo        打印出生成的 SRCINFO 并退出
+  --sign                使用 gpg 签名生成的软件包
+  --skipchecksums       不验证源文件的检验值
+  --skipinteg           不对源文件执行任何验证检查
+  --skippgpcheck        不验证有 PGP 签名的源文件
+ --verifysource         下载源文件(如果需要)并进行完整性检查
+
+这些选项可以传递给 pacman：
+  --asdeps              作为依赖安装
+  --needed              不重装已是最新的目标软件包
+  --noconfirm           当解决依赖关系时不询问确认
+  --noprogressbar       下载文件时不显示进度条
+
+如果没有指定 -p，makepkg 将寻找 'PKGBUILD'如果运行 makepkg 成功，在您工作的目录下将会生成一个名为 $pkgname-$pkgver.pkg.tar.gz 的新文件。这个文件可以使用 pacman -U 或 pacman -A 安装。如果包看起来是正确的，那您的工作就完成了。一个实用的检查工具（建议）Namcap 是 Arch Linux 推荐的检查工具，它将会做以下工作：检查 PKGBUILD 文件里的一些常见错误；用 ldd 扫描包中所有的ELF文件，自动报告缺失或可去除的依赖；启发式搜寻缺失或冗余的依赖。要养成用 Namcap 检查包的习惯，以避免提交包后再做修复的麻烦。打开 Konsole，使用 cd 命令进入您的文件夹，然后执行：namcap PKGBUILD制作源码包后面的步骤都很简单了！打开 Konsole，使用 cd 命令进入您的文件夹，执行以下命令：makepkg --source这个命令实际上就是将文件夹里的文件打成一个包，但为了确认您的 PKGBUILD 中的校验值准确无误，PKGBUILD 中 source 一栏所有文件都会被下载下来以校验完整性，耐心等待就好。输出内容大概是：==&gt; 正在进入 fakeroot 环境...
+==&gt; 正在创建源码包...
+  -&gt; 正在添加 PKGBUILD...
+  -&gt; 正在生成 .SRCINFO 文件...
+  -&gt; 正在压缩源码包...
+==&gt; 正在离开 fakeroot 环境。
+==&gt; 源代码包已创建：foo将源码包上传到 CCR请确认您已经登录 CCR 帐户，接下来访问 上传页面，选择软件包分类，接下来选择源码包，源码包应该位于您的文件夹中，包名应该是 $pkgname-$pkgver.src.tar.gz。点击「上传」即可。如果 CCR 里面本身没有这个包或这个包是一个无人维护的包（孤儿包），您将会成为维护者。CCR 里面旧版本的软件包将会被您的新软件包取代。如果这个包已经有维护者，CCR 会拒绝您的提交。如果您发现 CCR 里的包已经被标记为「过期」一段时间而维护者没有采取任何动作，您可以联系 Chakra 团队将该包重置为无人维护状态。</description>
+</item>
+</rdf:RDF>

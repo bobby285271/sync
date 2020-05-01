@@ -1,0 +1,1293 @@
+
+<!DOCTYPE HTML>
+<html class="no-js bg" lang="zh-cmn-Hans">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta charset="UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+<meta name="renderer" content="webkit">
+
+<meta name="theme-color" content="#3a3f51" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<title>动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020） - Dasyatis</title>
+<link rel="icon" type="image/ico" href="https://bobby285271.coding.net/p/img/d/img/git/raw/master/favicon.ico">
+<meta name="description" content="为啥突然想要看动态规划呢，是因为昨天做了去年蓝桥杯预选赛 16/17 的题，做到 B 题发现正解其实应该是动态规划的。虽然我交了一发贪心过了，但想到两个星期后就是热身赛还是得搞搞突击才行。引入周..." />
+<meta name="keywords" content="入门,洛谷,动感规划,背包问题,题解" />
+<meta name="generator" content="Typecho 1.2/18.1.29" />
+<meta name="template" content="handsome" />
+<link rel="alternate" type="application/rss+xml" title="动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020） &raquo; Dasyatis &raquo; RSS 2.0" href="../../../feed/2019/11/17/dynamic-prgramming-01-backpack-problem.html" />
+<link rel="alternate" type="application/rdf+xml" title="动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020） &raquo; Dasyatis &raquo; RSS 1.0" href="../../../feed/rss/2019/11/17/dynamic-prgramming-01-backpack-problem.html" />
+<link rel="alternate" type="application/atom+xml" title="动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020） &raquo; Dasyatis &raquo; ATOM 1.0" href="../../../feed/atom/2019/11/17/dynamic-prgramming-01-backpack-problem.html" />
+<script type="text/x-mathjax-config">
+        MathJax.Hub.Config({messageStyle: "none",tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="../../../../usr/themes/handsome/assets/css/function.min.css%3Fv=6.0.020191205.css" type="text/css" />
+<link rel="stylesheet" href="../../../../usr/themes/handsome/assets/css/handsome.min.css%3Fv=6.0.020191205.css" type="text/css" />
+
+<link rel="stylesheet" href="../../../../usr/themes/handsome/assets/css/features/jquery.fancybox.min.css%3Fv=6.0.020191205.css" type="text/css" />
+<link rel="stylesheet" href="../../../../usr/themes/handsome/assets/css/features/newblack.min.css%3Fv=6.0.020191205.css" type="text/css" />
+<link rel="stylesheet" href="../../../../usr/themes/handsome/assets/css/features/code/vs.min.css%3Fv=6.0.020191205.css" type="text/css" />
+
+<link rel="stylesheet" href="../../../../usr/themes/handsome/assets/css/font.min.css%3Fv=6.0.020191205.css" type="text/css" />
+<style type="text/css">
+        
+        html.bg {
+        background: #EFEFEF
+        }
+        .cool-transparent .off-screen+* .app-content-body {
+        background: #EFEFEF
+        }
+@media (max-width:767px){
+    html.bg {
+        background: #EFEFEF
+        }
+        .cool-transparent .off-screen+* .app-content-body {
+        background: #EFEFEF
+        }
+}
+    </style>
+
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+
+<script src="../../../../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+</head>
+<body id="body" class="fix-padding">
+
+<div id="alllayout" class="app app-aside-fix container app-header-fixed "> 
+<header id="header" class="fix-padding app-header navbar box-shadow-bottom-lg" role="menu">
+
+<div class="text-ellipsis navbar-header bg-white">
+<button class="pull-right visible-xs" ui-toggle-class="show animated animated-lento fadeIn" target=".navbar-collapse">
+<span class="menu-icons"><i data-feather="search"></i></span>
+</button>
+<button class="pull-left visible-xs" ui-toggle-class="off-screen animated" target=".app-aside" ui-scroll="app">
+<span class="menu-icons"><i data-feather="menu"></i></span>
+</button>
+
+<a href="../../../../index.html" class="navbar-brand text-lt">
+<i class="fontello fontello-home"></i>
+<span class="hidden-folded m-l-xs">Dasyatis</span>
+</a>
+
+</div>
+
+
+<div class="collapse pos-rlt navbar-collapse bg-white">
+
+<form id="searchform1" class="searchform navbar-form navbar-form-sm navbar-left shift" method="post" role="search">
+<div class="form-group">
+<div class="input-group rounded bg-white-pure box-shadow-wrap-normal">
+<input autocomplete="off" id="search_input" type="search" name="s" class="transparent rounded form-control input-sm no-borders padder" required placeholder="输入关键词搜索…">
+
+<ul id="search_tips_drop" class="small-scroll-bar dropdown-menu hide" style="display: block;top: 
+                30px; left: 0px;">
+</ul>
+<span id="search_submit" class="transparent input-group-btn">
+<button type="submit" class="transparent btn btn-sm">
+<span class="feathericons" id="icon-search"><i data-feather="search"></i></span>
+<span class="feathericons animate-spin  hide" id="spin-search"><i data-feather="loader"></i></span>
+
+
+</button>
+</span>
+</div>
+</div>
+</form>
+<a href="dynamic-prgramming-01-backpack-problem.html" style="display: none" id="searchUrl"></a>
+
+<ul class="nav navbar-nav navbar-right">
+
+<li class="dropdown">
+<a href="dynamic-prgramming-01-backpack-problem.html#" data-toggle="dropdown" class="feathericons dropdown-toggle">
+<i data-feather="twitch"></i>
+<span class="visible-xs-inline">
+闲言碎语 </span>
+<span class="badge badge-sm up bg-danger pull-right-xs"></span>
+</a>
+
+<div class="dropdown-menu w-xl animated fadeInUp">
+<div class="panel bg-white">
+<div class="panel-heading b-light bg-light">
+<strong>
+闲言碎语 </strong>
+</div>
+<div class="list-group" id="smallRecording">
+<a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">emmm... 继续更新了！<br><small class="text-muted">2020-5-1 09:30:35</small></span></a><a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">2020 新年快乐！<br><small class="text-muted">2020-1-1 18:26:34</small></span></a><a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">中大新生赛加油！今年最后一场了！<br><small class="text-muted">2019-12-18 22:01:47</small></span></a> </div>
+</div>
+</div>
+</li>
+
+
+<li class="dropdown" id="easyLogin">
+<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-0bac2ad7944d503742a86aa4-="">
+<span class="feathericons"><i data-feather="key"></i></span>
+<b class="caret"></b>
+</a>
+
+<div class="dropdown-menu w-lg wrapper bg-white animated fadeIn" aria-labelledby="navbar-login-dropdown">
+<form id="Login_form" action="https://static.bobby285271.top/index.php/action/login?_=f1ea9b62aecf93687389fbf996fa59ca" method="post">
+<div class="form-group">
+<label for="navbar-login-user">用户名</label>
+<input type="text" name="name" id="navbar-login-user" class="form-control" placeholder="用户名或电子邮箱"></div>
+<div class="form-group">
+<label for="navbar-login-password">密码</label>
+<input type="password" name="password" id="navbar-login-password" class="form-control" placeholder="密码"></div>
+<button style="width: 100%" type="submit" id="login-submit" name="submitLogin" class="btn-rounded box-shadow-wrap-lg btn-gd-primary padder-lg">
+<span>登录</span>
+<span class="text-active">登录中...</span>
+<span class="banLogin_text">刷新页面后登录</span>
+<i class="animate-spin  fontello fontello-spinner hide" id="spin-login"></i>
+<i class="animate-spin fontello fontello-refresh hide" id="ban-login"></i>
+</button>
+<input type="hidden" name="referer" value="https://static.bobby285271.top" data-current-url="value"></form>
+</div>
+</li>
+
+</ul>
+</div>
+
+</header>
+
+
+<aside id="aside" class="app-aside hidden-xs bg-white"> 
+<div class="aside-wrap" layout="column">
+<div class="navi-wrap scroll-y scroll-hide" flex>
+
+<div class="clearfix hidden-xs text-center hide  show" id="aside-user">
+<div class="dropdown wrapper vertical-wrapper">
+<div ui-nav>
+<a href="../../../cross.html">
+<span class="thumb-lg w-auto-folded avatar m-t-sm  vertical-avatar">
+<img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/0782bea86d809777847ee49607ce2ce2_2_1_art.jpg" class="img-full img-circle normal-shadow">
+</span>
+</a>
+</div>
+<a href="dynamic-prgramming-01-backpack-problem.html#" data-toggle="dropdown" class="dropdown-toggle hidden-folded  vertical-flex">
+<span class="clear">
+<span class="block m-t-sm">
+<strong class="font-bold text-lt">Bobby Rong</strong>
+<b class="caret"></b>
+</span>
+<span class="text-muted text-xs block">SCNUSE 学生</span>
+</span>
+</a>
+
+<ul class="dropdown-menu animated fadeInRight w hidden-folded no-padder">
+<li class="wrapper b-b m-b-sm bg-info m-n">
+<span class="arrow top hidden-folded arrow-info"></span>
+<div>
+<p>早上好，永远年轻，永远热泪盈眶</p>
+</div>
+<div class="progress progress-xs m-b-none dker">
+<div class="progress-bar bg-white" data-toggle="tooltip" data-original-title="时间已经度过45.83%" style="width: 45.83%"></div>
+</div>
+</li>
+</ul>
+
+</div>
+</div>
+
+
+<nav ui-nav class="navi clearfix">
+<ul class="nav">
+
+<div class="line dk hidden-folded"></div>
+<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+<span>导航</span>
+</li>
+
+<li>
+<a href="../../../../index.html" class="auto">
+<span class="nav-icon"><i data-feather="home"></i></span>
+<span>首页</span>
+</a>
+</li>
+
+<li class="line dk"></li>
+
+<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+<span>组成</span>
+</li>
+
+<li>
+<a class="auto">
+<span class="pull-right text-muted">
+<i class="fontello icon-fw fontello-angle-right text"></i>
+<i class="fontello icon-fw fontello-angle-down text-active"></i>
+</span>
+
+<span class="nav-icon"><i data-feather="grid"></i></span>
+<span>分类</span>
+</a>
+<ul class="nav nav-sub dk">
+<li class="nav-sub-header">
+<a>
+<span>分类</span>
+</a>
+</li>
+
+<li><a href="../../../category/uncategorized/index.html"><b class="badge pull-right">0</b><span>无类别或未分类</span></a></li><li><a href="../../../category/linux/index.html"><b class="badge pull-right">3</b><span>Linux 发行版</span></a></li><li><a href="../../../category/algorithm/index.html"><b class="badge pull-right">5</b><span>算法与 ACM</span></a></li><li><a href="../../../category/web/index.html"><b class="badge pull-right">2</b><span>网页网站与网络</span></a></li><li><a href="../../../category/applications/index.html"><b class="badge pull-right">1</b><span>桌面应用程序</span></a></li> </ul>
+</li>
+
+<li>
+<a class="auto">
+<span class="pull-right text-muted">
+<i class="fontello icon-fw fontello-angle-right text"></i>
+<i class="fontello icon-fw fontello-angle-down text-active"></i>
+</span>
+<span class="nav-icon"><i data-feather="file"></i></span>
+<span>页面</span>
+</a>
+<ul class="nav nav-sub dk">
+<li class="nav-sub-header">
+<a data-no-instant>
+<span>页面</span>
+</a>
+</li>
+
+<li><a href="../../../studio.html"><span>实验室</span></a></li>
+<li><a href="../../../archiso.html"><span>ARCHISO</span></a></li>
+<li><a href="../../../about.html"><span>关于</span></a></li>
+<li><a href="../../../cross.html"><span>闲言碎语</span></a></li>
+<li><a href="../../../archives.html"><span>归档</span></a></li>
+</ul>
+</li>
+
+<li>
+<a class="auto">
+<span class="pull-right text-muted">
+<i class="fontello icon-fw fontello-angle-right text"></i>
+<i class="fontello icon-fw fontello-angle-down text-active"></i>
+</span>
+<span class="nav-icon"><i data-feather="user"></i></span>
+<span>友链</span>
+</a>
+<ul class="nav nav-sub dk">
+<li class="nav-sub-header">
+<a data-no-instant>
+<span>友链</span>
+</a>
+</li>
+
+<li data-original-title="在 Arch Linux 社区疯狂输出的大佬" data-toggle="tooltip" data-placement="top"><a href="https://felixc.at/" target="_blank"><span>Felix Yan</span></a></li><li data-original-title="早期的百度贴吧 Linux 吧大水怪" data-toggle="tooltip" data-placement="top"><a href="https://fiveyellowmice.com/" target="_blank"><span>FiveYellowMice</span></a></li><li data-original-title="SCNU ACMer，神犇" data-toggle="tooltip" data-placement="top"><a href="https://www.cnblogs.com/JNzH/" target="_blank"><span>JNzH</span></a></li><li data-original-title="GDUT ACMer，神犇" data-toggle="tooltip" data-placement="top"><a href="https://kaidora.github.io/" target="_blank"><span>Kaidora</span></a></li><li data-original-title="SCNU SE1905 同班同学" data-toggle="tooltip" data-placement="top"><a href="https://user-kay.github.io/" target="_blank"><span>Kay Chen</span></a></li><li data-original-title="0xFFFF.one 站长，大佬" data-toggle="tooltip" data-placement="top"><a href="https://izgq.net/" target="_blank"><span>ZGQ</span></a></li><li data-original-title="百度贴吧 Linux 吧魔法大吧" data-toggle="tooltip" data-placement="top"><a href="http://www.wenyinos.org/" target="_blank"><span>WenyinOS</span></a></li><li data-original-title="早期的百度贴吧 Linux 吧大水怪，北大学霸" data-toggle="tooltip" data-placement="top"><a href="https://lightmelodies.github.io/" target="_blank"><span>LightMelodies</span></a></li><li data-original-title="软协技术部锅长" data-toggle="tooltip" data-placement="top"><a href="https://mikyming.online/" target="_blank"><span>MikyMing</span></a></li> </ul>
+</li>
+</ul>
+</nav>
+
+</div>
+
+
+<div id="left_footer" class="footer wrapper-xs text-center nav-xs lt">
+<div class="col-xs-4 no-padder">
+<a target="_blank" class="tinav" href="../../../../admin/index.html" title="" data-toggle="tooltip" data-placement="top" data-original-title="后台管理">
+<span class="left-bottom-icons block"><i data-feather="settings"></i></span>
+<small class="text-muted">管理</small>
+</a>
+</div>
+<div class="col-xs-4 no-padder">
+<a target="_blank" class="tinav" href="../../../feed/index.html" title="" data-toggle="tooltip" data-placement="top" data-original-title="文章RSS地址">
+<span class="left-bottom-icons block"><i data-feather="rss"></i></span>
+<small class="text-muted">文章</small>
+</a>
+</div>
+<div class="col-xs-4 no-padder">
+<a target="_blank" href="../../../feed/comments/index.html" title="" data-toggle="tooltip" data-placement="top" data-original-title="评论RSS地址">
+<span class="left-bottom-icons block"><i data-feather="message-square"></i></span>
+<small class="text-muted">评论</small>
+</a>
+</div>
+</div>
+</div>
+</aside>
+
+<div id="content" class="app-content">
+
+<div id="loading" class="butterbar active hide">
+<span class="bar"></span>
+</div> 
+<style>
+    #post-content{
+        font-size: 14px;
+    }
+</style>
+
+<a class="off-screen-toggle hide"></a>
+<main class="app-content-body ">
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+
+<div class="col center-part">
+
+
+<header id="small_widgets" class="bg-light lter wrapper-md">
+<h1 class="entry-title m-n font-thin text-black l-h">动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020）<a class="plus-font-size" data-toggle="tooltip" data-original-title="点击改变文章字体大小"><i data-feather="type"></i></a><a data-morphing="" id="morphing" data-src="#morphing-content" href="javascript:;" class="read_mode superscript m-l-sm" data-toggle="tooltip" data-placement="right" data-original-title="阅读模式"><i data-feather="book-open"></i></a></h1> 
+<ul class="entry-meta text-muted list-inline m-b-none small
+             post-head-icon">
+
+<li class="meta-author"><span class="post-icons"><i data-feather="user"></i></span><span class="sr-only">博主：</span> <a class="meta-value" href="../../../author/1/index.html" rel="author"> bobby285271</a></li>
+
+<li class="meta-date"><span class="post-icons"><i data-feather="clock"></i></span><span class="sr-only">发布时间：</span><time class="meta-value">2019 年 11 月 17 日</time></li>
+
+<li class="meta-views"><span class="post-icons"><i data-feather="eye"></i></span><span class="meta-value">1次浏览</span></li>
+
+<li class="meta-comments"><span class="post-icons"><i data-feather="message-circle"></i></span><a class="meta-value" href="dynamic-prgramming-01-backpack-problem.html#comments">暂无评论</a></li>
+
+<li class="meta-word"><span class="post-icons"><i data-feather="pen-tool"></i></span><span class="meta-value">6934字数</span></li>
+
+<li class="meta-categories"><span class="post-icons"><i data-feather="hash"></i></span><span class="sr-only">分类：</span> <span class="meta-value"><a href="../../../category/algorithm/index.html">算法与 ACM</a></span></li>
+</ul>
+</header>
+<div class="wrapper-md" id="post-panel">
+<ol class="breadcrumb bg-white-pure" itemscope=""><li>
+<a href="../../../../index.html" itemprop="breadcrumb" title="返回首页" data-toggle="tooltip"><span class="home-icons"><i data-feather="home"></i></span>首页</a>
+</li><li class="active">正文&nbsp;&nbsp;</li>
+<div style="float:right;">
+分享到：
+<style>
+   .breadcrumb i.iconfont.icon-qzone:after {
+    padding: 0 0 0 5px;
+    color: #ccc;
+    content: "/\00a0";
+    }
+    
+   </style>
+<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html&title=动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020）&site=https://static.bobby285271.top/" itemprop="breadcrumb" target="_blank" title="" data-toggle="tooltip" data-original-title="分享到QQ空间" onclick="if (!window.__cfRLUnblockHandlers) return false; window.open(this.href, 'qzone-share', 'width=550,height=335');return false;" data-cf-modified-0bac2ad7944d503742a86aa4-=""><i style="font-size:15px;" class="iconfont icon-qzone" aria-hidden="true"></i></a>
+<a href="http://service.weibo.com/share/share.php?url=https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html&title=动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020）" target="_blank" itemprop="breadcrumb" title="" data-toggle="tooltip" data-original-title="分享到微博" onclick="if (!window.__cfRLUnblockHandlers) return false; window.open(this.href, 'weibo-share', 'width=550,height=335');return false;" data-cf-modified-0bac2ad7944d503742a86aa4-=""><i style="font-size:15px;" class="fontello fontello-weibo" aria-hidden="true"></i></a></div></ol> 
+<div id="postpage" class="blog-post">
+<article class="single-post panel">
+
+<div class="entry-thumbnail" aria-hidden="true"><div class="item-thumb lazy" data-original="https://static.bobby285271.top/usr/themes/handsome/usr/img/sj/4.jpg" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)"></div></div> 
+<div id="post-content" class="wrapper-lg">
+<div class="entry-content l-h-2x">
+<p>为啥突然想要看动态规划呢，是因为昨天做了去年蓝桥杯预选赛 16/17 的题，做到 B 题发现正解其实应该是动态规划的。虽然我交了一发贪心过了，但想到两个星期后就是热身赛还是得搞搞突击才行。</p><h2>引入</h2><p>周四香农先修班讲了一个斐波拉契数列的专题，有一个问题是这样的：假设有 n 级楼梯，我从底部往上爬，每次可以上 1 级，也可以上 2 级楼梯，问从底部到顶部一共有多少种爬楼梯的方法。</p><p>我第一时间想到的是搜索和回溯，但是既然是斐波拉契数列的专题，也就有了 $f(n) = f(n-1) + f(n-2)$ 这个公式。我简单说一下这个式子是怎么来的吧。我们不妨假设我们走了 x 步之后上到了第 n 级，那我第 x-1 步在什么位置呢？只能是第 n-1 和 n-2 级。$f(n-1)$ 是走到 n-1 级楼梯时的方法数，$f(n-2)$ 同理。考虑一下边界情况，就是斐波拉契数列了呗。</p><h2>P1164 -（二维 DP）</h2><p>题目：<span class="external-link"><a href="https://www.luogu.org/problem/P1164" target="_blank">https://www.luogu.org/problem/P1164<i data-feather='external-link'></i></a></span></p><p>不妨就来考虑一下「引入」小节的思路（模拟退火是啥我也不会），我们要求吃够 m 块钱，和爬 n 级楼梯其实是一回事。我<strong>上 1 级台阶还是 2 级台阶</strong>，其实和对于一道菜，我<strong>吃还是不吃</strong>是一回事。区别在哪呢，这里我们有很多不同的菜。然而我们也不用想太多，就让它们按顺序逐个上菜好了，然后我们<strong>逐个</strong>决定是吃还是不吃，顺便记下到底花了多少钱<del>（注意上菜不代表我们就要吃嘛对吧，吃了才花钱）</del>。</p><p>我们定义 <code>f[i][j]</code> 为上了 i 道菜用光 j 元钱的办法总数。假设我们现在已经上了 i-1 道菜，接下来上第 i 道菜。我们就有两个选择：</p><ul><li>吃（花钱）。</li><li>不吃（不花钱）。</li></ul><p>如果不吃，那我上 i 道菜用光 j 元钱的方法数，和上了 i-1 道菜用光 j 元钱的方法数一样。如果我吃，那我上 i 道菜用光 j 元钱的方法数，和上了 i-1 道菜用光（j-这道菜的价格）的方法数一样。将两种情况和在一起，于是有：</p><pre><code class="lang-cpp">f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>通常来讲这就结束了，但是这道菜的价格我们却没有讨论清楚。首先，如果我没钱吃着道菜呢？那就只能不吃了呗。</p><pre><code class="lang-cpp">if(j &lt; 第i道菜的价格) f[i][j] = f[i - 1][j];
+if(j &gt;= 第i道菜的价格) f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>有些人想问 <code>j == 第i道菜的价格</code> 这种情况怎么搞，我们将这种情况代入到上面的代码，其实就是 <code>f[i][j] = f[i - 1][j] + f[i - 1][0]</code>，<code>f[i - 1][0]</code> 其实就是上了 i-1 个菜我全不吃，消费 0 元嘛，显然只有一种情况。但形如 <code>f[i][0]</code> 的数据又可以从哪推出呢？不如特判一下，当然直接给他们赋值也是可以的：</p><pre><code class="lang-cpp">if(j &lt; 第i道菜的价格) f[i][j] = f[i - 1][j];
+if(j == 第i道菜的价格) f[i][j] = f[i - 1][j] + 1;
+if(j &gt; 第i道菜的价格) f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>既然有了递推式（状态转移方程），我们要的是上完 n 道菜后花掉 m 块钱的方案，那就遍历一下这个数组直到得出答案为止呗。上代码：</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int a[101], f[101][10001];
+int main()
+{
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 1; i &lt;= n; i++)
+    {
+        cin &gt;&gt; a[i];
+    }
+    for (int i = 1; i &lt;= n; i++)
+    {
+        for (int j = 1; j &lt;= m; j++)
+        {
+            if (j &gt; a[i])
+                f[i][j] = f[i - 1][j] + f[i - 1][j - a[i]];
+            if (j == a[i])
+                f[i][j] = f[i - 1][j] + 1;
+            if (j &lt; a[i])
+                f[i][j] = f[i - 1][j];
+        }
+    }
+    cout &lt;&lt; f[n][m] &lt;&lt; endl;
+    return 0;
+}</code></pre><h2>P1048（一维 DP）</h2><p>题目：<span class="external-link"><a href="https://www.luogu.org/problem/P1048" target="_blank">https://www.luogu.org/problem/P1048<i data-feather='external-link'></i></a></span></p><p>这道题按照上面的思路打大概是怎样的呢？<del>显然</del>，我们开一个二位数组 <code>f[i][j]</code> 来表示过目 i 件药材（过目意味着我在采摘和不采摘中二选一）耗去 j 时间后的最大价值就可以了。时间如果足够，就考虑一下要不要采摘这个药材。同样地，<strong>采摘</strong>第 i 件药材耗去 j 时间的这种情况下的最大价值是过目 i-1 件药材时耗去（j-药材采摘时间）时间的最大价值。<strong>不采摘</strong>第 i 件药材耗去 j 时间的这种情况下的最大价值是过目 i-1 件药材时耗去 j 时间的最大价值。对于两种情况我们取较大者即可。</p><p>那我们为啥提出希望降维呢？我们看上面的代码：</p><pre><code class="lang-cpp">if (j &gt; a[i])
+    f[i][j] = f[i - 1][j] + f[i - 1][j - a[i]];
+if (j == a[i])
+    f[i][j] = f[i - 1][j] + 1;
+if (j &lt; a[i])
+    f[i][j] = f[i - 1][j];</code></pre><p>再来看一下这一题的核心代码（<code>a[i]</code> 为采摘时间，<code>v[i]</code> 为药材价值）：</p><pre><code class="lang-cpp">if (j &gt;= a[i])
+    f[i][j] = max(f[i - 1][j - a[i]] + v[i], f[i - 1][j]);
+else
+    f[i][j] = f[i - 1][j];</code></pre><p>第 i 件物品需要求的信息永远是从第 i-1 件物品那里得出来的。如果我们最后只需要第 i 件物品的答案而不需要 i-1、i-2... 件物品的答案，我们为何不用新的信息覆盖旧的信息呢？修改的方法很简单：</p><pre><code class="lang-cpp">if (j &gt;= a[i])
+    f[j] = max(f[j - a[i]] + v[i], f[j]);
+// 下面的没必要保留了吧。
+// else
+//     f[j] = f[j];</code></pre><p>虽然降维了，但遍历还是要以上面的方式来，于是我们就得到一个似乎很有道理的代码。</p><pre><code class="lang-cpp">for (int i = 1; i &lt;= m; i++)
+{
+    for (int j = a[i]; j &lt;= t; j++) // 既然上面只有一个分支结构，那我在循环条件那里保证就好了。
+    {
+        f[j] = max(f[j - a[i]] + v[i], f[j]);
+    }
+}
+cout &lt;&lt; f[t] &lt;&lt; endl;</code></pre><p>这却是一个非常典型的错误，因为按照原本的意思，第 i 个物品的数据要从 i-1 个物品的数据推出来，但我在上面求第 i 个物品的 <code>f[j]</code> 的时候却使用到了已经更新过的，已经是第 i 个物品的数据 f[j - a[i]]。怎样避免呢：</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int t, m;
+    cin &gt;&gt; t &gt;&gt; m;
+    int a[m + 10], v[m + 10];
+    for (int i = 1; i &lt;= m; i++)
+    {
+        cin &gt;&gt; a[i] &gt;&gt; v[i];
+    }
+    int f[t + 10];
+    memset(f, 0, sizeof(f));
+    for (int i = 1; i &lt;= m; i++)
+    {
+        for (int j = t; j &gt;= a[i]; j--)
+        {
+            f[j] = max(f[j], f[j - a[i]] + v[i]);
+        }
+    }
+    cout &lt;&lt; f[t] &lt;&lt; endl;
+    return 0;
+}</code></pre><p>附：<span class="external-link"><a href="https://www.luogu.org/blog/lenfrey/post-ti-xie-p1048-cai-yao" target="_blank">一位神犇提供的题解，感觉比较易懂<i data-feather='external-link'></i></a></span></p><h2>P1020（最大上升子序列）</h2><p>题目：<span class="external-link"><a href="https://www.luogu.com.cn/problem/P1020" target="_blank">https://www.luogu.com.cn/problem/P1020<i data-feather='external-link'></i></a></span></p><p>第二问知道是求最大上升序列之后就很简单了，最大的问题在于为什么是求这个。试给出以下解释（严格证明需要组合数学的知识）：对于给出的序列（输入数据），必定存在至少一个的最大上升子序列。任取一个最大上升子序列，其中任两个元素（导弹）必定由两套不同系统进行拦截。意味着如果最大上升子序列长度为 n，我们最少需要的系统数目必定大于或等于 n。<br>接下来可以用数学归纳法去解释为什么当最大上升子序列长度为 n 时最少只需要 n 套系统。<br>当 n = 1 时，给出的序列（输入数据）是单调递减的，显然只需要一套系统，结论成立。<br>假设 n = k 时结论成立。也就是只需要 k 套系统。当 n = k + 1 时，试将给出的序列一分为二分别求解，具体方法如下：枚举出所有的最大上升子序列，将每个最大上升子序列的尾元素分别取出。如果某个数是多个最大上升子序列的尾元素则只取出一次。将取出的数按照原本的先后顺序排列生成一个新的序列（假设叫序列 1）。未取出的数也按照原来的先后顺序排列形成另一个新的序列（假设叫序列 2）。<br>此时序列 2 的最大上升子序列长度必定为 k，那么根据前面的假设，需要 k 套系统。而序列 1 是单调递减的（可用反证法证明），由已知需要 1 套系统。所以加起来就是 k + 1 套系统。因为 k + 1 套系统可以拦截所有导弹，而由已知，需要配备的系统数需要大于等于 k + 1，所以 n = k + 1 时结论也成立。</p><p>100 分代码（n 方算法）</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int a[100005], num = 1;
+int ans[100005];
+int main()
+{
+    while (cin &gt;&gt; a[num])
+        num++;
+    num--;
+    a[0] = 50001;
+    int maxans = 0;
+    for (int i = 1; i &lt;= num; i++)
+    {
+        for (int j = 0; j &lt; i; j++)
+        {
+            if (a[i] &lt;= a[j])
+            {
+                // cout &lt;&lt; ans[i] &lt;&lt; &quot; &quot; &lt;&lt; ans[j] + 1 &lt;&lt; endl;
+                ans[i] = max(ans[i], ans[j] + 1);
+            }
+        }
+        // cout &lt;&lt; ans[i] &lt;&lt; endl;
+        if (ans[i] &gt; maxans)
+            maxans = ans[i];
+    }
+    cout &lt;&lt; maxans &lt;&lt; endl;
+
+    memset(ans,0,sizeof(ans));
+    maxans = 0;
+    a[0] = 0;
+    for (int i = 1; i &lt;= num; i++)
+    {
+        for (int j = 0; j &lt; i; j++)
+        {
+            if (a[i] &gt; a[j])
+            {
+                // cout &lt;&lt; ans[i] &lt;&lt; &quot; &quot; &lt;&lt; ans[j] + 1 &lt;&lt; endl;
+                ans[i] = max(ans[i], ans[j] + 1);
+            }
+        }
+        // cout &lt;&lt; ans[i] &lt;&lt; endl;
+        if (ans[i] &gt; maxans)
+            maxans = ans[i];
+    }
+    cout &lt;&lt; maxans &lt;&lt; endl;
+    return 0;
+}</code></pre><p>200 分代码（nlogn 算法）</p><pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int a[100010], b[100010];
+int num = 0, p, ans;
+
+bool cmp(int a, int b)
+{
+    return a &gt; b;
+}
+
+int main()
+{
+    while (cin &gt;&gt; a[num])
+        num++;
+
+    ans = 1;
+    b[0] = a[0];
+    for (int i = 1; i &lt; num; i++)
+    {
+        if (a[i] &lt;= b[ans - 1]){
+            b[ans] = a[i];
+            ans++;
+        }
+        else
+        {
+            p = upper_bound(b, b + ans, a[i], cmp) - b;
+            b[p] = a[i];
+        }
+    }
+    // for (int i = 0; i &lt; ans; i++)
+    // {
+    //     cout &lt;&lt; b[i] &lt;&lt; &quot; &quot;;
+    // }
+    // cout &lt;&lt; endl;
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    ans = 1;
+    b[0] = a[0];
+    for (int i = 1; i &lt; num; i++)
+    {
+        if (a[i] &gt; b[ans - 1]){
+            b[ans] = a[i];
+            ans++;
+        }
+        else
+        {
+            p = lower_bound(b, b + ans, a[i]) - b;
+            b[p] = a[i];
+        }
+    }
+    // for (int i = 0; i &lt; ans; i++)
+    // {
+    //     cout &lt;&lt; b[i] &lt;&lt; &quot; &quot;;
+    // }
+    // cout &lt;&lt; endl;
+    cout &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}</code></pre> </div>
+
+<div class="show-foot">
+<div class="notebook">
+<i class="fontello fontello-clock-o"></i>
+<span>最后修改：2020 年 04 月 30 日 12 : 27 PM</span>
+</div>
+<div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请保留本文转载地址，著作权归作者所有"><span>© 允许规范转载</span>
+</div>
+</div>
+
+</div>
+</article>
+</div>
+
+<nav class="m-t-lg m-b-lg">
+<ul class="pager">
+<li class="next"> <a class="box-shadow-wrap-normal" href="../../10/05/wsl-2-desktop-configuration.html" title="WSL 2 配置桌面环境（使用 Windows 自带远程桌面应用）简易教程" data-toggle="tooltip">
+下一篇 </a></li> <li class="previous"> <a class="box-shadow-wrap-normal" href="../../12/13/scnucs-n-2019-tour.html" title="华师计院新生赛 SCNUCS-N 2019 游记" data-toggle="tooltip"> 上一篇 </a></li>
+</ul>
+</nav>
+
+<style>
+            textarea#comment{
+                background-image: url('https://s2.ax1x.com/2019/07/20/ZzaGcV.png');
+                background-color: #ffffff;
+                transition: all 0.25s ease-in-out 0s;
+            }
+            textarea#comment:focus {
+                background-position-y: 105px;
+                transition: all 0.25s ease-in-out 0s;
+            }
+        </style>
+<div id="comments">
+
+
+<div id="respond-post-40" class="respond comment-respond no-borders">
+<h4 id="reply-title" class="comment-reply-title m-t-lg m-b">发表评论 <small><i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="使用cookie技术保留您的个人信息以便您下次快速评论，继续评论表示您已同意该条款"></i>
+</small>
+<small class="cancel-comment-reply">
+<a id="cancel-comment-reply-link" href="dynamic-prgramming-01-backpack-problem.html#respond-post-40" rel="nofollow" style="display:none" onclick="if (!window.__cfRLUnblockHandlers) return false; return TypechoComment.cancelReply();" data-cf-modified-0bac2ad7944d503742a86aa4-="">取消回复</a> </small>
+</h4>
+<form id="comment_form" method="post" action="https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html/comment" class="comment-form" role="form">
+<div class="comment-form-comment form-group">
+<label class="padder-v-sm" for="comment">评论 <span class="required text-danger">*</span></label>
+<textarea id="comment" class="textarea form-control OwO-textarea" name="text" rows="5" placeholder="说点什么吧……" onkeydown="if (!window.__cfRLUnblockHandlers) return false; if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};" data-cf-modified-0bac2ad7944d503742a86aa4-=""></textarea>
+<div class="OwO padder-v-sm"></div>
+<div class="secret_comment" id="secret_comment" data-toggle="tooltip" data-original-title="开启该功能，您的评论仅作者和评论双方可见">
+<label class="secret_comment_label control-label">私密评论</label>
+<div class="secret_comment_check">
+<label class="i-switch i-switch-sm bg-dark m-b-ss m-r">
+<input type="checkbox" id="secret_comment_checkbox">
+<i></i>
+</label>
+</div>
+</div>
+</div>
+
+<div id="author_info" class="row row-sm">
+<div class="comment-form-author form-group col-sm-6 col-md-4">
+<label for="author">名称 <span class="required text-danger">*</span></label>
+<div>
+<img class="author-avatar" src="https://secure.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=65&r=G&d=" nogallery />
+<input id="author" class="form-control" name="author" type="text" value="" maxlength="245" placeholder="姓名或昵称">
+</div>
+</div>
+<div class="comment-form-email form-group col-sm-6 col-md-4">
+<label for="email">邮箱 <span class="required text-danger">*</span>
+</label>
+<input type="text" name="mail" id="mail" class="form-control" placeholder="邮箱 (必填,将保密)" value="" />
+<input type="hidden" name="receiveMail" id="receiveMail" value="yes" />
+</div>
+<div class="comment-form-url form-group col-sm-12 col-md-4">
+<label for="url">地址</label>
+<input id="url" class="form-control" name="url" type="url" value="" maxlength="200" placeholder="网站或博客"></div>
+</div>
+
+<div class="form-group">
+<button type="submit" name="submit" id="submit" class="submit btn-rounded box-shadow-wrap-lg btn-gd-primary padder-lg">
+<span>发表评论</span>
+<span class="text-active">提交中...</span>
+</button>
+<i class="animate-spin fontello fontello-spinner hide" id="spin"></i>
+<input type="hidden" name="comment_post_ID" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent">
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<aside class="asideBar col w-md bg-white-only bg-auto no-border-xs" role="complementary">
+<div id="sidebar">
+<section id="tabs-4" class="widget widget_tabs clear">
+<div class="nav-tabs-alt no-js-hide">
+<ul class="nav nav-tabs nav-justified box-shadow-bottom-normal tablist" role="tablist">
+<li data-index="0" class="active" role="presentation"> <a href="dynamic-prgramming-01-backpack-problem.html#widget-tabs-4-hots" role="tab" aria-controls="widget-tabs-4-hots" aria-expanded="true" data-toggle="tab"><div class="sidebar-icon wrapper-sm"><i data-feather="thumbs-up"></i></div><span class="sr-only">热门文章</span> </a></li>
+<li role="presentation" data-index="1"> <a href="dynamic-prgramming-01-backpack-problem.html#widget-tabs-4-comments" role="tab" aria-controls="widget-tabs-4-comments" aria-expanded="false" data-toggle="tab"><div class="sidebar-icon wrapper-sm"><i data-feather="message-square"></i></div> <span class="sr-only">最新评论</span> </a></li>
+<li data-index="2" role="presentation"> <a href="dynamic-prgramming-01-backpack-problem.html#widget-tabs-4-random" role="tab" aria-controls="widget-tabs-4-random" aria-expanded="false" data-toggle="tab"> <div class="sidebar-icon wrapper-sm"><i data-feather="gift"></i></div> <span class="sr-only">随机文章</span>
+</a></li>
+<span class="navs-slider-bar"></span>
+</ul>
+</div>
+<div class="tab-content">
+
+<div id="widget-tabs-4-hots" class="tab-pane  fade in wrapper-md active" role="tabpanel">
+<h5 class="widget-title m-t-none text-md">热门文章</h5>
+<ul class="list-group no-bg no-borders pull-in m-b-none">
+<li class="list-group-item">
+<a href="../../../2020/02/09/nowcoder-basic-algorithm-training-camp-solutions.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/2.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../../2020/02/09/nowcoder-basic-algorithm-training-camp-solutions.html" title="2020 牛客寒假算法基础集训营题解"> 2020 牛客寒假算法基础集训营题解 </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">5</span>
+</span>
+</small></div></li><li class="list-group-item">
+<a href="../../../2020/04/15/nixos-installation-and-configuration-guide.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/7.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../../2020/04/15/nixos-installation-and-configuration-guide.html" title="NixOS 安装与配置笔记"> NixOS 安装与配置笔记 </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">5</span>
+</span>
+</small></div></li><li class="list-group-item">
+<a href="../../12/13/scnucs-n-2019-tour.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/4.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../12/13/scnucs-n-2019-tour.html" title="华师计院新生赛 SCNUCS-N 2019 游记"> 华师计院新生赛 SCNUCS-N 2019 游记 </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">4</span>
+</span>
+</small></div></li><li class="list-group-item">
+<a href="../../../2020/02/18/port-calamares-to-arch-linux.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/10.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../../2020/02/18/port-calamares-to-arch-linux.html" title="How to Port Calamares to Arch Linux"> How to Port Calamares to Arch Linux </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">4</span>
+</span>
+</small></div></li><li class="list-group-item">
+<a href="../../../2017/10/21/generate-a-hexo-blog-and-deploy-it-on-github.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/5.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../../2017/10/21/generate-a-hexo-blog-and-deploy-it-on-github.html" title="Hexo + GitHub Pages 博客搭建全过程"> Hexo + GitHub Pages 博客搭建全过程 </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">3</span>
+</span>
+</small></div></li> </ul>
+</div>
+
+<div id="widget-tabs-4-comments" class="tab-pane fade wrapper-md no-js-show" role="tabpanel">
+<h5 class="widget-title m-t-none text-md">最新评论</h5>
+<ul class="list-group no-borders pull-in auto m-b-none no-bg">
+</ul>
+</div>
+
+<div id="widget-tabs-4-random" class="tab-pane fade wrapper-md no-js-show" role="tabpanel">
+<h5 class="widget-title m-t-none text-md">随机文章</h5>
+<ul class="list-group no-bg no-borders pull-in">
+<li class="list-group-item">
+<a href="../../12/18/segment-tree.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/2.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../12/18/segment-tree.html" title="线段树 - 区间操作与查询（洛谷 P3372）"> 线段树 - 区间操作与查询（洛谷 P3372） </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">3</span>
+</span>
+</small></div></li><li class="list-group-item">
+<a href="../../12/13/scnucs-n-2019-tour.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/7.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../12/13/scnucs-n-2019-tour.html" title="华师计院新生赛 SCNUCS-N 2019 游记"> 华师计院新生赛 SCNUCS-N 2019 游记 </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">4</span>
+</span>
+</small></div></li><li class="list-group-item">
+<a href="../../12/26/dynamic-programming-on-tree-structures.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/4.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../12/26/dynamic-programming-on-tree-structures.html" title="树的孩子兄弟表示法、树形动归（洛谷 P2014）"> 树的孩子兄弟表示法、树形动归（洛谷 P2014） </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">3</span>
+</span>
+</small></div></li><li class="list-group-item">
+<a href="../../../2020/02/18/port-calamares-to-arch-linux.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/10.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../../2020/02/18/port-calamares-to-arch-linux.html" title="How to Port Calamares to Arch Linux"> How to Port Calamares to Arch Linux </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">4</span>
+</span>
+</small></div></li><li class="list-group-item">
+<a href="../../../2020/02/03/deploy-wordpress-on-a-fedora-server.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/5.jpg" class="img-40px normal-shadow img-square"></a>
+<div class="clear">
+<h4 class="h5 l-h text-second"> <a href="../../../2020/02/03/deploy-wordpress-on-a-fedora-server.html" title="How to Deploy WordPress on a Fedora Server"> How to Deploy WordPress on a Fedora Server </a></h4>
+<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">2</span>
+</span>
+</small></div></li> </ul>
+</div>
+</div>
+</section>
+
+<section id="blog_info" class="widget widget_categories wrapper-md clear">
+<h5 class="widget-title m-t-none text-md">博客信息</h5>
+<ul class="list-group box-shadow-wrap-normal">
+<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="award"></i></span> <span class="badge
+           pull-right">11</span>文章数目</li>
+<li class="list-group-item text-second"> <span class="blog-info-icons"> <i data-feather="message-circle"></i></span>
+<span class="badge
+           pull-right">13</span>评论数目</li>
+<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="calendar"></i></span>
+<span class="badge
+           pull-right">3年121天</span>运行天数</li>
+<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="activity"></i></span> <span class="badge
+           pull-right">8 分钟前</span>最后活动</li>
+</ul>
+</section>
+
+
+<section id="tag_cloud-2" class="widget widget_tag_cloud wrapper-md clear">
+<h5 class="widget-title m-t-none text-md">标签云</h5>
+<div class="post-tags tags l-h-2x">
+<a href="../../../tag/�%2585��%2597�/index.html">入门</a> <a href="../../../tag/�%259B谷/index.html">洛谷</a> <a href="../../../tag/�%258A��%2584%259F�%2584�%2588%2592/index.html">动感规划</a> <a href="../../../tag/�%2583%258C�%258C%2585�%2597��%2598/index.html">背包问题</a> <a href="../../../tag/�%2598解/index.html">题解</a> </div>
+</section>
+<div id="tag_toc_body">
+<section id="tag_toc" class="widget widget_categories wrapper-md clear">
+<h5 class="widget-title m-t-none text-md">文章目录</h5>
+<div class="tags l-h-2x box-shadow-wrap-normal">
+<div id="toc"></div>
+</div>
+</section>
+<div class="hidden-lg tocify-mobile-panel panel panel-default
+              setting_body_panel" aria-hidden="true">
+<button class="border-radius-half-left btn btn-default no-shadow pos-abt " data-toggle="tooltip" data-placement="left" data-original-title="目录" data-toggle-class=".tocify-mobile-panel=active">
+<i class="glyphicon glyphicon-resize-full"></i>
+</button>
+<div class="panel-heading">文章目录</div>
+<div class="setting_body toc-mobile-body">
+<div class="panel-body">
+<div class="tocTree"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+
+</div>
+</main>
+<div id="morphing-content" class="hidden read_mode_article">
+<div class="page">
+<h1 class="title">动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020）</h1>
+<div class="metadata singleline"><a href="dynamic-prgramming-01-backpack-problem.html#" rel="author" class="byline">bobby285271</a>&nbsp;•&nbsp;<span class="delimiter"></span><time class="date">2019 年 11 月 17 日</time></div>
+<p>为啥突然想要看动态规划呢，是因为昨天做了去年蓝桥杯预选赛 16/17 的题，做到 B 题发现正解其实应该是动态规划的。虽然我交了一发贪心过了，但想到两个星期后就是热身赛还是得搞搞突击才行。</p><h2>引入</h2><p>周四香农先修班讲了一个斐波拉契数列的专题，有一个问题是这样的：假设有 n 级楼梯，我从底部往上爬，每次可以上 1 级，也可以上 2 级楼梯，问从底部到顶部一共有多少种爬楼梯的方法。</p><p>我第一时间想到的是搜索和回溯，但是既然是斐波拉契数列的专题，也就有了 $f(n) = f(n-1) + f(n-2)$ 这个公式。我简单说一下这个式子是怎么来的吧。我们不妨假设我们走了 x 步之后上到了第 n 级，那我第 x-1 步在什么位置呢？只能是第 n-1 和 n-2 级。$f(n-1)$ 是走到 n-1 级楼梯时的方法数，$f(n-2)$ 同理。考虑一下边界情况，就是斐波拉契数列了呗。</p><h2>P1164 -（二维 DP）</h2><p>题目：<span class="external-link"><a href="https://www.luogu.org/problem/P1164" target="_blank">https://www.luogu.org/problem/P1164<i data-feather='external-link'></i></a></span></p><p>不妨就来考虑一下「引入」小节的思路（模拟退火是啥我也不会），我们要求吃够 m 块钱，和爬 n 级楼梯其实是一回事。我<strong>上 1 级台阶还是 2 级台阶</strong>，其实和对于一道菜，我<strong>吃还是不吃</strong>是一回事。区别在哪呢，这里我们有很多不同的菜。然而我们也不用想太多，就让它们按顺序逐个上菜好了，然后我们<strong>逐个</strong>决定是吃还是不吃，顺便记下到底花了多少钱<del>（注意上菜不代表我们就要吃嘛对吧，吃了才花钱）</del>。</p><p>我们定义 <code>f[i][j]</code> 为上了 i 道菜用光 j 元钱的办法总数。假设我们现在已经上了 i-1 道菜，接下来上第 i 道菜。我们就有两个选择：</p><ul><li>吃（花钱）。</li><li>不吃（不花钱）。</li></ul><p>如果不吃，那我上 i 道菜用光 j 元钱的方法数，和上了 i-1 道菜用光 j 元钱的方法数一样。如果我吃，那我上 i 道菜用光 j 元钱的方法数，和上了 i-1 道菜用光（j-这道菜的价格）的方法数一样。将两种情况和在一起，于是有：</p><pre><code class="lang-cpp">f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>通常来讲这就结束了，但是这道菜的价格我们却没有讨论清楚。首先，如果我没钱吃着道菜呢？那就只能不吃了呗。</p><pre><code class="lang-cpp">if(j &lt; 第i道菜的价格) f[i][j] = f[i - 1][j];
+if(j &gt;= 第i道菜的价格) f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>有些人想问 <code>j == 第i道菜的价格</code> 这种情况怎么搞，我们将这种情况代入到上面的代码，其实就是 <code>f[i][j] = f[i - 1][j] + f[i - 1][0]</code>，<code>f[i - 1][0]</code> 其实就是上了 i-1 个菜我全不吃，消费 0 元嘛，显然只有一种情况。但形如 <code>f[i][0]</code> 的数据又可以从哪推出呢？不如特判一下，当然直接给他们赋值也是可以的：</p><pre><code class="lang-cpp">if(j &lt; 第i道菜的价格) f[i][j] = f[i - 1][j];
+if(j == 第i道菜的价格) f[i][j] = f[i - 1][j] + 1;
+if(j &gt; 第i道菜的价格) f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>既然有了递推式（状态转移方程），我们要的是上完 n 道菜后花掉 m 块钱的方案，那就遍历一下这个数组直到得出答案为止呗。上代码：</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int a[101], f[101][10001];
+int main()
+{
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 1; i &lt;= n; i++)
+    {
+        cin &gt;&gt; a[i];
+    }
+    for (int i = 1; i &lt;= n; i++)
+    {
+        for (int j = 1; j &lt;= m; j++)
+        {
+            if (j &gt; a[i])
+                f[i][j] = f[i - 1][j] + f[i - 1][j - a[i]];
+            if (j == a[i])
+                f[i][j] = f[i - 1][j] + 1;
+            if (j &lt; a[i])
+                f[i][j] = f[i - 1][j];
+        }
+    }
+    cout &lt;&lt; f[n][m] &lt;&lt; endl;
+    return 0;
+}</code></pre><h2>P1048（一维 DP）</h2><p>题目：<span class="external-link"><a href="https://www.luogu.org/problem/P1048" target="_blank">https://www.luogu.org/problem/P1048<i data-feather='external-link'></i></a></span></p><p>这道题按照上面的思路打大概是怎样的呢？<del>显然</del>，我们开一个二位数组 <code>f[i][j]</code> 来表示过目 i 件药材（过目意味着我在采摘和不采摘中二选一）耗去 j 时间后的最大价值就可以了。时间如果足够，就考虑一下要不要采摘这个药材。同样地，<strong>采摘</strong>第 i 件药材耗去 j 时间的这种情况下的最大价值是过目 i-1 件药材时耗去（j-药材采摘时间）时间的最大价值。<strong>不采摘</strong>第 i 件药材耗去 j 时间的这种情况下的最大价值是过目 i-1 件药材时耗去 j 时间的最大价值。对于两种情况我们取较大者即可。</p><p>那我们为啥提出希望降维呢？我们看上面的代码：</p><pre><code class="lang-cpp">if (j &gt; a[i])
+    f[i][j] = f[i - 1][j] + f[i - 1][j - a[i]];
+if (j == a[i])
+    f[i][j] = f[i - 1][j] + 1;
+if (j &lt; a[i])
+    f[i][j] = f[i - 1][j];</code></pre><p>再来看一下这一题的核心代码（<code>a[i]</code> 为采摘时间，<code>v[i]</code> 为药材价值）：</p><pre><code class="lang-cpp">if (j &gt;= a[i])
+    f[i][j] = max(f[i - 1][j - a[i]] + v[i], f[i - 1][j]);
+else
+    f[i][j] = f[i - 1][j];</code></pre><p>第 i 件物品需要求的信息永远是从第 i-1 件物品那里得出来的。如果我们最后只需要第 i 件物品的答案而不需要 i-1、i-2... 件物品的答案，我们为何不用新的信息覆盖旧的信息呢？修改的方法很简单：</p><pre><code class="lang-cpp">if (j &gt;= a[i])
+    f[j] = max(f[j - a[i]] + v[i], f[j]);
+// 下面的没必要保留了吧。
+// else
+//     f[j] = f[j];</code></pre><p>虽然降维了，但遍历还是要以上面的方式来，于是我们就得到一个似乎很有道理的代码。</p><pre><code class="lang-cpp">for (int i = 1; i &lt;= m; i++)
+{
+    for (int j = a[i]; j &lt;= t; j++) // 既然上面只有一个分支结构，那我在循环条件那里保证就好了。
+    {
+        f[j] = max(f[j - a[i]] + v[i], f[j]);
+    }
+}
+cout &lt;&lt; f[t] &lt;&lt; endl;</code></pre><p>这却是一个非常典型的错误，因为按照原本的意思，第 i 个物品的数据要从 i-1 个物品的数据推出来，但我在上面求第 i 个物品的 <code>f[j]</code> 的时候却使用到了已经更新过的，已经是第 i 个物品的数据 f[j - a[i]]。怎样避免呢：</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int t, m;
+    cin &gt;&gt; t &gt;&gt; m;
+    int a[m + 10], v[m + 10];
+    for (int i = 1; i &lt;= m; i++)
+    {
+        cin &gt;&gt; a[i] &gt;&gt; v[i];
+    }
+    int f[t + 10];
+    memset(f, 0, sizeof(f));
+    for (int i = 1; i &lt;= m; i++)
+    {
+        for (int j = t; j &gt;= a[i]; j--)
+        {
+            f[j] = max(f[j], f[j - a[i]] + v[i]);
+        }
+    }
+    cout &lt;&lt; f[t] &lt;&lt; endl;
+    return 0;
+}</code></pre><p>附：<span class="external-link"><a href="https://www.luogu.org/blog/lenfrey/post-ti-xie-p1048-cai-yao" target="_blank">一位神犇提供的题解，感觉比较易懂<i data-feather='external-link'></i></a></span></p><h2>P1020（最大上升子序列）</h2><p>题目：<span class="external-link"><a href="https://www.luogu.com.cn/problem/P1020" target="_blank">https://www.luogu.com.cn/problem/P1020<i data-feather='external-link'></i></a></span></p><p>第二问知道是求最大上升序列之后就很简单了，最大的问题在于为什么是求这个。试给出以下解释（严格证明需要组合数学的知识）：对于给出的序列（输入数据），必定存在至少一个的最大上升子序列。任取一个最大上升子序列，其中任两个元素（导弹）必定由两套不同系统进行拦截。意味着如果最大上升子序列长度为 n，我们最少需要的系统数目必定大于或等于 n。<br>接下来可以用数学归纳法去解释为什么当最大上升子序列长度为 n 时最少只需要 n 套系统。<br>当 n = 1 时，给出的序列（输入数据）是单调递减的，显然只需要一套系统，结论成立。<br>假设 n = k 时结论成立。也就是只需要 k 套系统。当 n = k + 1 时，试将给出的序列一分为二分别求解，具体方法如下：枚举出所有的最大上升子序列，将每个最大上升子序列的尾元素分别取出。如果某个数是多个最大上升子序列的尾元素则只取出一次。将取出的数按照原本的先后顺序排列生成一个新的序列（假设叫序列 1）。未取出的数也按照原来的先后顺序排列形成另一个新的序列（假设叫序列 2）。<br>此时序列 2 的最大上升子序列长度必定为 k，那么根据前面的假设，需要 k 套系统。而序列 1 是单调递减的（可用反证法证明），由已知需要 1 套系统。所以加起来就是 k + 1 套系统。因为 k + 1 套系统可以拦截所有导弹，而由已知，需要配备的系统数需要大于等于 k + 1，所以 n = k + 1 时结论也成立。</p><p>100 分代码（n 方算法）</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int a[100005], num = 1;
+int ans[100005];
+int main()
+{
+    while (cin &gt;&gt; a[num])
+        num++;
+    num--;
+    a[0] = 50001;
+    int maxans = 0;
+    for (int i = 1; i &lt;= num; i++)
+    {
+        for (int j = 0; j &lt; i; j++)
+        {
+            if (a[i] &lt;= a[j])
+            {
+                // cout &lt;&lt; ans[i] &lt;&lt; &quot; &quot; &lt;&lt; ans[j] + 1 &lt;&lt; endl;
+                ans[i] = max(ans[i], ans[j] + 1);
+            }
+        }
+        // cout &lt;&lt; ans[i] &lt;&lt; endl;
+        if (ans[i] &gt; maxans)
+            maxans = ans[i];
+    }
+    cout &lt;&lt; maxans &lt;&lt; endl;
+
+    memset(ans,0,sizeof(ans));
+    maxans = 0;
+    a[0] = 0;
+    for (int i = 1; i &lt;= num; i++)
+    {
+        for (int j = 0; j &lt; i; j++)
+        {
+            if (a[i] &gt; a[j])
+            {
+                // cout &lt;&lt; ans[i] &lt;&lt; &quot; &quot; &lt;&lt; ans[j] + 1 &lt;&lt; endl;
+                ans[i] = max(ans[i], ans[j] + 1);
+            }
+        }
+        // cout &lt;&lt; ans[i] &lt;&lt; endl;
+        if (ans[i] &gt; maxans)
+            maxans = ans[i];
+    }
+    cout &lt;&lt; maxans &lt;&lt; endl;
+    return 0;
+}</code></pre><p>200 分代码（nlogn 算法）</p><pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int a[100010], b[100010];
+int num = 0, p, ans;
+
+bool cmp(int a, int b)
+{
+    return a &gt; b;
+}
+
+int main()
+{
+    while (cin &gt;&gt; a[num])
+        num++;
+
+    ans = 1;
+    b[0] = a[0];
+    for (int i = 1; i &lt; num; i++)
+    {
+        if (a[i] &lt;= b[ans - 1]){
+            b[ans] = a[i];
+            ans++;
+        }
+        else
+        {
+            p = upper_bound(b, b + ans, a[i], cmp) - b;
+            b[p] = a[i];
+        }
+    }
+    // for (int i = 0; i &lt; ans; i++)
+    // {
+    //     cout &lt;&lt; b[i] &lt;&lt; &quot; &quot;;
+    // }
+    // cout &lt;&lt; endl;
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    ans = 1;
+    b[0] = a[0];
+    for (int i = 1; i &lt; num; i++)
+    {
+        if (a[i] &gt; b[ans - 1]){
+            b[ans] = a[i];
+            ans++;
+        }
+        else
+        {
+            p = lower_bound(b, b + ans, a[i]) - b;
+            b[p] = a[i];
+        }
+    }
+    // for (int i = 0; i &lt; ans; i++)
+    // {
+    //     cout &lt;&lt; b[i] &lt;&lt; &quot; &quot;;
+    // }
+    // cout &lt;&lt; endl;
+    cout &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+<script type="0bac2ad7944d503742a86aa4-text/javascript">
+        try {
+            $("[data-morphing]").fancyMorph({
+                hash : 'morphing'
+            });
+        }catch (e){
+
+        }
+
+            </script>
+
+<script type="0bac2ad7944d503742a86aa4-text/javascript">
+(function () {
+    window.TypechoComment = {
+        dom : function (id) {
+            return document.getElementById(id);
+        },
+    
+        create : function (tag, attr) {
+            var el = document.createElement(tag);
+        
+            for (var key in attr) {
+                el.setAttribute(key, attr[key]);
+            }
+        
+            return el;
+        },
+
+        reply : function (cid, coid) {
+            var comment = this.dom(cid), parent = comment.parentNode,
+                response = this.dom('respond-post-40'), input = this.dom('comment-parent'),
+                form = 'form' == response.tagName ? response : response.getElementsByTagName('form')[0],
+                textarea = response.getElementsByTagName('textarea')[0];
+
+            if (null == input) {
+                input = this.create('input', {
+                    'type' : 'hidden',
+                    'name' : 'parent',
+                    'id'   : 'comment-parent'
+                });
+
+                form.appendChild(input);
+            }
+
+            input.setAttribute('value', coid);
+
+            if (null == this.dom('comment-form-place-holder')) {
+                var holder = this.create('div', {
+                    'id' : 'comment-form-place-holder'
+                });
+
+                response.parentNode.insertBefore(holder, response);
+            }
+
+            comment.appendChild(response);
+            this.dom('cancel-comment-reply-link').style.display = '';
+
+            if (null != textarea && 'text' == textarea.name) {
+                textarea.focus();
+            }
+
+            return false;
+        },
+
+        cancelReply : function () {
+            var response = this.dom('respond-post-40'),
+            holder = this.dom('comment-form-place-holder'), input = this.dom('comment-parent');
+
+            if (null != input) {
+                input.parentNode.removeChild(input);
+            }
+
+            if (null == holder) {
+                return true;
+            }
+
+            this.dom('cancel-comment-reply-link').style.display = 'none';
+            holder.parentNode.insertBefore(response, holder);
+            return false;
+        }
+    };
+})();
+</script>
+<script type="0bac2ad7944d503742a86aa4-text/javascript">
+var registCommentEvent = function() {
+    var event = document.addEventListener ? {
+        add: 'addEventListener',
+        focus: 'focus',
+        load: 'DOMContentLoaded'
+    } : {
+        add: 'attachEvent',
+        focus: 'onfocus',
+        load: 'onload'
+    };
+    var r = document.getElementById('respond-post-40');
+        
+    if (null != r) {
+        var forms = r.getElementsByTagName('form');
+        if (forms.length > 0) {
+            var f = forms[0], textarea = f.getElementsByTagName('textarea')[0], added = false;
+
+            if (null != textarea && 'text' == textarea.name) {
+                textarea[event.add](event.focus, function () {
+                    if (!added) {
+                        var input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = '_';
+                            input.value = (function () {
+    var _l13R = 'f'//'3X'
++//'y'
+'1e'+'a'//'P'
++'9b'//'7IB'
++'6'//'j8'
++/* 'ACA'//'ACA' */''+//'O'
+'2a'+//'jk'
+'ec'+//'kVq'
+'f9'+//'a1'
+'36'+'873'//'Ci3'
++//'S3g'
+'8'+'9fb'//'OE'
++//'u'
+'f99'+/* 'r'//'r' */''+'6'//'bH9'
++'fa5'//'ebY'
++//'IQ'
+'9c'+/* 'z'//'z' */''+//'N'
+'N'+''///*'uh'*/'uh'
++//'kO'
+'a', _sitKu8 = [[31,32]];
+    
+    for (var i = 0; i < _sitKu8.length; i ++) {
+        _l13R = _l13R.substring(0, _sitKu8[i][0]) + _l13R.substring(_sitKu8[i][1]);
+    }
+
+    return _l13R;
+})();
+                    
+                        f.appendChild(input);
+                        
+                        input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'checkReferer';
+                        input.value = 'false';
+                        
+                        f.appendChild(input);
+                        
+
+                        added = true;
+                    }
+                });
+            }
+        }
+    }
+};
+</script></div>
+<footer id="footer" class="app-footer" role="footer">
+<div class="wrapper bg-light">
+<span class="pull-right hidden-xs text-ellipsis">
+Powered by <a target="_blank" href="http://www.typecho.org">Typecho</a>&nbsp;|&nbsp;Theme by <a target="_blank" href="https://www.ihewro.com/archives/489/">handsome</a>
+</span>
+<span class="text-ellipsis">&copy;&nbsp;2020 Copyright&nbsp;</span>
+</div>
+
+<style>
+          .topButton>.btn{
+              top: 0;
+          }
+          </style>
+<div class="topButton panel panel-default">
+<button id="goToTop" class="btn btn-default no-shadow pos-abt hide  border-radius-half-left" data-toggle="tooltip" data-placement="left" data-original-title="返回顶部">
+<i class="fontello fontello-chevron-circle-up" aria-hidden="true"></i>
+</button>
+</div>
+</footer>
+</div>
+<script type="0bac2ad7944d503742a86aa4-text/javascript">
+SearchConfig = {
+    url : "https://static.bobby285271.top/usr/plugins/Handsome/cache/search.json"
+}
+</script>
+
+<script type="0bac2ad7944d503742a86aa4-text/javascript">
+        window['LocalConst'] = {
+            COMMENT_NAME_INFO: '必须填写昵称或姓名',
+            COMMENT_EMAIL_INFO: '必须填写电子邮箱地址',
+            COMMENT_EMAIL_LEGAL_INFO: '邮箱地址不合法',
+            COMMENT_CONTENT_INFO: '必须填写评论内容',
+            COMMENT_SUBMIT_ERROR: '提交失败，请重试！',
+            COMMENT_CONTENT_LEGAL_INFO: '提交失败,评论被拦截，可能发言太快或内容不符合规则',
+
+            LOGIN_USERNAME_INFO: '必须填写用户名',
+            LOGIN_PASSWORD_INFO: '请填写密码',
+            LOGIN_SUBMIT_ERROR: '登录失败，请重新登录',
+            LOGIN_SUBMIT_INFO: '用户名或者密码错误，请重试',
+            LOGIN_SUBMIT_SUCCESS: '登录成功',
+            CLICK_TO_REFRESH: '点击以刷新页面',
+            LOGOUT_SUCCESS_REFRESH: '退出成功，正在刷新当前页面',
+
+            LOGOUT_ERROR: '退出失败，请重试',
+            LOGOUT_SUCCESS: '退出成功',
+
+            SUBMIT_PASSWORD_INFO: '密码错误，请重试',
+            COMMENT_TITLE: '评论通知',
+            LOGIN_TITLE: '登录通知',
+            ChANGYAN_APP_KEY: '',
+            CHANGYAN_CONF: '',
+
+            COMMENT_SYSTEM: '0',
+            COMMENT_SYSTEM_ROOT: '0',
+            COMMENT_SYSTEM_CHANGYAN: '1',
+            COMMENT_SYSTEM_OTHERS: '2',
+            EMOJI: '表情',
+            IS_PJAX: '1',
+            IS_PAJX_COMMENT: '1',
+            BASE_SCRIPT_URL: 'https://static.bobby285271.top/usr/themes/handsome/',
+            BLOG_URL: 'https://static.bobby285271.top/',
+            BLOG_URL_PHP: 'https://static.bobby285271.top/index.php/',
+            THEME_COLOR: '14',
+            THEME_COLOR_EDIT: 'white-white-white',
+            THEME_HEADER_FIX: '1',
+            THEME_ASIDE_FIX: '1',
+            THEME_ASIDE_FOLDED: '',
+            THEME_ASIDE_DOCK: '',
+            THEME_CONTAINER_BOX: '1',
+            THEME_HIGHLIGHT_CODE: '1',
+            THEME_TOC: '1',
+            TOC_TITLE: '文章目录',
+            HEADER_FIX: '固定头部',
+            ASIDE_FIX: '固定导航',
+            ASIDE_FOLDED: '折叠导航',
+            ASIDE_DOCK: '置顶导航',
+            CONTAINER_BOX: '盒子模型',
+            OFF_SCROLL_HEIGHT: '50',
+            COMMENT_REJECT_PLACEHOLDER: '居然什么也不说，哼',
+            COMMENT_PLACEHOLDER: '说点什么吧……',
+            SHOW_SETTING_BUTTON: '',
+            THEME_VERSION: '6.0.020191205',
+
+            OPERATION_NOTICE: '操作通知',
+            SCREENSHOT_BEGIN: '正在生成当前页面截图……',
+            SCREENSHOT_NOTICE: '点击顶部下载按钮保存当前卡片',
+            SCREENSHORT_ERROR: '由于图片跨域原因导致截图失败',
+            SCREENSHORT_SUCCESS: '截图成功',
+            MUSIC_NOTICE: '播放通知',
+            MUSIC_FAILE: '当前音乐地址无效，自动为您播放下一首',
+            MUSIC_FAILE_END: '当前音乐地址无效',
+            MUSIC_LIST_SUCCESS: '歌单歌曲加载成功',
+            CDN_NAME: '',
+            LAZY_LOAD: '1'
+        };
+
+    </script>
+
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+<script type="0bac2ad7944d503742a86aa4-text/javascript">
+        $(document).pjax('a[href^="https://static.bobby285271.top/"]:not(a[target="_blank"], a[no-pjax])', {
+            container: '#content',
+            fragment: '#content',
+            timeout: 8000
+        }).on('pjax:send',function () {
+                        $('#loading').removeClass('hide');
+                    }).on('pjax:click', function() {
+
+            window['Page'].doPJAXClickAction();
+            
+                        $('body,html').animate({scrollTop:0},100);
+            
+
+        }).on('pjax:complete', function() {
+            window['Page'].doPJAXCompleteAction();
+            if ($(".post-position").length > 0){
+                window['Page'].doPJAXCompletePostAction();
+            }
+                                            $("#post-content img").lazyload({
+                    effect: "fadeIn",
+                    threshold: "200"
+                });
+                $(".lazy").lazyload({
+                    effect: "fadeIn",
+                    threshold: "200"
+                });
+                                                    $('#loading').addClass('hide');
+            
+                                    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"body"]);
+            
+
+        })
+    </script>
+
+
+<script src="../../../../usr/themes/handsome/assets/js/features/lazyload.min.js" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+<script type="0bac2ad7944d503742a86aa4-text/javascript">
+        $("img").lazyload({
+            effect: "fadeIn",
+            threshold: "200"
+        });
+
+        $(".lazy").lazyload({
+            effect: "fadeIn",
+            threshold: "200"
+        });
+
+        //后退的时候
+        if (window.history && window.history.pushState) {
+            $(window).on('popstate', function () {
+                /// 当点击浏览器的 后退和前进按钮 时才会被触发，
+                window.history.pushState('forward', null, '');
+                window.history.forward(1);//当前页 ,
+                $("img").lazyload({
+                    effect: "fadeIn",
+                    threshold: "200"
+                });
+
+                $(".lazy").lazyload({
+                    effect: "fadeIn",
+                    threshold: "200"
+                });
+            });
+        }
+        //在ie中必须有这两行
+        window.history.pushState('forward', null, '');
+        window.history.forward(1);
+    </script>
+<script src="../../../../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+
+<script src="../../../../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+
+<script src="../../../../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+
+
+
+<script src="../../../../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="0bac2ad7944d503742a86aa4-text/javascript"></script>
+<script type="0bac2ad7944d503742a86aa4-text/javascript">
+            </script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="0bac2ad7944d503742a86aa4-|49" defer=""></script></body>
+</html>
+

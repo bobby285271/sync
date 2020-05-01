@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+xmlns:thr="http://purl.org/syndication/thread/1.0"
+xml:lang="zh-CN"
+xml:base="https://static.bobby285271.top/index.php/tag/入门/"
+>
+<title type="text">Dasyatis - 入门</title>
+<subtitle type="text"></subtitle>
+<updated>2019-12-26T09:22:00+00:00</updated>
+<generator uri="http://typecho.org/" version="1.2/18.1.29">Typecho</generator>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/tag/入门/" />
+<id>https://static.bobby285271.top/index.php/feed/atom/tag/%E5%85%A5%E9%97%A8/</id>
+<link rel="self" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/tag/%E5%85%A5%E9%97%A8/" />
+<entry>
+<title type="html"><![CDATA[树的孩子兄弟表示法、树形动归（洛谷 P2014）]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/26/dynamic-programming-on-tree-structures.html" />
+<id>https://static.bobby285271.top/index.php/2019/12/26/dynamic-programming-on-tree-structures.html</id>
+<updated>2019-12-26T09:22:00+00:00</updated>
+<published>2019-12-26T09:22:00+00:00</published>
+<author>
+    <name>bobby285271</name>
+    <uri>https://static.bobby285271.top</uri>
+</author>
+<summary type="html"><![CDATA[题目https://www.luogu.com.cn/problem/P2014思路以下内容仅为个人理解，可能存在错误。树的孩子兄弟表示法想要使用孩子兄弟表示法储存上面这样的一棵树，我们就要从根...]]></summary>
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/12/26/dynamic-programming-on-tree-structures.html" xml:lang="zh-CN"><![CDATA[
+<h2>题目</h2><p><a href="https://www.luogu.com.cn/problem/P2014">https://www.luogu.com.cn/problem/P2014</a></p><h2>思路</h2><blockquote>以下内容<strong>仅为个人理解，可能存在错误</strong>。</blockquote><h3>树的孩子兄弟表示法</h3><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/p2014-2.gif" alt="" title=""></p><p>想要使用孩子兄弟表示法储存上面这样的一棵树，我们就要从根节点开始，依次用链表存储各个节点的孩子节点和兄弟节点。因此，该链表中的节点应包含以下三部分内容：</p><ul><li>节点的值。</li><li>指向孩子节点的指针。</li><li>指向兄弟节点的指针。</li></ul><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/p2014-1.gif" alt="" title=""></p><p>在这里，每个节点是一门课程，孩子节点其实就是后续课程，兄弟节点其实就是前导课程相同的一门课程。不妨将第 i 门课程编号为 i，那么每一门课都会有一个独一无二的课程编号。这个课程编号本应放在数据域，但是考虑到它的独一无二性和连续性，也方便我们查找某一课程的「后续课程」和「前导课程相同的一门课程」的课程编号，以获取它的学分，我们不妨直接用数组下标来储存这个，就不开数据域了。</p><h3>树形动归</h3><blockquote><strong>TODO</strong>：此部分自认为没有理解透彻，下面给出的思路也不够自然。</blockquote><p>考虑之前发过的几道题，LXY 点菜，我们逐道菜过目；上山采药，我们逐件药品过目。这里我们照葫芦画瓢，就逐门课过目。树形动归和线性动归又有些啥不同呢？首先要遵循从最简单的子问题开始，逐步扩大子问题规模的原则，从子树上动归，最后进行合并。如何体现合并这一操作呢？就是在过目某一节点（课程）的时候同时考虑这个节点（课程）的后续课程。</p><p>不妨就将根节点（假设其编号为 now）的所有孩子过目完，假设现在过目了 a 门课程，选择了 b 门课程。对于这个第 a 门课程依然是两个选择，<strong>选和不选</strong>。不选的话和我过目 a - 1 门课程，选择了 b 门课程效果是一样的，而第 a 门课程我不选自然就拿不了学分，其后续课程我也选不了就无需考虑了。但如果我选择呢，我不但选了第 a 门课程，而且还要考虑它的后续课程。假设已知我过目完 a - 1 门课程时，选择了 b - c 门课程。过目第 a 门课程显然我就考虑了第 a 门课的后续课程并选择了 c 门课程（包含 a）。此时为了求出过目了 a 门课程，选择了 b 门课程的最大学分，我就要求出过目 a - 1 门课程，选择了 b - c 门课程的最大学分和考虑了第 a 门课的<strong>所有</strong>后续课程并选择了 c 门课程（包含 a）的最大学分。而由于我们从子树开始动归，所以后者我们是已经求出过的。考虑完选和不选两种情况后，取最大值即可。</p><p>假设 <code>son</code> 是 <code>now</code> 的一个子节点，有：</p><pre><code class="lang-cpp">f[now][i][j] = max(f[now][i - 1][j], f[son][所有节点数][k] + f[now][i - 1][j - k]);</code></pre><p>和线性动态规划一样，由于过目了 i 门课程的情况永远由过目 i - 1 门课程的情况推出来，于是这一维可以被去掉。</p><pre><code class="lang-cpp">f[now][j] = max(f[now][j], f[son][k] + f[now][j - k]);</code></pre><h2>AC 代码</h2><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+//n、m 如题所述，f[i][j] 表示 i 为子树的根节点，在子树中选 j 门课的最大学分
+int n, m, f[1000][1000], fa;
+struct node //用结构体储存节点信息
+{
+    int pre, to; //pre 为兄弟节点在数组 e 中的下标，to 为孩子节点在数组 e 中的下标
+} e[1000];       //考虑到课程编号的唯一性，这题 e 数组下标可用来表示课程编号，我们也不用开数据域了
+
+void dp(int now) //在「根节点编号为 now 的树」中动归
+{
+    //遍历 now 的所有孩子节点，也就是先访问 now 的「第一个」儿子节点，然后再访问这个儿子节点的兄弟节点
+    for (int i = e[now].to; i != 0; i = e[i].pre)
+    {
+        dp(i);                           //在「根节点编号为 i 的树」中动归
+        for (int j = m + 1; j &gt;= 1; j--) //关于为什么要反向遍历，前面的文章有提及
+        {
+            for (int k = 0; k &lt; j; k++)
+                f[now][j] = max(f[now][j], f[i][k] + f[now][j - k]); //状态转移方程
+        }
+    }
+}
+int main()
+{
+    ios::sync_with_stdio(false); //是输入输出挂
+    cin.tie(0);                  //还是输入输出挂
+    cout.tie(0);                 //依然是输入输出挂
+    cin &gt;&gt; n &gt;&gt; m;
+    //我们令 i 为节点（课程）的编号
+    //不妨假定存在一门编号为 0 的课，是所有课程的先修课程且学分为 0
+    //这样子我们就可以将所有的课程标在一棵树上
+    for (int i = 1; i &lt;= n; i++) //接下来我们从 i = 1 开始读入 n 个节点（课程）
+    {
+        cin &gt;&gt; fa;           //fa 是节点 i 的父节点（先修课程）的编号
+        cin &gt;&gt; f[i][1];      //显然 j == 1 时最大学分就是编号为 i 的这门课本身的学分
+        e[i].pre = e[fa].to; //指明节点 i 的兄弟节点是节点 fa 的「第一个」儿子节点
+        e[fa].to = i;        //更新节点 fa 的「第一个」儿子节点为节点 i
+    }
+    dp(0); //从编号为 0 的根节点开始动归
+    //输出 0 为根节点，选 m + 1 门课的最大学分
+    //m + 1 门课是因为我们无中生有了一门「所有课程的先修课」，也就是编号为 0 的这门课
+    cout &lt;&lt; f[0][m + 1] &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+]]></content>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/26/dynamic-programming-on-tree-structures.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/26/dynamic-programming-on-tree-structures.html" thr:count="0"/>
+</entry>
+<entry>
+<title type="html"><![CDATA[线段树 - 区间操作与查询（洛谷 P3372）]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html" />
+<id>https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html</id>
+<updated>2019-12-18T15:35:00+00:00</updated>
+<published>2019-12-18T15:35:00+00:00</published>
+<author>
+    <name>bobby285271</name>
+    <uri>https://static.bobby285271.top</uri>
+</author>
+<summary type="html"><![CDATA[SCNUACM 新生赛的 C 题被我用 N 方算法水过去了，很惭愧，还是想了解一下正解。当然了，一切的基础，就是熟悉相关的模板咯！题目https://www.luogu.com.cn/probl...]]></summary>
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html" xml:lang="zh-CN"><![CDATA[
+<p>SCNUACM 新生赛的 C 题被我用 N 方算法水过去了，很惭愧，还是想了解一下正解。当然了，一切的基础，就是熟悉相关的模板咯！</p><h2>题目</h2><p><a href="https://www.luogu.com.cn/problem/P3372">https://www.luogu.com.cn/problem/P3372</a></p><h2>思路</h2><blockquote>以下内容<strong>仅为个人理解，可能存在错误</strong>。</blockquote><p>显然，对给出的区间中的每一个数逐个加 k（操作 1）或者一个一个数累加下去来求和（操作 2）是会超时的。我们先抛开操作 1 不谈，试想一下对于操作 2，如果我们可以把这个区间分成几个小块，然后又事先知道每一小块中的元素求和的结果，那我求和的时候是不是就不需要算那么多项呢？是不是也就快一点呢？于是就有了分块思想。如果我们把这个思想给贯彻地彻底一些，事先将几个小块拼在一起形成一个大块，又事先算出每一大块中的元素求和的结果，会不会再更快一些呢？以此类推，树形结构就被我们构建出来了。事实上，线段树就是一种二叉树（但不一定是完全二叉树，下面配图就是一个反例，感谢 CGY 提醒）。它的每一个子节点都表示整个序列中的一段子区间，每个叶子节点都表示序列中的单个元素信息，父节点整合了他的每一个子节点的信息。</p><blockquote>有人会问既然是求和，直接前缀和不就好了吗。刚开始我也是这样想的，果然后来我就看到了树状数组的模板，后面也会去试一下。但是上面这个思路可以处理更多的情况，例如我求个最大值最小值我也可以应用。</blockquote><p>假设我的序列已经读入完毕并储存到数组 a 了（这个简单）：</p><pre><code class="lang-cpp">long long a[maxn + 2];
+long long n, m;
+scanf(&quot;%lld%lld&quot;, &amp;n, &amp;m);
+for (long long i = 1; i &lt;= n; i++)
+    scanf(&quot;%lld&quot;, &amp;a[i]);</code></pre><p>虽然说不一定是完全二叉数，但是可以用<strong>类似于</strong>创建完全二叉树的方式来创建线段树。首先，考虑单个节点。我们使用一个结构体来储存节点的信息，<code>l</code> 和 <code>r</code> 是这个节点维护的区间范围，<code>sum</code> 储存这个区间的和（也就是说 <code>sum</code> 储存了从 <code>a[l]</code> 到 <code>a[r]</code> 所有元素的和）。这里不妨结合图来理解（转载自洛谷）：</p><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/xianduanshu.png" alt="" title=""></p><p>接下来我们考虑整棵数。我们使用数组 t 存这颗树，用数组 t 的下标表示每个节点的编号。为什么数组要开数据量的四倍呢，可以通过计算树的高度，然后用等比数列求和公式得出。</p><pre><code class="lang-cpp">struct tree
+{
+    long long l, r;
+    long long sum;
+} t[4 * maxn + 2];</code></pre><p>接下来我们就开始建树。自然要从根开始一层一层地建下去。我们整一个建树函数，考虑向它传入三个参数，其中 <code>p</code> 是该节点的编号（其实就是数组 t 的下标），<code>l</code> 和 <code>r</code> 是这个节点维护的区间范围。</p><pre><code class="lang-cpp">void build(long long p, long long l, long long r);</code></pre><p>我们把这个节点建好了之后就去建它的左右儿子两个节点，显然它们的编号是 <code>p * 2</code> 和 <code>p * 2 + 1</code>（还是数组 t 的下标），这两个子节点维护的区间范围自然就要减半了。我们假设 <code>mid = (l + r) / 2</code>，那么就让左儿子维护 <code>l</code> 到 <code>mid</code>，右儿子维护 <code>mid + 1</code> 到 <code>r</code>。</p><p>当然，我们不可能一直建下去，当 <code>l == r</code> 的时候这个节点只维护一个元素，这个元素正正是 <code>a[l]</code>（或者 <code>a[r]</code>）。这时就可以开始求 <code>sum</code> 而无需再往下建树了。你会发现 <code>t[p].sum = a[l];</code>，<code>p</code> 依然是这个节点本身的编号。那么那些 <code>l != r</code> 的节点又怎样计算 <code>sum</code> 呢？就利用上面所说的思想，直接把两个子节点的 <code>sum</code> 加在一起就是自己的 <code>sum</code> 了。</p><pre><code class="lang-cpp">void build(long long p, long long l, long long r)
+{
+    t[p].l = l;
+    t[p].r = r;
+    if (l == r)
+    {
+        t[p].sum = a[l];
+        return;
+    }
+    long long mid = (l + r) / 2;
+    build(p * 2, l, mid);
+    build(p * 2 + 1, mid + 1, r);
+    t[p].sum = t[p * 2].sum + t[p * 2 + 1].sum;
+}</code></pre><p>让我们在 main 函数中调用这个函数，我们让根节点的编号为 1，按照题意根节点维护的区间范围自然是 <code>l</code> 到 <code>n</code>：</p><pre><code class="lang-cpp">build(1, 1, n);</code></pre><p>好了我们现在再来考虑一下操作 1，操作 1 是否也可以应用类似的思想呢？我们很容易想到一种看起来很简单的方法。同样是将序列分成一个一个的小块，我们直接给整个小块打上一个标签，告诉大家「这个小块里面的元素都应该被加上 k」。而小块中的元素我就干脆不碰它了。于是<strong>懒标签</strong>也就有了。我们在结构体中添加一 <code>lazy</code>，用作这个「标签」。</p><pre><code class="lang-cpp">struct tree
+{
+    long long l, r;
+    long long sum, lazy;
+} t[4 * maxn + 2];</code></pre><p>假设我现在让 <code>x</code> 到 <code>y</code> 这个区间的所有元素全部加 z。根据分块思想，我可以拆分这个区间为几个小的区间，使这些小区间的 <code>sum</code> 我都在建树的时候提前算过。我假设其中一个小的区间，也就是刚才建好的树的其中一个节点（假设它的编号为 p）维护的区间范围为 <code>t[p].r</code> 到 <code>t[p].l</code>。我们准备一个函数来处理这件事：</p><pre><code class="lang-cpp">void change(long long p, long long x, long long y, long long z);</code></pre><p>我们直接对 <code>sum</code> 加上「元素个数」个 z，然后打上标签，声明 <code>t[p].r</code> 到 <code>t[p].l</code> 中所有数都应该被加上 z。</p><pre><code class="lang-cpp">t[p].sum += z * (t[p].r - t[p].l + 1);
+t[p].lazy += z;</code></pre><p>但是问题也来了，如何正确地<strong>拆分给定区间为几个小的区间</strong>呢。显然我们要让这些<strong>小的区间</strong>的数量尽量少，一个简单粗暴的方法就是：既然我们有一棵树，树上每个节点都有标明它维护的区间范围，我们就从这棵树的根开始，从上往下枚举这些区间，只到找到合适的区间。何为合适？</p><pre><code class="lang-cpp">if (x &lt;= t[p].l &amp;&amp; y &gt;= t[p].r)
+{
+    t[p].sum += z * (t[p].r - t[p].l + 1);
+    t[p].lazy += z;
+}</code></pre><p>如果条件满足，我们就成功地找到了一个<strong>小的区间</strong>。如果条件不满足，我们还需要继续寻找其它的<strong>小的区间</strong>直到这些小区间拼起来正好是给定的区间。显然一个节点的左儿子和右儿子如果都是上面所说的<strong>合适的</strong>小区间，那么<strong>小的区间</strong>的数量就不是最小了，因为这个节点本身也必然是合适的。于是我们直接考虑下一层的节点。</p><pre><code class="lang-cpp">long long mid = (t[p].l + t[p].r) / 2;
+if (x &lt;= mid)
+    change(p * 2, x, y, z);
+if (y &gt; mid)
+    change(p * 2 + 1, x, y, z);</code></pre><p>要注意的是，当子节点的 <code>sum</code> 被改变了，要及时地将变更传递回来。</p><pre><code class="lang-cpp">t[p].sum = t[p * 2].sum + t[p * 2 + 1].sum;</code></pre><p>按理来说这个 change 函数我们基本就实现出来了。但是有一个非常坑的地方，就是如果我连续进行多个操作 1，在第一个操作 1 时，我的 <code>t[p].sum</code> 恰好是一个合适的小区间，被修改了，但是 <code>t[p * 2].sum</code> 和 <code>t[p * 2 + 1].sum</code> 是没有变动的，因为变更都被拦截在 <code>t[p].lazy</code> 那里了。在第二个操作 1 时，<code>t[p].sum</code> 可能不是一个合适的小区间，但 <code>t[p * 2].sum</code> 是。<code>t[p * 2].sum</code> 被修改了，而且通过上面这一行代码传了回去。试想一下 <code>t[p].sum</code> 的值是不是会出现错误呢？于是在必要的时候，懒标记储存的更改还是得下放下去。那懒标记存在的意义到底在哪里？要知道的是我下放懒标记仅仅是因为 <code>t[p].sum</code> 不是一个合适的小区间。如果它是的话，这个懒标记还是可以节约时间的。</p><p>懒标记的下放很简单，就是将左右儿子的 <code>sum</code> 和 <code>lazy</code> 给改过来，<strong>把自己的懒标记归零</strong>：</p><pre><code class="lang-cpp">void spread(long long p)
+{
+    if (t[p].lazy)
+    {
+        t[p * 2].sum += t[p].lazy * (t[p * 2].r - t[p * 2].l + 1);
+        t[p * 2 + 1].sum += t[p].lazy * (t[p * 2 + 1].r - t[p * 2 + 1].l + 1);
+        t[p * 2].lazy += t[p].lazy;
+        t[p * 2 + 1].lazy += t[p].lazy;
+        t[p].lazy = 0;
+    }
+}</code></pre><p>这样子我们的 change 函数也就完成了！</p><pre><code class="lang-cpp">void change(long long p, long long x, long long y, long long z)
+{
+    if (x &lt;= t[p].l &amp;&amp; y &gt;= t[p].r)
+    {
+        t[p].sum += z * (t[p].r - t[p].l + 1);
+        t[p].lazy += z;
+        return;
+    }
+    spread(p);
+    long long mid = (t[p].l + t[p].r) / 2;
+    if (x &lt;= mid)
+        change(p * 2, x, y, z);
+    if (y &gt; mid)
+        change(p * 2 + 1, x, y, z);
+    t[p].sum = t[p * 2].sum + t[p * 2 + 1].sum;
+}</code></pre><p>我们回到开头，我们希望让 <code>x</code> 到 <code>y</code> 这个区间的所有元素全部加 z，那么我们来调用这个函数。要让这些<strong>小的区间</strong>的数量尽量少，我们从树根开始查找：</p><pre><code class="lang-cpp">long long q, x, y, z;
+scanf(&quot;%lld&quot;, &amp;q);
+if (q == 1)
+{
+    scanf(&quot;%lld%lld%lld&quot;, &amp;x, &amp;y, &amp;z);
+    change(1, x, y, z);
+}</code></pre><p>那么如果我想求出给定区间的和，按照上面的思想，同样也是<strong>拆分给定区间为几个小的区间</strong>。我们开一个 <code>ans</code> 变量，当找到合适的小区间时就把它的 <code>sum</code> 给累加进去。其实和 change 函数的实现几乎一样。但要注意的是，如果发现有懒标记没有下放而这个区间又不是一个合适的小区间的时候，还是要下放。不然如果它的左右孩子有一个是合适的小区间，累加进去的 <code>sum</code> 就是错的。</p><pre><code class="lang-cpp">long long ask(long long p, long long x, long long y)
+{
+    if (x &lt;= t[p].l &amp;&amp; y &gt;= t[p].r)
+        return t[p].sum;
+    spread(p);
+    long long mid = (t[p].l + t[p].r) / 2;
+    long long ans = 0;
+    if (x &lt;= mid)
+        ans += ask(p * 2, x, y);
+    if (y &gt; mid)
+        ans += ask(p * 2 + 1, x, y);
+    return ans;
+}</code></pre><p>在 main 函数里面调用的时候，还是要从树根开始选取合适的小区间。</p><pre><code class="lang-cpp">long long q, x, y;
+scanf(&quot;%lld&quot;, &amp;q);
+if (q == 2)
+{
+    scanf(&quot;%lld%lld&quot;, &amp;x, &amp;y);
+    printf(&quot;%lld\n&quot;, ask(1, x, y));
+}</code></pre><h2>AC 代码</h2><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const long long maxn = 100010;
+long long a[maxn + 2];
+struct tree
+{
+    long long l, r;
+    long long sum, lazy;
+} t[4 * maxn + 2];
+
+void build(long long p, long long l, long long r)
+{
+    t[p].l = l;
+    t[p].r = r;
+    if (l == r)
+    {
+        t[p].sum = a[l];
+        return;
+    }
+    long long mid = (l + r) / 2;
+    build(p * 2, l, mid);
+    build(p * 2 + 1, mid + 1, r);
+    t[p].sum = t[p * 2].sum + t[p * 2 + 1].sum;
+}
+
+void spread(long long p)
+{
+    if (t[p].lazy)
+    {
+        t[p * 2].sum += t[p].lazy * (t[p * 2].r - t[p * 2].l + 1);
+        t[p * 2 + 1].sum += t[p].lazy * (t[p * 2 + 1].r - t[p * 2 + 1].l + 1);
+        t[p * 2].lazy += t[p].lazy;
+        t[p * 2 + 1].lazy += t[p].lazy;
+        t[p].lazy = 0;
+    }
+}
+
+void change(long long p, long long x, long long y, long long z)
+{
+    if (x &lt;= t[p].l &amp;&amp; y &gt;= t[p].r)
+    {
+        t[p].sum += z * (t[p].r - t[p].l + 1);
+        t[p].lazy += z;
+        return;
+    }
+    spread(p);
+    long long mid = (t[p].l + t[p].r) / 2;
+    if (x &lt;= mid)
+        change(p * 2, x, y, z);
+    if (y &gt; mid)
+        change(p * 2 + 1, x, y, z);
+    t[p].sum = t[p * 2].sum + t[p * 2 + 1].sum;
+}
+
+long long ask(long long p, long long x, long long y)
+{
+    if (x &lt;= t[p].l &amp;&amp; y &gt;= t[p].r)
+        return t[p].sum;
+    spread(p);
+    long long mid = (t[p].l + t[p].r) / 2;
+    long long ans = 0;
+    if (x &lt;= mid)
+        ans += ask(p * 2, x, y);
+    if (y &gt; mid)
+        ans += ask(p * 2 + 1, x, y);
+    return ans;
+}
+
+int main()
+{
+    long long n, m;
+    scanf(&quot;%lld%lld&quot;, &amp;n, &amp;m);
+    for (long long i = 1; i &lt;= n; i++)
+        scanf(&quot;%lld&quot;, &amp;a[i]);
+    build(1, 1, n);
+    for (long long i = 1; i &lt;= m; i++)
+    {
+        long long q, x, y, z;
+        scanf(&quot;%lld&quot;, &amp;q);
+        if (q == 1)
+        {
+            scanf(&quot;%lld%lld%lld&quot;, &amp;x, &amp;y, &amp;z);
+            change(1, x, y, z);
+        }
+        else
+        {
+            scanf(&quot;%lld%lld&quot;, &amp;x, &amp;y);
+            printf(&quot;%lld\n&quot;,ask(1, x, y));
+        }
+    }
+    return 0;
+}</code></pre>
+]]></content>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/18/segment-tree.html" thr:count="0"/>
+</entry>
+<entry>
+<title type="html"><![CDATA[动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020）]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html" />
+<id>https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html</id>
+<updated>2019-11-17T15:29:00+00:00</updated>
+<published>2019-11-17T15:29:00+00:00</published>
+<author>
+    <name>bobby285271</name>
+    <uri>https://static.bobby285271.top</uri>
+</author>
+<summary type="html"><![CDATA[为啥突然想要看动态规划呢，是因为昨天做了去年蓝桥杯预选赛 16/17 的题，做到 B 题发现正解其实应该是动态规划的。虽然我交了一发贪心过了，但想到两个星期后就是热身赛还是得搞搞突击才行。引入周...]]></summary>
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html" xml:lang="zh-CN"><![CDATA[
+<p>为啥突然想要看动态规划呢，是因为昨天做了去年蓝桥杯预选赛 16/17 的题，做到 B 题发现正解其实应该是动态规划的。虽然我交了一发贪心过了，但想到两个星期后就是热身赛还是得搞搞突击才行。</p><h2>引入</h2><p>周四香农先修班讲了一个斐波拉契数列的专题，有一个问题是这样的：假设有 n 级楼梯，我从底部往上爬，每次可以上 1 级，也可以上 2 级楼梯，问从底部到顶部一共有多少种爬楼梯的方法。</p><p>我第一时间想到的是搜索和回溯，但是既然是斐波拉契数列的专题，也就有了 $f(n) = f(n-1) + f(n-2)$ 这个公式。我简单说一下这个式子是怎么来的吧。我们不妨假设我们走了 x 步之后上到了第 n 级，那我第 x-1 步在什么位置呢？只能是第 n-1 和 n-2 级。$f(n-1)$ 是走到 n-1 级楼梯时的方法数，$f(n-2)$ 同理。考虑一下边界情况，就是斐波拉契数列了呗。</p><h2>P1164 -（二维 DP）</h2><p>题目：<a href="https://www.luogu.org/problem/P1164">https://www.luogu.org/problem/P1164</a></p><p>不妨就来考虑一下「引入」小节的思路（模拟退火是啥我也不会），我们要求吃够 m 块钱，和爬 n 级楼梯其实是一回事。我<strong>上 1 级台阶还是 2 级台阶</strong>，其实和对于一道菜，我<strong>吃还是不吃</strong>是一回事。区别在哪呢，这里我们有很多不同的菜。然而我们也不用想太多，就让它们按顺序逐个上菜好了，然后我们<strong>逐个</strong>决定是吃还是不吃，顺便记下到底花了多少钱<del>（注意上菜不代表我们就要吃嘛对吧，吃了才花钱）</del>。</p><p>我们定义 <code>f[i][j]</code> 为上了 i 道菜用光 j 元钱的办法总数。假设我们现在已经上了 i-1 道菜，接下来上第 i 道菜。我们就有两个选择：</p><ul><li>吃（花钱）。</li><li>不吃（不花钱）。</li></ul><p>如果不吃，那我上 i 道菜用光 j 元钱的方法数，和上了 i-1 道菜用光 j 元钱的方法数一样。如果我吃，那我上 i 道菜用光 j 元钱的方法数，和上了 i-1 道菜用光（j-这道菜的价格）的方法数一样。将两种情况和在一起，于是有：</p><pre><code class="lang-cpp">f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>通常来讲这就结束了，但是这道菜的价格我们却没有讨论清楚。首先，如果我没钱吃着道菜呢？那就只能不吃了呗。</p><pre><code class="lang-cpp">if(j &lt; 第i道菜的价格) f[i][j] = f[i - 1][j];
+if(j &gt;= 第i道菜的价格) f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>有些人想问 <code>j == 第i道菜的价格</code> 这种情况怎么搞，我们将这种情况代入到上面的代码，其实就是 <code>f[i][j] = f[i - 1][j] + f[i - 1][0]</code>，<code>f[i - 1][0]</code> 其实就是上了 i-1 个菜我全不吃，消费 0 元嘛，显然只有一种情况。但形如 <code>f[i][0]</code> 的数据又可以从哪推出呢？不如特判一下，当然直接给他们赋值也是可以的：</p><pre><code class="lang-cpp">if(j &lt; 第i道菜的价格) f[i][j] = f[i - 1][j];
+if(j == 第i道菜的价格) f[i][j] = f[i - 1][j] + 1;
+if(j &gt; 第i道菜的价格) f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>既然有了递推式（状态转移方程），我们要的是上完 n 道菜后花掉 m 块钱的方案，那就遍历一下这个数组直到得出答案为止呗。上代码：</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int a[101], f[101][10001];
+int main()
+{
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 1; i &lt;= n; i++)
+    {
+        cin &gt;&gt; a[i];
+    }
+    for (int i = 1; i &lt;= n; i++)
+    {
+        for (int j = 1; j &lt;= m; j++)
+        {
+            if (j &gt; a[i])
+                f[i][j] = f[i - 1][j] + f[i - 1][j - a[i]];
+            if (j == a[i])
+                f[i][j] = f[i - 1][j] + 1;
+            if (j &lt; a[i])
+                f[i][j] = f[i - 1][j];
+        }
+    }
+    cout &lt;&lt; f[n][m] &lt;&lt; endl;
+    return 0;
+}</code></pre><h2>P1048（一维 DP）</h2><p>题目：<a href="https://www.luogu.org/problem/P1048">https://www.luogu.org/problem/P1048</a></p><p>这道题按照上面的思路打大概是怎样的呢？<del>显然</del>，我们开一个二位数组 <code>f[i][j]</code> 来表示过目 i 件药材（过目意味着我在采摘和不采摘中二选一）耗去 j 时间后的最大价值就可以了。时间如果足够，就考虑一下要不要采摘这个药材。同样地，<strong>采摘</strong>第 i 件药材耗去 j 时间的这种情况下的最大价值是过目 i-1 件药材时耗去（j-药材采摘时间）时间的最大价值。<strong>不采摘</strong>第 i 件药材耗去 j 时间的这种情况下的最大价值是过目 i-1 件药材时耗去 j 时间的最大价值。对于两种情况我们取较大者即可。</p><p>那我们为啥提出希望降维呢？我们看上面的代码：</p><pre><code class="lang-cpp">if (j &gt; a[i])
+    f[i][j] = f[i - 1][j] + f[i - 1][j - a[i]];
+if (j == a[i])
+    f[i][j] = f[i - 1][j] + 1;
+if (j &lt; a[i])
+    f[i][j] = f[i - 1][j];</code></pre><p>再来看一下这一题的核心代码（<code>a[i]</code> 为采摘时间，<code>v[i]</code> 为药材价值）：</p><pre><code class="lang-cpp">if (j &gt;= a[i])
+    f[i][j] = max(f[i - 1][j - a[i]] + v[i], f[i - 1][j]);
+else
+    f[i][j] = f[i - 1][j];</code></pre><p>第 i 件物品需要求的信息永远是从第 i-1 件物品那里得出来的。如果我们最后只需要第 i 件物品的答案而不需要 i-1、i-2... 件物品的答案，我们为何不用新的信息覆盖旧的信息呢？修改的方法很简单：</p><pre><code class="lang-cpp">if (j &gt;= a[i])
+    f[j] = max(f[j - a[i]] + v[i], f[j]);
+// 下面的没必要保留了吧。
+// else
+//     f[j] = f[j];</code></pre><p>虽然降维了，但遍历还是要以上面的方式来，于是我们就得到一个似乎很有道理的代码。</p><pre><code class="lang-cpp">for (int i = 1; i &lt;= m; i++)
+{
+    for (int j = a[i]; j &lt;= t; j++) // 既然上面只有一个分支结构，那我在循环条件那里保证就好了。
+    {
+        f[j] = max(f[j - a[i]] + v[i], f[j]);
+    }
+}
+cout &lt;&lt; f[t] &lt;&lt; endl;</code></pre><p>这却是一个非常典型的错误，因为按照原本的意思，第 i 个物品的数据要从 i-1 个物品的数据推出来，但我在上面求第 i 个物品的 <code>f[j]</code> 的时候却使用到了已经更新过的，已经是第 i 个物品的数据 f[j - a[i]]。怎样避免呢：</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int t, m;
+    cin &gt;&gt; t &gt;&gt; m;
+    int a[m + 10], v[m + 10];
+    for (int i = 1; i &lt;= m; i++)
+    {
+        cin &gt;&gt; a[i] &gt;&gt; v[i];
+    }
+    int f[t + 10];
+    memset(f, 0, sizeof(f));
+    for (int i = 1; i &lt;= m; i++)
+    {
+        for (int j = t; j &gt;= a[i]; j--)
+        {
+            f[j] = max(f[j], f[j - a[i]] + v[i]);
+        }
+    }
+    cout &lt;&lt; f[t] &lt;&lt; endl;
+    return 0;
+}</code></pre><p>附：<a href="https://www.luogu.org/blog/lenfrey/post-ti-xie-p1048-cai-yao">一位神犇提供的题解，感觉比较易懂</a></p><h2>P1020（最大上升子序列）</h2><p>题目：<a href="https://www.luogu.com.cn/problem/P1020">https://www.luogu.com.cn/problem/P1020</a></p><p>第二问知道是求最大上升序列之后就很简单了，最大的问题在于为什么是求这个。试给出以下解释（严格证明需要组合数学的知识）：对于给出的序列（输入数据），必定存在至少一个的最大上升子序列。任取一个最大上升子序列，其中任两个元素（导弹）必定由两套不同系统进行拦截。意味着如果最大上升子序列长度为 n，我们最少需要的系统数目必定大于或等于 n。<br>接下来可以用数学归纳法去解释为什么当最大上升子序列长度为 n 时最少只需要 n 套系统。<br>当 n = 1 时，给出的序列（输入数据）是单调递减的，显然只需要一套系统，结论成立。<br>假设 n = k 时结论成立。也就是只需要 k 套系统。当 n = k + 1 时，试将给出的序列一分为二分别求解，具体方法如下：枚举出所有的最大上升子序列，将每个最大上升子序列的尾元素分别取出。如果某个数是多个最大上升子序列的尾元素则只取出一次。将取出的数按照原本的先后顺序排列生成一个新的序列（假设叫序列 1）。未取出的数也按照原来的先后顺序排列形成另一个新的序列（假设叫序列 2）。<br>此时序列 2 的最大上升子序列长度必定为 k，那么根据前面的假设，需要 k 套系统。而序列 1 是单调递减的（可用反证法证明），由已知需要 1 套系统。所以加起来就是 k + 1 套系统。因为 k + 1 套系统可以拦截所有导弹，而由已知，需要配备的系统数需要大于等于 k + 1，所以 n = k + 1 时结论也成立。</p><p>100 分代码（n 方算法）</p><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int a[100005], num = 1;
+int ans[100005];
+int main()
+{
+    while (cin &gt;&gt; a[num])
+        num++;
+    num--;
+    a[0] = 50001;
+    int maxans = 0;
+    for (int i = 1; i &lt;= num; i++)
+    {
+        for (int j = 0; j &lt; i; j++)
+        {
+            if (a[i] &lt;= a[j])
+            {
+                // cout &lt;&lt; ans[i] &lt;&lt; &quot; &quot; &lt;&lt; ans[j] + 1 &lt;&lt; endl;
+                ans[i] = max(ans[i], ans[j] + 1);
+            }
+        }
+        // cout &lt;&lt; ans[i] &lt;&lt; endl;
+        if (ans[i] &gt; maxans)
+            maxans = ans[i];
+    }
+    cout &lt;&lt; maxans &lt;&lt; endl;
+
+    memset(ans,0,sizeof(ans));
+    maxans = 0;
+    a[0] = 0;
+    for (int i = 1; i &lt;= num; i++)
+    {
+        for (int j = 0; j &lt; i; j++)
+        {
+            if (a[i] &gt; a[j])
+            {
+                // cout &lt;&lt; ans[i] &lt;&lt; &quot; &quot; &lt;&lt; ans[j] + 1 &lt;&lt; endl;
+                ans[i] = max(ans[i], ans[j] + 1);
+            }
+        }
+        // cout &lt;&lt; ans[i] &lt;&lt; endl;
+        if (ans[i] &gt; maxans)
+            maxans = ans[i];
+    }
+    cout &lt;&lt; maxans &lt;&lt; endl;
+    return 0;
+}</code></pre><p>200 分代码（nlogn 算法）</p><pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int a[100010], b[100010];
+int num = 0, p, ans;
+
+bool cmp(int a, int b)
+{
+    return a &gt; b;
+}
+
+int main()
+{
+    while (cin &gt;&gt; a[num])
+        num++;
+
+    ans = 1;
+    b[0] = a[0];
+    for (int i = 1; i &lt; num; i++)
+    {
+        if (a[i] &lt;= b[ans - 1]){
+            b[ans] = a[i];
+            ans++;
+        }
+        else
+        {
+            p = upper_bound(b, b + ans, a[i], cmp) - b;
+            b[p] = a[i];
+        }
+    }
+    // for (int i = 0; i &lt; ans; i++)
+    // {
+    //     cout &lt;&lt; b[i] &lt;&lt; &quot; &quot;;
+    // }
+    // cout &lt;&lt; endl;
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    ans = 1;
+    b[0] = a[0];
+    for (int i = 1; i &lt; num; i++)
+    {
+        if (a[i] &gt; b[ans - 1]){
+            b[ans] = a[i];
+            ans++;
+        }
+        else
+        {
+            p = lower_bound(b, b + ans, a[i]) - b;
+            b[p] = a[i];
+        }
+    }
+    // for (int i = 0; i &lt; ans; i++)
+    // {
+    //     cout &lt;&lt; b[i] &lt;&lt; &quot; &quot;;
+    // }
+    // cout &lt;&lt; endl;
+    cout &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}</code></pre>
+]]></content>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/11/17/dynamic-prgramming-01-backpack-problem.html" thr:count="0"/>
+</entry>
+</feed>
