@@ -12,9 +12,9 @@ xml:base="https://static.bobby285271.top/index.php/tag/Travis-CI/"
 <id>https://static.bobby285271.top/index.php/feed/atom/tag/Travis-CI/</id>
 <link rel="self" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/tag/Travis-CI/" />
 <entry>
-<title type="html"><![CDATA[Hexo + GitHub Pages 博客搭建全过程]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2017/10/21/generate-a-hexo-blog-and-deploy-it-on-github.html" />
-<id>https://static.bobby285271.top/index.php/2017/10/21/generate-a-hexo-blog-and-deploy-it-on-github.html</id>
+<title type="html"><![CDATA[How to Generate a Hexo Blog and Deploy it on GitHub]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2017/10/21/How-to-Generate-a-Hexo-Blog-and-Deploy-it-on-GitHub.html" />
+<id>https://static.bobby285271.top/index.php/2017/10/21/How-to-Generate-a-Hexo-Blog-and-Deploy-it-on-GitHub.html</id>
 <updated>2017-10-20T16:00:00+00:00</updated>
 <published>2017-10-20T16:00:00+00:00</published>
 <author>
@@ -22,7 +22,7 @@ xml:base="https://static.bobby285271.top/index.php/tag/Travis-CI/"
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[相信我，这是最最最适合懒人的 Hexo 教程！全文内容保证和百度搜到的完全不一样！只需一个浏览器，像玩转 Jekyll Now 那样玩转 Hexo 是完全有可能的！没错，我们将要用到的“黑科技”...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2017/10/21/generate-a-hexo-blog-and-deploy-it-on-github.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2017/10/21/How-to-Generate-a-Hexo-Blog-and-Deploy-it-on-GitHub.html" xml:lang="zh-CN"><![CDATA[
 <p>相信我，这是最最最适合懒人的 Hexo 教程！全文内容保证和百度搜到的完全不一样！只需一个浏览器，像玩转 <a href="http://www.jekyllnow.com">Jekyll Now</a> 那样玩转 Hexo 是完全有可能的！没错，我们将要用到的“黑科技”就是 <a href="https://travis-ci.org">Travis CI</a>！ 毕竟这么高级的玩具（误）如果不拿来好好利用就浪费了。</p><p><strong>以下为正文部分，请注意：为了降低阅读门槛，我们提供了大量的代码供参考。在实际操作中，请不要一味地复制粘贴，所有代码中带有全角标点“【】”的地方请务必作相应的替换，不要保留中括号。</strong></p><h2>扫盲</h2><h3>Hexo</h3><p><a href="https://hexo.io/zh-cn">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 <a href="https://daringfireball.net/projects/markdown">Markdown</a>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><h3>Git</h3><p><a href="https://git-scm.com">Git</a> 是 Linus Torvalds 为了帮助管理 <a href="https://www.kernel.org">Linux</a> 内核开发而开发的一个开放源码的版本控制软件，可以有效、高速的处理从很小到非常大的项目版本管理。</p><h3>GitHub</h3><p><a href="https://github.com">GitHub</a> 是最大的 Git 版本库托管商，是成千上万的开发者和项目能够合作进行的中心。 大部分 Git 版本库都托管在 GitHub，很多开源项目使用 GitHub 实现 Git 托管、问题追踪、代码审查以及其它事情。</p><h3>Travis CI</h3><p><a href="https://travis-ci.org">Travis CI</a> 是目前新兴的开源持续集成构建项目，它采用 <a href="http://www.yaml.org">YAML</a> 格式，简洁清新独树一帜。目前不少 GitHub 项目都已经移入到 Travis CI 的构建队列中。</p><h2>铺垫</h2><h3>GitHub & Git 上手</h3><h4>注册 GitHub 账户并验证邮箱</h4><p>前往 <a href="https://github.com/join">这里</a> 注册邮箱，详情请阅读 <a href="https://help.github.com/articles/signing-up-for-a-new-github-account">官方文档（英文）</a> 和 <a href="http://jingyan.baidu.com/article/455a9950abe0ada167277864.html">百度经验上的教程</a>；前往<a href="https://github.com/settings/emails">这里</a> 验证邮箱，详情请阅读 <a href="https://help.github.com/articles/verifying-your-email-address">官方文档（英文）</a>。</p><h4>GitHub 基本图形化操作</h4><p>请阅读 <a href="https://guides.github.com/activities/hello-world">官方文档（英文）</a>，<a href="http://blog.csdn.net/kabulore/article/details/51801337">这里</a> 提供了中文翻译。这个指南将帮助你了解创建和使用仓库、创建和管理分支、改变一个文件并将它提交到 GitHub 上和发起以及合并请求的方法。</p><h4>最最最基本的几个 Git 命令</h4><p>别被百度出来的什么命令大全吓到了，其实无非就几个命令：</p><ul><li><code>git init</code>：在当前目录新建一个 Git 代码库;</li><li><code>git clone 【项目 URL】</code>：下载一个项目和它的整个代码历史；</li><li><code>git add -A</code>：添加当前目录的所有文件到暂存区；</li><li><code>git commit -m 【提交信息】</code>：提交暂存区到仓库区；</li><li><code>git push 【远程仓库别称】 【分支】</code>：上传本地指定分支到远程仓库；</li><li><code>git pull 【远程仓库别称】 【分支】</code>：取回远程仓库的变化，并与本地分支合并；</li><li><code>git branch 【分支】</code>：新建一个分支，但依然停留在当前分支；</li><li><code>git checkout 【分支】 </code>：切换到指定分支，并更新工作区。</li></ul><p>若想深入学习可阅读 <a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html">常用 Git 命令清单</a> 和 <a href="https://git-scm.com/book/zh">官方文档</a>，实际上等你真的用到这些功能时再百度慢慢学也不迟。当然，如果你连这些基本命令都看不懂，没关系，我们会在后面具体地介绍它们。</p><h3>Markdown 语法上手</h3><p>这是写博客必备的一种语法，而且学起来比你想象中简单很多，这里提供一个 <a href="http://www.appinn.com/markdown">说明文档</a> 和一个 <a href="http://commonmark.org/help/tutorial">交互式入门向导（英文）</a>。</p><h2>开始</h2><h3>迈出第一步</h3><p>进入 GitHub 网站，登录你的账户，新建一个名为 <code>【你的 GitHub 用户名】.github.io</code> 的仓库，具体操作不再细讲。接下来应该看到的是类似这样的东西：</p><pre><code>Quick setup — if you’ve done this kind of thing before
 or https://github.com/xxx/xxx.github.io.git
 
@@ -265,7 +265,7 @@ env:
  global:
   - GH_REF: github.com/【你的 GitHub 用户名】/【你的 GitHub 用户名】.github.io.git</code></pre><p>作相应替换后点击“Commit new file”即可。和之前的配置文件看起来差不多的，解释一下：</p><ul><li><code>git submodule add https://github.com/【你的 GitHub 用户名】/【主题在 GitHub 仓库的仓库名，如 hexo-theme-material】.git themes/【改成你在站点配置文件中填写的主题别称，如 material】</code>：将你所 Fork 的主题仓库添加到站点仓库中；</li><li><code>hexo g</code>：生成网页；</li><li><code>cd ./public</code>：生成的网页都在这里面，我们只要里面的文件。</li></ul><h3>成功</h3><p>回到 Travis CI，按照前面所讲查看自己的构建进度，只需仓库名旁边的图标变成了 Build passing（底色还是原谅绿），你就可以前往 <code>https://【你的 GitHub 用户名】.github.io</code> 或你绑定的域名查看你的网页了。至于后续修改，只需前往【你的 GitHub 用户名】.github.io 仓库，确认所在分支后编辑相应的文件就行了，详情请参考 Hexo 的 <a href="https://hexo.io/zh-cn/docs">官方文档</a>，一旦仓库有变动，Travis 就会自动构建新的网页。</p><p>教程到此结束。</p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2017/10/21/generate-a-hexo-blog-and-deploy-it-on-github.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2017/10/21/generate-a-hexo-blog-and-deploy-it-on-github.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2017/10/21/How-to-Generate-a-Hexo-Blog-and-Deploy-it-on-GitHub.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2017/10/21/How-to-Generate-a-Hexo-Blog-and-Deploy-it-on-GitHub.html" thr:count="0"/>
 </entry>
 </feed>

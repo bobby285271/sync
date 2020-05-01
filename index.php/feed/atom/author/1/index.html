@@ -12,9 +12,9 @@ xml:base="https://static.bobby285271.top/index.php/author/1/"
 <id>https://static.bobby285271.top/index.php/feed/atom/author/1/</id>
 <link rel="self" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/author/1/" />
 <entry>
-<title type="html"><![CDATA[NixOS 安装与配置笔记]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/04/15/nixos-installation-and-configuration-guide.html" />
-<id>https://static.bobby285271.top/index.php/2020/04/15/nixos-installation-and-configuration-guide.html</id>
+<title type="html"><![CDATA[NixOS Installation and Configuration Guide]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html" />
+<id>https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html</id>
 <updated>2020-04-14T16:00:00+00:00</updated>
 <published>2020-04-14T16:00:00+00:00</published>
 <author>
@@ -22,7 +22,7 @@ xml:base="https://static.bobby285271.top/index.php/author/1/"
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[本文基于 NixOS 20.03 Beta 和 NixOS Manual 20.03 撰写。本文的写作缘由是 NixOS Manual 的编排设计很容易导致习惯了其它发行版安装和配置流程的新人入...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/04/15/nixos-installation-and-configuration-guide.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html" xml:lang="zh-CN"><![CDATA[
 <p>本文基于 NixOS 20.03 Beta 和 <a href="https://nixos.org/nixos/manual/">NixOS Manual 20.03</a> 撰写。本文的写作缘由是 NixOS Manual 的编排设计很容易导致习惯了其它发行版安装和配置流程的新人入坑失败。本篇指南给出的解决方案基本能满足<strong>大一软工专业课程学习</strong>和<strong>日常使用</strong>的需要。</p><p><strong>本文将假定你已经独立安装和配置过 Arch Linux、Gentoo 或任一官方不提供 GUI 安装程序的 Linux 发行版并掌握安装过程中涉及的大部分命令。</strong></p><h2>了解 NixOS</h2><p><a href="https://distrowatch.com/table.php?distribution=nixos">可以先从 DistroWatch 开始了解 NixOS 这个发行版</a>，<a href="https://nixos.org/nixos/about.html">接下来建议阅读 NixOS 官方的介绍</a>。有一个不太恰当的比喻，NixOS 相对于其它发行版有点像使用 Git + Markdown + Hexo 相对于无版本管理 + 手撸 HTML 文件，<a href="https://nixos.wiki/wiki/NixOS#Comparison_with_traditional_Linux_Distributions">NixOS Wiki 也给出了 NixOS 和其它发行版的最大区别所在</a>。而这一切实现的基础是 <strong>Nix</strong>，事实上 NixOS 中所有软件包（<strong>Nixpkgs</strong>）和系统配置都由 Nix 管理。要想了解 Nix，<a href="https://www.zhihu.com/question/279855101/answer/475896416">建议阅读 dram 大佬在知乎相关问题下的回答</a>。dram 是 TUNA 镜像站镜像 NixOS / Nix / Nixpkgs 的主要推动者之一。至于 NixOS 是否适合你，<a href="https://zhuanlan.zhihu.com/p/50623869">可以阅读这篇文章自行判断</a>。</p><h2>准备工作</h2><p>准备好安装 NixOS 了？让我们开始吧。前期的准备工作包括：数据备份、下载镜像、将镜像写入 U 盘、引导安装介质、连接到网络、建立分区、格式化分区、挂载分区，<strong>这一部分和其它（不带 GUI 安装程序的）Linux 发行版的安装几乎是一样的</strong>，这里不会细讲。</p><p>2020 年 3 月后清华镜像站就有 Nix / NixOS / Nixpkgs 的镜像了，<a href="https://mirrors.tuna.tsinghua.edu.cn/nixos-images/">NixOS 的安装介质可在这里下载</a>，建议选带桌面环境的镜像（可以通过文件名判断）。将写入 U 盘可以使用 <code>dd</code> 命令，具体用法（<code>path-to-image</code> 是 NixOS 安装介质的路径，<code>/dev/sdX</code> 则是写入目标）：</p><pre><code>sudo dd if=path-to-image of=/dev/sdX
 </code></pre><p>引导安装介质后，按照 <code>/etc/issue</code> 的提示操作即可进入桌面环境（启动登录管理器），注意默认搭载的账户 <code>nixos</code> 和 <code>root</code> 都没有密码：</p><pre><code>sudo systemctl start display-manager
 </code></pre><p>因为在线安装，联网是必须的。通常情况使用 NetworkManager 联网即可，<a href="https://nixos.org/nixos/manual/index.html#sec-installation-booting-networking">当然这里还有其它的联网方式</a>。</p><p>可选的分区工具除了熟悉的 GDisk 和 GNU Parted 这些 CLI 的分区工具之外，还有 GUI 的分区工具 GParted。<a href="https://nixos.org/nixos/manual/index.html#sec-installation-partitioning">NixOS Manual 对在命令行下分区做了详细的介绍</a>，<a href="https://nixos.org/nixos/manual/index.html#sec-installation-summary">还配有不少的例子</a>，<a href="https://wiki.archlinux.org/index.php/Partitioning">可以配合 ArchWiki 的相关文章进行阅读</a>。因为 Nix 并不会自动删除历史的软件包安装，<strong>根目录尽可能分大一些</strong>，否则随着时间推移 <code>/nix</code> 可能会占用较大空间。<strong>除了 Home 和 EFI 分区之外不建议（也没必要）设置独立分区</strong>。<strong>另外 NixOS 的回滚功能是由 Nix 实现的，和 Btrfs 无关</strong>，如果你选择 Btrfs 仅仅是因为它的快照特性，那么没有必要给根分区使用 Btrfs。</p><p>格式化分区之后就可以挂载分区了。分区应该挂载到 <code>/mnt</code> 下，例如根分区就挂载到 <code>/mnt</code>，Home 分区则 <code>/mnt/home</code>。<strong>特别留意 NixOS 下 EFI 分区应该挂载到 <code>/mnt/boot</code>。</strong>Swap 分区使用 <code>swapon</code> 启用即可。</p><h3>初始化 NixOS 配置文件</h3><p>接下来就是后期的准备工作了。事实上，如果你点开了前面的几个链接，你会发现 <code>/etc/nixos/configuration.nix</code> 是整个系统的灵魂所在。你的系统<strong>全局搭载</strong>的软件包和系统配置都取决于这个文件。<a href="https://linux.cn/article-8976-1.html">因此我们说这个发行版是「先配置后安装」的</a>。</p><p><strong>所以接下来的主要任务，就是配置 <code>configuration.nix</code>，这个文件会一直伴随着你的系统。</strong>一旦配置完成，你会使用到 <code>nixos-install</code> 脚本，这个脚本会读取这个文件，并调用 Nix 让其根据这个文件「造出对应的系统来」。而在安装好 NixOS 之后，你可以随时改动 <code>configuration.nix</code> 这个文件，然后使用 <code>nixos-rebuild</code> 脚本，这个脚本同样也是调用 Nix，让 Nix <strong>处理所有的变化</strong>，以「造出对应的系统来」。「造出来的系统」会<strong>和当前系统的状态无关</strong> 。这两个脚本笔者在后面会介绍其用法。</p><p>当然了，如果在 Live 环境里面直接编辑 <code>/etc/nixos/configuration.nix</code>，打开的是 Live 环境的配置文件。而现在我们需要为新的系统创建一个默认的 NixOS 的配置文件，在进入新系统之前，应该通过 <code>/mnt</code> 访问其文件<strong>（本文后续的命令，除非特别注明，否则一律需要在 <code>root</code> 账户下执行，可以使用 <code>su</code> 命令从普通用户切换到 <code>root</code> 账户）</strong>：</p><pre><code>nixos-generate-config --root /mnt
@@ -225,13 +225,13 @@ in
 </code></pre><p>要使这个配置生效，应该使用 <code>nixos-rebuild switch</code> 命令，如果你希望在构建这个配置的时候顺便升级自己的系统（当然如果你不改动 <code>configuration.nix</code> 单纯想升级系统，同样可以执行这个命令） ：</p><pre><code>nixos-rebuild switch --upgrade
 </code></pre><p>关于这个，<a href="https://nixos.org/nixos/manual/index.html#sec-changing-config">可以查看 NixOS Manual 了解详情</a>。</p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/04/15/nixos-installation-and-configuration-guide.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/04/15/nixos-installation-and-configuration-guide.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/04/15/NixOS-Installation-and-Configuration-Guide.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[How to Port Calamares to Arch Linux]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/18/port-calamares-to-arch-linux.html" />
-<id>https://static.bobby285271.top/index.php/2020/02/18/port-calamares-to-arch-linux.html</id>
+<title type="html"><![CDATA[How to Port Calamares to Arch Linux (en)]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" />
+<id>https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html</id>
 <updated>2020-02-17T16:00:00+00:00</updated>
 <published>2020-02-17T16:00:00+00:00</published>
 <author>
@@ -239,7 +239,7 @@ in
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[This article is for reference ONLY.Calamares is a distribution-independent installer framework. A...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/02/18/port-calamares-to-arch-linux.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" xml:lang="zh-CN"><![CDATA[
 <blockquote>This article is for reference ONLY.</blockquote><p>Calamares is a distribution-independent installer framework. As distributions like Arch Linux don't provide graphical installer, we can try to adapt Calamares to them. To make things easier, we simply start by trying to provide a <code>pacstrap</code> part for Calamares, which allow users to install a minimal Arch Linux system, then we add the Calamares installer to our Archiso.</p><h2>Getting Started</h2><p>Make sure that you have Git installed, fetch the source code by cloning the Calamares repository, to speed up, add <code>--depth=1</code> option:</p><pre><code>git clone https://github.com/calamares/calamares.git --depth=1
 </code></pre><p>Entering the repository, you will find lots of files and directories, don't panic! All you have to focus on are three files/directories: <code>settings.conf</code>, <code>src/branding/</code> and <code>src/modules/</code>. Let's try to deal with them one by one.</p><h2>Step One: <code>settings.conf</code></h2><p>Firstly, you will find something like this:</p><pre><code>sequence:
 - show:
@@ -368,13 +368,13 @@ pacman -Rscun qt5-doc qt5-examples --noconfirm
 ./build_calamares.sh
 </code></pre><p>Almost done! Don't forget to create a <code>pacstrap_calamares</code> file for Calamares. Create a <code>airootfs/usr/bin/pacstrap_calamares</code> file. You don't have to worry about how to fill the file. Someone has already done that for you! And <a href="https://raw.githubusercontent.com/endeavouros-team/install-scripts/master/pacstrap_calamares">here is the file</a>. Thanks for the work done by Endeavour OS team.</p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/18/port-calamares-to-arch-linux.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/02/18/port-calamares-to-arch-linux.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[2020 牛客寒假算法基础集训营题解]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/09/nowcoder-basic-algorithm-training-camp-solutions.html" />
-<id>https://static.bobby285271.top/index.php/2020/02/09/nowcoder-basic-algorithm-training-camp-solutions.html</id>
+<title type="html"><![CDATA[2020 Nowcoder Basic Algorithm Training Camp Solutions]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" />
+<id>https://static.bobby285271.top/index.php/2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html</id>
 <updated>2020-02-08T16:00:00+00:00</updated>
 <published>2020-02-08T16:00:00+00:00</published>
 <author>
@@ -382,7 +382,7 @@ pacman -Rscun qt5-doc qt5-examples --noconfirm
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[颓废了一个寒假，Codeforces 打来打去都是 Specialist，菜的一批。POJ 又刷到怀疑人生。后来被 Kaidora 神犇安排了这个集训营。当时已经是第四场要开始了，还是去了。果然...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/02/09/nowcoder-basic-algorithm-training-camp-solutions.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" xml:lang="zh-CN"><![CDATA[
 <p>颓废了一个寒假，Codeforces 打来打去都是 Specialist，菜的一批。POJ 又刷到怀疑人生。后来被 Kaidora 神犇安排了这个集训营。当时已经是第四场要开始了，还是去了。果然，哪怕都是自闭五小时每小时过一题，氪了金感觉就是不一样。</p><p>点击下方的页码查看相应场次的记录，第 $i$ 页对应的是第 $i-1$ 场比赛。</p><h1>2020 牛客寒假算法基础集训营 1</h1><blockquote>字符串、贪心、矩阵快速幂、概率论、计算几何、并查集、数论</blockquote><h2>1A. Honoka 和格点三角形</h2><h3>大意</h3><p>给出 $m \times n$ 格点矩阵，问在矩阵里面能找出多少个面积为 $1$，且至少有一条边平行于 $x$ 轴或 $y$ 轴的三角形。答案对 $1000000007$ 取模。</p><h3>思路</h3><p>若存在平行于 $x$ 轴或 $y$ 轴的边且长度为 $2$，一共有 $2(n-1)(m-2)m+2(m-1)(n-2)n$ 种情况。</p><p>若存在平行于 $x$ 轴或 $y$ 轴的边且长度为 $1$，除去已经计算过的情况（即还存在平行于$x$ 轴或 $y$ 轴且长度为 $2$ 的边），一共有 $2(m-1)(m-2)(n-2)+2(n-1)(n-2)(m-2)$ 种情况。</p><p>相加后化简，得到 $2(m+n-2)(2mn-3m-3n+4)$，利用 $ab\ mod\ c = ((a\ mod\ c)(b\ mod\ c))\ mod\ c$ 计算结果。</p><pre><code>#include &lt;bits/stdc++.h&gt;
 using namespace std;
 int main()
@@ -1663,13 +1663,13 @@ int main()
 }
 </code></pre><h2>B.</h2>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/09/nowcoder-basic-algorithm-training-camp-solutions.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/02/09/nowcoder-basic-algorithm-training-camp-solutions.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[How to Deploy WordPress on a Fedora Server]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/03/deploy-wordpress-on-a-fedora-server.html" />
-<id>https://static.bobby285271.top/index.php/2020/02/03/deploy-wordpress-on-a-fedora-server.html</id>
+<title type="html"><![CDATA[How to Deploy WordPress on a Fedora Server (en)]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html" />
+<id>https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html</id>
 <updated>2020-02-02T16:00:00+00:00</updated>
 <published>2020-02-02T16:00:00+00:00</published>
 <author>
@@ -1677,7 +1677,7 @@ int main()
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[First things firstYou should get a IP address after buying VPS, such as 123.123.123.123. Open you...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/02/03/deploy-wordpress-on-a-fedora-server.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html" xml:lang="zh-CN"><![CDATA[
 <h2>First things first</h2><p>You should get a IP address after buying VPS, such as <code>123.123.123.123</code>. Open your favourite terminal and enter:</p><blockquote>Replace <code>123.123.123.123</code> with your actual IP address.</blockquote><pre><code>ssh root@123.123.123</code></pre><p>Enter your password to login. Perform a full upgrade on your system:</p><pre><code>dnf upgrade
 </code></pre><h2>Package Installation</h2><p>Install Apache, PHP and MariaDB using the DNF package manager. There is NO need to install the <code>wordpress</code> package.</p><pre><code>dnf install @&quot;Web Server&quot; php-mysqlnd mariadb-server
 </code></pre><p>Enable the web and database services to start at boot time, then start them immediately:</p><pre><code>systemctl enable httpd.service mariadb.service
@@ -1690,13 +1690,13 @@ wget https://wordpress.org/latest.tar.gz</code></pre><p>Extract the downloaded a
 chown -R apache.apache wordpress
 chmod -R 755 wordpress</code></pre><h2>All Done</h2><p>Visit <code>123.123.123.123/wordpress</code>, and finish the installation.</p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/03/deploy-wordpress-on-a-fedora-server.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/02/03/deploy-wordpress-on-a-fedora-server.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[树的孩子兄弟表示法、树形动归（洛谷 P2014）]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/26/dynamic-programming-on-tree-structures.html" />
-<id>https://static.bobby285271.top/index.php/2019/12/26/dynamic-programming-on-tree-structures.html</id>
+<title type="html"><![CDATA[Dynamic Programming on Tree Structures (Luogu P2014)]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html" />
+<id>https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html</id>
 <updated>2019-12-26T09:22:00+00:00</updated>
 <published>2019-12-26T09:22:00+00:00</published>
 <author>
@@ -1704,7 +1704,7 @@ chmod -R 755 wordpress</code></pre><h2>All Done</h2><p>Visit <code>123.123.123.1
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[题目https://www.luogu.com.cn/problem/P2014思路以下内容仅为个人理解，可能存在错误。树的孩子兄弟表示法想要使用孩子兄弟表示法储存上面这样的一棵树，我们就要从根...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/12/26/dynamic-programming-on-tree-structures.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html" xml:lang="zh-CN"><![CDATA[
 <h2>题目</h2><p><a href="https://www.luogu.com.cn/problem/P2014">https://www.luogu.com.cn/problem/P2014</a></p><h2>思路</h2><blockquote>以下内容<strong>仅为个人理解，可能存在错误</strong>。</blockquote><h3>树的孩子兄弟表示法</h3><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/p2014-2.gif" alt="" title=""></p><p>想要使用孩子兄弟表示法储存上面这样的一棵树，我们就要从根节点开始，依次用链表存储各个节点的孩子节点和兄弟节点。因此，该链表中的节点应包含以下三部分内容：</p><ul><li>节点的值。</li><li>指向孩子节点的指针。</li><li>指向兄弟节点的指针。</li></ul><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/p2014-1.gif" alt="" title=""></p><p>在这里，每个节点是一门课程，孩子节点其实就是后续课程，兄弟节点其实就是前导课程相同的一门课程。不妨将第 i 门课程编号为 i，那么每一门课都会有一个独一无二的课程编号。这个课程编号本应放在数据域，但是考虑到它的独一无二性和连续性，也方便我们查找某一课程的「后续课程」和「前导课程相同的一门课程」的课程编号，以获取它的学分，我们不妨直接用数组下标来储存这个，就不开数据域了。</p><h3>树形动归</h3><blockquote><strong>TODO</strong>：此部分自认为没有理解透彻，下面给出的思路也不够自然。</blockquote><p>考虑之前发过的几道题，LXY 点菜，我们逐道菜过目；上山采药，我们逐件药品过目。这里我们照葫芦画瓢，就逐门课过目。树形动归和线性动归又有些啥不同呢？首先要遵循从最简单的子问题开始，逐步扩大子问题规模的原则，从子树上动归，最后进行合并。如何体现合并这一操作呢？就是在过目某一节点（课程）的时候同时考虑这个节点（课程）的后续课程。</p><p>不妨就将根节点（假设其编号为 now）的所有孩子过目完，假设现在过目了 a 门课程，选择了 b 门课程。对于这个第 a 门课程依然是两个选择，<strong>选和不选</strong>。不选的话和我过目 a - 1 门课程，选择了 b 门课程效果是一样的，而第 a 门课程我不选自然就拿不了学分，其后续课程我也选不了就无需考虑了。但如果我选择呢，我不但选了第 a 门课程，而且还要考虑它的后续课程。假设已知我过目完 a - 1 门课程时，选择了 b - c 门课程。过目第 a 门课程显然我就考虑了第 a 门课的后续课程并选择了 c 门课程（包含 a）。此时为了求出过目了 a 门课程，选择了 b 门课程的最大学分，我就要求出过目 a - 1 门课程，选择了 b - c 门课程的最大学分和考虑了第 a 门课的<strong>所有</strong>后续课程并选择了 c 门课程（包含 a）的最大学分。而由于我们从子树开始动归，所以后者我们是已经求出过的。考虑完选和不选两种情况后，取最大值即可。</p><p>假设 <code>son</code> 是 <code>now</code> 的一个子节点，有：</p><pre><code class="lang-cpp">f[now][i][j] = max(f[now][i - 1][j], f[son][所有节点数][k] + f[now][i - 1][j - k]);</code></pre><p>和线性动态规划一样，由于过目了 i 门课程的情况永远由过目 i - 1 门课程的情况推出来，于是这一维可以被去掉。</p><pre><code class="lang-cpp">f[now][j] = max(f[now][j], f[son][k] + f[now][j - k]);</code></pre><h2>AC 代码</h2><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
 using namespace std;
 //n、m 如题所述，f[i][j] 表示 i 为子树的根节点，在子树中选 j 门课的最大学分
@@ -1751,11 +1751,11 @@ int main()
 }
 </code></pre>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/26/dynamic-programming-on-tree-structures.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/26/dynamic-programming-on-tree-structures.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[线段树 - 区间操作与查询（洛谷 P3372）]]></title>
+<title type="html"><![CDATA[Segment Tree (Luogu P3372)]]></title>
 <link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html" />
 <id>https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html</id>
 <updated>2019-12-18T15:35:00+00:00</updated>
@@ -1946,9 +1946,9 @@ int main()
 <link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/18/segment-tree.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[华师计院新生赛 SCNUCS-N 2019 游记]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/13/scnucs-n-2019-tour.html" />
-<id>https://static.bobby285271.top/index.php/2019/12/13/scnucs-n-2019-tour.html</id>
+<title type="html"><![CDATA[SCNUCS-N 2019 Tour]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/13/SCNUCS-N-2019-Tour.html" />
+<id>https://static.bobby285271.top/index.php/2019/12/13/SCNUCS-N-2019-Tour.html</id>
 <updated>2019-12-13T13:10:00+00:00</updated>
 <published>2019-12-13T13:10:00+00:00</published>
 <author>
@@ -1956,16 +1956,16 @@ int main()
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[初赛去临时的 OJ 用临时的帐号打临时的比赛（误）感觉有点奇怪，把题目存了一份：https://pan.baidu.com/s/1tLYZA2ssDN2lCqiZWqMGqQ，提取码 jnq2。...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/12/13/scnucs-n-2019-tour.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/12/13/SCNUCS-N-2019-Tour.html" xml:lang="zh-CN"><![CDATA[
 <h2>初赛</h2><blockquote>去临时的 OJ 用临时的帐号打临时的比赛（误）感觉有点奇怪，把题目存了一份：<code>https://pan.baidu.com/s/1tLYZA2ssDN2lCqiZWqMGqQ</code>，提取码 <code>jnq2</code>。</blockquote><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/scnuacm19.png" alt="" title=""></p><p>纪录一下第一次，可能也是惟一一次提前半小时 AK。</p><p>问题最多的居然是 A 题签到题，刚开始还想逐个数判断是不是完全平方数。后来想想不就是两个边界开个根号的事嘛。另一个 D 题签到题似乎刚考完三个数的现在才问两个数的。</p><p>异或出了两题很过分，然而一道是去年蓝桥杯热身赛的原题完全不用想，另外一道似乎是防 AK 题我刚开始还试图交个 n 方看看数据强不强。降维好像也不难吧无非是统计下序列中有多少个数转成二进制之后有奇数个一，多少个是偶数个一。奇数个一的数和偶数个一的数异或结果还是奇数个一。有一说一在洛谷看题解骚操作确实学得多，一个 <code>__builtin_popcount</code> 就完事。</p><p>完美数嘛就打表出奇迹。开一个 10000 大的数组把结果先搞出来丢程序里也就代码长了点嘛。于是欢乐数继续打表，还担心溢出加了个 <code>log10</code> 算一下位数。</p><p>至于交换字符那一题题目翻译一下不就是 y 可以随便挪位置嘛，反正无论怎么挪 x 和 z 的相对顺序都不会变，那就将全部 y 全部丢到第一个 z 前面其它原样输出就好了。数据似乎很弱我怀疑我漏了情况但我没有证据。</p><p>下周石牌校区继续白给。</p><h2>决赛</h2><p>第一次是可以带纸质资料进赛场的。刚开始对此是真的毫无头绪，寻思这带过去的要不就是自己早就掌握的，要不就是自己本来就没理解的，那还有什么用。后来也不想考虑太多，去洛谷搜索模板，按照难度排序，从 <code>入门</code> 一直到 <code>提高</code> 只要题目看的懂的就把高赞题解的代码抄下来（还把问题本身也给抄下来了我太机智了）。后来被 CGY 嘲讽了一波（<del>我也想拿区域铜 orz</del>）。周四香农先修班下课后讲课的师兄也提供了一份模板，感觉不会的东西实在太多决定新生赛还是先用自己的。</p><p>C 语言老师那边丧心病狂地周四周五连续上了八节课，于是<del>我也决定要丧心病狂地划水</del>（不是，周五那天上到最后两节笔记本没电就滚去看紫书了<del>虽然依然没学到什么</del> 周六在补各种作业（<del>写到这里，突然想起有个三代单传大锅下周要出 0.1？</del>)。</p><p>比赛当天十点就出发拉到石牌校区了，看时间好像还早就跟着 PYY 去天河城玩去了，靠复印模板还骗到了一顿饭确实香。结果<del>因为校园太大我又路痴</del>还是差点迟到（<del>吹一波南海校区麻雀虽小但五脏俱全</del>）。计科居然还有专门的 ACM 实验室，<del>但比赛现场的机子也确实该升级了，甚至还跑着 Windows XP 系统（没记错的话）</del>。</p><blockquote>题面 PDF 存档：<code>https://pan.baidu.com/s/1CyhXu-0SZ7axguL64xTcwQ</code>（提取码 <code>4ckt</code>）。</blockquote><p>比赛开始前一分钟拿到题面，照例先看 A 题，10 的 100 次方？高精乘除法警告，下一题下一题。相比之下 B 题好像友好很多，差点忘记 d 整除 a 到底是 <code>d % a == 0</code> 还是 <code>a % d == 0</code> 全靠样例解释（不过如果真是前者还做个屁啊）。又是 GCD，交了一发 TLE 开始慌了，马上看榜发现计科已经有人过掉三题了迅速开启根榜模式。发现 J 和 L 题都是良心签到就去秒掉了。然后跑去看 E 题，马上跑去打了个表，我居然从 <code>P == 1</code> 一直打到 <code>P == 63</code>，等了一会不耐烦回到 B 题想起初赛时的 A 题我犯的错误好像一模一样，赶紧开个根号优化一下也过了。表打出来才发现 P 是素数于是又把打出来的数加一 <code>log2</code> 算了一发瞪眼判断是不是素数，筛掉不是的就将题目过了（<del>讲完题解才发现<strong>打个屁的表啊</strong>题面上都有了</del>）。</p><p>接着还是继续跟榜（<del>计科巨佬不带歪榜太良心了</del>），H 不就是 2、3、5 出现的次数分别存一下嘛也没怎么想。F 倒是出问题了，忘记 <code>x % 3 == 0</code> 的情况，又忘记特判 <code>X == 5</code>，吃了两发 WA。终于都过掉之后榜单排前面的神犇过的题似乎都差不多。开始看 C 题和 D 题。D 题又是考异或，想到了要特判 <code>X == 0</code> 忘记特判 <code>X == 1</code>（怎么我每次 WA 都是忘记特判）。C 题看着确实像我带着的线段树模板，但是问的东西和我模板的不一样没法直接套用。<del>当时内心：新生赛哪有可能考这种<strong>鬼东西</strong>。不是前缀和或差分一律当超纲处理。</del>开始 n 方暴力求解，<code>cin</code>、<code>cout</code>、<code>stringstream</code> 全部用上，不出意料 TLE。于是又跳到 I 题，刚开始还想着如果 2、3、5 出现的次数全部符合条件怎样分情况讨论，<strong>讨论个屁</strong>。</p><p>这时候还剩 A、C、G、K 没过，距离封榜时间也不多了。K 题<del>差点又想贪心</del>完再对连续多天刷同一 OJ 的情况作处理，不过状态转移方程好像很好写的样子（有一说一是真的好写，我第一次看洛谷 P1164 那种题时内心是绝望的）。好的还剩三题（<del>ACG 是啥呀我也不知道呀</del>）。</p><p>开始集中火力干 C 题。我当时依然坚信暴力出奇迹，只是出题人想卡常而已。于是 <code>cin</code> 被改成了 <code>scanf</code>，<code>cout</code> 被改成了 <code>printf</code>，<code>stringstream</code> 改成了对十取模再对数除以十一路累加的做法（还得感谢广工的某位<strong>神犇</strong>当时点出来了所以印象非常深刻），本想着如果还过不了就再进一步上快读没想到居然过了。封榜之后看 G 题，考图的题本来是应该直接放弃的。但是我又带了单源最短路径和最小生成树的模板决定还是看一下题吧（<del>其实是因为没得挑了</del>）。发现问法和单源最短路径的好像差不多，就三个区别。一个是有向图变成了无向图，另外一个是指明了终点 t，还有一个是它还需要我回答经过了多少个节点。不管三七二十一把模板打上去了先，发现模板最后会输出到达<strong>每个点</strong>的情况，而我只需要到达<strong>一个点</strong>的情况，换掉就是了。至于每一条无向边我都直接转化成了两条有向边。而经过的点有多少在算距离的时候似乎可以同时算。居然也过了。感觉这次准备模板还是值得的。A 题这边实在能力有限（我觉得哪怕真的把高精写出来想不出正解估计也是得超时）。</p><p>比赛完就去听题解了，师兄讲的飞快，怕是 CGY 速度（<del>只是突然想起了 AK 杯结束后的那个中午</del>）。发现 C 题暴力不是正解刚开始有点幸灾乐祸，后来看滚榜发现靠这题还把计院的 WSD 和 PHS 挤下去了还是感觉自己配不上这个第三名（第一名是打星玩家，第二名是 SJL，感觉都是比我强很多很多很多很多很多的人，毕竟我也只是个暑假才开始入门的萌新），说白了还是时间复杂度没学好（<del>果然无知者无畏</del>）。后来去计院那边的咨询群坦白了自己是暴力过的，出题人验题人反正好多人都主动背锅感觉大家都不容易啊。</p><p>不知什么时候自己才能熟练掌握正解呢，无论是 A 题还是 C 题还是 G 题？靠暴力靠模板确实不是长远之计啊，就说 G 题这回还好只是有向变无向，下一回如果像 LZH 说的那样求第二短的路径？第 N 短的路径？或者 C 题时间限制从 2s 改回 1s？</p><p>完。</p><hr><p>比赛结束后拍了一张自己的座位，那是真的乱得一批。<del>顺便吐槽一句发过来的气球刚开始还是充好气的，后来就不充气直接贴桌子上了，再后来就干脆不发了。</del></p><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/817882057.jpg" alt="" title=""></p><p>以及... 第一次看滚榜。</p><p>[vplayer url="https://bobby285271.coding.net/p/img/d/img/git/raw/master/scnuacmrnk.mp4"  /]</p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/13/scnucs-n-2019-tour.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/13/scnucs-n-2019-tour.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/13/SCNUCS-N-2019-Tour.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/13/SCNUCS-N-2019-Tour.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[动态规划的 0/1 背包问题（洛谷 P1164、P1048、P1020）]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html" />
-<id>https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html</id>
+<title type="html"><![CDATA[Dynamic Prgramming - 0/1 Backpack Problem (Luogu P1164, P1048, P1020)]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html" />
+<id>https://static.bobby285271.top/index.php/2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html</id>
 <updated>2019-11-17T15:29:00+00:00</updated>
 <published>2019-11-17T15:29:00+00:00</published>
 <author>
@@ -1973,7 +1973,7 @@ int main()
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[为啥突然想要看动态规划呢，是因为昨天做了去年蓝桥杯预选赛 16/17 的题，做到 B 题发现正解其实应该是动态规划的。虽然我交了一发贪心过了，但想到两个星期后就是热身赛还是得搞搞突击才行。引入周...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html" xml:lang="zh-CN"><![CDATA[
 <p>为啥突然想要看动态规划呢，是因为昨天做了去年蓝桥杯预选赛 16/17 的题，做到 B 题发现正解其实应该是动态规划的。虽然我交了一发贪心过了，但想到两个星期后就是热身赛还是得搞搞突击才行。</p><h2>引入</h2><p>周四香农先修班讲了一个斐波拉契数列的专题，有一个问题是这样的：假设有 n 级楼梯，我从底部往上爬，每次可以上 1 级，也可以上 2 级楼梯，问从底部到顶部一共有多少种爬楼梯的方法。</p><p>我第一时间想到的是搜索和回溯，但是既然是斐波拉契数列的专题，也就有了 $f(n) = f(n-1) + f(n-2)$ 这个公式。我简单说一下这个式子是怎么来的吧。我们不妨假设我们走了 x 步之后上到了第 n 级，那我第 x-1 步在什么位置呢？只能是第 n-1 和 n-2 级。$f(n-1)$ 是走到 n-1 级楼梯时的方法数，$f(n-2)$ 同理。考虑一下边界情况，就是斐波拉契数列了呗。</p><h2>P1164 -（二维 DP）</h2><p>题目：<a href="https://www.luogu.org/problem/P1164">https://www.luogu.org/problem/P1164</a></p><p>不妨就来考虑一下「引入」小节的思路（模拟退火是啥我也不会），我们要求吃够 m 块钱，和爬 n 级楼梯其实是一回事。我<strong>上 1 级台阶还是 2 级台阶</strong>，其实和对于一道菜，我<strong>吃还是不吃</strong>是一回事。区别在哪呢，这里我们有很多不同的菜。然而我们也不用想太多，就让它们按顺序逐个上菜好了，然后我们<strong>逐个</strong>决定是吃还是不吃，顺便记下到底花了多少钱<del>（注意上菜不代表我们就要吃嘛对吧，吃了才花钱）</del>。</p><p>我们定义 <code>f[i][j]</code> 为上了 i 道菜用光 j 元钱的办法总数。假设我们现在已经上了 i-1 道菜，接下来上第 i 道菜。我们就有两个选择：</p><ul><li>吃（花钱）。</li><li>不吃（不花钱）。</li></ul><p>如果不吃，那我上 i 道菜用光 j 元钱的方法数，和上了 i-1 道菜用光 j 元钱的方法数一样。如果我吃，那我上 i 道菜用光 j 元钱的方法数，和上了 i-1 道菜用光（j-这道菜的价格）的方法数一样。将两种情况和在一起，于是有：</p><pre><code class="lang-cpp">f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>通常来讲这就结束了，但是这道菜的价格我们却没有讨论清楚。首先，如果我没钱吃着道菜呢？那就只能不吃了呗。</p><pre><code class="lang-cpp">if(j &lt; 第i道菜的价格) f[i][j] = f[i - 1][j];
 if(j &gt;= 第i道菜的价格) f[i][j] = f[i - 1][j] + f[i - 1][j - 第i道菜的价格];</code></pre><p>有些人想问 <code>j == 第i道菜的价格</code> 这种情况怎么搞，我们将这种情况代入到上面的代码，其实就是 <code>f[i][j] = f[i - 1][j] + f[i - 1][0]</code>，<code>f[i - 1][0]</code> 其实就是上了 i-1 个菜我全不吃，消费 0 元嘛，显然只有一种情况。但形如 <code>f[i][0]</code> 的数据又可以从哪推出呢？不如特判一下，当然直接给他们赋值也是可以的：</p><pre><code class="lang-cpp">if(j &lt; 第i道菜的价格) f[i][j] = f[i - 1][j];
 if(j == 第i道菜的价格) f[i][j] = f[i - 1][j] + 1;
@@ -2149,13 +2149,13 @@ int main()
     return 0;
 }</code></pre>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/11/17/dynamic-prgramming-01-backpack-problem.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/11/17/dynamic-prgramming-01-backpack-problem.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[WSL 2 配置桌面环境（使用 Windows 自带远程桌面应用）简易教程]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html" />
-<id>https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html</id>
+<title type="html"><![CDATA[How to Launch a Desktop Environment on WSL 2]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" />
+<id>https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html</id>
 <updated>2019-10-04T16:00:00+00:00</updated>
 <published>2019-10-04T16:00:00+00:00</published>
 <author>
@@ -2163,7 +2163,7 @@ int main()
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[WSL 2 是 WSL 中体系结构的新版本，它改变了 Linux 发行版与 Windows 交互的方式。WSL 2 的主要目标是提高文件系统性能并增加系统调用的完全兼容性。 每个 Linux 发...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" xml:lang="zh-CN"><![CDATA[
 <p>WSL 2 是 WSL 中体系结构的新版本，它改变了 Linux 发行版与 Windows 交互的方式。<br>WSL 2 的主要目标是提高文件系统性能并增加系统调用的完全兼容性。 每个 Linux 发行版都可以作为 WSL 1 或 WSL 2 发行版运行，并可随时进行切换。<br>WSL 2 是底层体系结构的主要功能，它使用虚拟化技术和 Linux 内核来实现其新功能。</p><h2>准备</h2><p>为了使用 WSL 2，你需要 <strong>Windows 10 内部版本 18917 或更高版本</strong>。要想了解目前使用的版本是什么，可以到设置页面查看。<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/0.PNG" alt="" title=""></p><p>首先，右击任务栏 Windows 图标，选择 Windows Powershell（管理员），输入以下命令：</p><pre><code>Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</code></pre><p>或者前往控制面板 - 程序 - 启用或关闭 Windows 功能，然后勾选<strong>虚拟机平台</strong>和<strong>执行 Linux 程序的 Windows 子系统</strong>。<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/" alt="" title=""></p><p>完成设置后需要重启计算机！</p><h2>安装</h2><p>前往 Microsoft Store 下载并安装 Ubuntu。<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/2.PNG" alt="" title=""></p><p>接下来使 WSL 2 成为你的默认体系结构。打开 Windows Powershell 或命令提示符：</p><pre><code>wsl --set-default-version 2</code></pre><p>接下来在开始菜单找到 Ubuntu，点击后稍作等候。当一切准备好后，Ubuntu 会提示你新建一个账户和密码，注意输入密码时是不会有回显的。<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/5.PNG" alt="" title=""></p><p>此时你可以验证刚刚安装好的 Ubuntu 所使用的 WSL 版本：</p><pre><code>wsl --list --verbose</code></pre><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/6.PNG" alt="" title=""></p><p>如果你在 Windows Powershell 或命令提示符下运行 <code>wsl</code>，同样也是可以进入 WSL 环境的。</p><h2>软件</h2><p>切换到 Root：</p><pre><code>$ sudo -i</code></pre><p>编辑 APT 软件源（<code>nano</code> 大法好，不接受反驳） ：</p><pre><code># nano /etc/apt/sources.list</code></pre><pre><code>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
@@ -2171,13 +2171,13 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</code></pre><p>更新可用软件包列表，随后升级系统：</p><pre><code># apt update &amp;&amp; apt dist-upgrade -y</code></pre><p>安装基本开发环境、Xubuntu 桌面和远程桌面支持：</p><pre><code># apt install build-essential xubuntu-desktop xrdp</code></pre><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/11.PNG" alt="" title=""></p><p>安装的软件包比较多，可能要等上一段时间。这里的 Xubuntu 桌面实际为 XFCE 桌面环境，换成别的问题不大但还是建议选择轻量级桌面。</p><p>保存 Xsession 配置：</p><pre><code># exit #切换回普通用户。
 $ echo xfce4-session &gt; ~/.xsession</code></pre><h2>远程桌面</h2><blockquote>需要使用远程桌面时均要执行本节内容。</blockquote><p>启用 Xrdp 服务（这里不能使用 <code>systemctl</code>，因为 SystemD 不是默认的 Init 系统），记录端口信息：</p><pre><code>$ sudo service xrdp start</code></pre><p>在 Windows 开始菜单栏中找到 Windows 附件 - 远程桌面连接，输入 <code>localhost:端口</code>，如 <code>localhost:3389</code>。</p><p>应该会出现如下警告，选择是即可：<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/16.PNG" alt="" title=""></p><p>如果你没有看到这个警告，可能需要查找虚拟机的 IP 地址并替代 <code>localhost</code> 再试一次：</p><pre><code>$ ip address</code></pre><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/13.PNG" alt="" title=""></p><p>在这里，IP 地址查找到是 <code>172.18.221.157</code>，端口是 <code>3389</code>。注意每次重启 WSL 实例后这个 IP 地址都会换。</p><p>输入 <code>IP 地址:端口</code>，如 <code>172.18.221.157:3389</code>。</p><p>接下来输入自己的账户密码：<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/17.PNG" alt="" title=""></p><p>然后就是很熟悉的界面了：<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/18.PNG" alt="" title=""></p><h2>本地化</h2><p>直接在终端下就可以完成设置了（以下命令在 Root 下运行）：</p><pre><code># dpkg-reconfigure locales</code></pre><p>确认 <code>en_US.UTF-8 UTF-8</code> 和 <code>zh_CN.UTF-8 UTF-8</code> 被勾选，然后将 <code>zh_CN.UTF-8 UTF-8</code> 设定为默认值。<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/19.PNG" alt="" title=""></p><p>然后安装语言包和输入法（按理来说装完就能用）：</p><pre><code># apt install language-pack-zh-hans language-pack-gnome-zh-hans fcitx fcitx-table</code></pre><h2>彩蛋</h2><p>Windows 应用能访问 Linux 根文件系统啦，包括文件资源管理器！尝试在 WSL 中使用普通用户运行 <code>explorer.exe .</code>（在远程桌面会话中这样做是没有用滴！），看看会发生什么。</p><p>另外内部错误大法又怎能缺席呢（逃）。<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/20.PNG" alt="" title=""></p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/10/05/wsl-2-desktop-configuration.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[CCR 使用与 AUR 包移植简易教程]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html" />
-<id>https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html</id>
+<title type="html"><![CDATA[Chakra CCR Packaging Guide]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html" />
+<id>https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html</id>
 <updated>2019-02-01T16:00:00+00:00</updated>
 <published>2019-02-01T16:00:00+00:00</published>
 <author>
@@ -2185,7 +2185,7 @@ $ echo xfce4-session &gt; ~/.xsession</code></pre><h2>远程桌面</h2><blockquo
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[Chakra 的成功证明了只围绕 KDE 和 Qt 搭建一个简约的系统是完全可行的。但正是因为「简约」这一特性，一些用户需要的软件可能不被包含在我们的官方软件仓库中。Chakra 社区软件仓库（...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html" xml:lang="zh-CN"><![CDATA[
 <p>Chakra 的成功证明了只围绕 KDE 和 Qt 搭建一个简约的系统是完全可行的。但正是因为「简约」这一特性，一些用户需要的软件可能不被包含在我们的官方软件仓库中。<a href="https://ccr.chakralinux.org">Chakra 社区软件仓库</a>（CCR）也就因此诞生了，它由社区维护，为所有类型的软件都敞开了大门。</p><h2>搜索、安装、升级 CCR 软件包</h2><blockquote>老用户请注意：<code>ccr</code> 工具已经被弃用，请转而使用 <code>chaser</code>。</blockquote><p>Chakra 提供了一个叫 <code>chaser</code> 的工具供用户管理 CCR 软件包。它的一些常见用法如下：</p><pre><code>[chakra@localhost ~]$ chaser -h
 usage: chaser [-h] [-v] [-b BUILD_DIR]
               {get,install,listupdates,update,search,info} ...
@@ -2444,7 +2444,7 @@ package() {
 ==&gt; 正在离开 fakeroot 环境。
 ==&gt; 源代码包已创建：foo</code></pre><h3>将源码包上传到 CCR</h3><p>请确认您已经登录 CCR 帐户，接下来访问 <a href="https://ccr.chakralinux.org/pkgsubmit.php">上传页面</a>，选择软件包分类，接下来选择源码包，源码包应该位于您的文件夹中，包名应该是 <code>$pkgname-$pkgver.src.tar.gz</code>。</p><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/9.png" alt="" title=""></p><p>点击「上传」即可。如果 CCR 里面本身没有这个包或这个包是一个无人维护的包（孤儿包），您将会成为维护者。CCR 里面旧版本的软件包将会被您的新软件包取代。如果这个包已经有维护者，CCR 会拒绝您的提交。如果您发现 CCR 里的包已经被标记为「过期」一段时间而维护者没有采取任何动作，您可以联系 Chakra 团队将该包重置为无人维护状态。</p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/02/02/ccr-packaging-guide.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/02/02/Chakra-CCR-Packaging-Guide.html" thr:count="0"/>
 </entry>
 </feed>

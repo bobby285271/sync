@@ -9,13 +9,13 @@ xmlns:dc="http://purl.org/dc/elements/1.1/">
 <description></description>
 <items>
 <rdf:Seq>
-<rdf:li resource="https://static.bobby285271.top/index.php/2020/02/18/port-calamares-to-arch-linux.html"/>
+<rdf:li resource="https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html"/>
 </rdf:Seq>
 </items>
 </channel>
-<item rdf:about="https://static.bobby285271.top/index.php/2020/02/18/port-calamares-to-arch-linux.html">
-<title>How to Port Calamares to Arch Linux</title>
-<link>https://static.bobby285271.top/index.php/2020/02/18/port-calamares-to-arch-linux.html</link>
+<item rdf:about="https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html">
+<title>How to Port Calamares to Arch Linux (en)</title>
+<link>https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html</link>
 <dc:date>2020-02-17T16:00:00+00:00</dc:date>
 <description>This article is for reference ONLY.Calamares is a distribution-independent installer framework. As distributions like Arch Linux don't provide graphical installer, we can try to adapt Calamares to them. To make things easier, we simply start by trying to provide a pacstrap part for Calamares, which allow users to install a minimal Arch Linux system, then we add the Calamares installer to our Archiso.Getting StartedMake sure that you have Git installed, fetch the source code by cloning the Calamares repository, to speed up, add --depth=1 option:git clone https://github.com/calamares/calamares.git --depth=1
 Entering the repository, you will find lots of files and directories, don't panic! All you have to focus on are three files/directories: settings.conf, src/branding/ and src/modules/. Let's try to deal with them one by one.Step One: settings.confFirstly, you will find something like this:sequence:

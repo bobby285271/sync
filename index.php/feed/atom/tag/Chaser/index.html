@@ -12,9 +12,9 @@ xml:base="https://static.bobby285271.top/index.php/tag/Chaser/"
 <id>https://static.bobby285271.top/index.php/feed/atom/tag/Chaser/</id>
 <link rel="self" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/tag/Chaser/" />
 <entry>
-<title type="html"><![CDATA[CCR 使用与 AUR 包移植简易教程]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html" />
-<id>https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html</id>
+<title type="html"><![CDATA[Chakra CCR Packaging Guide]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html" />
+<id>https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html</id>
 <updated>2019-02-01T16:00:00+00:00</updated>
 <published>2019-02-01T16:00:00+00:00</published>
 <author>
@@ -22,7 +22,7 @@ xml:base="https://static.bobby285271.top/index.php/tag/Chaser/"
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[Chakra 的成功证明了只围绕 KDE 和 Qt 搭建一个简约的系统是完全可行的。但正是因为「简约」这一特性，一些用户需要的软件可能不被包含在我们的官方软件仓库中。Chakra 社区软件仓库（...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html" xml:lang="zh-CN"><![CDATA[
 <p>Chakra 的成功证明了只围绕 KDE 和 Qt 搭建一个简约的系统是完全可行的。但正是因为「简约」这一特性，一些用户需要的软件可能不被包含在我们的官方软件仓库中。<a href="https://ccr.chakralinux.org">Chakra 社区软件仓库</a>（CCR）也就因此诞生了，它由社区维护，为所有类型的软件都敞开了大门。</p><h2>搜索、安装、升级 CCR 软件包</h2><blockquote>老用户请注意：<code>ccr</code> 工具已经被弃用，请转而使用 <code>chaser</code>。</blockquote><p>Chakra 提供了一个叫 <code>chaser</code> 的工具供用户管理 CCR 软件包。它的一些常见用法如下：</p><pre><code>[chakra@localhost ~]$ chaser -h
 usage: chaser [-h] [-v] [-b BUILD_DIR]
               {get,install,listupdates,update,search,info} ...
@@ -281,7 +281,7 @@ package() {
 ==&gt; 正在离开 fakeroot 环境。
 ==&gt; 源代码包已创建：foo</code></pre><h3>将源码包上传到 CCR</h3><p>请确认您已经登录 CCR 帐户，接下来访问 <a href="https://ccr.chakralinux.org/pkgsubmit.php">上传页面</a>，选择软件包分类，接下来选择源码包，源码包应该位于您的文件夹中，包名应该是 <code>$pkgname-$pkgver.src.tar.gz</code>。</p><p><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/9.png" alt="" title=""></p><p>点击「上传」即可。如果 CCR 里面本身没有这个包或这个包是一个无人维护的包（孤儿包），您将会成为维护者。CCR 里面旧版本的软件包将会被您的新软件包取代。如果这个包已经有维护者，CCR 会拒绝您的提交。如果您发现 CCR 里的包已经被标记为「过期」一段时间而维护者没有采取任何动作，您可以联系 Chakra 团队将该包重置为无人维护状态。</p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/02/02/ccr-packaging-guide.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/02/02/ccr-packaging-guide.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/02/02/Chakra-CCR-Packaging-Guide.html" thr:count="0"/>
 </entry>
 </feed>

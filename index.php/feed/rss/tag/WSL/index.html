@@ -9,13 +9,13 @@ xmlns:dc="http://purl.org/dc/elements/1.1/">
 <description></description>
 <items>
 <rdf:Seq>
-<rdf:li resource="https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html"/>
+<rdf:li resource="https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html"/>
 </rdf:Seq>
 </items>
 </channel>
-<item rdf:about="https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html">
-<title>WSL 2 配置桌面环境（使用 Windows 自带远程桌面应用）简易教程</title>
-<link>https://static.bobby285271.top/index.php/2019/10/05/wsl-2-desktop-configuration.html</link>
+<item rdf:about="https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html">
+<title>How to Launch a Desktop Environment on WSL 2</title>
+<link>https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html</link>
 <dc:date>2019-10-04T16:00:00+00:00</dc:date>
 <description>WSL 2 是 WSL 中体系结构的新版本，它改变了 Linux 发行版与 Windows 交互的方式。WSL 2 的主要目标是提高文件系统性能并增加系统调用的完全兼容性。 每个 Linux 发行版都可以作为 WSL 1 或 WSL 2 发行版运行，并可随时进行切换。WSL 2 是底层体系结构的主要功能，它使用虚拟化技术和 Linux 内核来实现其新功能。准备为了使用 WSL 2，你需要 Windows 10 内部版本 18917 或更高版本。要想了解目前使用的版本是什么，可以到设置页面查看。首先，右击任务栏 Windows 图标，选择 Windows Powershell（管理员），输入以下命令：Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux或者前往控制面板 - 程序 - 启用或关闭 Windows 功能，然后勾选虚拟机平台和执行 Linux 程序的 Windows 子系统。完成设置后需要重启计算机！安装前往 Microsoft Store 下载并安装 Ubuntu。接下来使 WSL 2 成为你的默认体系结构。打开 Windows Powershell 或命令提示符：wsl --set-default-version 2接下来在开始菜单找到 Ubuntu，点击后稍作等候。当一切准备好后，Ubuntu 会提示你新建一个账户和密码，注意输入密码时是不会有回显的。此时你可以验证刚刚安装好的 Ubuntu 所使用的 WSL 版本：wsl --list --verbose如果你在 Windows Powershell 或命令提示符下运行 wsl，同样也是可以进入 WSL 环境的。软件切换到 Root：$ sudo -i编辑 APT 软件源（nano 大法好，不接受反驳） ：# nano /etc/apt/sources.listdeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse

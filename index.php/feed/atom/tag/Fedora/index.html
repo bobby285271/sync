@@ -12,9 +12,9 @@ xml:base="https://static.bobby285271.top/index.php/tag/Fedora/"
 <id>https://static.bobby285271.top/index.php/feed/atom/tag/Fedora/</id>
 <link rel="self" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/tag/Fedora/" />
 <entry>
-<title type="html"><![CDATA[How to Deploy WordPress on a Fedora Server]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/03/deploy-wordpress-on-a-fedora-server.html" />
-<id>https://static.bobby285271.top/index.php/2020/02/03/deploy-wordpress-on-a-fedora-server.html</id>
+<title type="html"><![CDATA[How to Deploy WordPress on a Fedora Server (en)]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html" />
+<id>https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html</id>
 <updated>2020-02-02T16:00:00+00:00</updated>
 <published>2020-02-02T16:00:00+00:00</published>
 <author>
@@ -22,7 +22,7 @@ xml:base="https://static.bobby285271.top/index.php/tag/Fedora/"
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[First things firstYou should get a IP address after buying VPS, such as 123.123.123.123. Open you...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/02/03/deploy-wordpress-on-a-fedora-server.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html" xml:lang="zh-CN"><![CDATA[
 <h2>First things first</h2><p>You should get a IP address after buying VPS, such as <code>123.123.123.123</code>. Open your favourite terminal and enter:</p><blockquote>Replace <code>123.123.123.123</code> with your actual IP address.</blockquote><pre><code>ssh root@123.123.123</code></pre><p>Enter your password to login. Perform a full upgrade on your system:</p><pre><code>dnf upgrade
 </code></pre><h2>Package Installation</h2><p>Install Apache, PHP and MariaDB using the DNF package manager. There is NO need to install the <code>wordpress</code> package.</p><pre><code>dnf install @&quot;Web Server&quot; php-mysqlnd mariadb-server
 </code></pre><p>Enable the web and database services to start at boot time, then start them immediately:</p><pre><code>systemctl enable httpd.service mariadb.service
@@ -35,7 +35,7 @@ wget https://wordpress.org/latest.tar.gz</code></pre><p>Extract the downloaded a
 chown -R apache.apache wordpress
 chmod -R 755 wordpress</code></pre><h2>All Done</h2><p>Visit <code>123.123.123.123/wordpress</code>, and finish the installation.</p>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/03/deploy-wordpress-on-a-fedora-server.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/02/03/deploy-wordpress-on-a-fedora-server.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html" thr:count="0"/>
 </entry>
 </feed>
