@@ -38,7 +38,6 @@ ca-certificates-utils 20181109-3
 cairo 1.17.2+17+g52a7c79fd-2
 cairomm 1.12.2-3
 cantarell-fonts 1:0.201-1
-celt0.5.1 0.5.1.3-4
 clonezilla 3.35.2-2
 colord 1.4.4+9+g1ce26da-1
 coreutils 8.32-1
@@ -139,7 +138,7 @@ gtk3 1:3.24.20-1
 gtkmm3 3.24.2-1
 gtksourceview3 3.24.11-1
 guile 2.2.6-2
-gvfs 1.44.1-1
+gvfs 1.44.1-3
 gzip 1.10-3
 harfbuzz 2.6.5-2
 haveged 1.9.8-1
@@ -165,7 +164,7 @@ jack 0.125.0-9
 jansson 2.12-1
 jfsutils 1.1.15-7
 js60 60.9.0-2
-json-c 0.14-1
+json-c 0.14-2
 json-glib 1.4.4-1
 kbd 2.2.0-5
 keyutils 1.6.1-3
@@ -342,7 +341,7 @@ lz4 1:1.9.2-2
 lzo 2.10-3
 lzop 1.04-2
 m4 1.4.18-3
-mailcap 2.1.48+14+g5811758-1
+mailcap 2.1.49-1
 make 4.3-3
 man-db 2.9.1-2
 man-pages 5.06-2
@@ -445,7 +444,7 @@ smartmontools 7.1-1
 sound-theme-freedesktop 0.8-3
 speex 1.2.0-2
 speexdsp 1.2.0-1
-spice 0.14.2-1
+spice 0.14.3-2
 sqlite 3.31.1-1
 srt 1.4.1-1
 sshfs 3.7.0-1
