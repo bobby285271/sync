@@ -227,7 +227,7 @@ libldap 2.4.49-1
 libmaxminddb 1.4.2-1
 libmfx 20.1.1-1
 libmicrohttpd 0.9.70-3
-libmm-glib 1.12.8-1
+libmm-glib 1.12.10-1
 libmnl 1.0.4-3
 libmodplug 0.8.9.0-2
 libmpc 1.1.0-2
