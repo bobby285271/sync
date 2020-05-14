@@ -259,7 +259,7 @@ libpulse 13.0-3
 libraw1394 2.1.2-2
 librsvg 2:2.48.4-1
 libsamplerate 0.1.9-3
-libsasl 2.1.27-2
+libsasl 2.1.27-3
 libseccomp 2.4.2-1
 libsecret 0.20.3-1
 libsigc++ 2.10.3-1
