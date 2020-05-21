@@ -24,7 +24,7 @@ b43-fwcutter 019-3
 base 2-2
 bash 5.0.016-1
 bc 1.07.1-4
-bind-tools 9.16.2-2
+bind-tools 9.16.3-1
 binutils 2.34-3
 bison 3.6.2-1
 bluez-libs 5.54-2
@@ -33,7 +33,7 @@ brotli 1.0.7-3
 btrfs-progs 5.6.1-2
 bzip2 1.0.8-3
 ca-certificates 20181109-3
-ca-certificates-mozilla 3.52-1
+ca-certificates-mozilla 3.52.1-2
 ca-certificates-utils 20181109-3
 cairo 1.17.2+25+gaee96d175-1
 cairomm 1.12.2-4
@@ -374,7 +374,7 @@ nm-connection-editor 1.16.0-1
 nmap 7.80-2
 npth 1.6-2
 nspr 4.25-1
-nss 3.52-1
+nss 3.52.1-2
 ntfs-3g 2017.3.23-4
 ntp 4.2.8.p14-1
 openconnect 1:8.10-1
@@ -400,12 +400,12 @@ patch 2.7.6-8
 pbzip2 1.1.13-2
 pciutils 3.6.4-1
 pcre 8.44-1
-pcre2 10.34-3
+pcre2 10.35-1
 pcsclite 1.8.26-1
 perl 5.30.2-1
 perl-error 0.17029-1
 perl-mailtools 2.21-2
-perl-timedate 2.32-1
+perl-timedate 2.33-1
 perl-uri 1.76-2
 pigz 2.4-1
 pinentry 1.1.0-5
@@ -421,7 +421,7 @@ pptpclient 1.10.0-2
 procps-ng 3.3.16-1
 progsreiserfs 0.3.0.5-10
 psmisc 23.3-2
-python 3.8.2-2
+python 3.8.3-1
 python-ply 3.11-5
 qt5-base 5.14.2-2
 readline 8.0.004-1
