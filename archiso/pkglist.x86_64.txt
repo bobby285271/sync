@@ -25,10 +25,10 @@ base 2-2
 bash 5.0.016-1
 bc 1.07.1-4
 bind-tools 9.16.3-1
-binutils 2.34-3
+binutils 2.34-5
 bison 3.6.2-1
 bluez-libs 5.54-2
-broadcom-wl 6.30.223.271-201
+broadcom-wl 6.30.223.271-202
 brotli 1.0.7-3
 btrfs-progs 5.6.1-2
 bzip2 1.0.8-3
@@ -70,7 +70,7 @@ ecryptfs-utils 111-3
 efibootmgr 17-1
 efitools 1.9.2-2
 efivar 37-3
-elfutils 0.178-2
+elfutils 0.179-1
 elinks 0.13-21
 enchant 2.2.8-1
 ethtool 1:5.6-1
@@ -100,8 +100,8 @@ fuse3 3.9.1-1
 garcon 0.6.4-2
 gawk 5.1.0-1
 gc 8.0.4-4
-gcc 10.1.0-1
-gcc-libs 10.1.0-1
+gcc 10.1.0-2
+gcc-libs 10.1.0-2
 gcr 3.36-1
 gdbm 1.18.1-3
 gdk-pixbuf2 2.40.0-2
@@ -109,8 +109,8 @@ gettext 0.20.2-1
 giflib 5.2.1-2
 git 2.26.2-1
 glib-networking 2.64.2-1
-glib2 2.64.2-1
-glibc 2.31-3
+glib2 2.64.3-1
+glibc 2.31-4
 glibmm 2.64.2-1
 gmp 6.2.0-1
 gnome-themes-extra 3.28-2
@@ -150,7 +150,7 @@ hwids 20200306-1
 iana-etc 20200511-1
 icu 67.1-1
 inetutils 1.9.4-8
-intel-ucode 20200508-1
+intel-ucode 20200520-1
 iproute2 5.6.0-1
 iptables 1:1.8.4-1
 iputils 20190709-2
@@ -178,7 +178,7 @@ ldns 1.7.1-2
 less 551-3
 lftp 4.9.1-1
 libaio 0.3.112-2
-libarchive 3.4.2-1
+libarchive 3.4.3-1
 libass 0.14.0-2
 libassuan 2.5.3-2
 libasyncns 0.8+3+g68cd5af-3
@@ -201,7 +201,7 @@ libdbusmenu-glib 16.04.0-4
 libdbusmenu-gtk3 16.04.0-4
 libdrm 2.4.101-1
 libedit 20191231_3.1-1
-libelf 0.178-2
+libelf 0.179-1
 libepoxy 1.5.4-2
 libevdev 1.9.0-1
 libevent 2.1.11-5
@@ -281,7 +281,7 @@ libunistring 0.9.10-2
 libunwind 1.3.1-2
 libusb 1.0.23-2
 libusbmuxd 2.0.1-1
-libutil-linux 2.35.1-2
+libutil-linux 2.35.2-1
 libuv 1.38.0-1
 libva 2.7.1-1
 libvdpau 1.4-1
@@ -325,7 +325,7 @@ libxxf86vm 1.1.4-4
 libyaml 0.2.4-1
 licenses 20200427-1
 lightdm 1:1.30.0-3
-linux 5.6.13.arch1-1
+linux 5.6.14.arch1-1
 linux-api-headers 5.6.11-1
 linux-atm 2.5.2-6
 linux-firmware 20200421.78c0348-1
@@ -450,7 +450,7 @@ srt 1.4.1-2
 sshfs 3.7.0-1
 startup-notification 0.12-7
 stoken 0.92-4
-sudo 1.8.31.p1-1
+sudo 1.9.0-1
 sysfsutils 2.1.0-11
 syslinux 6.04.pre2.r11.gbf6db5b4-3
 systemd 245.5-2
@@ -475,7 +475,7 @@ upower 0.99.11-2
 usb_modeswitch 2.6.0-2
 usbmuxd 1.1.0+69+g8a69f1a-1
 usbutils 012-2
-util-linux 2.35.1-2
+util-linux 2.35.2-1
 v4l-utils 1.18.1-1
 vi 1:070224-4
 vid.stab 1.1-3
