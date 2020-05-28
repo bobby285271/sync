@@ -45,7 +45,7 @@ crda 4.14-3
 cryptsetup 2.3.2-2
 curl 7.70.0-1
 darkhttpd 1.12-5
-dav1d 0.6.0-1
+dav1d 0.7.0-1
 db 5.3.28-5
 dbus 1.12.16-5
 dbus-glib 0.110-2
@@ -81,7 +81,7 @@ fakeroot 1.24-2
 fcitx 4.2.9.7-3
 fcitx-configtool 0.4.10-4
 fcitx-qt5 1.2.4-4
-ffmpeg 1:4.2.2-8
+ffmpeg 1:4.2.3-2
 file 5.38-3
 filesystem 2020.05.20-1
 findutils 4.7.0-2
@@ -196,7 +196,7 @@ libdaemon 0.14-5
 libdatrie 0.2.12-2
 libdbusmenu-glib 16.04.0-4
 libdbusmenu-gtk3 16.04.0-4
-libdrm 2.4.101-1
+libdrm 2.4.102-1
 libedit 20191231_3.1-1
 libelf 0.179-1
 libepoxy 1.5.4-2
@@ -353,7 +353,7 @@ mobile-broadband-provider-info 20190618-2
 mpfr 4.0.2-2
 mtdev 1.1.6-1
 mtools 4.0.24-1
-nano 4.9.2-1
+nano 4.9.3-1
 nbd 3.20-2
 ncurses 6.2-1
 ndctl 68-2
@@ -441,7 +441,7 @@ sound-theme-freedesktop 0.8-4
 speex 1.2.0-3
 speexdsp 1.2.0-2
 spice 0.14.3-2
-sqlite 3.31.1-1
+sqlite 3.32.1-1
 srt 1.4.1-2
 sshfs 3.7.0-1
 startup-notification 0.12-7
