@@ -18,7 +18,7 @@ xmlns:wfw="http://wellformedweb.org/CommentAPI/">
 <link>https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html</link>
 <guid>https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html</guid>
 <pubDate>Tue, 14 Apr 2020 16:00:00 +0000</pubDate>
-<dc:creator>bobby285271</dc:creator>
+<dc:creator>Bobby Rong</dc:creator>
 <description><![CDATA[本文基于 NixOS 20.03 Beta 和 NixOS Manual 20.03 撰写。本文的写作缘由是 NixOS Manual 的编排设计很容易导致习惯了其它发行版安装和配置流程的新人入...]]></description>
 <content:encoded xml:lang="zh-CN"><![CDATA[
 <p>本文基于 NixOS 20.03 Beta 和 <a href="https://nixos.org/nixos/manual/">NixOS Manual 20.03</a> 撰写。本文的写作缘由是 NixOS Manual 的编排设计很容易导致习惯了其它发行版安装和配置流程的新人入坑失败。本篇指南给出的解决方案基本能满足<strong>大一软工专业课程学习</strong>和<strong>日常使用</strong>的需要。</p><p><strong>本文将假定你已经独立安装和配置过 Arch Linux、Gentoo 或任一官方不提供 GUI 安装程序的 Linux 发行版并掌握安装过程中涉及的大部分命令。</strong></p><h2>了解 NixOS</h2><p><a href="https://distrowatch.com/table.php?distribution=nixos">可以先从 DistroWatch 开始了解 NixOS 这个发行版</a>，<a href="https://nixos.org/nixos/about.html">接下来建议阅读 NixOS 官方的介绍</a>。有一个不太恰当的比喻，NixOS 相对于其它发行版有点像使用 Git + Markdown + Hexo 相对于无版本管理 + 手撸 HTML 文件，<a href="https://nixos.wiki/wiki/NixOS#Comparison_with_traditional_Linux_Distributions">NixOS Wiki 也给出了 NixOS 和其它发行版的最大区别所在</a>。而这一切实现的基础是 <strong>Nix</strong>，事实上 NixOS 中所有软件包（<strong>Nixpkgs</strong>）和系统配置都由 Nix 管理。要想了解 Nix，<a href="https://www.zhihu.com/question/279855101/answer/475896416">建议阅读 dram 大佬在知乎相关问题下的回答</a>。dram 是 TUNA 镜像站镜像 NixOS / Nix / Nixpkgs 的主要推动者之一。至于 NixOS 是否适合你，<a href="https://zhuanlan.zhihu.com/p/50623869">可以阅读这篇文章自行判断</a>。</p><h2>准备工作</h2><p>准备好安装 NixOS 了？让我们开始吧。前期的准备工作包括：数据备份、下载镜像、将镜像写入 U 盘、引导安装介质、连接到网络、建立分区、格式化分区、挂载分区，<strong>这一部分和其它（不带 GUI 安装程序的）Linux 发行版的安装几乎是一样的</strong>，这里不会细讲。</p><p>2020 年 3 月后清华镜像站就有 Nix / NixOS / Nixpkgs 的镜像了，<a href="https://mirrors.tuna.tsinghua.edu.cn/nixos-images/">NixOS 的安装介质可在这里下载</a>，建议选带桌面环境的镜像（可以通过文件名判断）。将写入 U 盘可以使用 <code>dd</code> 命令，具体用法（<code>path-to-image</code> 是 NixOS 安装介质的路径，<code>/dev/sdX</code> 则是写入目标）：</p><pre><code>sudo dd if=path-to-image of=/dev/sdX
@@ -232,7 +232,7 @@ in
 <link>https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html</link>
 <guid>https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html</guid>
 <pubDate>Sun, 02 Feb 2020 16:00:00 +0000</pubDate>
-<dc:creator>bobby285271</dc:creator>
+<dc:creator>Bobby Rong</dc:creator>
 <description><![CDATA[First things firstYou should get a IP address after buying VPS, such as 123.123.123.123. Open you...]]></description>
 <content:encoded xml:lang="zh-CN"><![CDATA[
 <h2>First things first</h2><p>You should get a IP address after buying VPS, such as <code>123.123.123.123</code>. Open your favourite terminal and enter:</p><blockquote>Replace <code>123.123.123.123</code> with your actual IP address.</blockquote><pre><code>ssh root@123.123.123</code></pre><p>Enter your password to login. Perform a full upgrade on your system:</p><pre><code>dnf upgrade

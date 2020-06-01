@@ -32,7 +32,7 @@ brotli 1.0.7-3
 btrfs-progs 5.6.1-3
 bzip2 1.0.8-3
 ca-certificates 20181109-3
-ca-certificates-mozilla 3.52.1-2
+ca-certificates-mozilla 3.53-1
 ca-certificates-utils 20181109-3
 cairo 1.17.2+25+gaee96d175-1
 cairomm 1.12.2-4
@@ -42,7 +42,7 @@ colord 1.4.4+9+g1ce26da-2
 coreutils 8.32-1
 cracklib 2.9.7-2
 crda 4.14-3
-cryptsetup 2.3.2-2
+cryptsetup 2.3.3-1
 curl 7.70.0-1
 darkhttpd 1.12-5
 dav1d 0.7.0-1
@@ -135,7 +135,7 @@ gtk-update-icon-cache 1:3.24.20-1
 gtk2 2.24.32-2
 gtk3 1:3.24.20-1
 gtkmm3 3.24.2-2
-gtksourceview3 3.24.11-1
+gtksourceview3 3.24.11+28+g73e57b57-1
 guile 2.2.6-2
 gvfs 1.44.1-3
 gzip 1.10-3
@@ -235,7 +235,7 @@ libnfnetlink 1.0.1-4
 libnftnl 1.1.6-1
 libnghttp2 1.40.0-1
 libnl 3.5.0-2
-libnm 1.24.0-1
+libnm 1.24.2-1
 libnma 1.8.28-1
 libnotify 0.7.9-1
 libnsl 1.2.0-2
@@ -254,7 +254,7 @@ libproxy 0.4.15+33+g454a499-1
 libpsl 0.21.0-2
 libpulse 13.0-3
 libraw1394 2.1.2-3
-librsvg 2:2.48.4-1
+librsvg 2:2.48.5-1
 libsamplerate 0.1.9-3
 libsasl 2.1.27-3
 libseccomp 2.4.2-1
@@ -342,7 +342,7 @@ make 4.3-3
 man-db 2.9.1-2
 man-pages 5.06-2
 mc 4.8.24-2
-md4c 0.4.3-1
+md4c 0.4.4-1
 mdadm 4.1-2
 memtest86+ 5.01-4
 mesa 20.0.7-3
@@ -362,7 +362,7 @@ net-tools 1.60.20181103git-2
 netctl 1.23-1
 nettle 3.6-1
 network-manager-applet 1.16.0-1
-networkmanager 1.24.0-1
+networkmanager 1.24.2-1
 nfs-utils 2.4.3-2
 nfsidmap 2.4.3-2
 nilfs-utils 2.2.8-2
@@ -370,7 +370,7 @@ nm-connection-editor 1.16.0-1
 nmap 7.80-2
 npth 1.6-2
 nspr 4.25-1
-nss 3.52.1-2
+nss 3.53-1
 ntfs-3g 2017.3.23-4
 ntp 4.2.8.p14-1
 openconnect 1:8.10-1
@@ -391,7 +391,7 @@ pango 1:1.44.7+11+g73b46b04-1
 pangomm 2.42.1-2
 partclone 0.3.12-1
 parted 3.3-2
-partimage 0.6.9-12
+partimage 0.6.9-13
 patch 2.7.6-8
 pbzip2 1.1.13-2
 pciutils 3.6.4-1
@@ -480,9 +480,9 @@ vim-runtime 8.2.0814-2
 vmaf 1.5.1-1
 volume_key 0.3.12-3
 vpnc 1:0.5.3.r468.r81-1
-vte-common 0.60.2-2
-vte3 0.60.2-2
-vulkan-icd-loader 1.2.140-1
+vte-common 0.60.3-1
+vte3 0.60.3-1
+vulkan-icd-loader 1.2.141-1
 wayland 1.18.0-2
 wayland-protocols 1.20-1
 wget 1.20.3-3

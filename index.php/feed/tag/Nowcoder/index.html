@@ -18,7 +18,7 @@ xmlns:wfw="http://wellformedweb.org/CommentAPI/">
 <link>https://static.bobby285271.top/index.php/2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html</link>
 <guid>https://static.bobby285271.top/index.php/2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html</guid>
 <pubDate>Sat, 08 Feb 2020 16:00:00 +0000</pubDate>
-<dc:creator>bobby285271</dc:creator>
+<dc:creator>Bobby Rong</dc:creator>
 <description><![CDATA[颓废了一个寒假，Codeforces 打来打去都是 Specialist，菜的一批。POJ 又刷到怀疑人生。后来被 Kaidora 神犇安排了这个集训营。当时已经是第四场要开始了，还是去了。果然...]]></description>
 <content:encoded xml:lang="zh-CN"><![CDATA[
 <p>颓废了一个寒假，Codeforces 打来打去都是 Specialist，菜的一批。POJ 又刷到怀疑人生。后来被 Kaidora 神犇安排了这个集训营。当时已经是第四场要开始了，还是去了。果然，哪怕都是自闭五小时每小时过一题，氪了金感觉就是不一样。</p><p>点击下方的页码查看相应场次的记录，第 $i$ 页对应的是第 $i-1$ 场比赛。</p><h1>2020 牛客寒假算法基础集训营 1</h1><blockquote>字符串、贪心、矩阵快速幂、概率论、计算几何、并查集、数论</blockquote><h2>1A. Honoka 和格点三角形</h2><h3>大意</h3><p>给出 $m \times n$ 格点矩阵，问在矩阵里面能找出多少个面积为 $1$，且至少有一条边平行于 $x$ 轴或 $y$ 轴的三角形。答案对 $1000000007$ 取模。</p><h3>思路</h3><p>若存在平行于 $x$ 轴或 $y$ 轴的边且长度为 $2$，一共有 $2(n-1)(m-2)m+2(m-1)(n-2)n$ 种情况。</p><p>若存在平行于 $x$ 轴或 $y$ 轴的边且长度为 $1$，除去已经计算过的情况（即还存在平行于$x$ 轴或 $y$ 轴且长度为 $2$ 的边），一共有 $2(m-1)(m-2)(n-2)+2(n-1)(n-2)(m-2)$ 种情况。</p><p>相加后化简，得到 $2(m+n-2)(2mn-3m-3n+4)$，利用 $ab\ mod\ c = ((a\ mod\ c)(b\ mod\ c))\ mod\ c$ 计算结果。</p><pre><code>#include &lt;bits/stdc++.h&gt;

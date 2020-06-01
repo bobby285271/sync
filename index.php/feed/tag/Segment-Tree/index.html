@@ -18,7 +18,7 @@ xmlns:wfw="http://wellformedweb.org/CommentAPI/">
 <link>https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html</link>
 <guid>https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html</guid>
 <pubDate>Wed, 18 Dec 2019 15:35:00 +0000</pubDate>
-<dc:creator>bobby285271</dc:creator>
+<dc:creator>Bobby Rong</dc:creator>
 <description><![CDATA[SCNUACM 新生赛的 C 题被我用 N 方算法水过去了，很惭愧，还是想了解一下正解。当然了，一切的基础，就是熟悉相关的模板咯！题目https://www.luogu.com.cn/probl...]]></description>
 <content:encoded xml:lang="zh-CN"><![CDATA[
 <p>SCNUACM 新生赛的 C 题被我用 N 方算法水过去了，很惭愧，还是想了解一下正解。当然了，一切的基础，就是熟悉相关的模板咯！</p><h2>题目</h2><p><a href="https://www.luogu.com.cn/problem/P3372">https://www.luogu.com.cn/problem/P3372</a></p><h2>思路</h2><blockquote>以下内容<strong>仅为个人理解，可能存在错误</strong>。</blockquote><p>显然，对给出的区间中的每一个数逐个加 k（操作 1）或者一个一个数累加下去来求和（操作 2）是会超时的。我们先抛开操作 1 不谈，试想一下对于操作 2，如果我们可以把这个区间分成几个小块，然后又事先知道每一小块中的元素求和的结果，那我求和的时候是不是就不需要算那么多项呢？是不是也就快一点呢？于是就有了分块思想。如果我们把这个思想给贯彻地彻底一些，事先将几个小块拼在一起形成一个大块，又事先算出每一大块中的元素求和的结果，会不会再更快一些呢？以此类推，树形结构就被我们构建出来了。事实上，线段树就是一种二叉树（但不一定是完全二叉树，下面配图就是一个反例，感谢 CGY 提醒）。它的每一个子节点都表示整个序列中的一段子区间，每个叶子节点都表示序列中的单个元素信息，父节点整合了他的每一个子节点的信息。</p><blockquote>有人会问既然是求和，直接前缀和不就好了吗。刚开始我也是这样想的，果然后来我就看到了树状数组的模板，后面也会去试一下。但是上面这个思路可以处理更多的情况，例如我求个最大值最小值我也可以应用。</blockquote><p>假设我的序列已经读入完毕并储存到数组 a 了（这个简单）：</p><pre><code class="lang-cpp">long long a[maxn + 2];

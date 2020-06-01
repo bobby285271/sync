@@ -18,7 +18,7 @@ xmlns:wfw="http://wellformedweb.org/CommentAPI/">
 <link>https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html</link>
 <guid>https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html</guid>
 <pubDate>Fri, 04 Oct 2019 16:00:00 +0000</pubDate>
-<dc:creator>bobby285271</dc:creator>
+<dc:creator>Bobby Rong</dc:creator>
 <description><![CDATA[WSL 2 是 WSL 中体系结构的新版本，它改变了 Linux 发行版与 Windows 交互的方式。WSL 2 的主要目标是提高文件系统性能并增加系统调用的完全兼容性。 每个 Linux 发...]]></description>
 <content:encoded xml:lang="zh-CN"><![CDATA[
 <p>WSL 2 是 WSL 中体系结构的新版本，它改变了 Linux 发行版与 Windows 交互的方式。<br>WSL 2 的主要目标是提高文件系统性能并增加系统调用的完全兼容性。 每个 Linux 发行版都可以作为 WSL 1 或 WSL 2 发行版运行，并可随时进行切换。<br>WSL 2 是底层体系结构的主要功能，它使用虚拟化技术和 Linux 内核来实现其新功能。</p><h2>准备</h2><p>为了使用 WSL 2，你需要 <strong>Windows 10 内部版本 18917 或更高版本</strong>。要想了解目前使用的版本是什么，可以到设置页面查看。<br><img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/0.PNG" alt="" title=""></p><p>首先，右击任务栏 Windows 图标，选择 Windows Powershell（管理员），输入以下命令：</p><pre><code>Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
