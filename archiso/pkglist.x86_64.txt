@@ -149,7 +149,7 @@ icu 67.1-1
 inetutils 1.9.4-8
 intel-ucode 20200520-1
 iproute2 5.7.0-1
-iptables 1:1.8.4-1
+iptables 1:1.8.5-1
 iputils 20190709-2
 ipw2100-fw 1.3-10
 ipw2200-fw 3.1-8
@@ -170,7 +170,7 @@ krb5 1.18.1-1
 l-smash 2.14.5-2
 lame 3.100-3
 lbzip2 2.5-5
-lcms2 2.10-1
+lcms2 2.10-2
 ldns 1.7.1-2
 less 551-3
 lftp 4.9.1-1
@@ -394,11 +394,11 @@ parted 3.3-2
 partimage 0.6.9-13
 patch 2.7.6-8
 pbzip2 1.1.13-2
-pciutils 3.6.4-1
+pciutils 3.7.0-1
 pcre 8.44-1
 pcre2 10.35-1
 pcsclite 1.8.26-1
-perl 5.30.2-1
+perl 5.30.3-1
 perl-error 0.17029-1
 perl-mailtools 2.21-3
 perl-timedate 2.33-1
@@ -449,9 +449,9 @@ stoken 0.92-4
 sudo 1.9.0-1
 sysfsutils 2.1.0-11
 syslinux 6.04.pre2.r11.gbf6db5b4-3
-systemd 245.6-2
-systemd-libs 245.6-2
-systemd-sysvcompat 245.6-2
+systemd 245.6-4
+systemd-libs 245.6-4
+systemd-sysvcompat 245.6-4
 tar 1.32-3
 tcl 8.6.10-2
 tcpdump 4.9.3-2
@@ -463,7 +463,7 @@ thunar 1.8.15-1
 thunar-volman 0.9.5-3
 tre 0.8.0-5
 tslib 1.21-2
-ttf-liberation 2.1.0-1
+ttf-liberation 2.1.1-1
 tumbler 0.2.8-2
 tzdata 2020a-1
 udisks2 2.9.0-1
