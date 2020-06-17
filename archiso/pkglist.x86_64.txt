@@ -81,7 +81,7 @@ fakeroot 1.24-2
 fcitx 4.2.9.7-3
 fcitx-configtool 0.4.10-4
 fcitx-qt5 1.2.4-5
-ffmpeg 1:4.2.3-5
+ffmpeg 2:4.2.3-1
 file 5.38-3
 filesystem 2020.05.20-1
 findutils 4.7.0-2
@@ -170,7 +170,7 @@ krb5 1.18.2-1
 l-smash 2.14.5-2
 lame 3.100-3
 lbzip2 2.5-5
-lcms2 2.10-2
+lcms2 2.11-1
 ldns 1.7.1-2
 less 551-3
 lftp 4.9.1-1
