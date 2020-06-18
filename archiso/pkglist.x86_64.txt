@@ -4,7 +4,7 @@ adobe-source-han-sans-cn-fonts 2.001-1
 adwaita-icon-theme 3.36.1-1
 alsa-lib 1.2.3-1
 alsa-topology-conf 1.2.3-1
-alsa-ucm-conf 1.2.3-1
+alsa-ucm-conf 1.2.3-2
 amd-ucode 20200519.8ba6fa6-1
 aom 2.0.0-1
 arch-install-scripts 23-2
@@ -23,7 +23,7 @@ b43-fwcutter 019-3
 base 2-2
 bash 5.0.017-1
 bc 1.07.1-4
-bind-tools 9.16.3-1
+bind-tools 9.16.4-1
 binutils 2.34-5
 bison 3.6.3-1
 bluez-libs 5.54-2
@@ -54,7 +54,7 @@ ddrescue 1.25-1
 desktop-file-utils 0.24-2
 device-mapper 2.02.187-3
 dhclient 4.4.2-2
-dhcpcd 9.1.1-1
+dhcpcd 9.1.2-1
 dialog 1:1.3_20200327-1
 diffutils 3.7-3
 ding-libs 0.6.1-3
@@ -82,7 +82,7 @@ fcitx 4.2.9.7-3
 fcitx-configtool 0.4.10-4
 fcitx-qt5 1.2.4-5
 ffmpeg 2:4.2.3-1
-file 5.38-3
+file 5.39-1
 filesystem 2020.05.20-1
 findutils 4.7.0-2
 firefox 77.0.1-1
@@ -147,7 +147,7 @@ hwids 20200306-1
 iana-etc 20200601-1
 icu 67.1-1
 inetutils 1.9.4-8
-intel-ucode 20200609-2
+intel-ucode 20200616-1
 iproute2 5.7.0-1
 iptables 1:1.8.5-2
 iputils 20190709-2
@@ -170,7 +170,7 @@ krb5 1.18.2-1
 l-smash 2.14.5-2
 lame 3.100-3
 lbzip2 2.5-5
-lcms2 2.11-1
+lcms2 2.11-2
 ldns 1.7.1-2
 less 551-3
 lftp 4.9.1-1
@@ -185,7 +185,7 @@ libblockdev 2.24-1
 libbluray 1.2.0-3
 libbytesize 2.3-1
 libcanberra 0.30+2+gc0620e4-3
-libcap 2.34-1
+libcap 2.35-1
 libcap-ng 0.7.10-1
 libcddb 1.3.2-6
 libcdio 2.1.0-2
@@ -232,7 +232,7 @@ libndp 1.7-2
 libnetfilter_conntrack 1.0.8-1
 libnewt 0.52.21-3
 libnfnetlink 1.0.1-4
-libnftnl 1.1.6-1
+libnftnl 1.1.7-1
 libnghttp2 1.41.0-1
 libnl 3.5.0-2
 libnm 1.24.2-1
@@ -449,9 +449,9 @@ stoken 0.92-4
 sudo 1.9.0-1
 sysfsutils 2.1.0-11
 syslinux 6.04.pre2.r11.gbf6db5b4-3
-systemd 245.6-6
-systemd-libs 245.6-6
-systemd-sysvcompat 245.6-6
+systemd 245.6-7
+systemd-libs 245.6-7
+systemd-sysvcompat 245.6-7
 tar 1.32-3
 tcl 8.6.10-2
 tcpdump 4.9.3-2
@@ -532,7 +532,7 @@ xfdesktop 4.14.2-2
 xfsprogs 5.6.0-2
 xfwm4 4.14.2-1
 xfwm4-themes 4.10.0-4
-xkeyboard-config 2.30-1
+xkeyboard-config 2.30-2
 xl2tpd 1.3.15-1
 xorg-iceauth 1.0.8-2
 xorg-server 1.20.8-2
