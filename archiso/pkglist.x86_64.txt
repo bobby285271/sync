@@ -25,7 +25,7 @@ bash 5.0.017-1
 bc 1.07.1-4
 bind-tools 9.16.4-1
 binutils 2.34-5
-bison 3.6.3-1
+bison 3.6.4-1
 bluez-libs 5.54-2
 broadcom-wl 6.30.223.271-208
 brotli 1.0.7-3
@@ -51,7 +51,7 @@ dbus 1.12.18-1
 dbus-glib 0.110-2
 dconf 0.36.0-1
 ddrescue 1.25-1
-desktop-file-utils 0.24-2
+desktop-file-utils 0.26-1
 device-mapper 2.02.187-3
 dhclient 4.4.2-2
 dhcpcd 9.1.2-1
@@ -69,7 +69,7 @@ ecryptfs-utils 111-3
 efibootmgr 17-1
 efitools 1.9.2-3
 efivar 37-4
-elfutils 0.179-1
+elfutils 0.180-1
 elinks 0.13-21
 enchant 2.2.8-3
 ethtool 1:5.7-1
@@ -137,7 +137,7 @@ gtk3 1:3.24.20-1
 gtkmm3 3.24.2-2
 gtksourceview3 3.24.11+28+g73e57b57-1
 guile 2.2.6-2
-gvfs 1.44.1-3
+gvfs 1.44.1-4
 gzip 1.10-3
 harfbuzz 2.6.7-1
 haveged 1.9.12-1
@@ -185,7 +185,7 @@ libblockdev 2.24-1
 libbluray 1.2.0-3
 libbytesize 2.3-1
 libcanberra 0.30+2+gc0620e4-3
-libcap 2.35-1
+libcap 2.36-1
 libcap-ng 0.7.10-1
 libcddb 1.3.2-6
 libcdio 2.1.0-2
@@ -198,7 +198,7 @@ libdbusmenu-glib 16.04.0-4
 libdbusmenu-gtk3 16.04.0-4
 libdrm 2.4.102-1
 libedit 20191231_3.1-1
-libelf 0.179-1
+libelf 0.180-1
 libepoxy 1.5.4-2
 libevdev 1.9.0-1
 libevent 2.1.11-5
@@ -216,7 +216,7 @@ libice 1.0.10-3
 libidn 1.35-3
 libidn2 2.3.0-1
 libiec61883 1.2.0-6
-libimobiledevice 1.2.0+87+g92c5462-7
+libimobiledevice 1.3.0-1
 libinput 1.15.6-1
 libjpeg-turbo 2.0.4-1
 libksba 1.4.0-1
@@ -248,7 +248,7 @@ libpciaccess 0.16-2
 libpeas 1.26.0-1
 libpgm 5.2.122-5
 libpipeline 1.5.2-1
-libplist 2.1.0-3
+libplist 2.2.0-1
 libpng 1.6.37-2
 libproxy 0.4.15+33+g454a499-1
 libpsl 0.21.0-2
@@ -277,7 +277,7 @@ libtool 2.4.6+42+gb88cebd5-13
 libunistring 0.9.10-2
 libunwind 1.3.1-2
 libusb 1.0.23-2
-libusbmuxd 2.0.1-1
+libusbmuxd 2.0.2-1
 libutil-linux 2.35.2-1
 libuv 1.38.0-1
 libva 2.7.1-1
@@ -397,7 +397,7 @@ pbzip2 1.1.13-2
 pciutils 3.7.0-1
 pcre 8.44-1
 pcre2 10.35-1
-pcsclite 1.8.26-1
+pcsclite 1.9.0-1
 perl 5.30.3-1
 perl-error 0.17029-1
 perl-mailtools 2.21-3
@@ -441,12 +441,12 @@ sound-theme-freedesktop 0.8-4
 speex 1.2.0-3
 speexdsp 1.2.0-2
 spice 0.14.3-2
-sqlite 3.32.2-1
+sqlite 3.32.3-1
 srt 1.4.1-2
 sshfs 3.7.0-1
 startup-notification 0.12-7
 stoken 0.92-4
-sudo 1.9.0-1
+sudo 1.9.1-1
 sysfsutils 2.1.0-11
 syslinux 6.04.pre2.r11.gbf6db5b4-3
 systemd 245.6-7
@@ -467,9 +467,9 @@ ttf-liberation 2.1.1-1
 tumbler 0.2.8-2
 tzdata 2020a-1
 udisks2 2.9.0-1
-upower 0.99.11-2
+upower 0.99.11-3
 usb_modeswitch 2.6.0-2
-usbmuxd 1.1.0+69+g8a69f1a-1
+usbmuxd 1.1.1-1
 usbutils 012-2
 util-linux 2.35.2-1
 v4l-utils 1.20.0-1
