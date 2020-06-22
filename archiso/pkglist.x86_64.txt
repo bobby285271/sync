@@ -2,7 +2,7 @@ acl 2.2.53-3
 adobe-source-code-pro-fonts 2.030ro+1.050it-6
 adobe-source-han-sans-cn-fonts 2.001-1
 adwaita-icon-theme 3.36.1-1
-alsa-lib 1.2.3-1
+alsa-lib 1.2.3.1-1
 alsa-topology-conf 1.2.3-1
 alsa-ucm-conf 1.2.3-2
 amd-ucode 20200519.8ba6fa6-1
@@ -93,9 +93,9 @@ fontconfig 2:2.13.91+48+gfcb0420-1
 freetype2 2.10.2-1
 fribidi 1.0.9-1
 fsarchiver 0.8.5-2
-fuse-common 3.9.1-1
+fuse-common 3.9.2-1
 fuse2 2.9.9-4
-fuse3 3.9.1-1
+fuse3 3.9.2-1
 garcon 0.6.4-2
 gawk 5.1.0-1
 gc 8.0.4-4
