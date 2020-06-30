@@ -43,7 +43,7 @@ coreutils 8.32-1
 cracklib 2.9.7-2
 crda 4.14-3
 cryptsetup 2.3.3-1
-curl 7.70.0-1
+curl 7.71.0-1
 darkhttpd 1.12-5
 dav1d 0.7.1-1
 db 5.3.28-5
@@ -131,9 +131,9 @@ gsettings-desktop-schemas 3.36.1-1
 gsm 1.0.19-1
 gspell 1.8.3-1
 gssproxy 0.8.3-1
-gtk-update-icon-cache 1:3.24.20-1
+gtk-update-icon-cache 1:3.24.21-1
 gtk2 2.24.32-2
-gtk3 1:3.24.20-1
+gtk3 1:3.24.21-1
 gtkmm3 3.24.2-2
 gtksourceview3 3.24.11+28+g73e57b57-1
 guile 2.2.6-2
@@ -205,9 +205,9 @@ libevdev 1.9.0-1
 libevent 2.1.11-5
 libexif 0.6.22-1
 libffi 3.3-3
-libfontenc 1.1.4-2
+libfontenc 1.1.4-3
 libgcrypt 1.8.5-2
-libglvnd 1.3.1-1
+libglvnd 1.3.2-1
 libgnomekbd 3.26.1+2+g8d02ebd-2
 libgpg-error 1.38-1
 libgudev 233-2
@@ -536,6 +536,7 @@ xfwm4 4.14.2-1
 xfwm4-themes 4.10.0-4
 xkeyboard-config 2.30-2
 xl2tpd 1.3.15-1
+xorg-fonts-encodings 1.0.5-2
 xorg-iceauth 1.0.8-2
 xorg-server 1.20.8-2
 xorg-server-common 1.20.8-2
