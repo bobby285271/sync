@@ -2,13 +2,14 @@ name: Static Site
 
 on:
   schedule:
-    - cron:  '19 8 * * *'
+    - cron:  '23 8 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
+      - name: Gogogogogogo
+        shell: bash
         env:
           codingpasswd: ${{ secrets.codingpasswd }}
         run: |
