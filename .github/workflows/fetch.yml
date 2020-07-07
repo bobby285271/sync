@@ -2,8 +2,7 @@ name: Static Site
 
 on:
   schedule:
-    - cron:  '4 8 * * *'
-
+    - cron:  '18 8 * * *'
 
 jobs:
   build:
