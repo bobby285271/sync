@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html class="no-js bg" lang="zh-cmn-Hans">
+<html class="no-js" lang="zh-cmn-Hans">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta charset="UTF-8">
@@ -47,18 +47,22 @@
         background: #EFEFEF
         }
 }
-    </style>
+#aside .wrapper:hover {
+	background: url(../usr/themes/handsome/assets/img/snow.gif);
+	background-size: cover;
+	color: #999;
+}    </style>
 
-<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="8b15237539b22b34cfed6023-text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
 
-<script src="../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="8b15237539b22b34cfed6023-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
 </head>
 <body id="body" class="fix-padding">
 
-<div id="alllayout" class="app app-aside-fix container app-header-fixed "> 
+<div id="alllayout" class="app app-aside-fix no-container app-header-fixed "> 
 <header id="header" class="fix-padding app-header navbar box-shadow-bottom-lg" role="menu">
 
-<div class="text-ellipsis navbar-header bg-white">
+<div class="text-ellipsis navbar-header bg-primary">
 <button class="pull-right visible-xs" ui-toggle-class="show animated animated-lento fadeIn" target=".navbar-collapse">
 <span class="menu-icons"><i data-feather="search"></i></span>
 </button>
@@ -74,7 +78,7 @@
 </div>
 
 
-<div class="collapse pos-rlt navbar-collapse bg-white">
+<div class="collapse pos-rlt navbar-collapse bg-primary">
 
 <form id="searchform1" class="searchform navbar-form navbar-form-sm navbar-left shift" method="post" role="search">
 <div class="form-group">
@@ -98,6 +102,11 @@
 <a href="cross.html" style="display: none" id="searchUrl"></a>
 
 <ul class="nav navbar-nav navbar-right">
+<li class="music-box hidden-xs hidden-sm">
+<div id="skPlayer"></div>
+</li>
+<li class="dropdown "><a class="skPlayer-list-switch dropdown-toggle
+            feathericons"><i data-feather="disc"></i><span class="visible-xs-inline"></span></a></li>
 
 <li class="dropdown">
 <a href="cross.html#" data-toggle="dropdown" class="feathericons dropdown-toggle">
@@ -114,14 +123,14 @@
 闲言碎语 </strong>
 </div>
 <div class="list-group" id="smallRecording">
-<a href="cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。machinectl shell <span class="__cf_email__" data-cfemail="e384878ea3">[email&#160;protected]</span> /bin/bashgsettings set org.gnome.desktop.interface font-name "Noto S...<br><small class="text-muted">2020-5-14 12:19:43</small></span></a> </div>
+<a href="cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">发现一组随机壁纸 API：https://www.lxzzz.cn/337.html<br><small class="text-muted">2020-7-6 20:06:24</small></span></a><a href="cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。machinectl shell <span class="__cf_email__" data-cfemail="5532313815">[email&#160;protected]</span> /bin/bashgsettings set org.gnome.desktop.interface font-name "Noto S...<br><small class="text-muted">2020-5-14 12:19:43</small></span></a> </div>
 </div>
 </div>
 </li>
 
 
 <li class="dropdown" id="easyLogin">
-<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-8b15237539b22b34cfed6023-="">
+<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-3007f6b5c7b975643d76c4ee-="">
 <span class="feathericons"><i data-feather="key"></i></span>
 <b class="caret"></b>
 </a>
@@ -151,7 +160,7 @@
 </header>
 
 
-<aside id="aside" class="app-aside hidden-xs bg-white"> 
+<aside id="aside" class="app-aside hidden-xs bg-dark"> 
 <div class="aside-wrap" layout="column">
 <div class="navi-wrap scroll-y scroll-hide" flex>
 
@@ -178,10 +187,10 @@
 <li class="wrapper b-b m-b-sm bg-info m-n">
 <span class="arrow top hidden-folded arrow-info"></span>
 <div>
-<p>晚上好，注意早点休息</p>
+<p>下午好，是时候打个盹了</p>
 </div>
 <div class="progress progress-xs m-b-none dker">
-<div class="progress-bar bg-white" data-toggle="tooltip" data-original-title="时间已经度过95.83%" style="width: 95.83%"></div>
+<div class="progress-bar bg-white" data-toggle="tooltip" data-original-title="时间已经度过66.67%" style="width: 66.67%"></div>
 </div>
 </li>
 </ul>
@@ -205,7 +214,7 @@
 </a>
 </li>
 
-<li> <a target="_blank" href="https://start.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Start Page</span></a></li> <li class="line dk"></li>
+<li> <a target="_blank" href="https://start.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Start Page</span></a></li><li> <a target="_blank" href="https://codeforces.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Codeforces Ladders</span></a></li> <li class="line dk"></li>
 
 <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
 <span>组成</span>
@@ -235,14 +244,14 @@
 <a class="auto">
 <span class="pull-right text-muted">
 <i class="fontello icon-fw fontello-angle-right text"></i>
- <i class="fontello icon-fw fontello-angle-down text-active"></i>
+<i class="fontello icon-fw fontello-angle-down text-active"></i>
 </span>
 <span class="nav-icon"><i data-feather="file"></i></span>
 <span>页面</span>
 </a>
 <ul class="nav nav-sub dk">
 <li class="nav-sub-header">
-<a data-no-instant>
+ <a data-no-instant>
 <span>页面</span>
 </a>
 </li>
@@ -313,7 +322,7 @@
 <main class="app-content-body ">
 <div class="hbox hbox-auto-xs hbox-auto-sm">
 <div class="col center-part">
-<div style="background:url(https://s2.ax1x.com/2019/07/20/Zza59I.png) center center; background-size:cover">
+<div style="background:url(https://tva2.sinaimg.cn/large/9bd9b167gy1g2ql4y760jj21hc0u07wh.jpg) center center; background-size:cover">
 <div class="wrapper-lg bg-white-opacity">
 <div class="row m-t">
 <div class="col-sm-6">
@@ -329,7 +338,7 @@
 <div class="col-sm-6">
 <div class="pull-right pull-none-xs text-center">
 <a class="m-b-md inline m">
-<span class="h3 block font-bold">3</span>
+<span class="h3 block font-bold">4</span>
 <small>评论</small>
 </a>
 <a class="m-b-md inline m">
@@ -337,7 +346,7 @@
 <small>文章</small>
 </a>
 <a class="m-b-md inline m">
-<span class="h3 block font-bold">1</span>
+<span class="h3 block font-bold">2</span>
 <small>动态</small>
 </a>
 </div>
@@ -357,21 +366,44 @@
 
 
 <div class="streamline b-l m-l-lg m-b padder-v">
-<h4 style="display: none" class="comments-title m-t-lg m-b">&nbsp;1 条评论</h4>
+<h4 style="display: none" class="comments-title m-t-lg m-b">&nbsp; 2 条评论</h4>
 <ol class="comment-list">
 
-<div id="comment-17" class="comment-body comment-parent comment-odd comment-by-author">
+<div id="comment-21" class="comment-body comment-parent comment-odd comment-by-author">
 <a class="pull-left thumb-sm avatar m-l-n-md">
 <img nogallery src="https://secure.gravatar.com/avatar/1d4930fdc37d3baf980e8e6e8ffc224e?s=65&r=G&d=" class="img-40px photo img-square normal-shadow"> </a>
 <div class="time-machine m-l-lg panel box-shadow-wrap-normal">
 <div class="panel-heading pos-rlt b-b b-light">
 <span class="arrow left"></span>
-<a href="../index.html" rel="external nofollow">bobby285271</a> <span class="text-muted m-l-sm pull-right" datetime="2020-05-14T12:19:43+00:00">May 14th, 2020 at 12:19 pm </span>
+<a href="../index.html" rel="external nofollow">Bobby Rong</a> <span class="text-muted m-l-sm pull-right" datetime="2020-07-06T20:06:24+00:00">July 6th, 2020 at 08:06 pm </span>
+</div>
+<div class="panel-body">
+<p>发现一组随机壁纸 API：https://www.lxzzz.cn/337.html</p> </div>
+<div class="panel-footer">
+<div class="say_footer">
+
+<a data-coid="21" class="text-muted star_talk"><i class="glyphicon glyphicon-heart-empty"></i>&nbsp;<span class="star_count">0</span></a>
+<span class="text-muted">
+<span class="ua-icons"><i data-feather='disc'></i></span>
+发自Linux </span>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="comment-17" class="comment-body comment-parent comment-even comment-by-author">
+<a class="pull-left thumb-sm avatar m-l-n-md">
+<img nogallery src="https://secure.gravatar.com/avatar/1d4930fdc37d3baf980e8e6e8ffc224e?s=65&r=G&d=" class="img-40px photo img-square normal-shadow"> </a>
+<div class="time-machine m-l-lg panel box-shadow-wrap-normal">
+<div class="panel-heading pos-rlt b-b b-light">
+<span class="arrow left"></span>
+<a href="../index.html" rel="external nofollow">Bobby Rong</a> <span class="text-muted m-l-sm pull-right" datetime="2020-05-14T12:19:43+00:00">May 14th, 2020 at 12:19 pm </span>
 </div>
 <div class="panel-body">
 <p>GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。<br>
 其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。<br>
-machinectl shell <a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="a6c1c2cbe6">[email&#160;protected]</a> /bin/bash<br>
+machinectl shell <a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="bddad9d0fd">[email&#160;protected]</a> /bin/bash<br>
 gsettings set org.gnome.desktop.interface font-name "Noto Sans CJK SC 11"<br>
 gsettings set org.gnome.desktop.interface document-font-name "Noto Sans CJK SC 11"<br>
 gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11"</p> </div>
@@ -391,7 +423,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
 <nav class="text-center m-b-lg" role="navigation">
 </nav>
 </div>
-<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="8b15237539b22b34cfed6023-text/javascript">
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="3007f6b5c7b975643d76c4ee-text/javascript">
 
     //更新未读提醒
 
@@ -438,7 +470,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
 <div class="padder-md">
 <div class="m-b-xs text-md">联系方式</div>
 <ul class="list-group no-bg no-borders pull-in">
-<li class="list-group-item"><a target="_blank" href="../cdn-cgi/l/email-protection.html#254441484c4b65474a47475c171d101712140b514a55" class="pull-left thumb-sm avatar m-r"><img src="https://s2.ax1x.com/2019/07/20/ZzU1sO.png" class="img-40px photo img-square normal-shadow"><i class="on b-white bottom"></i></a><div class="clear"><div><a target="_blank" href="../cdn-cgi/l/email-protection.html#28494c454146684a474a4a511a101d1a1f19065c4758">email</a></div><small class="text-muted"><a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="2243464f4b4c62404d40405b101a171015130c564d52">[email&#160;protected]</a></small></div></li><li class="list-group-item"><a target="_blank" href="tencent://message/?uin=931189261" class="pull-left thumb-sm avatar m-r"><img src="https://s2.ax1x.com/2019/07/20/ZzUlQK.png" class="img-40px photo img-square normal-shadow"><i class="on b-white bottom"></i></a><div class="clear"><div><a target="_blank" href="tencent://message/?uin=931189261">QQ</a></div><small class="text-muted">931189261</small></div></li> </ul>
+ <li class="list-group-item"><a target="_blank" href="../cdn-cgi/l/email-protection.html#aacbcec7c3c4eac8c5c8c8d398929f989d9b84dec5da" class="pull-left thumb-sm avatar m-r"><img src="https://s2.ax1x.com/2019/07/20/ZzU1sO.png" class="img-40px photo img-square normal-shadow"><i class="on b-white bottom"></i></a><div class="clear"><div><a target="_blank" href="../cdn-cgi/l/email-protection.html#355451585c5b75575a57574c070d000702041b415a45">email</a></div><small class="text-muted"><a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="e48580898d8aa4868b86869dd6dcd1d6d3d5ca908b94">[email&#160;protected]</a></small></div></li><li class="list-group-item"><a target="_blank" href="tencent://message/?uin=931189261" class="pull-left thumb-sm avatar m-r"><img src="https://s2.ax1x.com/2019/07/20/ZzUlQK.png" class="img-40px photo img-square normal-shadow"><i class="on b-white bottom"></i></a><div class="clear"><div><a target="_blank" href="tencent://message/?uin=931189261">QQ</a></div><small class="text-muted">931189261</small></div></li> </ul>
 </div>
 <div class="panel box-shadow-wrap-normal">
 <h4 class="font-thin padder">关于我</h4>
@@ -452,7 +484,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
 </div>
 </div>
 </main>
-<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="8b15237539b22b34cfed6023-text/javascript">
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="3007f6b5c7b975643d76c4ee-text/javascript">
     var timeTemple = '<div class="m-l-n-md">\n' +
         '          <a class="pull-left thumb-sm avatar">\n' +
         '            <img src="https://static.bobby285271.top/index.php/{IMG_AVATAR}">\n' +
@@ -596,7 +628,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
 
 </script>
 
-<script type="8b15237539b22b34cfed6023-text/javascript">
+<script type="3007f6b5c7b975643d76c4ee-text/javascript">
 (function () {
     window.TypechoComment = {
         dom : function (id) {
@@ -668,7 +700,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
     };
 })();
 </script>
-<script type="8b15237539b22b34cfed6023-text/javascript">
+<script type="3007f6b5c7b975643d76c4ee-text/javascript">
 var registCommentEvent = function() {
     var event = document.addEventListener ? {
         add: 'addEventListener',
@@ -693,31 +725,37 @@ var registCommentEvent = function() {
                         input.type = 'hidden';
                         input.name = '_';
                             input.value = (function () {
-    var _JKQ = '5dd'//'u'
-+'cbc'//'wra'
-+//'w'
-'c'+//'D'
-'cef'+//'rMf'
-'3'+'d9'//'gHv'
-+'6'//'r'
-+//'d'
-'ced'+//'c'
-'35'+''///*'h'*/'h'
-+//'x'
-'a1'+//'Y'
-'7'+'d0'//'X'
-+//'q'
-'2e5'+//'W'
-'9'+'3b'//'XkT'
-+//'K4'
-'e'+//'ri'
-'7', _0xe1sI = [];
+    var _qGf0oVp = //'X'
+'X'+//'g'
+'5d'+/* 'XUY'//'XUY' */''+'d'//'PoJ'
++//'YF'
+'cb'+''///*'a'*/'a'
++//'e53'
+'c'+//'q'
+'q'+'cce'//'Q'
++/* 'HJ'//'HJ' */''+//'rd'
+'f'+''///*'dUu'*/'dUu'
++//'w3'
+'3d'+'kKt'//'kKt'
++/* 'r'//'r' */''+//'0'
+'9'+'6'//'k'
++//'r8f'
+'c'+//'Ki'
+'ed'+//'mvO'
+'35'+'a1'//'ui'
++'7d0'//'JNx'
++//'7'
+'2'+'e59'//'uh'
++'3b'//'NLU'
++'2V'//'2V'
++/* 'MB'//'MB' */''+//'7'
+'e7', _iiPHu = [[0,1],[6,7],[12,15],[30,32]];
     
-    for (var i = 0; i < _0xe1sI.length; i ++) {
-        _JKQ = _JKQ.substring(0, _0xe1sI[i][0]) + _JKQ.substring(_0xe1sI[i][1]);
+    for (var i = 0; i < _iiPHu.length; i ++) {
+        _qGf0oVp = _qGf0oVp.substring(0, _iiPHu[i][0]) + _qGf0oVp.substring(_iiPHu[i][1]);
     }
 
-    return _JKQ;
+    return _qGf0oVp;
 })();
                     
                         f.appendChild(input);
@@ -758,13 +796,21 @@ Powered by <a target="_blank" href="http://www.typecho.org">Typecho</a>&nbsp;|&n
 </div>
 </footer>
 </div>
-<script type="8b15237539b22b34cfed6023-text/javascript">
+<script type="3007f6b5c7b975643d76c4ee-text/javascript">
 SearchConfig = {
     url : "https://static.bobby285271.top/usr/plugins/Handsome/cache/search.json"
 }
 </script>
+<link rel="stylesheet" type="text/css" href="../usr/plugins/KirinShiKi/css/kirin.css" /><script src='../usr/plugins/KirinShiKi/js/kirin.js' type="3007f6b5c7b975643d76c4ee-text/javascript"></script><style>
+            #bg{background-image:url(https://tva1.sinaimg.cn/large/9bd9b167gy1g2qkpnqz2ij21hc0u01kx.jpg);}
+            @media screen and (max-width:991px) {
+                #bg { 
+                    background-image:url(https://tva2.sinaimg.cn/large/9bd9b167ly1g2rdn5ehp0j20hs0vkn8e.jpg);
+                }
+            }
+        </style><script type="3007f6b5c7b975643d76c4ee-text/javascript"> setCopyright(0);$(document).on("ready pjax:end", function() { setHref(getHref());colorfulTags();moeTitle();copyTips();});</script>
 
-<script type="8b15237539b22b34cfed6023-text/javascript">
+<script type="3007f6b5c7b975643d76c4ee-text/javascript">
         window['LocalConst'] = {
             COMMENT_NAME_INFO: '必须填写昵称或姓名',
             COMMENT_EMAIL_INFO: '必须填写电子邮箱地址',
@@ -800,13 +846,13 @@ SearchConfig = {
             BASE_SCRIPT_URL: 'https://static.bobby285271.top/usr/themes/handsome/',
             BLOG_URL: 'https://static.bobby285271.top/',
             BLOG_URL_PHP: 'https://static.bobby285271.top/index.php/',
-            THEME_COLOR: '14',
-            THEME_COLOR_EDIT: 'white-white-white',
+            THEME_COLOR: '10',
+            THEME_COLOR_EDIT: '',
             THEME_HEADER_FIX: '1',
             THEME_ASIDE_FIX: '1',
             THEME_ASIDE_FOLDED: '',
             THEME_ASIDE_DOCK: '',
-            THEME_CONTAINER_BOX: '1',
+            THEME_CONTAINER_BOX: '',
             THEME_HIGHLIGHT_CODE: '1',
             THEME_TOC: '1',
             TOC_TITLE: '文章目录',
@@ -836,9 +882,9 @@ SearchConfig = {
 
     </script>
 
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="8b15237539b22b34cfed6023-text/javascript"></script>
-<script src="../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="8b15237539b22b34cfed6023-text/javascript"></script>
-<script type="8b15237539b22b34cfed6023-text/javascript">
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
+<script type="3007f6b5c7b975643d76c4ee-text/javascript">
         $(document).pjax('a[href^="https://static.bobby285271.top/"]:not(a[target="_blank"], a[no-pjax])', {
             container: '#content',
             fragment: '#content',
@@ -874,8 +920,8 @@ SearchConfig = {
     </script>
 
 
-<script src="../usr/themes/handsome/assets/js/features/lazyload.min.js" type="8b15237539b22b34cfed6023-text/javascript"></script>
-<script type="8b15237539b22b34cfed6023-text/javascript">
+<script src="../usr/themes/handsome/assets/js/features/lazyload.min.js" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
+<script type="3007f6b5c7b975643d76c4ee-text/javascript">
         $("img").lazyload({
             effect: "fadeIn",
             threshold: "200"
@@ -907,22 +953,27 @@ SearchConfig = {
         window.history.pushState('forward', null, '');
         window.history.forward(1);
     </script>
-<script src="../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="8b15237539b22b34cfed6023-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
 
-<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="8b15237539b22b34cfed6023-text/javascript"></script>
-<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="8b15237539b22b34cfed6023-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
 
-<script src="../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="8b15237539b22b34cfed6023-text/javascript"></script>
-<script src="../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="8b15237539b22b34cfed6023-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
 
-<script src="../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="8b15237539b22b34cfed6023-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
 
 
 
-<script src="../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="8b15237539b22b34cfed6023-text/javascript"></script>
-<script src="../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="8b15237539b22b34cfed6023-text/javascript"></script>
-<script type="8b15237539b22b34cfed6023-text/javascript">
+<script src="../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
+
+<script src="../usr/themes/handsome/assets/js/features/music.min.js%3Fv=6.0.020191205" type="3007f6b5c7b975643d76c4ee-text/javascript"></script>
+<script type="3007f6b5c7b975643d76c4ee-text/javascript">
+                var player = new skPlayer({"autoplay":false,"listshow":false,"mode":"listloop","music":{"type":"file","source":[{"name":"\u6b69\u3044\u3066\u3082\u6b69\u3044\u3066\u3082\u3001\u591c\u7a7a\u306f\u50d5\u3092\u8ffd\u3044\u304b\u3051\u3066\u304f\u308b","author":"\u9396\u90a3","src":"https:\/\/bobby285271.coding.net\/p\/img\/d\/img\/git\/raw\/master\/%E6%97%A0%E8%AE%BA%E6%80%8E%E4%B9%88%E8%B5%B0%E5%A4%9C%E7%A9%BA%E9%83%BD%E4%BC%9A%E6%9D%A5%E8%BF%BD%E9%80%90%E7%9D%80%E6%88%91.mp3","cover":"https:\/\/bobby285271.coding.net\/p\/img\/d\/img\/git\/raw\/master\/music-background.jpg"}]}});
+    </script>
+<script type="3007f6b5c7b975643d76c4ee-text/javascript">
             </script>
-<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="8b15237539b22b34cfed6023-|49" defer=""></script></body>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="3007f6b5c7b975643d76c4ee-|49" defer=""></script></body>
 </html>
 

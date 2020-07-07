@@ -284,7 +284,7 @@ libutil-linux 2.35.2-1
 libuv 1.38.1-1
 libva 2.8.0-1
 libvdpau 1.4-1
-libvorbis 1.3.6-2
+libvorbis 1.3.7-1
 libvpx 1.8.2-2
 libwacom 1.4.1-1
 libwebp 1.1.0-1

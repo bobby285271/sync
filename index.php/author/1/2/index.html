@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML>
-<html class="no-js bg" lang="zh-cmn-Hans">
+<html class="no-js" lang="zh-cmn-Hans">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta charset="UTF-8">
@@ -49,18 +49,22 @@
         background: #EFEFEF
         }
 }
-    </style>
+#aside .wrapper:hover {
+	background: url(../../../../usr/themes/handsome/assets/img/snow.gif);
+	background-size: cover;
+	color: #999;
+}    </style>
 
-<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
 
-<script src="../../../../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
 </head>
 <body id="body" class="fix-padding">
 
-<div id="alllayout" class="app app-aside-fix container app-header-fixed "> 
+<div id="alllayout" class="app app-aside-fix no-container app-header-fixed "> 
 <header id="header" class="fix-padding app-header navbar box-shadow-bottom-lg" role="menu">
 
-<div class="text-ellipsis navbar-header bg-white">
+<div class="text-ellipsis navbar-header bg-primary">
 <button class="pull-right visible-xs" ui-toggle-class="show animated animated-lento fadeIn" target=".navbar-collapse">
 <span class="menu-icons"><i data-feather="search"></i></span>
 </button>
@@ -76,7 +80,7 @@
 </div>
 
 
-<div class="collapse pos-rlt navbar-collapse bg-white">
+<div class="collapse pos-rlt navbar-collapse bg-primary">
 
 <form id="searchform1" class="searchform navbar-form navbar-form-sm navbar-left shift" method="post" role="search">
 <div class="form-group">
@@ -100,6 +104,11 @@
 <a href="index.html" style="display: none" id="searchUrl"></a>
 
 <ul class="nav navbar-nav navbar-right">
+<li class="music-box hidden-xs hidden-sm">
+<div id="skPlayer"></div>
+</li>
+<li class="dropdown "><a class="skPlayer-list-switch dropdown-toggle
+            feathericons"><i data-feather="disc"></i><span class="visible-xs-inline"></span></a></li>
 
 <li class="dropdown">
 <a href="index.html#" data-toggle="dropdown" class="feathericons dropdown-toggle">
@@ -107,7 +116,7 @@
 <span class="visible-xs-inline">
 闲言碎语 </span>
 <span class="badge badge-sm up bg-danger pull-right-xs"></span>
- </a>
+</a>
 
 <div class="dropdown-menu w-xl animated fadeInUp">
 <div class="panel bg-white">
@@ -116,14 +125,14 @@
 闲言碎语 </strong>
 </div>
 <div class="list-group" id="smallRecording">
-<a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。machinectl shell <span class="__cf_email__" data-cfemail="2c4b48416c">[email&#160;protected]</span> /bin/bashgsettings set org.gnome.desktop.interface font-name "Noto S...<br><small class="text-muted">2020-5-14 12:19:43</small></span></a> </div>
+<a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">发现一组随机壁纸 API：https://www.lxzzz.cn/337.html<br><small class="text-muted">2020-7-6 20:06:24</small></span></a><a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。machinectl shell <span class="__cf_email__" data-cfemail="3651525b76">[email&#160;protected]</span> /bin/bashgsettings set org.gnome.desktop.interface font-name "Noto S...<br><small class="text-muted">2020-5-14 12:19:43</small></span></a> </div>
 </div>
 </div>
 </li>
 
 
 <li class="dropdown" id="easyLogin">
-<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-43de0e58fd3de8e3441d4925-="">
+<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-c7dc05981fe30b97b6510d14-="">
 <span class="feathericons"><i data-feather="key"></i></span>
 <b class="caret"></b>
 </a>
@@ -153,7 +162,7 @@
 </header>
 
 
-<aside id="aside" class="app-aside hidden-xs bg-white"> 
+<aside id="aside" class="app-aside hidden-xs bg-dark"> 
 <div class="aside-wrap" layout="column">
 <div class="navi-wrap scroll-y scroll-hide" flex>
 
@@ -180,10 +189,10 @@
 <li class="wrapper b-b m-b-sm bg-info m-n">
 <span class="arrow top hidden-folded arrow-info"></span>
 <div>
-<p>晚上好，注意早点休息</p>
+<p>下午好，是时候打个盹了</p>
 </div>
 <div class="progress progress-xs m-b-none dker">
-<div class="progress-bar bg-white" data-toggle="tooltip" data-original-title="时间已经度过0.00%" style="width: 0.00%"></div>
+<div class="progress-bar bg-white" data-toggle="tooltip" data-original-title="时间已经度过66.67%" style="width: 66.67%"></div>
 </div>
 </li>
 </ul>
@@ -207,7 +216,7 @@
 </a>
 </li>
 
-<li> <a target="_blank" href="https://start.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Start Page</span></a></li> <li class="line dk"></li>
+<li> <a target="_blank" href="https://start.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Start Page</span></a></li><li> <a target="_blank" href="https://codeforces.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Codeforces Ladders</span></a></li> <li class="line dk"></li>
 
 <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
 <span>组成</span>
@@ -243,7 +252,7 @@
 <span>页面</span>
 </a>
 <ul class="nav nav-sub dk">
-<li class="nav-sub-header">
+ <li class="nav-sub-header">
 <a data-no-instant>
 <span>页面</span>
 </a>
@@ -253,7 +262,7 @@
 <li><a href="../../../archiso.html"><span>Archiso</span></a></li>
 <li><a href="../../../About.html"><span>About</span></a></li>
 <li><a href="../../../cross.html"><span>Cross</span></a></li>
- <li><a href="../../../Archives.html"><span>Archives</span></a></li>
+<li><a href="../../../Archives.html"><span>Archives</span></a></li>
 </ul>
 </li>
 
@@ -323,7 +332,7 @@
 <div class="blog-post"><div class="single-post panel">
 <div class="index-post-img">
 <a href="../../../2019/12/18/segment-tree.html">
-<div class="item-thumb lazy" data-original="https://bobby285271.coding.net/p/img/d/img/git/raw/master/xianduanshu.png" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
+<div class="item-thumb lazy" data-original="https://tva3.sinaimg.cn/large/9bd9b167gy1g4lizrjj8dj21hc0xcu0x.jpg" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
 </div>
 </a>
 </div><div class="post-meta wrapper-lg"> <h2 class="m-t-none text-ellipsis index-post-title text-title"><a href="../../../2019/12/18/segment-tree.html">Segment Tree (Luogu P3372)</a></h2><p class="summary l-h-2x text-muted">SCNUACM 新生赛的 C 题被我用 N 方算法水过去了，很惭愧，还是想了解一下正解。当然了，一切的基础，就是熟悉相关的模板咯！题目https://www.luogu.com.cn/problem/P3372思路以下内容仅为个人理解，可能存在错误。显然，对给出的区间中的每一个数逐个加 k（操作 1）或者一个一个数累加下去来求和（操作 2）是会超时的。我们先抛开操作 1 不谈，试想一下对于操...</p><div class="line line-lg b-b b-light"></div>
@@ -336,7 +345,7 @@
 <div class="single-post panel">
 <div class="index-post-img">
 <a href="../../../2019/12/13/SCNUCS-N-2019-Tour.html">
-<div class="item-thumb lazy" data-original="https://bobby285271.coding.net/p/img/d/img/git/raw/master/scnuacm19.png" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
+<div class="item-thumb lazy" data-original="https://tva3.sinaimg.cn/large/9bd9b167ly1fwsg096tn6j21hc0u04qp.jpg" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
 </div>
 </a>
 </div><div class="post-meta wrapper-lg"> <h2 class="m-t-none text-ellipsis index-post-title text-title"><a href="../../../2019/12/13/SCNUCS-N-2019-Tour.html">SCNUCS-N 2019 Tour</a></h2><p class="summary l-h-2x text-muted">初赛去临时的 OJ 用临时的帐号打临时的比赛（误）感觉有点奇怪，把题目存了一份：https://pan.baidu.com/s/1tLYZA2ssDN2lCqiZWqMGqQ，提取码 jnq2。纪录一下第一次，可能也是惟一一次提前半小时 AK。问题最多的居然是 A 题签到题，刚开始还想逐个数判断是不是完全平方数。后来想想不就是两个边界开个根号的事嘛。另一个 D 题签到题似乎刚考完三个数的现在...</p><div class="line line-lg b-b b-light"></div>
@@ -349,7 +358,7 @@
 <div class="single-post panel">
 <div class="index-post-img">
 <a href="../../../2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html">
-<div class="item-thumb lazy" data-original="https://static.bobby285271.top/usr/themes/handsome/usr/img/sj/5.jpg" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
+<div class="item-thumb lazy" data-original="https://tva2.sinaimg.cn/large/9bd9b167gy1g4lhryo5caj21hc0xckhd.jpg" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
 </div>
 </a>
 </div><div class="post-meta wrapper-lg"> <h2 class="m-t-none text-ellipsis index-post-title text-title"><a href="../../../2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html">Dynamic Prgramming - 0/1 Backpack Problem (Luogu P1164, P1048, P1020)</a></h2><p class="summary l-h-2x text-muted">为啥突然想要看动态规划呢，是因为昨天做了去年蓝桥杯预选赛 16/17 的题，做到 B 题发现正解其实应该是动态规划的。虽然我交了一发贪心过了，但想到两个星期后就是热身赛还是得搞搞突击才行。引入周四香农先修班讲了一个斐波拉契数列的专题，有一个问题是这样的：假设有 n 级楼梯，我从底部往上爬，每次可以上 1 级，也可以上 2 级楼梯，问从底部到顶部一共有多少种爬楼梯的方法。我第一时间想到的是搜索...</p><div class="line line-lg b-b b-light"></div>
@@ -362,7 +371,7 @@
 <div class="single-post panel">
 <div class="index-post-img">
 <a href="../../../2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html">
-<div class="item-thumb lazy" data-original="https://bobby285271.coding.net/p/img/d/img/git/raw/master/wsl2/0.PNG" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
+<div class="item-thumb lazy" data-original="https://tva1.sinaimg.cn/large/9bd9b167gy1g4li14ai1cj21hc0xc4qp.jpg" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
 </div>
 </a>
 </div><div class="post-meta wrapper-lg"> <h2 class="m-t-none text-ellipsis index-post-title text-title"><a href="../../../2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html">How to Launch a Desktop Environment on WSL 2</a></h2><p class="summary l-h-2x text-muted">WSL 2 是 WSL 中体系结构的新版本，它改变了 Linux 发行版与 Windows 交互的方式。WSL 2 的主要目标是提高文件系统性能并增加系统调用的完全兼容性。 每个 Linux 发行版都可以作为 WSL 1 或 WSL 2 发行版运行，并可随时进行切换。WSL 2 是底层体系结构的主要功能，它使用虚拟化技术和 Linux 内核来实现其新功能。准备为了使用 WSL 2，你需要 W...</p><div class="line line-lg b-b b-light"></div>
@@ -375,7 +384,7 @@
 <div class="single-post panel">
 <div class="index-post-img">
 <a href="../../../2019/02/02/Chakra-CCR-Packaging-Guide.html">
-<div class="item-thumb lazy" data-original="https://bobby285271.coding.net/p/img/d/img/git/raw/master/ccr/1.png" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
+<div class="item-thumb lazy" data-original="https://tva1.sinaimg.cn/large/9bd9b167gy1g2qkoct894j21hc0u0u0o.jpg" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)">
 </div>
 </a>
 </div><div class="post-meta wrapper-lg"> <h2 class="m-t-none text-ellipsis index-post-title text-title"><a href="../../../2019/02/02/Chakra-CCR-Packaging-Guide.html">Chakra CCR Packaging Guide</a></h2><p class="summary l-h-2x text-muted">Chakra 的成功证明了只围绕 KDE 和 Qt 搭建一个简约的系统是完全可行的。但正是因为「简约」这一特性，一些用户需要的软件可能不被包含在我们的官方软件仓库中。Chakra 社区软件仓库（CCR）也就因此诞生了，它由社区维护，为所有类型的软件都敞开了大门。搜索、安装、升级 CCR 软件包老用户请注意：ccr 工具已经被弃用，请转而使用 chaser。Chakra 提供了一个叫 chas...</p><div class="line line-lg b-b b-light"></div>
@@ -398,169 +407,6 @@
 </div>
 </div>
 
-<aside class="asideBar col w-md bg-white-only bg-auto no-border-xs" role="complementary">
-<div id="sidebar">
-<section id="tabs-4" class="widget widget_tabs clear">
-<div class="nav-tabs-alt no-js-hide">
-<ul class="nav nav-tabs nav-justified box-shadow-bottom-normal tablist" role="tablist">
-<li data-index="0" class="active" role="presentation"> <a href="index.html#widget-tabs-4-hots" role="tab" aria-controls="widget-tabs-4-hots" aria-expanded="true" data-toggle="tab"><div class="sidebar-icon wrapper-sm"><i data-feather="thumbs-up"></i></div><span class="sr-only">热门文章</span> </a></li>
-<li role="presentation" data-index="1"> <a href="index.html#widget-tabs-4-comments" role="tab" aria-controls="widget-tabs-4-comments" aria-expanded="false" data-toggle="tab"><div class="sidebar-icon wrapper-sm"><i data-feather="message-square"></i></div> <span class="sr-only">最新评论</span> </a></li>
-<li data-index="2" role="presentation"> <a href="index.html#widget-tabs-4-random" role="tab" aria-controls="widget-tabs-4-random" aria-expanded="false" data-toggle="tab"> <div class="sidebar-icon wrapper-sm"><i data-feather="gift"></i></div> <span class="sr-only">随机文章</span>
-</a></li>
-<span class="navs-slider-bar"></span>
-</ul>
-</div>
-<div class="tab-content">
-
-<div id="widget-tabs-4-hots" class="tab-pane  fade in wrapper-md active" role="tabpanel">
-<h5 class="widget-title m-t-none text-md">热门文章</h5>
-<ul class="list-group no-bg no-borders pull-in m-b-none">
-<li class="list-group-item">
-<a href="../../../2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/6.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" title="How to Port Calamares to Arch Linux (en)"> How to Port Calamares to Arch Linux (en) </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">206</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2020/04/15/NixOS-Installation-and-Configuration-Guide.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/3.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/04/15/NixOS-Installation-and-Configuration-Guide.html" title="NixOS Installation and Configuration Guide"> NixOS Installation and Configuration Guide </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">197</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/9.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" title="2020 Nowcoder Basic Algorithm Training Camp Solutions"> 2020 Nowcoder Basic Algorithm Training Camp Solutions </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">127</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/4.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" title="How to Launch a Desktop Environment on WSL 2"> How to Launch a Desktop Environment on WSL 2 </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">117</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2019/12/13/SCNUCS-N-2019-Tour.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/10.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2019/12/13/SCNUCS-N-2019-Tour.html" title="SCNUCS-N 2019 Tour"> SCNUCS-N 2019 Tour </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">112</span>
-</span>
-</small></div></li> </ul>
-</div>
-
-<div id="widget-tabs-4-comments" class="tab-pane fade wrapper-md no-js-show" role="tabpanel">
-<h5 class="widget-title m-t-none text-md">最新评论</h5>
-<ul class="list-group no-borders pull-in auto m-b-none no-bg">
-<li class="list-group-item">
-<a href="../../../archiso.html#comment-18" class="pull-left thumb-sm avatar m-r">
-<img nogallery src="https://q.qlogo.cn/g?b=qq&nk=351904948&s=100" class="img-40px photo img-square normal-shadow"> </a>
-<a href="../../../archiso.html#comment-18" class="text-muted">
-
-</a>
-<div class="clear">
-<div class="text-ellipsis">
-<a href="../../../archiso.html#comment-18" title="妖刀黄烦烦"> 妖刀黄烦烦 </a>
-</div>
-<small class="text-muted">
-<span>
-突然想过来看一下，然后发现多了个评论功能，溜了 </span>
-</small>
-</div>
-</li>
-</ul>
-</div>
-
-<div id="widget-tabs-4-random" class="tab-pane fade wrapper-md no-js-show" role="tabpanel">
-<h5 class="widget-title m-t-none text-md">随机文章</h5>
-<ul class="list-group no-bg no-borders pull-in">
-<li class="list-group-item">
-<a href="../../../2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/6.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html" title="Dynamic Prgramming - 0/1 Backpack Problem (Luogu P1164, P1048, P1020)"> Dynamic Prgramming - 0/1 Backpack Problem (Luogu P1164, P1048, P1020) </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">103</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/3.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" title="2020 Nowcoder Basic Algorithm Training Camp Solutions"> 2020 Nowcoder Basic Algorithm Training Camp Solutions </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">127</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2019/12/18/segment-tree.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/9.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2019/12/18/segment-tree.html" title="Segment Tree (Luogu P3372)"> Segment Tree (Luogu P3372) </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">108</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/4.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" title="How to Launch a Desktop Environment on WSL 2"> How to Launch a Desktop Environment on WSL 2 </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">117</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2020/04/15/NixOS-Installation-and-Configuration-Guide.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/10.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/04/15/NixOS-Installation-and-Configuration-Guide.html" title="NixOS Installation and Configuration Guide"> NixOS Installation and Configuration Guide </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">197</span>
-</span>
-</small></div></li> </ul>
-</div>
-</div>
-</section>
-
-<section id="blog_info" class="widget widget_categories wrapper-md clear">
-<h5 class="widget-title m-t-none text-md">博客信息</h5>
-<ul class="list-group box-shadow-wrap-normal">
-<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="award"></i></span> <span class="badge
-           pull-right">11</span>文章数目</li>
-<li class="list-group-item text-second"> <span class="blog-info-icons"> <i data-feather="message-circle"></i></span>
-<span class="badge
-           pull-right">3</span>评论数目</li>
-<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="calendar"></i></span>
-<span class="badge
-           pull-right">3年186天</span>运行天数</li>
-<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="activity"></i></span> <span class="badge
-           pull-right">2 个月前</span>最后活动</li>
-</ul>
-</section>
-
-<section id="tag_cloud-2" class="widget widget_tag_cloud wrapper-md clear">
-<h5 class="widget-title m-t-none text-md">标签云</h5>
-<div class="tags l-h-2x">
-<a href="../../../tag/Linux/index.html" class="label badge" title="Linux" data-toggle="tooltip">Linux</a>
-<a href="../../../tag/Algorithm/index.html" class="label badge" title="Algorithm" data-toggle="tooltip">Algorithm</a>
-<a href="../../../tag/Luogu/index.html" class="label badge" title="Luogu" data-toggle="tooltip">Luogu</a>
-<a href="../../../tag/Solutions/index.html" class="label badge" title="Solutions" data-toggle="tooltip">Solutions</a>
-<a href="../../../tag/Dynamic-Programming/index.html" class="label badge" title="Dynamic Programming" data-toggle="tooltip">Dynamic Programming</a>
-<a href="../../../tag/Contest/index.html" class="label badge" title="Contest" data-toggle="tooltip">Contest</a>
-<a href="../../../tag/Tree/index.html" class="label badge" title="Tree" data-toggle="tooltip">Tree</a>
-<a href="../../../tag/Guide/index.html" class="label badge" title="Guide" data-toggle="tooltip">Guide</a>
-<a href="../../../tag/Hexo/index.html" class="label badge" title="Hexo" data-toggle="tooltip">Hexo</a>
-<a href="../../../tag/GitHub-Pages/index.html" class="label badge" title="GitHub Pages" data-toggle="tooltip">GitHub Pages</a>
-<a href="../../../tag/Travis-CI/index.html" class="label badge" title="Travis CI" data-toggle="tooltip">Travis CI</a>
-<a href="../../../tag/NixOS/index.html" class="label badge" title="NixOS" data-toggle="tooltip">NixOS</a>
-<a href="../../../tag/Fedora/index.html" class="label badge" title="Fedora" data-toggle="tooltip">Fedora</a>
-<a href="../../../tag/Chakra/index.html" class="label badge" title="Chakra" data-toggle="tooltip">Chakra</a>
-<a href="../../../tag/CCR/index.html" class="label badge" title="CCR" data-toggle="tooltip">CCR</a>
-<a href="../../../tag/Pacman/index.html" class="label badge" title="Pacman" data-toggle="tooltip">Pacman</a>
-<a href="../../../tag/Chaser/index.html" class="label badge" title="Chaser" data-toggle="tooltip">Chaser</a>
-<a href="../../../tag/WSL/index.html" class="label badge" title="WSL" data-toggle="tooltip">WSL</a>
-<a href="../../../tag/Ubuntu/index.html" class="label badge" title="Ubuntu" data-toggle="tooltip">Ubuntu</a>
-<a href="../../../tag/Windows/index.html" class="label badge" title="Windows" data-toggle="tooltip">Windows</a>
-<a href="../../../tag/SCNU/index.html" class="label badge" title="SCNU" data-toggle="tooltip">SCNU</a>
-<a href="../../../tag/ACM/index.html" class="label badge" title="ACM" data-toggle="tooltip">ACM</a>
-<a href="../../../tag/WordPress/index.html" class="label badge" title="WordPress" data-toggle="tooltip">WordPress</a>
-<a href="../../../tag/Arch-Linux/index.html" class="label badge" title="Arch Linux" data-toggle="tooltip">Arch Linux</a>
-<a href="../../../tag/Calamares/index.html" class="label badge" title="Calamares" data-toggle="tooltip">Calamares</a>
-<a href="../../../tag/Python/index.html" class="label badge" title="Python" data-toggle="tooltip">Python</a>
-<a href="../../../tag/Packaging/index.html" class="label badge" title="Packaging" data-toggle="tooltip">Packaging</a>
-<a href="../../../tag/Greedy/index.html" class="label badge" title="Greedy" data-toggle="tooltip">Greedy</a>
-<a href="../../../tag/SCNUCS-N/index.html" class="label badge" title="SCNUCS-N" data-toggle="tooltip">SCNUCS-N</a>
-<a href="../../../tag/Tour/index.html" class="label badge" title="Tour" data-toggle="tooltip">Tour</a>
-</div>
-</section>
-</div>
-</aside>
 </div>
 </main>
 
@@ -585,13 +431,21 @@ Powered by <a target="_blank" href="http://www.typecho.org">Typecho</a>&nbsp;|&n
 </div>
 </footer>
 </div>
-<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="43de0e58fd3de8e3441d4925-text/javascript">
+<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="c7dc05981fe30b97b6510d14-text/javascript">
 SearchConfig = {
     url : "https://static.bobby285271.top/usr/plugins/Handsome/cache/search.json"
 }
 </script>
+<link rel="stylesheet" type="text/css" href="../../../../usr/plugins/KirinShiKi/css/kirin.css" /><script src='../../../../usr/plugins/KirinShiKi/js/kirin.js' type="c7dc05981fe30b97b6510d14-text/javascript"></script><style>
+            #bg{background-image:url(https://tva1.sinaimg.cn/large/9bd9b167gy1g2qkpnqz2ij21hc0u01kx.jpg);}
+            @media screen and (max-width:991px) {
+                #bg { 
+                    background-image:url(https://tva2.sinaimg.cn/large/9bd9b167ly1g2rdn5ehp0j20hs0vkn8e.jpg);
+                }
+            }
+        </style><script type="c7dc05981fe30b97b6510d14-text/javascript"> setCopyright(0);$(document).on("ready pjax:end", function() { setHref(getHref());colorfulTags();moeTitle();copyTips();});</script>
 
-<script type="43de0e58fd3de8e3441d4925-text/javascript">
+<script type="c7dc05981fe30b97b6510d14-text/javascript">
         window['LocalConst'] = {
             COMMENT_NAME_INFO: '必须填写昵称或姓名',
             COMMENT_EMAIL_INFO: '必须填写电子邮箱地址',
@@ -627,13 +481,13 @@ SearchConfig = {
             BASE_SCRIPT_URL: 'https://static.bobby285271.top/usr/themes/handsome/',
             BLOG_URL: 'https://static.bobby285271.top/',
             BLOG_URL_PHP: 'https://static.bobby285271.top/index.php/',
-            THEME_COLOR: '14',
-            THEME_COLOR_EDIT: 'white-white-white',
+            THEME_COLOR: '10',
+            THEME_COLOR_EDIT: '',
             THEME_HEADER_FIX: '1',
             THEME_ASIDE_FIX: '1',
             THEME_ASIDE_FOLDED: '',
             THEME_ASIDE_DOCK: '',
-            THEME_CONTAINER_BOX: '1',
+            THEME_CONTAINER_BOX: '',
             THEME_HIGHLIGHT_CODE: '1',
             THEME_TOC: '1',
             TOC_TITLE: '文章目录',
@@ -663,9 +517,9 @@ SearchConfig = {
 
     </script>
 
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
-<script src="../../../../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
-<script type="43de0e58fd3de8e3441d4925-text/javascript">
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
+<script type="c7dc05981fe30b97b6510d14-text/javascript">
         $(document).pjax('a[href^="https://static.bobby285271.top/"]:not(a[target="_blank"], a[no-pjax])', {
             container: '#content',
             fragment: '#content',
@@ -701,8 +555,8 @@ SearchConfig = {
     </script>
 
 
-<script src="../../../../usr/themes/handsome/assets/js/features/lazyload.min.js" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
-<script type="43de0e58fd3de8e3441d4925-text/javascript">
+<script src="../../../../usr/themes/handsome/assets/js/features/lazyload.min.js" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
+<script type="c7dc05981fe30b97b6510d14-text/javascript">
         $("img").lazyload({
             effect: "fadeIn",
             threshold: "200"
@@ -734,22 +588,28 @@ SearchConfig = {
         window.history.pushState('forward', null, '');
         window.history.forward(1);
     </script>
-<script src="../../../../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
 
-<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
-<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
 
-<script src="../../../../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
-<script src="../../../../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
 
-<script src="../../../../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
 
 
 
-<script src="../../../../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
-<script src="../../../../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="43de0e58fd3de8e3441d4925-text/javascript"></script>
-<script type="43de0e58fd3de8e3441d4925-text/javascript">
+<script src="../../../../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
+
+<script src="../../../../usr/themes/handsome/assets/js/features/music.min.js%3Fv=6.0.020191205" type="c7dc05981fe30b97b6510d14-text/javascript"></script>
+<script type="c7dc05981fe30b97b6510d14-text/javascript">
+                var player = new skPlayer({"autoplay":false,"listshow":false,"mode":"listloop","music":{"type":"file","source":[{"name":"\u6b69\u3044\u3066\u3082\u6b69\u3044\u3066\u3082\u3001\u591c\u7a7a\u306f\u50d5\u3092\u8ffd\u3044\u304b\u3051\u3066\u304f\u308b","author":"\u9396\u90a3","src":"https:\/\/bobby285271.coding.net\/p\/img\/d\/img\/git\/raw\/master\/%E6%97%A0%E8%AE%BA%E6%80%8E%E4%B9%88%E8%B5%B0%E5%A4%9C%E7%A9%BA%E9%83%BD%E4%BC%9A%E6%9D%A5%E8%BF%BD%E9%80%90%E7%9D%80%E6%88%91.mp3","cover":"https:\/\/bobby285271.coding.net\/p\/img\/d\/img\/git\/raw\/master\/music-background.jpg"}]}});
+    </script>
+<script type="c7dc05981fe30b97b6510d14-text/javascript">
             </script>
-<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="43de0e58fd3de8e3441d4925-|49" defer=""></script></body>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="c7dc05981fe30b97b6510d14-|49" defer=""></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"5af01f998ba9c534","version":"2020.6.0","si":10}'></script>
+</body>
 </html>
 

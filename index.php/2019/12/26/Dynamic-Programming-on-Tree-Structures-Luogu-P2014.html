@@ -1,6 +1,6 @@
 
 <!DOCTYPE HTML>
-<html class="no-js bg" lang="zh-cmn-Hans">
+<html class="no-js" lang="zh-cmn-Hans">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta charset="UTF-8">
@@ -49,18 +49,22 @@
         background: #EFEFEF
         }
 }
-    </style>
+#aside .wrapper:hover {
+	background: url(../../../../usr/themes/handsome/assets/img/snow.gif);
+	background-size: cover;
+	color: #999;
+}    </style>
 
-<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
 
-<script src="../../../../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
 </head>
 <body id="body" class="fix-padding">
 
-<div id="alllayout" class="app app-aside-fix container app-header-fixed "> 
+<div id="alllayout" class="app app-aside-fix no-container app-header-fixed "> 
 <header id="header" class="fix-padding app-header navbar box-shadow-bottom-lg" role="menu">
 
-<div class="text-ellipsis navbar-header bg-white">
+<div class="text-ellipsis navbar-header bg-primary">
 <button class="pull-right visible-xs" ui-toggle-class="show animated animated-lento fadeIn" target=".navbar-collapse">
 <span class="menu-icons"><i data-feather="search"></i></span>
 </button>
@@ -76,7 +80,7 @@
 </div>
 
 
-<div class="collapse pos-rlt navbar-collapse bg-white">
+<div class="collapse pos-rlt navbar-collapse bg-primary">
 
 <form id="searchform1" class="searchform navbar-form navbar-form-sm navbar-left shift" method="post" role="search">
 <div class="form-group">
@@ -100,6 +104,11 @@
 <a href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html" style="display: none" id="searchUrl"></a>
 
 <ul class="nav navbar-nav navbar-right">
+<li class="music-box hidden-xs hidden-sm">
+<div id="skPlayer"></div>
+</li>
+<li class="dropdown "><a class="skPlayer-list-switch dropdown-toggle
+            feathericons"><i data-feather="disc"></i><span class="visible-xs-inline"></span></a></li>
 
 <li class="dropdown">
 <a href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html#" data-toggle="dropdown" class="feathericons dropdown-toggle">
@@ -116,14 +125,14 @@
 闲言碎语 </strong>
 </div>
 <div class="list-group" id="smallRecording">
-<a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。machinectl shell <span class="__cf_email__" data-cfemail="6700030a27">[email&#160;protected]</span> /bin/bashgsettings set org.gnome.desktop.interface font-name "Noto S...<br><small class="text-muted">2020-5-14 12:19:43</small></span></a> </div>
+<a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">发现一组随机壁纸 API：https://www.lxzzz.cn/337.html<br><small class="text-muted">2020-7-6 20:06:24</small></span></a><a href="../../../cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。machinectl shell <span class="__cf_email__" data-cfemail="9afdfef7da">[email&#160;protected]</span> /bin/bashgsettings set org.gnome.desktop.interface font-name "Noto S...<br><small class="text-muted">2020-5-14 12:19:43</small></span></a> </div>
 </div>
 </div>
 </li>
 
 
 <li class="dropdown" id="easyLogin">
-<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-d0e566cc6d0fc54d3060e4a5-="">
+<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-a97c74f21a5703ed1f254c6a-="">
 <span class="feathericons"><i data-feather="key"></i></span>
 <b class="caret"></b>
 </a>
@@ -153,7 +162,7 @@
 </header>
 
 
-<aside id="aside" class="app-aside hidden-xs bg-white"> 
+<aside id="aside" class="app-aside hidden-xs bg-dark"> 
 <div class="aside-wrap" layout="column">
 <div class="navi-wrap scroll-y scroll-hide" flex>
 
@@ -180,10 +189,10 @@
 <li class="wrapper b-b m-b-sm bg-info m-n">
 <span class="arrow top hidden-folded arrow-info"></span>
 <div>
-<p>晚上好，注意早点休息</p>
+<p>下午好，是时候打个盹了</p>
 </div>
 <div class="progress progress-xs m-b-none dker">
-<div class="progress-bar bg-white" data-toggle="tooltip" data-original-title="时间已经度过0.00%" style="width: 0.00%"></div>
+<div class="progress-bar bg-white" data-toggle="tooltip" data-original-title="时间已经度过66.67%" style="width: 66.67%"></div>
 </div>
 </li>
 </ul>
@@ -207,7 +216,7 @@
 </a>
 </li>
 
-<li> <a target="_blank" href="https://start.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Start Page</span></a></li> <li class="line dk"></li>
+<li> <a target="_blank" href="https://start.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Start Page</span></a></li><li> <a target="_blank" href="https://codeforces.bobby285271.top/" class="auto"><span class="nav-icon"><i data-feather="command"></i></span><span>Codeforces Ladders</span></a></li> <li class="line dk"></li>
 
 <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
 <span>组成</span>
@@ -331,7 +340,7 @@
 
 <li class="meta-date"><span class="post-icons"><i data-feather="clock"></i></span><span class="sr-only">发布时间：</span><time class="meta-value">2019 年 12 月 26 日</time></li>
 
-<li class="meta-views"><span class="post-icons"><i data-feather="eye"></i></span><span class="meta-value">102次浏览</span></li>
+<li class="meta-views"><span class="post-icons"><i data-feather="eye"></i></span><span class="meta-value">106次浏览</span></li>
 
 <li class="meta-comments"><span class="post-icons"><i data-feather="message-circle"></i></span><a class="meta-value" href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html#comments">暂无评论</a></li>
 
@@ -354,12 +363,12 @@
     }
     
    </style>
-<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html&title=Dynamic Programming on Tree Structures (Luogu P2014)&site=https://static.bobby285271.top/" itemprop="breadcrumb" target="_blank" title="" data-toggle="tooltip" data-original-title="分享到QQ空间" onclick="if (!window.__cfRLUnblockHandlers) return false; window.open(this.href, 'qzone-share', 'width=550,height=335');return false;" data-cf-modified-d0e566cc6d0fc54d3060e4a5-=""><i style="font-size:15px;" class="iconfont icon-qzone" aria-hidden="true"></i></a>
-<a href="http://service.weibo.com/share/share.php?url=https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html&title=Dynamic Programming on Tree Structures (Luogu P2014)" target="_blank" itemprop="breadcrumb" title="" data-toggle="tooltip" data-original-title="分享到微博" onclick="if (!window.__cfRLUnblockHandlers) return false; window.open(this.href, 'weibo-share', 'width=550,height=335');return false;" data-cf-modified-d0e566cc6d0fc54d3060e4a5-=""><i style="font-size:15px;" class="fontello fontello-weibo" aria-hidden="true"></i></a></div></ol> 
+<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html&title=Dynamic Programming on Tree Structures (Luogu P2014)&site=https://static.bobby285271.top/" itemprop="breadcrumb" target="_blank" title="" data-toggle="tooltip" data-original-title="分享到QQ空间" onclick="if (!window.__cfRLUnblockHandlers) return false; window.open(this.href, 'qzone-share', 'width=550,height=335');return false;" data-cf-modified-a97c74f21a5703ed1f254c6a-=""><i style="font-size:15px;" class="iconfont icon-qzone" aria-hidden="true"></i></a>
+<a href="http://service.weibo.com/share/share.php?url=https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html&title=Dynamic Programming on Tree Structures (Luogu P2014)" target="_blank" itemprop="breadcrumb" title="" data-toggle="tooltip" data-original-title="分享到微博" onclick="if (!window.__cfRLUnblockHandlers) return false; window.open(this.href, 'weibo-share', 'width=550,height=335');return false;" data-cf-modified-a97c74f21a5703ed1f254c6a-=""><i style="font-size:15px;" class="fontello fontello-weibo" aria-hidden="true"></i></a></div></ol> 
 <div id="postpage" class="blog-post">
 <article class="single-post panel">
 
-<div class="entry-thumbnail" aria-hidden="true"><div class="item-thumb lazy" data-original="https://bobby285271.coding.net/p/img/d/img/git/raw/master/p2014-2.gif" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)"></div></div> 
+<div class="entry-thumbnail" aria-hidden="true"><div class="item-thumb lazy" data-original="https://tva4.sinaimg.cn/large/9bd9b167gy1g4lhdxo3jzj21hc0xcwoi.jpg" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=)"></div></div> 
 <div id="post-content" class="wrapper-lg">
 <div class="entry-content l-h-2x">
 <h2>题目</h2><p><span class="external-link"><a href="https://www.luogu.com.cn/problem/P2014" target="_blank">https://www.luogu.com.cn/problem/P2014<i data-feather='external-link'></i></a></span></p><h2>思路</h2><blockquote>以下内容<strong>仅为个人理解，可能存在错误</strong>。</blockquote><h3>树的孩子兄弟表示法</h3><p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=" data-original="https://bobby285271.coding.net/p/img/d/img/git/raw/master/p2014-2.gif" alt="" title="" /></p><p>想要使用孩子兄弟表示法储存上面这样的一棵树，我们就要从根节点开始，依次用链表存储各个节点的孩子节点和兄弟节点。因此，该链表中的节点应包含以下三部分内容：</p><ul><li>节点的值。</li><li>指向孩子节点的指针。</li><li>指向兄弟节点的指针。</li></ul><p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAA1JREFUCJljePfx038ACXMD0ZVlJAYAAAAASUVORK5CYII=" data-original="https://bobby285271.coding.net/p/img/d/img/git/raw/master/p2014-1.gif" alt="" title="" /></p><p>在这里，每个节点是一门课程，孩子节点其实就是后续课程，兄弟节点其实就是前导课程相同的一门课程。不妨将第 i 门课程编号为 i，那么每一门课都会有一个独一无二的课程编号。这个课程编号本应放在数据域，但是考虑到它的独一无二性和连续性，也方便我们查找某一课程的「后续课程」和「前导课程相同的一门课程」的课程编号，以获取它的学分，我们不妨直接用数组下标来储存这个，就不开数据域了。</p><h3>树形动归</h3><blockquote><strong>TODO</strong>：此部分自认为没有理解透彻，下面给出的思路也不够自然。</blockquote><p>考虑之前发过的几道题，LXY 点菜，我们逐道菜过目；上山采药，我们逐件药品过目。这里我们照葫芦画瓢，就逐门课过目。树形动归和线性动归又有些啥不同呢？首先要遵循从最简单的子问题开始，逐步扩大子问题规模的原则，从子树上动归，最后进行合并。如何体现合并这一操作呢？就是在过目某一节点（课程）的时候同时考虑这个节点（课程）的后续课程。</p><p>不妨就将根节点（假设其编号为 now）的所有孩子过目完，假设现在过目了 a 门课程，选择了 b 门课程。对于这个第 a 门课程依然是两个选择，<strong>选和不选</strong>。不选的话和我过目 a - 1 门课程，选择了 b 门课程效果是一样的，而第 a 门课程我不选自然就拿不了学分，其后续课程我也选不了就无需考虑了。但如果我选择呢，我不但选了第 a 门课程，而且还要考虑它的后续课程。假设已知我过目完 a - 1 门课程时，选择了 b - c 门课程。过目第 a 门课程显然我就考虑了第 a 门课的后续课程并选择了 c 门课程（包含 a）。此时为了求出过目了 a 门课程，选择了 b 门课程的最大学分，我就要求出过目 a - 1 门课程，选择了 b - c 门课程的最大学分和考虑了第 a 门课的<strong>所有</strong>后续课程并选择了 c 门课程（包含 a）的最大学分。而由于我们从子树开始动归，所以后者我们是已经求出过的。考虑完选和不选两种情况后，取最大值即可。</p><p>假设 <code>son</code> 是 <code>now</code> 的一个子节点，有：</p><pre><code class="lang-cpp">f[now][i][j] = max(f[now][i - 1][j], f[son][所有节点数][k] + f[now][i - 1][j - k]);</code></pre><p>和线性动态规划一样，由于过目了 i 门课程的情况永远由过目 i - 1 门课程的情况推出来，于是这一维可以被去掉。</p><pre><code class="lang-cpp">f[now][j] = max(f[now][j], f[son][k] + f[now][j - k]);</code></pre><h2>AC 代码</h2><pre><code class="lang-cpp">#include &lt;bits/stdc++.h&gt;
@@ -411,7 +420,7 @@ int main()
 <div class="show-foot">
 <div class="notebook">
 <i class="fontello fontello-clock-o"></i>
-<span>最后修改：2020 年 05 月 01 日 12 : 09 PM</span>
+<span>最后修改：2020 年 07 月 06 日 08 : 09 PM</span>
 </div>
 <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请保留本文转载地址，著作权归作者所有"><span>© 允许规范转载</span>
 </div>
@@ -446,12 +455,12 @@ int main()
 <h4 id="reply-title" class="comment-reply-title m-t-lg m-b">发表评论 <small><i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="我们将使用 Cookie 保留您的个人信息以便您下次快速评论，继续评论表示您已同意我们这样做"></i>
 </small>
 <small class="cancel-comment-reply">
-<a id="cancel-comment-reply-link" href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html#respond-post-60" rel="nofollow" style="display:none" onclick="if (!window.__cfRLUnblockHandlers) return false; return TypechoComment.cancelReply();" data-cf-modified-d0e566cc6d0fc54d3060e4a5-="">取消回复</a> </small>
+<a id="cancel-comment-reply-link" href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html#respond-post-60" rel="nofollow" style="display:none" onclick="if (!window.__cfRLUnblockHandlers) return false; return TypechoComment.cancelReply();" data-cf-modified-a97c74f21a5703ed1f254c6a-="">取消回复</a> </small>
 </h4>
 <form id="comment_form" method="post" action="https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html/comment" class="comment-form" role="form">
 <div class="comment-form-comment form-group">
 <label class="padder-v-sm" for="comment">评论 <span class="required text-danger">*</span></label>
-<textarea id="comment" class="textarea form-control OwO-textarea" name="text" rows="5" placeholder="说点什么吧……" onkeydown="if (!window.__cfRLUnblockHandlers) return false; if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};" data-cf-modified-d0e566cc6d0fc54d3060e4a5-=""></textarea>
+<textarea id="comment" class="textarea form-control OwO-textarea" name="text" rows="5" placeholder="说点什么吧……" onkeydown="if (!window.__cfRLUnblockHandlers) return false; if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};" data-cf-modified-a97c74f21a5703ed1f254c6a-=""></textarea>
 <div class="OwO padder-v-sm"></div>
 <div class="secret_comment" id="secret_comment" data-toggle="tooltip" data-original-title="开启该功能，您的评论仅作者和评论双方可见">
 <label class="secret_comment_label control-label">私密评论</label>
@@ -498,160 +507,6 @@ int main()
 </div>
 </div>
 
-<aside class="asideBar col w-md bg-white-only bg-auto no-border-xs" role="complementary">
-<div id="sidebar">
-<section id="tabs-4" class="widget widget_tabs clear">
-<div class="nav-tabs-alt no-js-hide">
-<ul class="nav nav-tabs nav-justified box-shadow-bottom-normal tablist" role="tablist">
-<li data-index="0" class="active" role="presentation"> <a href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html#widget-tabs-4-hots" role="tab" aria-controls="widget-tabs-4-hots" aria-expanded="true" data-toggle="tab"><div class="sidebar-icon wrapper-sm"><i data-feather="thumbs-up"></i></div><span class="sr-only">热门文章</span> </a></li>
-<li role="presentation" data-index="1"> <a href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html#widget-tabs-4-comments" role="tab" aria-controls="widget-tabs-4-comments" aria-expanded="false" data-toggle="tab"><div class="sidebar-icon wrapper-sm"><i data-feather="message-square"></i></div> <span class="sr-only">最新评论</span> </a></li>
-<li data-index="2" role="presentation"> <a href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html#widget-tabs-4-random" role="tab" aria-controls="widget-tabs-4-random" aria-expanded="false" data-toggle="tab"> <div class="sidebar-icon wrapper-sm"><i data-feather="gift"></i></div> <span class="sr-only">随机文章</span>
-</a></li>
-<span class="navs-slider-bar"></span>
-</ul>
-</div>
-<div class="tab-content">
-
-<div id="widget-tabs-4-hots" class="tab-pane  fade in wrapper-md active" role="tabpanel">
-<h5 class="widget-title m-t-none text-md">热门文章</h5>
-<ul class="list-group no-bg no-borders pull-in m-b-none">
-<li class="list-group-item">
-<a href="../../../2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/2.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" title="How to Port Calamares to Arch Linux (en)"> How to Port Calamares to Arch Linux (en) </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">206</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2020/04/15/NixOS-Installation-and-Configuration-Guide.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/5.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/04/15/NixOS-Installation-and-Configuration-Guide.html" title="NixOS Installation and Configuration Guide"> NixOS Installation and Configuration Guide </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">197</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/8.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html" title="2020 Nowcoder Basic Algorithm Training Camp Solutions"> 2020 Nowcoder Basic Algorithm Training Camp Solutions </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">127</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/10.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" title="How to Launch a Desktop Environment on WSL 2"> How to Launch a Desktop Environment on WSL 2 </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">116</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../13/SCNUCS-N-2019-Tour.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/7.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../13/SCNUCS-N-2019-Tour.html" title="SCNUCS-N 2019 Tour"> SCNUCS-N 2019 Tour </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">111</span>
-</span>
-</small></div></li> </ul>
-</div>
-
-<div id="widget-tabs-4-comments" class="tab-pane fade wrapper-md no-js-show" role="tabpanel">
-<h5 class="widget-title m-t-none text-md">最新评论</h5>
-<ul class="list-group no-borders pull-in auto m-b-none no-bg">
-<li class="list-group-item">
-<a href="../../../archiso.html#comment-18" class="pull-left thumb-sm avatar m-r">
-<img nogallery src="https://q.qlogo.cn/g?b=qq&nk=351904948&s=100" class="img-40px photo img-square normal-shadow"> </a>
-<a href="../../../archiso.html#comment-18" class="text-muted">
-
-</a>
-<div class="clear">
-<div class="text-ellipsis">
-<a href="../../../archiso.html#comment-18" title="妖刀黄烦烦"> 妖刀黄烦烦 </a>
-</div>
-<small class="text-muted">
-<span>
-突然想过来看一下，然后发现多了个评论功能，溜了 </span>
-</small>
-</div>
-</li>
-</ul>
-</div>
-
-<div id="widget-tabs-4-random" class="tab-pane fade wrapper-md no-js-show" role="tabpanel">
-<h5 class="widget-title m-t-none text-md">随机文章</h5>
-<ul class="list-group no-bg no-borders pull-in">
-<li class="list-group-item">
-<a href="../../11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/2.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html" title="Dynamic Prgramming - 0/1 Backpack Problem (Luogu P1164, P1048, P1020)"> Dynamic Prgramming - 0/1 Backpack Problem (Luogu P1164, P1048, P1020) </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">102</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/5.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html" title="How to Launch a Desktop Environment on WSL 2"> How to Launch a Desktop Environment on WSL 2 </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">116</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2020/04/15/NixOS-Installation-and-Configuration-Guide.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/8.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/04/15/NixOS-Installation-and-Configuration-Guide.html" title="NixOS Installation and Configuration Guide"> NixOS Installation and Configuration Guide </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">197</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="../../../2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/10.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="../../../2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html" title="How to Port Calamares to Arch Linux (en)"> How to Port Calamares to Arch Linux (en) </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">206</span>
-</span>
-</small></div></li><li class="list-group-item">
-<a href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html" class="pull-left thumb-sm m-r"><img src="../../../../usr/themes/handsome/usr/img/sj2/7.jpg" class="img-40px normal-shadow img-square"></a>
-<div class="clear">
-<h4 class="h5 l-h text-second"> <a href="Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html" title="Dynamic Programming on Tree Structures (Luogu P2014)"> Dynamic Programming on Tree Structures (Luogu P2014) </a></h4>
-<small class="text-muted post-head-icon"><span class="meta-date"> <i class="fontello fontello-eye" aria-hidden="true"></i> <span class="sr-only">浏览次数:</span> <span class="meta-value">103</span>
-</span>
-</small></div></li> </ul>
-</div>
-</div>
-</section>
-
-<section id="blog_info" class="widget widget_categories wrapper-md clear">
-<h5 class="widget-title m-t-none text-md">博客信息</h5>
-<ul class="list-group box-shadow-wrap-normal">
-<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="award"></i></span> <span class="badge
-           pull-right">11</span>文章数目</li>
-<li class="list-group-item text-second"> <span class="blog-info-icons"> <i data-feather="message-circle"></i></span>
-<span class="badge
-           pull-right">3</span>评论数目</li>
-<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="calendar"></i></span>
-<span class="badge
-           pull-right">3年186天</span>运行天数</li>
-<li class="list-group-item text-second"><span class="blog-info-icons"> <i data-feather="activity"></i></span> <span class="badge
-           pull-right">2 个月前</span>最后活动</li>
-</ul>
-</section>
-
-
-<section id="tag_cloud-2" class="widget widget_tag_cloud wrapper-md clear">
-<h5 class="widget-title m-t-none text-md">标签云</h5>
-<div class="post-tags tags l-h-2x">
-<a href="../../../tag/Luogu/index.html">Luogu</a> <a href="../../../tag/Dynamic-Programming/index.html">Dynamic Programming</a> <a href="../../../tag/Algorithm/index.html">Algorithm</a> <a href="../../../tag/Solutions/index.html">Solutions</a> <a href="../../../tag/Tree/index.html">Tree</a> </div>
-</section>
-<div id="tag_toc_body">
-<section id="tag_toc" class="widget widget_categories wrapper-md clear">
-<h5 class="widget-title m-t-none text-md">文章目录</h5>
-<div class="tags l-h-2x box-shadow-wrap-normal">
-<div id="toc"></div>
-</div>
-</section>
-<div class="hidden-lg tocify-mobile-panel panel panel-default
-              setting_body_panel" aria-hidden="true">
-<button class="border-radius-half-left btn btn-default no-shadow pos-abt " data-toggle="tooltip" data-placement="left" data-original-title="目录" data-toggle-class=".tocify-mobile-panel=active">
-<i class="glyphicon glyphicon-resize-full"></i>
-</button>
-<div class="panel-heading">文章目录</div>
-<div class="setting_body toc-mobile-body">
-<div class="panel-body">
-<div class="tocTree"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</aside>
 
 </div>
 </main>
@@ -706,7 +561,7 @@ int main()
 </code></pre>
 </div>
 </div>
-<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="d0e566cc6d0fc54d3060e4a5-text/javascript">
+<script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="a97c74f21a5703ed1f254c6a-text/javascript">
         try {
             $("[data-morphing]").fancyMorph({
                 hash : 'morphing'
@@ -717,7 +572,7 @@ int main()
 
             </script>
 
-<script type="d0e566cc6d0fc54d3060e4a5-text/javascript">
+<script type="a97c74f21a5703ed1f254c6a-text/javascript">
 (function () {
     window.TypechoComment = {
         dom : function (id) {
@@ -789,7 +644,7 @@ int main()
     };
 })();
 </script>
-<script type="d0e566cc6d0fc54d3060e4a5-text/javascript">
+<script type="a97c74f21a5703ed1f254c6a-text/javascript">
 var registCommentEvent = function() {
     var event = document.addEventListener ? {
         add: 'addEventListener',
@@ -814,28 +669,35 @@ var registCommentEvent = function() {
                         input.type = 'hidden';
                         input.name = '_';
                             input.value = (function () {
-    var _8N8tt = //'E'
-'8'+//'1MX'
-'7e'+/* 'wW'//'wW' */''+'635'//'QbW'
-+//'r'
-'63'+'c3e'//'4f'
-+//'fg'
-'15'+//'m'
-'450'+//'78e'
-'78e'+'458'//'7'
-+'97'//'Xbc'
-+//'YZ'
-'a7'+//'vr'
-'bcd'+'0d'//'iS'
-+/* 'h'//'h' */''+'396'//'1B'
-+//'rI'
-'0', _mAJa = [[16,19]];
+    var _OZaeLVq = '87'//'z'
++//'yWJ'
+'e6'+//'G'
+'3'+'5'//'cxC'
++'63c'//'lY'
++'3e1'//'ke6'
++//'1r'
+'545'+'Pz'//'Pz'
++//'q2O'
+'0'+/* 'KEm'//'KEm' */''+//'Q'
+'4'+''///*'zG'*/'zG'
++//'N'
+'589'+//'S'
+'7'+//'MM'
+'a7'+/* 'c'//'c' */''+'9'//'9'
++//'Ebn'
+'b'+//'p'
+'cd'+''///*'yqw'*/'yqw'
++'0'//'bw'
++//'v'
+'d3'+'96'//'Bc8'
++'0'//'UqC'
+, _8J8oTqk = [[15,17],[23,24]];
     
-    for (var i = 0; i < _mAJa.length; i ++) {
-        _8N8tt = _8N8tt.substring(0, _mAJa[i][0]) + _8N8tt.substring(_mAJa[i][1]);
+    for (var i = 0; i < _8J8oTqk.length; i ++) {
+        _OZaeLVq = _OZaeLVq.substring(0, _8J8oTqk[i][0]) + _OZaeLVq.substring(_8J8oTqk[i][1]);
     }
 
-    return _8N8tt;
+    return _OZaeLVq;
 })();
                     
                         f.appendChild(input);
@@ -876,13 +738,21 @@ Powered by <a target="_blank" href="http://www.typecho.org">Typecho</a>&nbsp;|&n
 </div>
 </footer>
 </div>
-<script type="d0e566cc6d0fc54d3060e4a5-text/javascript">
+<script type="a97c74f21a5703ed1f254c6a-text/javascript">
 SearchConfig = {
     url : "https://static.bobby285271.top/usr/plugins/Handsome/cache/search.json"
 }
 </script>
+<link rel="stylesheet" type="text/css" href="../../../../usr/plugins/KirinShiKi/css/kirin.css" /><script src='../../../../usr/plugins/KirinShiKi/js/kirin.js' type="a97c74f21a5703ed1f254c6a-text/javascript"></script><style>
+            #bg{background-image:url(https://tva1.sinaimg.cn/large/9bd9b167gy1g2qkpnqz2ij21hc0u01kx.jpg);}
+            @media screen and (max-width:991px) {
+                #bg { 
+                    background-image:url(https://tva2.sinaimg.cn/large/9bd9b167ly1g2rdn5ehp0j20hs0vkn8e.jpg);
+                }
+            }
+        </style><script type="a97c74f21a5703ed1f254c6a-text/javascript"> setCopyright(0);$(document).on("ready pjax:end", function() { setHref(getHref());colorfulTags();moeTitle();copyTips();});</script>
 
-<script type="d0e566cc6d0fc54d3060e4a5-text/javascript">
+<script type="a97c74f21a5703ed1f254c6a-text/javascript">
         window['LocalConst'] = {
             COMMENT_NAME_INFO: '必须填写昵称或姓名',
             COMMENT_EMAIL_INFO: '必须填写电子邮箱地址',
@@ -918,13 +788,13 @@ SearchConfig = {
             BASE_SCRIPT_URL: 'https://static.bobby285271.top/usr/themes/handsome/',
             BLOG_URL: 'https://static.bobby285271.top/',
             BLOG_URL_PHP: 'https://static.bobby285271.top/index.php/',
-            THEME_COLOR: '14',
-            THEME_COLOR_EDIT: 'white-white-white',
+            THEME_COLOR: '10',
+            THEME_COLOR_EDIT: '',
             THEME_HEADER_FIX: '1',
             THEME_ASIDE_FIX: '1',
             THEME_ASIDE_FOLDED: '',
             THEME_ASIDE_DOCK: '',
-            THEME_CONTAINER_BOX: '1',
+            THEME_CONTAINER_BOX: '',
             THEME_HIGHLIGHT_CODE: '1',
             THEME_TOC: '1',
             TOC_TITLE: '文章目录',
@@ -954,9 +824,9 @@ SearchConfig = {
 
     </script>
 
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
-<script src="../../../../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
-<script type="d0e566cc6d0fc54d3060e4a5-text/javascript">
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
+<script type="a97c74f21a5703ed1f254c6a-text/javascript">
         $(document).pjax('a[href^="https://static.bobby285271.top/"]:not(a[target="_blank"], a[no-pjax])', {
             container: '#content',
             fragment: '#content',
@@ -992,8 +862,8 @@ SearchConfig = {
     </script>
 
 
-<script src="../../../../usr/themes/handsome/assets/js/features/lazyload.min.js" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
-<script type="d0e566cc6d0fc54d3060e4a5-text/javascript">
+<script src="../../../../usr/themes/handsome/assets/js/features/lazyload.min.js" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
+<script type="a97c74f21a5703ed1f254c6a-text/javascript">
         $("img").lazyload({
             effect: "fadeIn",
             threshold: "200"
@@ -1025,22 +895,27 @@ SearchConfig = {
         window.history.pushState('forward', null, '');
         window.history.forward(1);
     </script>
-<script src="../../../../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
 
-<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
-<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
 
-<script src="../../../../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
-<script src="../../../../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
 
-<script src="../../../../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
 
 
 
-<script src="../../../../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
-<script src="../../../../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="d0e566cc6d0fc54d3060e4a5-text/javascript"></script>
-<script type="d0e566cc6d0fc54d3060e4a5-text/javascript">
+<script src="../../../../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
+<script src="../../../../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
+
+<script src="../../../../usr/themes/handsome/assets/js/features/music.min.js%3Fv=6.0.020191205" type="a97c74f21a5703ed1f254c6a-text/javascript"></script>
+<script type="a97c74f21a5703ed1f254c6a-text/javascript">
+                var player = new skPlayer({"autoplay":false,"listshow":false,"mode":"listloop","music":{"type":"file","source":[{"name":"\u6b69\u3044\u3066\u3082\u6b69\u3044\u3066\u3082\u3001\u591c\u7a7a\u306f\u50d5\u3092\u8ffd\u3044\u304b\u3051\u3066\u304f\u308b","author":"\u9396\u90a3","src":"https:\/\/bobby285271.coding.net\/p\/img\/d\/img\/git\/raw\/master\/%E6%97%A0%E8%AE%BA%E6%80%8E%E4%B9%88%E8%B5%B0%E5%A4%9C%E7%A9%BA%E9%83%BD%E4%BC%9A%E6%9D%A5%E8%BF%BD%E9%80%90%E7%9D%80%E6%88%91.mp3","cover":"https:\/\/bobby285271.coding.net\/p\/img\/d\/img\/git\/raw\/master\/music-background.jpg"}]}});
+    </script>
+<script type="a97c74f21a5703ed1f254c6a-text/javascript">
             </script>
-<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="d0e566cc6d0fc54d3060e4a5-|49" defer=""></script></body>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="a97c74f21a5703ed1f254c6a-|49" defer=""></script></body>
 </html>
 
