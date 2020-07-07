@@ -2,7 +2,7 @@ name: Update Static Mirror Site
 
 on:
   schedule:
-    - cron:  '23 8 * * *'
+    - cron:  '55 8 * * *'
 
 jobs:
   build:
