@@ -25,6 +25,7 @@ jobs:
         cd ../  
         cp static.bobby285271.top/README.md www.bobby285271.top/
         cp static.bobby285271.top/CNAME www.bobby285271.top/  
+        cp -r static.bobby285271.top/.github www.bobby285271.top/
         rm -rf static.bobby285271.top/*
         mv www.bobby285271.top/* static.bobby285271.top/
         cd static.bobby285271.top
