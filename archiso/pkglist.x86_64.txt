@@ -2,7 +2,7 @@ acl 2.2.53-3
 adobe-source-code-pro-fonts 2.030ro+1.050it-6
 adobe-source-han-sans-cn-fonts 2.001-2
 adwaita-icon-theme 3.36.1-1
-alsa-lib 1.2.3.1-1
+alsa-lib 1.2.3.2-1
 alsa-topology-conf 1.2.3-1
 alsa-ucm-conf 1.2.3-2
 amd-ucode 20200519.8ba6fa6-1
@@ -29,7 +29,7 @@ bison 3.6.4-1
 bluez-libs 5.54-2
 broadcom-wl 6.30.223.271-211
 brotli 1.0.7-3
-btrfs-progs 5.6.1-3
+btrfs-progs 5.7-1
 bzip2 1.0.8-3
 ca-certificates 20181109-3
 ca-certificates-mozilla 3.54-1
@@ -47,7 +47,7 @@ curl 7.71.1-1
 darkhttpd 1.12-5
 dav1d 0.7.1-1
 db 5.3.28-5
-dbus 1.12.18-1
+dbus 1.12.20-1
 dbus-glib 0.110-2
 dconf 0.36.0-1
 ddrescue 1.25-1
@@ -67,14 +67,13 @@ drbl 2.30.5-1
 e2fsprogs 1.45.6-2
 ecryptfs-utils 111-3
 efibootmgr 17-1
-efitools 1.9.2-3
 efivar 37-4
 elfutils 0.180-1
 elinks 0.13-21
 enchant 2.2.8-3
 ethtool 1:5.7-1
 exfat-utils 1.3.0-1
-exo 0.12.11-4
+exo 0.12.11-5
 expat 2.2.9-3
 f2fs-tools 1.13.0-2
 fakeroot 1.24-2
@@ -91,7 +90,7 @@ flac 1.3.3-2
 flex 2.6.4-3
 fontconfig 2:2.13.91+48+gfcb0420-2
 freetype2 2.10.2-1
-fribidi 1.0.9-1
+fribidi 1.0.10-1
 fsarchiver 0.8.5-2
 fuse-common 3.9.2-1
 fuse2 2.9.9-4
@@ -108,7 +107,7 @@ gettext 0.20.2-1
 giflib 5.2.1-2
 git 2.27.0-1
 glib-networking 2.64.3-2
-glib2 2.64.3-2
+glib2 2.64.4-1
 glibc 2.31-5
 glibmm 2.64.2-1
 gmp 6.2.0-1
@@ -126,7 +125,6 @@ graphite 1:1.3.14-1
 grep 3.4-1
 grml-zsh-config 0.17.3-1
 groff 1.22.4-3
-grub 2:2.04-7
 gsettings-desktop-schemas 3.36.1-1
 gsm 1.0.19-1
 gspell 1.8.3-1
@@ -143,6 +141,7 @@ harfbuzz 2.6.8-2
 haveged 1.9.13-1
 hdparm 9.58-3
 hicolor-icon-theme 0.17-2
+hidapi 0.9.0-1
 hwids 20200306-1
 iana-etc 20200624-1
 icu 67.1-1
@@ -206,7 +205,7 @@ libevent 2.1.11-5
 libexif 0.6.22-1
 libffi 3.3-3
 libfontenc 1.1.4-3
-libgcrypt 1.8.5-2
+libgcrypt 1.8.6-1
 libglvnd 1.3.2-1
 libgnomekbd 3.26.1+2+g8d02ebd-2
 libgpg-error 1.38-1
@@ -284,7 +283,7 @@ libutil-linux 2.35.2-1
 libuv 1.38.1-1
 libva 2.8.0-1
 libvdpau 1.4-1
-libvorbis 1.3.7-1
+libvorbis 1.3.7-2
 libvpx 1.8.2-2
 libwacom 1.4.1-1
 libwebp 1.1.0-1
@@ -361,7 +360,6 @@ ncurses 6.2-1
 ndctl 68-2
 ndisc6 1.0.4-1
 net-tools 1.60.20181103git-2
-netctl 1.23-1
 nettle 3.6-1
 network-manager-applet 1.18.0-1
 networkmanager 1.24.2-1
@@ -374,11 +372,10 @@ npth 1.6-2
 nspr 4.26-1
 nss 3.54-1
 ntfs-3g 2017.3.23-4
-ntp 4.2.8.p15-1
+nvme-cli 1.12-2
 openconnect 1:8.10-1
 opencore-amr 0.1.5-4
 openjpeg2 2.3.1-2
-openresolv 3.10.0-1
 openssh 8.3p1-1
 openssl 1.1.1.g-2
 openssl-1.0 1.0.2.u-1
@@ -423,15 +420,15 @@ python 3.8.3-1
 python-ply 3.11-5
 qt5-base 5.15.0-4
 readline 8.0.004-1
-refind 0.12.0-6
+reflector 2020.3.21.2-1
 reiserfsprogs 3.6.27-3
 rest 0.8.1-3
 rp-pppoe 3.14-1
 rpcbind 1.2.5-3
-rsync 3.2.1-1
+rsync 3.2.2-2
 run-parts 4.8.6.1-2
 screen 4.8.0-1
-sdl2 2.0.12-1
+sdl2 2.0.12-2
 sdparm 1.11-1
 sed 4.8-1
 sg3_utils 1.45-1
@@ -453,6 +450,7 @@ sysfsutils 2.1.0-11
 syslinux 6.04.pre2.r11.gbf6db5b4-3
 systemd 245.6-8
 systemd-libs 245.6-8
+systemd-resolvconf 245.6-8
 systemd-sysvcompat 245.6-8
 tar 1.32-3
 tcl 8.6.10-2
@@ -475,7 +473,6 @@ usbmuxd 1.1.1-1
 usbutils 012-2
 util-linux 2.35.2-1
 v4l-utils 1.20.0-1
-vi 1:070224-4
 vid.stab 1.1-3
 vim 8.2.0814-3
 vim-runtime 8.2.0814-3
@@ -489,7 +486,7 @@ wayland 1.18.0-2
 wayland-protocols 1.20-1
 wget 1.20.3-3
 which 2.21-5
-wireless-regdb 2019.06.03-2
+wireless-regdb 2020.04.29-1
 wireless_tools 30.pre9-3
 wpa_supplicant 2:2.9-7
 wvdial 1.61-7
