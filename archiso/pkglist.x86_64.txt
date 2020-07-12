@@ -113,7 +113,7 @@ glibmm 2.64.2-1
 gmp 6.2.0-1
 gnome-themes-extra 3.28-2
 gnu-netcat 0.7.1-8
-gnupg 2.2.20-4
+gnupg 2.2.21-1
 gnutls 3.6.14-2
 gobject-introspection-runtime 1.64.1-2
 gpart 0.3-4
@@ -143,7 +143,7 @@ hdparm 9.58-3
 hicolor-icon-theme 0.17-2
 hidapi 0.9.0-2
 hwids 20200306-1
-iana-etc 20200624-1
+iana-etc 20200707-1
 icu 67.1-1
 inetutils 1.9.4-8
 intel-ucode 20200616-1
