@@ -9,19 +9,220 @@ xmlns:dc="http://purl.org/dc/elements/1.1/">
 <description>Life, Love, Linux</description>
 <items>
 <rdf:Seq>
+<rdf:li resource="https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2020/02/09/2020-Nowcoder-Basic-Algorithm-Training-Camp-Solutions.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html"/>
-<rdf:li resource="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html"/>
+<rdf:li resource="https://static.bobby285271.top/index.php/2019/12/18/Introduction-to-Segment-Tree-Luogu-P3372.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2019/12/13/SCNUCS-N-2019-Tour.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2019/11/17/Dynamic-Prgramming---0-1-Backpack-Problem-Luogu-P1164-P1048-P1020.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2019/10/05/How-to-Launch-a-Desktop-Environment-on-WSL-2.html"/>
-<rdf:li resource="https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html"/>
 </rdf:Seq>
 </items>
 </channel>
+<item rdf:about="https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html">
+<title>[WIP] Analytics of SoCoding 1024 Website - Introduction to Django</title>
+<link>https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html</link>
+<dc:date>2020-07-15T12:04:00+00:00</dc:date>
+<description>本文尚未完成，将随时更新。好久没有出文章了，放暑假有点时间，尝试再造一遍 2019 年 SCNUSE 软协 1024 程序员节活动网站（尽量还原，会有一些差别），算是 Django 框架的一个学习项目吧。博主本人的基本功也不怎么扎实，如果下文有任何错误欢迎指出。要实现什么去年也是参与到这个活动中来了，但是只是做了一个关卡，比较划水。这里就略过需求分析系统设计什么的了，简单来说整个网站做的大概就是：注册登录。七个关卡七个页面，每个页面要显示题面和答案提交框（当然有些关卡是玩游戏）。用户输答案要判断对不对，要判断有没有跳关，要记录通关时间。最后具体实现用到的是 Django 框架，使用 MySQL 数据库。铺垫博主认为有一些技能在开始动手之前还是要先掌握的。首先是 Python，其实有了程序设计基础之后 Python 的语法其实很简单。完全不会 Python 的推荐看 Python 100 天教程 前 15 天部分的内容，然后找个 Online Judge 做几道水题，最多两个小时应该都能熟悉。然后是 Web 前端 HTML、CSS、Javascript 的一些最基本的应用，学校讲的足够用了，这里推荐 菜鸟教程，可以尝试自己写一些小的静态网站。接着是 MySQL 基本的增删改查，博主学习这个的时候靠的是下一个 Adminer（其实是 PHPMyAdmin 的继任者），建一个临时的数据库一边玩一边学，当然这需要你事先搭建 PHP 环境。最后 Django 本身还是要先做了解的。可以简单浏览 Python 100 天教程 第 14 天和第 41 天的内容，另外也推荐阅读官方推荐的一些 设计理念 。准备先来做一些准备工作，包括开发环境的配置和项目基本框架的初始化。开发环境Visual Studio Code 天下第一！然而 VS Code 下想要有完整的 Python 支持是要安装 pip 的，这玩意其实是 Python 的包管理器，直接使用 Linux 下的包管理器安装。我们假设你和我一样在用 Arch Linux 而且是 [archlinuxcn] 源的用户。# pacman -S visual-studio-code-bin python-pippip 既然是包管理器，能条件反射到的是肯定要换源，百度一下马上有答案：$ cd 
+$ mkdir .pip
+$ nano .pip/pip.conf[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple随便新建一个 Python 文件（例如 a.py），写上一行 print(&quot;helloworld&quot;)。用 VS Code 打开，先装上 Python 扩展，然后尝试格式化这个文件，VS Code 就会提示你安装格式化程序，点安装就行。可以看到就是使用 pip 安装的（下面这行不用自己敲，点按钮就自动帮你做了）：$ /usr/bin/python /home/bobby285271/.vscode/extensions/ms-python.python-2020.6.91350/pythonFiles/pyvsc-run-isolated.py pip install -U autopep8 --user接下来就是安装 Django，这里有两个方法，一个是继续使用 Linux 下的包管理器安装：# pacman -S python-django或者是用上面刚刚讲到的 pip：$ pip install django要注意的是给 Arch Linux 软件包锁版本是不被提倡的，毕竟是滚动更新发行版。所以如果你使用 Pacman 安装 python-django 就得一直跟着系统走用最新版，要考虑其利弊。我们测试一下是不是一切准备妥当了：$ django-admin version一种情况是输出了版本号，很好那就是完事了。另一种情况是提示命令没有找到，那就是在普通用户下使用 pip 按照 Django 导致 django-admin 不在 PATH 里。解决方法很多，例如简单粗暴地改用 root 安装，或是修改你的 PATH，可以参考官方文档。创建项目就是创建一个 Django 项目实例需要的设置项集合，包括数据库配置、Django 配置和应用程序配置。我们首先创建一个工作目录，进去之后创建项目，假设就叫 mysite（注意 官方入门教程 指出不建议命名为 test 或 django 或其它可能会导致冲突的关键字）。$ django-admin startproject mysite
+$ cd mysite得到的文件和目录和 官方入门教程 应该是一模一样的，什么含义参考教程。我们尝试运行开发专用的 Web 服务器（特别强调是开发专用），看看效果如何。$ python manage.py runserver应该能看到一个小火箭和一句「The install worked successfully! Congratulations!」，不然就是前面哪一步做错了。如果成功了不用急着掐掉，后面改动文件之后刷新页面应该是可以实时看到效果的。例如现在我们尝试让刚才的小火箭页面变成中文的，编辑 settings.py：LANGUAGE_CODE = 'zh-hans'
+TIME_ZONE = 'Asia/Shanghai'保存后刷新页面，应该能看到「安装成功！祝贺！」的字样。创建应用在 Django 中，每一个应用都是一个 Python 包。应用通常是一个专门做某件事的网络应用程序，比如博客系统、投票程序。项目则是一个网站使用的配置和应用的集合。项目可以包含很多个应用。这里我们就只创建一个应用，就叫 myapp：$ python manage.py startapp myapp创建应用仅仅是为你创建一个目录而已，不要忘了往项目里面添加这个应用，我们编辑 mysite/settings.py：INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myapp'
+]目录结构到现在和 官方入门教程 所写的投票系统依然是基本一致的。到这里准备工作就完成了，接下来我们来尝试实现一些东西吧！第一个页面：登录页的实现Hello World几乎所有教程做第一个页面都是显示一行 Hello World，我们也先迅速实现一下。这里依然没有脱离 官方入门教程 的内容。在接收到客户端发送过来的请求后，为了返回一个响应，我们有了 HttpResponse 方法，它是作用是内部传入一个字符串参数，然后发给浏览器。具体实现就是在 myapp/views.py 加入以下内容：from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse(&quot;&lt;h1&gt;Hello, World&lt;/h1&gt;&quot;)接下来我们需要将一个 URL 映射到它，在 myapp 下面新建一个 urls.py：from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]接下来在 mysite/urls.py 做一些修改：from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('', include('myapp.urls')),
+    path('admin/', admin.site.urls),
+]如果你在创建项目或者应用的时候起得名字跟我的不一样，只要看到是 myxxx 改过来就行了，后面就不强调了。这个命名方式是从 Web 前端课程哪里学来的，据说 myapp 是程序员造轮子次数最多的应用之一呢。 接下来当我们再跑 python manage.py runserver 的时候就会发现小火箭没了，变成了一行 Hello World，Hello World 页就做出来了。URL 的映射当然毕竟是做 1024 活动网站的重置版，这个「第一个页面」肯定不能就显示 Hello World 这么简单嘛，我们最终希望做的是一个登录页。现在我们开始在这个 Hello World 的基础上做点花样，下面我们都假设你的服务器是运行在 http://127.0.0.1:8000/ 上面的。首先我们希望 Hello World 页 登录页是在 http://127.0.0.1:8000/login/。因为只是修改映射到 Hello World 的 URL，而不是修改映射到 myapp 的 URL，我们就修改 myapp/urls.py，而 mysite/urls.py 在后面其实基本不用碰了。from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('login/', views.index, name='index'),
+]现在访问 http://127.0.0.1:8000/，就提示 404 了，访问 http://127.0.0.1:8000/login/ 则是 Hello World 页 登录页。补一句去年做出来的成品似乎是没有首页的。模板现在访问登录页，显示的是 Hello World，但我们实际需要的是：前端一个表单供用户输入账户密码，后端处理用户输入与数据库交互。首先是前端，刚刚学完 Web 前端，应该不是什么难点。现在的问题讲通俗点就是，当我写好一个 HTML 文件之后，怎样往这个站点添加这个文件，使我访问这个地址就显示这个 HTML 文件呢？可以想到的第一个方法是，刚才做的 Hello World 部分，我们就有语句 return HttpResponse(&quot;&lt;h1&gt;Hello, World&lt;/h1&gt;&quot;)，我把这个 HTML 文件压成一行，换掉 &lt;h1&gt;Hello, World&lt;/h1&gt; 不就行了吗？可以是可以，但是一个很最突出的问题是维护起来很难受。事实上这样子其实是将数据与视图混合在一起，我们说是不符合 Django 的 MVC 思想（Model View Controller，具体请百度）。于是我们有了另外一个东西叫做模板。我们可以在 官方文档 How-to 部分 找到相关的文档。不需要把模板想太复杂，其实目前需要做的事情只有两个。首先是在 myapp 下面建立一个 templates 的文件夹（不要随便改名），往这个文件夹里面放置你的 HTML 文件。例如我把登录页命名为 index.html，然后放进目录里。就和初学 Web 前端一样，先不要管样式，也不要管按钮链接能不能工作，这些在后面会提及。&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;login&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;lg_content&quot;&gt;
+        &lt;table cellspacing=&quot;30px&quot; style=&quot;width: 250px&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;td colspan=&quot;2&quot; align=&quot;left&quot;&gt;
+                    &lt;span class=&quot;font2&quot; style=&quot;font-size:30px;&quot;&gt;WELCOME TO 1024&lt;/span&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+                &lt;tr&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;
+                        &lt;input type=&quot;text&quot; name=&quot;id&quot; class=&quot;lg_ip&quot; placeholder=&quot;学号&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;
+                        &lt;input type=&quot;password&quot; name=&quot;passwd&quot; class=&quot;lg_ip&quot; placeholder=&quot;密码&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td align=&quot;right&quot;&gt;
+                        &lt;input type=&quot;submit&quot; value=&quot;提交&quot; class=&quot;button&quot; style=&quot;position:relative;left:-50px&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/form&gt;
+            &lt;tr&gt;
+                &lt;td align=&quot;left&quot;&gt;
+                    &lt;span class=&quot;font1&quot;&gt;没有账号？&lt;/span&gt;
+                    &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+                        &lt;input type=&quot;submit&quot; value=&quot;注册&quot; style=&quot;height:25px;width:50px;font-size:12px&quot; class=&quot;button&quot;&gt;
+                    &lt;/form&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;接下来我们把 Hello World 换掉。render 方法可接收三个参数，一是 request 参数，二是待渲染的 HTML 模板文件，三是保存具体数据的字典参数。它的作用就是将数据填充进模板文件，最后把结果返回给浏览器。编辑 myapp/views.py：from django.shortcuts import render, redirect
+from django.http import HttpResponse
+
+def index(request):
+    return render(request, 'index.html')
+    # return HttpResponse(&quot;&lt;h1&gt;Hello, World&lt;/h1&gt;&quot;)我们再访问 http://127.0.0.1:8000/login/，发现已经有一个登录页面的样子了。静态资源现在我们来做登录页的样式吧！你们可能尝试过在 templates 目录直接放一个 CSS 文件，然后在 index.html 直接加 &lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot;&gt;，你会发现是行不通的，它实际请求的是 http://127.0.0.1:8000/login/temp.css，直接 404。注意到 mysite/settings.py 有这么一行：# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+STATIC_URL = '/static/'事实上，关于静态资源的存放，官方文档 How-to 部分 依然给出了具体的说明。和模板类似，我们要单独建立 static 目录来存放这些静态资源。通常我们把这个目录放在应用目录下，我们新建 myapp/static/ 目录，里面再建一个 css 目录。我们尝试往 css 目录里面添加我们的样式。这个样式我们会在后面多次使用，编辑 myapp/static/css/style.css：body {
+    /* background: url(&quot;../img/bg_img.jpg&quot;); */
+    /* background-size: cover; */
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+.containerDiv {
+    margin-top: 0;
+    margin-bottom: 0;
+    background-size: 100% 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.lg_content {
+    margin-top: 100px;
+}
+
+.titleDiv {
+    width: 100%;
+    height: 150px;
+}
+
+.problemDiv {
+    width: 80%;
+    height: 360px;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative;
+}
+
+.leftDiv {
+    width: 50%;
+    height: 360px;
+    text-align: center;
+    float: left;
+}
+
+.rightDiv {
+    width: 40%;
+    margin-left: 10%;
+    height: 360px;
+    text-align: center;
+    float: left;
+}
+
+.answerDiv {
+    width: 100%;
+    height: 60px;
+    position: relative;
+}
+
+.background {
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.button {
+    width: 68px;
+    height: 34px;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(76, 129, 179);
+    box-shadow: none;
+    border: none;
+    border-style: inline;
+}
+
+.input {
+    height: 40px;
+    width: 250px;
+    font-size: 14px;
+    color: rgba(155, 152, 151, 0.774);
+    border: none;
+    box-shadow: none;
+    border-style: none;
+    border-width: 0px;
+}
+
+.font1 {
+    font-family: &quot;Microsoft YaHei&quot;;
+    font-size: 12px;
+    font-weight: bold;
+    color: azure;
+}
+
+.font2 {
+    font-family: &quot;Microsoft YaHei&quot;;
+    font-size: 22px;
+    width: 400px;
+    color: rgb(88, 99, 192);
+}
+
+#game_div,
+p {
+    width: 400px;
+    margin: auto;
+    margin-top: 0px;
+}根据 STATIC_URL = '/static/' 这一线索，我们尝试访问 http://127.0.0.1:8000/static/css/style.css，发现确实是有这个文件的。事实上，只要将 &lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot;&gt; 改成 &lt;link href=&quot;/static/css/style.css&quot; rel=&quot;stylesheet&quot;&gt; 就可以往页面加载样式了。但是，这样后续维护是很困难的，一个问题是如果我们后面突然又需要创建应用，需要的是不同的样式呢？想象一下，你有两个应用，你在两个应用目录下有不同的 static/css/style.css 文件，你访问 http://127.0.0.1:8000/static/css/style.css 得到的是什么呢？对这个问题，官方的解决方案是，在 myapp/static/ 下面再建立一个目录 myapp（就是应用本身的名称），然后把静态资源放里面，我们尝试将 myapp/static/css 目录移动到 myapp/static/myapp/css。现在我们在 http://127.0.0.1:8000/static/myapp/css/style.css 可以看到我们的样式文件了。另一个问题是如果我突然想更换一下映射到静态资源的 URL 呢？也就是说我把 STATIC_URL = '/static/' 改成别的，是不是所有的 HTML 文件我要逐个修改呢？所以我们是不建议按照前面的方式去写的，我们有一个船新的方法。{% load static %}
+&lt;link href=&quot;{%static 'myapp/css/style.css'%}&quot; rel=&quot;stylesheet&quot;&gt;要注意的是这里的 static 和 STATIC_URL = '/static/' 中的路径 static 是没有任何联系的，就是静态资源的意思。你可以尝试将 STATIC_URL 改成别的再来试试。现在访问 http://127.0.0.1:8000/login/，F12 看一下，会发现上面 {% %} 标签的内容都已经被替换掉了。接下来是背景图片。同样地，我们将 bg_img.jpg 放置在 myapp/static/myapp/img/ 目录中。这回没那么复杂，在 CSS 文件里引用时直接写相对路径即可：body {
+    background: url(&quot;../img/bg_img.jpg&quot;);
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}现在登录页的前端部分就完成了！我们来检查一下你的目录，你的 mysite 下面应该没有任何新增的文件（注意 __pycache__ 目录下的文件是由 Django 自动修改或处理的，不需要碰），myapp 下面现在应该多了一个 templates 目录（模板）和一个 static 目录（静态资源）。数据库交互以下部分正在施工。施工区域</description>
+</item>
 <item rdf:about="https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html">
 <title>NixOS Installation and Configuration Guide</title>
 <link>https://static.bobby285271.top/index.php/2020/04/15/NixOS-Installation-and-Configuration-Guide.html</link>
@@ -232,7 +433,7 @@ Visual Studio Code 插件你可能会问这也要提及？情况是这样的，�
 <title>How to Port Calamares to Arch Linux (en)</title>
 <link>https://static.bobby285271.top/index.php/2020/02/18/How-to-Port-Calamares-to-Arch-Linux-en.html</link>
 <dc:date>2020-02-17T16:00:00+00:00</dc:date>
-<description>This article is for reference ONLY.Calamares is a distribution-independent installer framework. As distributions like Arch Linux don't provide graphical installer, we can try to adapt Calamares to them. To make things easier, we simply start by trying to provide a pacstrap part for Calamares, which allow users to install a minimal Arch Linux system, then we add the Calamares installer to our Archiso.Getting StartedMake sure that you have Git installed, fetch the source code by cloning the Calamares repository, to speed up, add --depth=1 option:git clone https://github.com/calamares/calamares.git --depth=1
+<description>本文将在近期重写。This article is for reference ONLY.Calamares is a distribution-independent installer framework. As distributions like Arch Linux don't provide graphical installer, we can try to adapt Calamares to them. To make things easier, we simply start by trying to provide a pacstrap part for Calamares, which allow users to install a minimal Arch Linux system, then we add the Calamares installer to our Archiso.Getting StartedMake sure that you have Git installed, fetch the source code by cloning the Calamares repository, to speed up, add --depth=1 option:git clone https://github.com/calamares/calamares.git --depth=1
 Entering the repository, you will find lots of files and directories, don't panic! All you have to focus on are three files/directories: settings.conf, src/branding/ and src/modules/. Let's try to deal with them one by one.Step One: settings.confFirstly, you will find something like this:sequence:
 - show:
   - welcome
@@ -1710,9 +1911,9 @@ int main()
 }
 </description>
 </item>
-<item rdf:about="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html">
-<title>Segment Tree (Luogu P3372)</title>
-<link>https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html</link>
+<item rdf:about="https://static.bobby285271.top/index.php/2019/12/18/Introduction-to-Segment-Tree-Luogu-P3372.html">
+<title>Introduction to Segment Tree (Luogu P3372)</title>
+<link>https://static.bobby285271.top/index.php/2019/12/18/Introduction-to-Segment-Tree-Luogu-P3372.html</link>
 <dc:date>2019-12-18T15:35:00+00:00</dc:date>
 <description>SCNUACM 新生赛的 C 题被我用 N 方算法水过去了，很惭愧，还是想了解一下正解。当然了，一切的基础，就是熟悉相关的模板咯！题目https://www.luogu.com.cn/problem/P3372思路以下内容仅为个人理解，可能存在错误。显然，对给出的区间中的每一个数逐个加 k（操作 1）或者一个一个数累加下去来求和（操作 2）是会超时的。我们先抛开操作 1 不谈，试想一下对于操作 2，如果我们可以把这个区间分成几个小块，然后又事先知道每一小块中的元素求和的结果，那我求和的时候是不是就不需要算那么多项呢？是不是也就快一点呢？于是就有了分块思想。如果我们把这个思想给贯彻地彻底一些，事先将几个小块拼在一起形成一个大块，又事先算出每一大块中的元素求和的结果，会不会再更快一些呢？以此类推，树形结构就被我们构建出来了。事实上，线段树就是一种二叉树（但不一定是完全二叉树，下面配图就是一个反例，感谢 CGY 提醒）。它的每一个子节点都表示整个序列中的一段子区间，每个叶子节点都表示序列中的单个元素信息，父节点整合了他的每一个子节点的信息。有人会问既然是求和，直接前缀和不就好了吗。刚开始我也是这样想的，果然后来我就看到了树状数组的模板，后面也会去试一下。但是上面这个思路可以处理更多的情况，例如我求个最大值最小值我也可以应用。假设我的序列已经读入完毕并储存到数组 a 了（这个简单）：long long a[maxn + 2];
 long long n, m;
@@ -2085,267 +2286,5 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted 
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse更新可用软件包列表，随后升级系统：# apt update &amp;&amp; apt dist-upgrade -y安装基本开发环境、Xubuntu 桌面和远程桌面支持：# apt install build-essential xubuntu-desktop xrdp安装的软件包比较多，可能要等上一段时间。这里的 Xubuntu 桌面实际为 XFCE 桌面环境，换成别的问题不大但还是建议选择轻量级桌面。保存 Xsession 配置：# exit #切换回普通用户。
 $ echo xfce4-session &gt; ~/.xsession远程桌面需要使用远程桌面时均要执行本节内容。启用 Xrdp 服务（这里不能使用 systemctl，因为 SystemD 不是默认的 Init 系统），记录端口信息：$ sudo service xrdp start在 Windows 开始菜单栏中找到 Windows 附件 - 远程桌面连接，输入 localhost:端口，如 localhost:3389。应该会出现如下警告，选择是即可：如果你没有看到这个警告，可能需要查找虚拟机的 IP 地址并替代 localhost 再试一次：$ ip address在这里，IP 地址查找到是 172.18.221.157，端口是 3389。注意每次重启 WSL 实例后这个 IP 地址都会换。输入 IP 地址:端口，如 172.18.221.157:3389。接下来输入自己的账户密码：然后就是很熟悉的界面了：本地化直接在终端下就可以完成设置了（以下命令在 Root 下运行）：# dpkg-reconfigure locales确认 en_US.UTF-8 UTF-8 和 zh_CN.UTF-8 UTF-8 被勾选，然后将 zh_CN.UTF-8 UTF-8 设定为默认值。然后安装语言包和输入法（按理来说装完就能用）：# apt install language-pack-zh-hans language-pack-gnome-zh-hans fcitx fcitx-table彩蛋Windows 应用能访问 Linux 根文件系统啦，包括文件资源管理器！尝试在 WSL 中使用普通用户运行 explorer.exe .（在远程桌面会话中这样做是没有用滴！），看看会发生什么。另外内部错误大法又怎能缺席呢（逃）。</description>
-</item>
-<item rdf:about="https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html">
-<title>Chakra CCR Packaging Guide</title>
-<link>https://static.bobby285271.top/index.php/2019/02/02/Chakra-CCR-Packaging-Guide.html</link>
-<dc:date>2019-02-01T16:00:00+00:00</dc:date>
-<description>Chakra 的成功证明了只围绕 KDE 和 Qt 搭建一个简约的系统是完全可行的。但正是因为「简约」这一特性，一些用户需要的软件可能不被包含在我们的官方软件仓库中。Chakra 社区软件仓库（CCR）也就因此诞生了，它由社区维护，为所有类型的软件都敞开了大门。搜索、安装、升级 CCR 软件包老用户请注意：ccr 工具已经被弃用，请转而使用 chaser。Chakra 提供了一个叫 chaser 的工具供用户管理 CCR 软件包。它的一些常见用法如下：[chakra@localhost ~]$ chaser -h
-usage: chaser [-h] [-v] [-b BUILD_DIR]
-              {get,install,listupdates,update,search,info} ...
-
-Next-generation community package management for Chakra.
-
-positional arguments:
-  {get,install,listupdates,update,search,info}
-    get                 download source files here
-    install             install a package from the CCR
-    listupdates         list available updates
-    update              search for and install updates for CCR packages
-    search              search CCR packages
-    info                display package information
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -v, --version         show version information and exit
-  -b BUILD_DIR, --build-dir BUILD_DIR
-                        build packages in BUILD_DIR. default = /tmp/chaser搜索搜索 CCR 软件包有两种方式，一种是直接访问 CCR 站点并发起搜索，另一种是使用 chaser search 命令，比如搜索 neofetch：[chakra@localhost ~]$ chaser search neofetchchaser 既会扫描官方软件仓库，也会扫描 CCR。两处符合条件的软件包都会被输出。如果您没有在其中找到您所需要的包，请考虑阅读下一章节。如果您找到的包位于 [core]、[desktop]、[gtk]、[lib32]、[testing] 之一，这意味着您所需的包已经存在于官方软件仓库，请使用 Pacman 进行后续操作。如果您找到的包位于 [ccr]，请继续阅读。下面可以使用 chaser info 进一步了解软件包信息。[chakra@localhost ~]$ chaser info neofetch下面是一个示例输出：Name           : neofetch
-Version        : 5.0.0-1
-URL            : https://github.com/dylanaraps/neofetch
-Licenses       : MIT
-Category       : utils
-Votes          : 2
-Maintainer     : bobby285271
-OutOfDate      : False
-Description    : A CLI system information tool written in BASH that supports displaying images.由于 CCR 活跃用户不多，请务必通过 Version 和 OutOfDate 了解清楚软件包维护情况，如果这个软件包过旧，考虑帮忙维护它（请阅读下一章节）。安装如果您决定安装，使用 chaser install 命令。不要使用 root 运行以下命令，当 chaser 需要管理员权限的时候会要求您输入密码。[live@localhost ~]$ chaser install neofetch大致的安装流程如下（以安装 neofetch 为例，部分输出被省略）。确认构建软件包：请在此处回答 y（是）。resolving dependencies...
-Downloading neofetch
-
-Targets (1) neofetch
-
-:: Proceed with installation? [Y/n]定制软件包：PKGBUILD 是 Arch Linux 的一大特色，也被 Chakra 很好地继承了下来。感兴趣的请阅读 PKGBUILD 语法，一般用户直接回答 n（否）。Downloading neofetch
-Edit neofetch PKGBUILD with $EDITOR? [Y/n]构建软件包：此过程全自动，无需用户干预。==&gt; Making package: neofetch 5.0.0-1
-==&gt; Checking runtime dependencies...
-==&gt; Checking buildtime dependencies...
-==&gt; Retrieving sources...
-==&gt; Validating source files with sha256sums...
-==&gt; Extracting sources...
-==&gt; Entering fakeroot environment...
-==&gt; Starting package()...
-==&gt; Tidying install...
-==&gt; Checking for packaging issue...
-==&gt; WARNING: backup entry file not in package : etc/neofetch/config.conf
-==&gt; Creating package &quot;neofetch&quot;...
-==&gt; Leaving fakeroot environment.
-==&gt; Finished making: neofetch 5.0.0-1
-==&gt; Installing package neofetch with pacman -U...确认安装软件包：后续的工作将自动交由 Pacman 完成。请在此处回答 y（是）。loading packages...
-resolving dependencies...
-looking for conflicting packages...
-
-Packages (1) neofetch-5.0.0-1
-
-Total Installed Size:  0.26 MiB
-
-:: Proceed with installation? [Y/n] 安装软件包：此过程全自动，无需用户干预。(1/1) checking keys in keyring                                                                                                                                     [#####################################################################################################] 100%
-(1/1) checking package integrity                                                                                                                                   [#####################################################################################################] 100%
-(1/1) loading package files                                                                                                                                        [#####################################################################################################] 100%
-(1/1) checking for file conflicts                                                                                                                                  [#####################################################################################################] 100%
-(1/1) checking available disk space                                                                                                                                [#####################################################################################################] 100%
-:: Processing package changes...
-(1/1) installing neofetch                                                                                                                                          [#####################################################################################################] 100%
-:: Running post-transaction hooks...
-(1/1) Arming ConditionNeedsUpdate...升级使用 chaser listupdates 查看可用的更新，使用 chaser update 检查并应用更新 CCR 软件包。移除要查看您安装的 CCR 软件包，使用 pacman -Qm 命令。这个命令可能会输出一些您觉得很陌生的软件包，这很有可能是从官方软件仓库仓库移除且不再受 Chakra 团队支持的包。使用 Pacman 移除您不再需要的包，详见 这篇文章。提交、维护 CCR 软件包（初阶）感谢您为 Chakra 做出贡献！接下来，您将了解到如何准备 PKGBUILD，制作源码包并上传到 CCR 上。首先，请先前往 CCR 的 帐户页面 注册一个帐号。准备 PKGBUILD：概述PKGBUILD 是整个 CCR 包的灵魂所在。要知道的是，所谓的「制作源码包」不过是将 PKGBUILD 和几个补丁捆起来制作一个压缩包罢了。用户试图安装一个 CCR 包，本质上来说，其实是将 PKGBUILD 给下载下来，并执行里面的命令，从而编译安装真正的软件包。PKGBUILD 示例编写 PKGBUILD 并不是一件容易事，这里提供一个示例文件：如果您知道分包是什么，请注意：CCR 不支持分包，一个 PKGBUILD 只能对应一个软件包。# This is an example PKGBUILD file. Use this as a start to creating your own,
-# and remove these comments. For more information, see 'man PKGBUILD'.
-# NOTE: Please fill out the license field for your package! If it is unknown,
-# then please put 'unknown'.
-
-# Maintainer: Your Name &lt;youremail@domain.com&gt;
-pkgname=NAME
-pkgver=VERSION
-pkgrel=1
-epoch=
-pkgdesc=&quot;&quot;
-arch=()
-url=&quot;&quot;
-license=('GPL')
-groups=()
-depends=()
-makedepends=()
-checkdepends=()
-optdepends=()
-provides=()
-conflicts=()
-replaces=()
-backup=()
-options=()
-install=
-changelog=
-source=(&quot;$pkgname-$pkgver.tar.gz&quot;
-        &quot;$pkgname-$pkgver.patch&quot;)
-noextract=()
-md5sums=()
-validpgpkeys=()
-
-prepare() {
-        cd &quot;$pkgname-$pkgver&quot;
-        patch -p1 -i &quot;$srcdir/$pkgname-$pkgver.patch&quot;
-}
-
-build() {
-        cd &quot;$pkgname-$pkgver&quot;
-        ./configure --prefix=/usr
-        make
-}
-
-check() {
-        cd &quot;$pkgname-$pkgver&quot;
-        make -k check
-}
-
-package() {
-        cd &quot;$pkgname-$pkgver&quot;
-        make DESTDIR=&quot;$pkgdir/&quot; install
-}简要说明基本信息：pkgbase： 软件包的名称，名称由小写字母、数字和任意以下字符组成： @ . _ + -；pkgver：软件包的版本号，应该与软件原作者发布的版本号一致；pkgrel：发布号，一个正整数，用来区分同一版本软件的多次构建；epoch：当一个软件的版本编号方式改变，使用此数值进行强制升级。描述：pkgdesc：软件包描述，合理使用关键字以方便搜索；arch： PKGBUILD 可以编译和使用的架构（Chakra 仅支持 x86_64） ；url：软件官方站点的网址；license：软件发布许可证；groups：软件包所在的组。依赖关系：depends：软件的运行时依赖列表；optdepends：一组不影响软件主要功能，但能提供额外特性的软件包；makedepends：仅在软件编译时需要的软件包列表；checkdepends：运行测试组件时需要，而运行时不需要的包列表。相关性：provides：这个变量说明当前包能提供的功能（或者像 cron、sh 这样的虚包）；conflicts：与当前软件包发生冲突的包列表；replaces：会因安装当前包而取代的包列表。其它：backup：当包被升级或卸载时，应当备份的文件；options：这个变量允许您重置 makepkg 的部分默认行为；install：.install 脚本的名称，应该和 pkgname 相同；changelog：软件包 changelog 的名称。源码：source：构建软件包时需要的文件列表；noextract：一些列举于 source 中，但不需要在运行 makepkg 时解包的文件；validpgpkeys：PGP 指纹列表；完整性：md5sums：source 列表文件中的 128 位 MD5 校验和；sha1sums：source 列表文件中 160 位 SHA-1 校验和；sha224sums、sha256sums、sha384sums、sha512sums：source 列表文件中224、256、384 或 512 位 SHA-2 校验和。想要了解更多，可以阅读 ArchWiki 上的 相关页面。准备 PKGBUILD：从零开始（进阶）准备好大干一场？如果您打算从零开始编写一个 PKGBUILD，建议继续阅读以下文章：AUR 打包准则（对 CCR 也是同样适用的）；PKGBUILD 官方手册。请确认您已经彻底了解清楚您所维护的软件包依赖什么包以及如何编译安装，否则还是建议先往下阅读。准备 PKGBUILD：从外部导入要知道现实情况是：CCR 的成熟程度远远落后于 AUR，和 KCP（KaOS 社区软件仓库）差不多。AUR 的生态就摆在那里，几乎所有原生支持 Linux 的应用程序都能在 AUR 找到对应的软件包。而 KaOS 的定位和 Chakra 类似，也是围绕 KDE 和 Qt 搭建的发行版。所以说，在大部分情况下是没有必要自己造轮子的。有些轮子说不定 Chakra 团队已经为您造好了，在 Chakra 官方软件仓库里，不要重复提交这些软件包！请从 Arch Linux 官方软件仓库 & AUR 和 KaOS 官方软件仓库 & KCP 两个来源选择一个，并继续阅读下面的教程。Arch Linux 官方软件仓库 & AUR前往 Arch Linux 软件包页面 和 AUR 首页 发起搜索，直到您找到您打算提交到 CCR 的软件包。点击软件包名进入软件包详情页，定位到页面右侧的「Package Actions」方框：对于 AUR 软件包页面，选择「View PKGBUILD」，当页面加载完毕后还需要点击「summary」链接前往 Git 仓库概览页面。对于 Arch Linux 官方软件包，直接选择「Source Files」。AUR 的软件包是一个软件包对应一个 Git 仓库的，而 Arch Linux 官方软件包则是 [core]、[extra] 仓库中的所有软件包放一个 Git 仓库，[community]、[multilib] 仓库中的所有软件包放另一个 Git 仓库。为了效率最大化，对于 AUR 包我们会选择 Clone 整个 Git 仓库，而官方软件包我们会选择逐个文件拷贝。对于 AUR 软件包，找到 Clone 这一栏，下面有一个地址，将它复制下来：打开终端，输入 git clone &lt;刚刚复制的 URL 地址&gt; --depth=1，例如：git clone https://aur.archlinux.org/wps-office.git/ --depth=1至于 Arch Linux 官方软件包，新建一个文件夹（名字随意），然后回到浏览器，逐个文件点击文件名旁边的「plain」链接（如图所示），如果是文本文件复制一下，在刚刚新建的文件夹新建一个同样名称的文件（千万不要随意改名），将文本粘贴下去。至于二进制文件，浏览器应该会弹出下载窗口，将文件下载后放入文件夹中。记得检查文件权限是否正常，如果发现文件权限和浏览器中「Mode」显示的是否一致。如果不一致，使用 chmod 修正妥当（这里 有这个命令相关的介绍）。KaOS 官方软件仓库 & KCP和前面 Arch Linux 官方软件仓库 & AUR 大同小异。KaOS 软件包页面 和 KCP 同样提供了搜索框，发起搜索后进入软件包详情页。同样，官方包建议逐个文件获取，点击右栏的「Source Files」，剩下的操作估计大家很熟悉了，毕竟 GitHub 大家都用过，逐个查看「Raw」文件即可。KCP 包可以整个仓库 Clone 下来（原因同 AUR），点击右上角的「View on GitHub」，后面的我也不再多说了，依然是 git clone &lt;刚刚复制的 URL 地址&gt; --depth=1。准备 PKGBUILD：收尾 & 检查工作这一步很关键，一定要重视！上一步完成后，我们得到了一个文件夹，里面有些什么取决于您选择的包，大多数情况下里面可能只有一个 PKGBUILD 文件。没关系，反正一定要有 PKGBUILD，剩下的无需我们来检查。再次强调，PKGBUILD 非常关键，所以我们一定要进行检查。这里是一份 PKGBUILD：# Maintainer: Jan de Groot &lt;jgc@archlinux.org&gt;
-
-pkgname=xorg-xprop
-pkgver=1.2.3
-pkgrel=1
-pkgdesc=&quot;Property displayer for X&quot;
-arch=(x86_64)
-url=&quot;https://xorg.freedesktop.org/&quot;
-license=('custom')
-depends=('libx11')
-makedepends=('xorg-util-macros')
-groups=('xorg-apps' 'xorg')
-source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2{,.sig})
-sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a'
-            'SKIP')
-validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # &quot;Alan Coopersmith &lt;alan.coopersmith@oracle.com&gt;&quot;
-
-build() {
-  cd xprop-${pkgver}
-  ./configure --prefix=/usr
-  make
-}
-
-package() {
-  cd xprop-${pkgver}
-  make DESTDIR=&quot;${pkgdir}&quot; install
-  install -m755 -d &quot;${pkgdir}/usr/share/licenses/${pkgname}&quot;
-  install -m644 COPYING &quot;${pkgdir}/usr/share/licenses/${pkgname}/&quot;
-}聪明人看完第一行就应该知道这份 PKGBUILD 是从 Arch Linux 官方仓库上抓取下来的。如果您刚才「 简要说明」，大概就知道我们要重点检查什么了。依赖关系首先是 depends 和 makedepends，这两项都是针对 Arch Linux 来写的。例如说一个包依赖 foo，到了 Chakra 这边，可能会有这几种情况：Chakra 官方软件仓库正好有 foo，提供的是同样的功能；Chakra 官方软件仓库没有 foo，但 CCR 有；Chakra 官方软件仓库或 CCR 提供了提供同样功能，但包名不同的 foo1；Chakra 官方软件仓库或 CCR 不提供 foo。第一、二种情况可以直接给过不用管，因为 chaser 会自动从官方软件仓库和 CCR 获取相应的依赖。第三种情况要小心一点，并不是所有情况下简单地将 foo 改成 foo1 就可以的，看一下下面这个案例：注意到在 Arch Linux 这里同时存在 openssl 和 openssl-1.0 两个软件包，观察版本号，我们知道后者是为了兼容性而单独打包的。openssl 的版本号（截至 20190201）是 1.1.1.a-1，openssl-1.0 则是 1.0.2.q-1。接下来看看 AUR 里 wps-office 这个包：它依赖的是 openssl-1.0。我们可以搜索 Chakra 官方软件仓库（省略部分输出）：[chakra@localhost ~]$ pacman -Ss openssl
-lib32/lib32-openssl 1.0.2.q-1
-    The Open Source toolkit for Secure Sockets Layer and Transport Layer Security (32-bit)
-core/openssl 1.0.2.q-1 [已安装]
-    The Open Source toolkit for Secure Sockets Layer and Transport Layer Security
-core/perl-crypt-openssl-bignum 0.04-3
-    OpenSSL's multiprecision integer arithmetic
-core/perl-crypt-openssl-random 0.04-8
-    Interface to OpenSSL PRNG methods
-core/perl-crypt-openssl-rsa 0.28-2
-    Interface to OpenSSL RSA methods
-core/perl-net-ssleay 1.63-1
-    Perl extension for using OpenSSL
-core/pkcs11-helper 1.25.1-1
-    A library that simplifies the interaction with PKCS11 providers for end-user applications using a simple API and optional OpenSSL engine
-core/python2-characteristic 14.3.0-1
-    Service identity verification for pyOpenSSL
-core/python2-service-identity 17.0.0-1
-    Service identity verification for pyOpenSSL
-core/python3-characteristic 14.3.0-1
-    Service identity verification for pyOpenSSL
-core/python3-service-identity 17.0.0-1
-    Service identity verification for pyOpenSSL
-core/tls 1.6.7-1
-    OpenSSL extension to Tcl
-desktop/python2-ndg-httpsclient 0.4.3-1
-    Provides enhanced HTTPS support for httplib and urllib2 using PyOpenSSL
-desktop/python2-pyopenssl 17.3.0-1
-    Python2 wrapper module around the OpenSSL library
-desktop/python3-ndg-httpsclient 0.4.3-1
-    Provides enhanced HTTPS support for httplib and urllib2 using PyOpenSSL
-desktop/python3-pyopenssl 17.3.0-1
-    Python3 wrapper module around the OpenSSL library
-[chakra@localhost ~]$这就是所有的搜索结果了，有 openssl 却没有 openssl-1.0，但是要注意 Chakra 提供的 openssl 版本是 1.0.2.q-1，和 Arch 中 openssl-1.0 是一致的。从中我们可以得出以下信息：Chakra 是半滚动更新发行版，更新一般来说会滞后于 Arch Linux，Chakra 的 OpenSSL 打包落后于 Arch Linux，所以目前来说我们要将 PKGBUILD 文件中的 openssl-1.0 修改为 openssl，但当 Chakra 将 openssl 升级到 1.1+ 之后，我们要实时监测 Chakra 动态，做好两手准备：如果 openssl-1.0 可用，我们要重新打包 wps-office，将 PKGBUILD 改回 openssl-1.0；如果 Chakra 不提供 openssl-1.0，我们得为 openssl-1.0 打包并提交到 CCR。注意：在这个案例中，只要 Chakra 的 openssl 不更新，用户就不能提前将 openssl-1.0 提交到 CCR，因为它和官方源所提供的重复了。第四种情况，您需要前往您刚刚所选的来源（Arch Linux 官方软件仓库 & AUR 或 KaOS 官方软件仓库 & KCP），按照上面提供的步骤，获取这个依赖包的相关文件，在稍后一起进行打包。PGP 密钥如果您从 Arch Linux 或 KaOS 官方软件仓库获取软件包的要特意留意 validpgpkeys 这一项，如果有所填写，要注意的是，Charka 的 chakra-keyring 软件包只提供了 Chakra 维护者的签名，没有 Arch Linux 或 KaOS 的。这样会导致打包失败，因为打包工具 makepkg 是会检查 PGP 密钥的。规避检查很简单，将 validpgpkeys 所在的那一行删掉。当然也别忘了将相关的文件删掉，还是上面 xorg-xprop 的那个例子：...
-source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2{,.sig})
-sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a'
-            'SKIP')
-validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # &quot;Alan Coopersmith &lt;alan.coopersmith@oracle.com&gt;&quot;
-...在删除下面这一行之后：validpgpkeys=('4A193C06D35E7C670FA4EF0BA2FB9E081F2D130E') # &quot;Alan Coopersmith &lt;alan.coopersmith@oracle.com&gt;&quot;我们留意到 source 那一行，{,.sig} 意味着它同时包含了两个文件：xprop-${pkgver}.tar.bz2 和 xprop-${pkgver}.tar.bz2.sig，后者是用于验证密钥的，删除它。而 sha512sums 那里，所有的检验值都和 source 的文件逐一对应，所以我们得把 xprop-${pkgver}.tar.bz2.sig 的校验值给相应地删除，即使它是 SKIP，意为「跳过校验值检查」。这个文件最终被修改成了这样：# Maintainer: Jan de Groot &lt;jgc@archlinux.org&gt;
-
-pkgname=xorg-xprop
-pkgver=1.2.3
-pkgrel=1
-pkgdesc=&quot;Property displayer for X&quot;
-arch=(x86_64)
-url=&quot;https://xorg.freedesktop.org/&quot;
-license=('custom')
-depends=('libx11')
-makedepends=('xorg-util-macros')
-groups=('xorg-apps' 'xorg')
-source=(https://xorg.freedesktop.org/archive/individual/app/xprop-${pkgver}.tar.bz2)
-sha512sums=('ad7987fec11ae19b7adc3b0f683fc393e95155f3b6c753d1d8744aedcfb360452eee5735a4c380152b286905931515f3e1a28676b5531001eb8dd93b7249916a')
-
-build() {
-  cd xprop-${pkgver}
-  ./configure --prefix=/usr
-  make
-}
-
-package() {
-  cd xprop-${pkgver}
-  make DESTDIR=&quot;${pkgdir}&quot; install
-  install -m755 -d &quot;${pkgdir}/usr/share/licenses/${pkgname}&quot;
-  install -m644 COPYING &quot;${pkgdir}/usr/share/licenses/${pkgname}/&quot;
-}其它如果您是从外部导入的软件包，案例来说您是无需检查校验值的，如果是自己创建的软件包就一定要检查校验值了：打开 Konsole，使用 cd 命令进入您的文件夹，然后执行 updpkgsums 命令即可。另外我们还建议您将 Maintainer 后面的姓名和邮箱改成您自己的。亲自测试（建议）打开 Konsole，使用 cd 命令进入您的文件夹，然后执行 makepkg 命令。 如果 PKGBUILD 没有错误，将会生成一个包，但是如果 PKGBUILD 被破坏或未完成，它将抛出一个错误。makepkg 的用法如下：用法：/usr/bin/makepkg [选项]
-
-选项：
-  -A, --ignorearch      忽略不完整的 arch 字段 (位于 PKGBUILD 中)
-  -c, --clean           编译后清理工作文件
-  -C, --cleanbuild      在编译软件包之前删除 $srcdir/ 文件夹
-  -d, --nodeps          跳过所有依赖关系检查
-  -e, --noextract       不解压源文件 (使用现存的 $srcdir/ 目录)
-  -f, --force           覆盖现存的软件包
-  -g, --geninteg        为源码文件生成完整性检查值
-  -h, --help            显示本帮助信息并退出
-  -i, --install         成功编译后安装软件包
-  -L, --log             记录软件包编译过程
-  -m, --nocolor         禁止彩色输出信息
-  -o, --nobuild         仅下载和解压缩文件
-  -p &lt;文件&gt;             使用另外的编译脚本 (而不是 'PKGBUILD' ) 
-  -r, --rmdeps          编译成功后删除安装的依赖关系
-  -R, --repackage       不编译而重新打包软件包内容
-  -s, --syncdeps        使用 pacman 安装缺失的依赖关系
-  -S, --source          不下载源文件只生成仅包含源的包
-  -V, --version         显示版本信息并退出
-  --allsource           只生成源码包 (包括有已下载的源码) 
-  --check               运行 check() 函数 (包含于 PKGBUILD 中)
-  --config &lt;文件&gt;       使用另外的配置文件 (而不是 '/etc/makepkg.conf')
-  --holdver             不升级版本控制系统源
-  --key &lt;密匙&gt;          指定签名 gpg 使用的密匙而不用默认密匙
-  --noarchive           不生成软件包归档
-  --nocheck             不执行 check() 函数在 PKGBUILD 中
-  --noprepare           不执行 prepare() 函数在 PKGBUILD 中
-  --nosign              不为该软件包创建签名
-  --packagelist         只列出将会产生的包，不带PKGEXT
-  --printsrcinfo        打印出生成的 SRCINFO 并退出
-  --sign                使用 gpg 签名生成的软件包
-  --skipchecksums       不验证源文件的检验值
-  --skipinteg           不对源文件执行任何验证检查
-  --skippgpcheck        不验证有 PGP 签名的源文件
- --verifysource         下载源文件(如果需要)并进行完整性检查
-
-这些选项可以传递给 pacman：
-  --asdeps              作为依赖安装
-  --needed              不重装已是最新的目标软件包
-  --noconfirm           当解决依赖关系时不询问确认
-  --noprogressbar       下载文件时不显示进度条
-
-如果没有指定 -p，makepkg 将寻找 'PKGBUILD'如果运行 makepkg 成功，在您工作的目录下将会生成一个名为 $pkgname-$pkgver.pkg.tar.gz 的新文件。这个文件可以使用 pacman -U 或 pacman -A 安装。如果包看起来是正确的，那您的工作就完成了。一个实用的检查工具（建议）Namcap 是 Arch Linux 推荐的检查工具，它将会做以下工作：检查 PKGBUILD 文件里的一些常见错误；用 ldd 扫描包中所有的ELF文件，自动报告缺失或可去除的依赖；启发式搜寻缺失或冗余的依赖。要养成用 Namcap 检查包的习惯，以避免提交包后再做修复的麻烦。打开 Konsole，使用 cd 命令进入您的文件夹，然后执行：namcap PKGBUILD制作源码包后面的步骤都很简单了！打开 Konsole，使用 cd 命令进入您的文件夹，执行以下命令：makepkg --source这个命令实际上就是将文件夹里的文件打成一个包，但为了确认您的 PKGBUILD 中的校验值准确无误，PKGBUILD 中 source 一栏所有文件都会被下载下来以校验完整性，耐心等待就好。输出内容大概是：==&gt; 正在进入 fakeroot 环境...
-==&gt; 正在创建源码包...
-  -&gt; 正在添加 PKGBUILD...
-  -&gt; 正在生成 .SRCINFO 文件...
-  -&gt; 正在压缩源码包...
-==&gt; 正在离开 fakeroot 环境。
-==&gt; 源代码包已创建：foo将源码包上传到 CCR请确认您已经登录 CCR 帐户，接下来访问 上传页面，选择软件包分类，接下来选择源码包，源码包应该位于您的文件夹中，包名应该是 $pkgname-$pkgver.src.tar.gz。点击「上传」即可。如果 CCR 里面本身没有这个包或这个包是一个无人维护的包（孤儿包），您将会成为维护者。CCR 里面旧版本的软件包将会被您的新软件包取代。如果这个包已经有维护者，CCR 会拒绝您的提交。如果您发现 CCR 里的包已经被标记为「过期」一段时间而维护者没有采取任何动作，您可以联系 Chakra 团队将该包重置为无人维护状态。</description>
 </item>
 </rdf:RDF>

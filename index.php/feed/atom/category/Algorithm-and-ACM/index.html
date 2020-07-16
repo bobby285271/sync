@@ -1368,9 +1368,9 @@ int main()
 <link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/26/Dynamic-Programming-on-Tree-Structures-Luogu-P2014.html" thr:count="0"/>
 </entry>
 <entry>
-<title type="html"><![CDATA[Segment Tree (Luogu P3372)]]></title>
-<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html" />
-<id>https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html</id>
+<title type="html"><![CDATA[Introduction to Segment Tree (Luogu P3372)]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/18/Introduction-to-Segment-Tree-Luogu-P3372.html" />
+<id>https://static.bobby285271.top/index.php/2019/12/18/Introduction-to-Segment-Tree-Luogu-P3372.html</id>
 <updated>2019-12-18T15:35:00+00:00</updated>
 <published>2019-12-18T15:35:00+00:00</published>
 <author>
@@ -1378,7 +1378,7 @@ int main()
     <uri>https://static.bobby285271.top</uri>
 </author>
 <summary type="html"><![CDATA[SCNUACM 新生赛的 C 题被我用 N 方算法水过去了，很惭愧，还是想了解一下正解。当然了，一切的基础，就是熟悉相关的模板咯！题目https://www.luogu.com.cn/probl...]]></summary>
-<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html" xml:lang="zh-CN"><![CDATA[
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2019/12/18/Introduction-to-Segment-Tree-Luogu-P3372.html" xml:lang="zh-CN"><![CDATA[
 <p>SCNUACM 新生赛的 C 题被我用 N 方算法水过去了，很惭愧，还是想了解一下正解。当然了，一切的基础，就是熟悉相关的模板咯！</p><h2>题目</h2><p><a href="https://www.luogu.com.cn/problem/P3372">https://www.luogu.com.cn/problem/P3372</a></p><h2>思路</h2><blockquote>以下内容<strong>仅为个人理解，可能存在错误</strong>。</blockquote><p>显然，对给出的区间中的每一个数逐个加 k（操作 1）或者一个一个数累加下去来求和（操作 2）是会超时的。我们先抛开操作 1 不谈，试想一下对于操作 2，如果我们可以把这个区间分成几个小块，然后又事先知道每一小块中的元素求和的结果，那我求和的时候是不是就不需要算那么多项呢？是不是也就快一点呢？于是就有了分块思想。如果我们把这个思想给贯彻地彻底一些，事先将几个小块拼在一起形成一个大块，又事先算出每一大块中的元素求和的结果，会不会再更快一些呢？以此类推，树形结构就被我们构建出来了。事实上，线段树就是一种二叉树（但不一定是完全二叉树，下面配图就是一个反例，感谢 CGY 提醒）。它的每一个子节点都表示整个序列中的一段子区间，每个叶子节点都表示序列中的单个元素信息，父节点整合了他的每一个子节点的信息。</p><blockquote>有人会问既然是求和，直接前缀和不就好了吗。刚开始我也是这样想的，果然后来我就看到了树状数组的模板，后面也会去试一下。但是上面这个思路可以处理更多的情况，例如我求个最大值最小值我也可以应用。</blockquote><p>假设我的序列已经读入完毕并储存到数组 a 了（这个简单）：</p><pre><code class="lang-cpp">long long a[maxn + 2];
 long long n, m;
 scanf(&quot;%lld%lld&quot;, &amp;n, &amp;m);
@@ -1555,8 +1555,8 @@ int main()
     return 0;
 }</code></pre>
 ]]></content>
-<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/18/segment-tree.html#comments" thr:count="0" />
-<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/18/segment-tree.html" thr:count="0"/>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2019/12/18/Introduction-to-Segment-Tree-Luogu-P3372.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2019/12/18/Introduction-to-Segment-Tree-Luogu-P3372.html" thr:count="0"/>
 </entry>
 <entry>
 <title type="html"><![CDATA[SCNUCS-N 2019 Tour]]></title>

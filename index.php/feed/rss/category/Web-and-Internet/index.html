@@ -9,11 +9,213 @@ xmlns:dc="http://purl.org/dc/elements/1.1/">
 <description></description>
 <items>
 <rdf:Seq>
+<rdf:li resource="https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html"/>
 <rdf:li resource="https://static.bobby285271.top/index.php/2017/10/21/How-to-Generate-a-Hexo-Blog-and-Deploy-it-on-GitHub.html"/>
 </rdf:Seq>
 </items>
 </channel>
+<item rdf:about="https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html">
+<title>[WIP] Analytics of SoCoding 1024 Website - Introduction to Django</title>
+<link>https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html</link>
+<dc:date>2020-07-15T12:04:00+00:00</dc:date>
+<description>本文尚未完成，将随时更新。好久没有出文章了，放暑假有点时间，尝试再造一遍 2019 年 SCNUSE 软协 1024 程序员节活动网站（尽量还原，会有一些差别），算是 Django 框架的一个学习项目吧。博主本人的基本功也不怎么扎实，如果下文有任何错误欢迎指出。要实现什么去年也是参与到这个活动中来了，但是只是做了一个关卡，比较划水。这里就略过需求分析系统设计什么的了，简单来说整个网站做的大概就是：注册登录。七个关卡七个页面，每个页面要显示题面和答案提交框（当然有些关卡是玩游戏）。用户输答案要判断对不对，要判断有没有跳关，要记录通关时间。最后具体实现用到的是 Django 框架，使用 MySQL 数据库。铺垫博主认为有一些技能在开始动手之前还是要先掌握的。首先是 Python，其实有了程序设计基础之后 Python 的语法其实很简单。完全不会 Python 的推荐看 Python 100 天教程 前 15 天部分的内容，然后找个 Online Judge 做几道水题，最多两个小时应该都能熟悉。然后是 Web 前端 HTML、CSS、Javascript 的一些最基本的应用，学校讲的足够用了，这里推荐 菜鸟教程，可以尝试自己写一些小的静态网站。接着是 MySQL 基本的增删改查，博主学习这个的时候靠的是下一个 Adminer（其实是 PHPMyAdmin 的继任者），建一个临时的数据库一边玩一边学，当然这需要你事先搭建 PHP 环境。最后 Django 本身还是要先做了解的。可以简单浏览 Python 100 天教程 第 14 天和第 41 天的内容，另外也推荐阅读官方推荐的一些 设计理念 。准备先来做一些准备工作，包括开发环境的配置和项目基本框架的初始化。开发环境Visual Studio Code 天下第一！然而 VS Code 下想要有完整的 Python 支持是要安装 pip 的，这玩意其实是 Python 的包管理器，直接使用 Linux 下的包管理器安装。我们假设你和我一样在用 Arch Linux 而且是 [archlinuxcn] 源的用户。# pacman -S visual-studio-code-bin python-pippip 既然是包管理器，能条件反射到的是肯定要换源，百度一下马上有答案：$ cd 
+$ mkdir .pip
+$ nano .pip/pip.conf[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple随便新建一个 Python 文件（例如 a.py），写上一行 print(&quot;helloworld&quot;)。用 VS Code 打开，先装上 Python 扩展，然后尝试格式化这个文件，VS Code 就会提示你安装格式化程序，点安装就行。可以看到就是使用 pip 安装的（下面这行不用自己敲，点按钮就自动帮你做了）：$ /usr/bin/python /home/bobby285271/.vscode/extensions/ms-python.python-2020.6.91350/pythonFiles/pyvsc-run-isolated.py pip install -U autopep8 --user接下来就是安装 Django，这里有两个方法，一个是继续使用 Linux 下的包管理器安装：# pacman -S python-django或者是用上面刚刚讲到的 pip：$ pip install django要注意的是给 Arch Linux 软件包锁版本是不被提倡的，毕竟是滚动更新发行版。所以如果你使用 Pacman 安装 python-django 就得一直跟着系统走用最新版，要考虑其利弊。我们测试一下是不是一切准备妥当了：$ django-admin version一种情况是输出了版本号，很好那就是完事了。另一种情况是提示命令没有找到，那就是在普通用户下使用 pip 按照 Django 导致 django-admin 不在 PATH 里。解决方法很多，例如简单粗暴地改用 root 安装，或是修改你的 PATH，可以参考官方文档。创建项目就是创建一个 Django 项目实例需要的设置项集合，包括数据库配置、Django 配置和应用程序配置。我们首先创建一个工作目录，进去之后创建项目，假设就叫 mysite（注意 官方入门教程 指出不建议命名为 test 或 django 或其它可能会导致冲突的关键字）。$ django-admin startproject mysite
+$ cd mysite得到的文件和目录和 官方入门教程 应该是一模一样的，什么含义参考教程。我们尝试运行开发专用的 Web 服务器（特别强调是开发专用），看看效果如何。$ python manage.py runserver应该能看到一个小火箭和一句「The install worked successfully! Congratulations!」，不然就是前面哪一步做错了。如果成功了不用急着掐掉，后面改动文件之后刷新页面应该是可以实时看到效果的。例如现在我们尝试让刚才的小火箭页面变成中文的，编辑 settings.py：LANGUAGE_CODE = 'zh-hans'
+TIME_ZONE = 'Asia/Shanghai'保存后刷新页面，应该能看到「安装成功！祝贺！」的字样。创建应用在 Django 中，每一个应用都是一个 Python 包。应用通常是一个专门做某件事的网络应用程序，比如博客系统、投票程序。项目则是一个网站使用的配置和应用的集合。项目可以包含很多个应用。这里我们就只创建一个应用，就叫 myapp：$ python manage.py startapp myapp创建应用仅仅是为你创建一个目录而已，不要忘了往项目里面添加这个应用，我们编辑 mysite/settings.py：INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myapp'
+]目录结构到现在和 官方入门教程 所写的投票系统依然是基本一致的。到这里准备工作就完成了，接下来我们来尝试实现一些东西吧！第一个页面：登录页的实现Hello World几乎所有教程做第一个页面都是显示一行 Hello World，我们也先迅速实现一下。这里依然没有脱离 官方入门教程 的内容。在接收到客户端发送过来的请求后，为了返回一个响应，我们有了 HttpResponse 方法，它是作用是内部传入一个字符串参数，然后发给浏览器。具体实现就是在 myapp/views.py 加入以下内容：from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse(&quot;&lt;h1&gt;Hello, World&lt;/h1&gt;&quot;)接下来我们需要将一个 URL 映射到它，在 myapp 下面新建一个 urls.py：from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]接下来在 mysite/urls.py 做一些修改：from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('', include('myapp.urls')),
+    path('admin/', admin.site.urls),
+]如果你在创建项目或者应用的时候起得名字跟我的不一样，只要看到是 myxxx 改过来就行了，后面就不强调了。这个命名方式是从 Web 前端课程哪里学来的，据说 myapp 是程序员造轮子次数最多的应用之一呢。 接下来当我们再跑 python manage.py runserver 的时候就会发现小火箭没了，变成了一行 Hello World，Hello World 页就做出来了。URL 的映射当然毕竟是做 1024 活动网站的重置版，这个「第一个页面」肯定不能就显示 Hello World 这么简单嘛，我们最终希望做的是一个登录页。现在我们开始在这个 Hello World 的基础上做点花样，下面我们都假设你的服务器是运行在 http://127.0.0.1:8000/ 上面的。首先我们希望 Hello World 页 登录页是在 http://127.0.0.1:8000/login/。因为只是修改映射到 Hello World 的 URL，而不是修改映射到 myapp 的 URL，我们就修改 myapp/urls.py，而 mysite/urls.py 在后面其实基本不用碰了。from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('login/', views.index, name='index'),
+]现在访问 http://127.0.0.1:8000/，就提示 404 了，访问 http://127.0.0.1:8000/login/ 则是 Hello World 页 登录页。补一句去年做出来的成品似乎是没有首页的。模板现在访问登录页，显示的是 Hello World，但我们实际需要的是：前端一个表单供用户输入账户密码，后端处理用户输入与数据库交互。首先是前端，刚刚学完 Web 前端，应该不是什么难点。现在的问题讲通俗点就是，当我写好一个 HTML 文件之后，怎样往这个站点添加这个文件，使我访问这个地址就显示这个 HTML 文件呢？可以想到的第一个方法是，刚才做的 Hello World 部分，我们就有语句 return HttpResponse(&quot;&lt;h1&gt;Hello, World&lt;/h1&gt;&quot;)，我把这个 HTML 文件压成一行，换掉 &lt;h1&gt;Hello, World&lt;/h1&gt; 不就行了吗？可以是可以，但是一个很最突出的问题是维护起来很难受。事实上这样子其实是将数据与视图混合在一起，我们说是不符合 Django 的 MVC 思想（Model View Controller，具体请百度）。于是我们有了另外一个东西叫做模板。我们可以在 官方文档 How-to 部分 找到相关的文档。不需要把模板想太复杂，其实目前需要做的事情只有两个。首先是在 myapp 下面建立一个 templates 的文件夹（不要随便改名），往这个文件夹里面放置你的 HTML 文件。例如我把登录页命名为 index.html，然后放进目录里。就和初学 Web 前端一样，先不要管样式，也不要管按钮链接能不能工作，这些在后面会提及。&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;login&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;lg_content&quot;&gt;
+        &lt;table cellspacing=&quot;30px&quot; style=&quot;width: 250px&quot; align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;td colspan=&quot;2&quot; align=&quot;left&quot;&gt;
+                    &lt;span class=&quot;font2&quot; style=&quot;font-size:30px;&quot;&gt;WELCOME TO 1024&lt;/span&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+                &lt;tr&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;
+                        &lt;input type=&quot;text&quot; name=&quot;id&quot; class=&quot;lg_ip&quot; placeholder=&quot;学号&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;
+                        &lt;input type=&quot;password&quot; name=&quot;passwd&quot; class=&quot;lg_ip&quot; placeholder=&quot;密码&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td align=&quot;right&quot;&gt;
+                        &lt;input type=&quot;submit&quot; value=&quot;提交&quot; class=&quot;button&quot; style=&quot;position:relative;left:-50px&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/form&gt;
+            &lt;tr&gt;
+                &lt;td align=&quot;left&quot;&gt;
+                    &lt;span class=&quot;font1&quot;&gt;没有账号？&lt;/span&gt;
+                    &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+                        &lt;input type=&quot;submit&quot; value=&quot;注册&quot; style=&quot;height:25px;width:50px;font-size:12px&quot; class=&quot;button&quot;&gt;
+                    &lt;/form&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;接下来我们把 Hello World 换掉。render 方法可接收三个参数，一是 request 参数，二是待渲染的 HTML 模板文件，三是保存具体数据的字典参数。它的作用就是将数据填充进模板文件，最后把结果返回给浏览器。编辑 myapp/views.py：from django.shortcuts import render, redirect
+from django.http import HttpResponse
+
+def index(request):
+    return render(request, 'index.html')
+    # return HttpResponse(&quot;&lt;h1&gt;Hello, World&lt;/h1&gt;&quot;)我们再访问 http://127.0.0.1:8000/login/，发现已经有一个登录页面的样子了。静态资源现在我们来做登录页的样式吧！你们可能尝试过在 templates 目录直接放一个 CSS 文件，然后在 index.html 直接加 &lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot;&gt;，你会发现是行不通的，它实际请求的是 http://127.0.0.1:8000/login/temp.css，直接 404。注意到 mysite/settings.py 有这么一行：# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+STATIC_URL = '/static/'事实上，关于静态资源的存放，官方文档 How-to 部分 依然给出了具体的说明。和模板类似，我们要单独建立 static 目录来存放这些静态资源。通常我们把这个目录放在应用目录下，我们新建 myapp/static/ 目录，里面再建一个 css 目录。我们尝试往 css 目录里面添加我们的样式。这个样式我们会在后面多次使用，编辑 myapp/static/css/style.css：body {
+    /* background: url(&quot;../img/bg_img.jpg&quot;); */
+    /* background-size: cover; */
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+.containerDiv {
+    margin-top: 0;
+    margin-bottom: 0;
+    background-size: 100% 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.lg_content {
+    margin-top: 100px;
+}
+
+.titleDiv {
+    width: 100%;
+    height: 150px;
+}
+
+.problemDiv {
+    width: 80%;
+    height: 360px;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative;
+}
+
+.leftDiv {
+    width: 50%;
+    height: 360px;
+    text-align: center;
+    float: left;
+}
+
+.rightDiv {
+    width: 40%;
+    margin-left: 10%;
+    height: 360px;
+    text-align: center;
+    float: left;
+}
+
+.answerDiv {
+    width: 100%;
+    height: 60px;
+    position: relative;
+}
+
+.background {
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.button {
+    width: 68px;
+    height: 34px;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(76, 129, 179);
+    box-shadow: none;
+    border: none;
+    border-style: inline;
+}
+
+.input {
+    height: 40px;
+    width: 250px;
+    font-size: 14px;
+    color: rgba(155, 152, 151, 0.774);
+    border: none;
+    box-shadow: none;
+    border-style: none;
+    border-width: 0px;
+}
+
+.font1 {
+    font-family: &quot;Microsoft YaHei&quot;;
+    font-size: 12px;
+    font-weight: bold;
+    color: azure;
+}
+
+.font2 {
+    font-family: &quot;Microsoft YaHei&quot;;
+    font-size: 22px;
+    width: 400px;
+    color: rgb(88, 99, 192);
+}
+
+#game_div,
+p {
+    width: 400px;
+    margin: auto;
+    margin-top: 0px;
+}根据 STATIC_URL = '/static/' 这一线索，我们尝试访问 http://127.0.0.1:8000/static/css/style.css，发现确实是有这个文件的。事实上，只要将 &lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot;&gt; 改成 &lt;link href=&quot;/static/css/style.css&quot; rel=&quot;stylesheet&quot;&gt; 就可以往页面加载样式了。但是，这样后续维护是很困难的，一个问题是如果我们后面突然又需要创建应用，需要的是不同的样式呢？想象一下，你有两个应用，你在两个应用目录下有不同的 static/css/style.css 文件，你访问 http://127.0.0.1:8000/static/css/style.css 得到的是什么呢？对这个问题，官方的解决方案是，在 myapp/static/ 下面再建立一个目录 myapp（就是应用本身的名称），然后把静态资源放里面，我们尝试将 myapp/static/css 目录移动到 myapp/static/myapp/css。现在我们在 http://127.0.0.1:8000/static/myapp/css/style.css 可以看到我们的样式文件了。另一个问题是如果我突然想更换一下映射到静态资源的 URL 呢？也就是说我把 STATIC_URL = '/static/' 改成别的，是不是所有的 HTML 文件我要逐个修改呢？所以我们是不建议按照前面的方式去写的，我们有一个船新的方法。{% load static %}
+&lt;link href=&quot;{%static 'myapp/css/style.css'%}&quot; rel=&quot;stylesheet&quot;&gt;要注意的是这里的 static 和 STATIC_URL = '/static/' 中的路径 static 是没有任何联系的，就是静态资源的意思。你可以尝试将 STATIC_URL 改成别的再来试试。现在访问 http://127.0.0.1:8000/login/，F12 看一下，会发现上面 {% %} 标签的内容都已经被替换掉了。接下来是背景图片。同样地，我们将 bg_img.jpg 放置在 myapp/static/myapp/img/ 目录中。这回没那么复杂，在 CSS 文件里引用时直接写相对路径即可：body {
+    background: url(&quot;../img/bg_img.jpg&quot;);
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}现在登录页的前端部分就完成了！我们来检查一下你的目录，你的 mysite 下面应该没有任何新增的文件（注意 __pycache__ 目录下的文件是由 Django 自动修改或处理的，不需要碰），myapp 下面现在应该多了一个 templates 目录（模板）和一个 static 目录（静态资源）。数据库交互以下部分正在施工。施工区域</description>
+</item>
 <item rdf:about="https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html">
 <title>How to Deploy WordPress on a Fedora Server (en)</title>
 <link>https://static.bobby285271.top/index.php/2020/02/03/How-to-Deploy-WordPress-on-a-Fedora-Server-en.html</link>

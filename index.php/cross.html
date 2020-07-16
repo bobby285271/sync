@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html class="no-js" lang="zh-cmn-Hans">
+<html class="no-js bg" lang="zh-cmn-Hans">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta charset="UTF-8">
@@ -47,22 +47,24 @@
         background: #EFEFEF
         }
 }
-#aside .wrapper:hover {
+#post-panel .blog-post .single-post .item-thumb {
+    background-position: 50% 35%;
+}#aside .wrapper:hover {
 	background: url(../usr/themes/handsome/assets/img/snow.gif);
 	background-size: cover;
 	color: #999;
 }    </style>
 
-<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js" type="01d0724fc894bb64f442fa65-text/javascript"></script>
 
-<script src="../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/fancyMorph.min.js" type="01d0724fc894bb64f442fa65-text/javascript"></script>
 </head>
 <body id="body" class="fix-padding">
 
-<div id="alllayout" class="app app-aside-fix no-container app-header-fixed "> 
+<div id="alllayout" class="app app-aside-fix container app-header-fixed "> 
 <header id="header" class="fix-padding app-header navbar box-shadow-bottom-lg" role="menu">
 
-<div class="text-ellipsis navbar-header bg-primary">
+<div class="text-ellipsis navbar-header bg-white">
 <button class="pull-right visible-xs" ui-toggle-class="show animated animated-lento fadeIn" target=".navbar-collapse">
 <span class="menu-icons"><i data-feather="search"></i></span>
 </button>
@@ -78,7 +80,7 @@
 </div>
 
 
-<div class="collapse pos-rlt navbar-collapse bg-primary">
+<div class="collapse pos-rlt navbar-collapse bg-white">
 
 <form id="searchform1" class="searchform navbar-form navbar-form-sm navbar-left shift" method="post" role="search">
 <div class="form-group">
@@ -123,14 +125,14 @@
 闲言碎语 </strong>
 </div>
 <div class="list-group" id="smallRecording">
-<a href="cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">发现一组随机壁纸 API：https://www.lxzzz.cn/337.html<br><small class="text-muted">2020-7-6 20:06:24</small></span></a><a href="cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。machinectl shell <span class="__cf_email__" data-cfemail="c7a0a3aa87">[email&#160;protected]</span> /bin/bashgsettings set org.gnome.desktop.interface font-name "Noto S...<br><small class="text-muted">2020-5-14 12:19:43</small></span></a> </div>
+<a href="cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">随机壁纸 API：https://www.lxzzz.cn/337.html可以用于背景图，为了使人物露脸，自定义 CSS 如下：post-panel .blog-post .single-post .item-thumb {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-position: 50% 35%;}<br><small class="text-muted">2020-7-6 20:06:24</small></span></a><a href="cross.html" class="list-group-item"><span class="clear block m-b-none words_contents">GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。machinectl shell <span class="__cf_email__" data-cfemail="a0c7c4cde0">[email&#160;protected]</span> /bin/bashgsettings set org.gnome.desktop.interface font-name "Noto S...<br><small class="text-muted">2020-5-14 12:19:43</small></span></a> </div>
 </div>
 </div>
 </li>
 
 
 <li class="dropdown" id="easyLogin">
-<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-9dd7d752a6cfb352a38df63d-="">
+<a onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown" data-cf-modified-01d0724fc894bb64f442fa65-="">
 <span class="feathericons"><i data-feather="key"></i></span>
 <b class="caret"></b>
 </a>
@@ -160,20 +162,20 @@
 </header>
 
 
-<aside id="aside" class="app-aside hidden-xs bg-dark"> 
+<aside id="aside" class="app-aside hidden-xs bg-white"> 
 <div class="aside-wrap" layout="column">
 <div class="navi-wrap scroll-y scroll-hide" flex>
 
 <div class="clearfix hidden-xs text-center hide  show" id="aside-user">
-<div class="dropdown wrapper vertical-wrapper">
+<div class="dropdown wrapper ">
 <div ui-nav>
 <a href="About.html">
-<span class="thumb-lg w-auto-folded avatar m-t-sm  vertical-avatar">
+<span class="thumb-lg w-auto-folded avatar m-t-sm  ">
 <img src="https://bobby285271.coding.net/p/img/d/img/git/raw/master/9bd9b167ly1fwsfucs1hrj21hc0u01kx_gaitubao_1080x1080.jpg" class="img-full img-circle normal-shadow">
 </span>
 </a>
 </div>
-<a href="cross.html#" data-toggle="dropdown" class="dropdown-toggle hidden-folded  vertical-flex">
+<a href="cross.html#" data-toggle="dropdown" class="dropdown-toggle hidden-folded  ">
 <span class="clear">
 <span class="block m-t-sm">
 <strong class="font-bold text-lt">Bobby Rong</strong>
@@ -237,7 +239,7 @@
 </a>
 </li>
 
-<li><a href="category/Uncategorized/index.html"><b class="badge pull-right">0</b><span>Uncategorized</span></a></li><li><a href="category/Linux-Distributions/index.html"><b class="badge pull-right">3</b><span>Linux Distributions</span></a></li><li><a href="category/Algorithm-and-ACM/index.html"><b class="badge pull-right">5</b><span>Algorithm and ACM</span></a></li><li><a href="category/Web-and-Internet/index.html"><b class="badge pull-right">2</b><span>Web and Internet</span></a></li><li><a href="category/applications/index.html"><b class="badge pull-right">1</b><span>Desktop Applications</span></a></li> </ul>
+<li><a href="category/Uncategorized/index.html"><b class="badge pull-right">0</b><span>Uncategorized</span></a></li><li><a href="category/Linux-Distributions/index.html"><b class="badge pull-right">3</b><span>Linux Distributions</span></a></li><li><a href="category/Algorithm-and-ACM/index.html"><b class="badge pull-right">5</b><span>Algorithm and ACM</span></a></li><li><a href="category/Web-and-Internet/index.html"><b class="badge pull-right">3</b><span>Web and Internet</span></a></li><li><a href="category/applications/index.html"><b class="badge pull-right">1</b><span>Desktop Applications</span></a></li> </ul>
 </li>
 
 <li>
@@ -342,7 +344,7 @@
 <small>评论</small>
 </a>
 <a class="m-b-md inline m">
-<span class="h3 block font-bold">11</span>
+<span class="h3 block font-bold">12</span>
 <small>文章</small>
 </a>
 <a class="m-b-md inline m">
@@ -378,7 +380,11 @@
 <a href="../index.html" rel="external nofollow">Bobby Rong</a> <span class="text-muted m-l-sm pull-right" datetime="2020-07-06T20:06:24+00:00">July 6th, 2020 at 08:06 pm </span>
 </div>
 <div class="panel-body">
-<p>发现一组随机壁纸 API：https://www.lxzzz.cn/337.html</p> </div>
+<p>随机壁纸 API：https://www.lxzzz.cn/337.html<br>
+可以用于背景图，为了使人物露脸，自定义 CSS 如下：<br>
+#post-panel .blog-post .single-post .item-thumb {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-position: 50% 35%;<br>
+}</p> </div>
 <div class="panel-footer">
 <div class="say_footer">
 
@@ -403,7 +409,7 @@
 <div class="panel-body">
 <p>GDM 使用的字体和 GNOME 使用的字体不一样就很烦躁，发现一个简单的解决方法。<br>
 其实就是登录 gdm 用户然后用 gsettings 改字体，毕竟人家似乎也不管你的 /etc/fonts/local.conf。<br>
-machinectl shell <a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="492e2d2409">[email&#160;protected]</a> /bin/bash<br>
+machinectl shell <a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="80e7e4edc0">[email&#160;protected]</a> /bin/bash<br>
 gsettings set org.gnome.desktop.interface font-name "Noto Sans CJK SC 11"<br>
 gsettings set org.gnome.desktop.interface document-font-name "Noto Sans CJK SC 11"<br>
 gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11"</p> </div>
@@ -423,7 +429,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
 <nav class="text-center m-b-lg" role="navigation">
 </nav>
 </div>
-<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="01d0724fc894bb64f442fa65-text/javascript">
 
     //更新未读提醒
 
@@ -470,7 +476,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
 <div class="padder-md">
 <div class="m-b-xs text-md">联系方式</div>
 <ul class="list-group no-bg no-borders pull-in">
-<li class="list-group-item"><a target="_blank" href="../cdn-cgi/l/email-protection.html#6302070e0a0d23010c01011a515b565154524d170c13" class="pull-left thumb-sm avatar m-r"><img src="https://s2.ax1x.com/2019/07/20/ZzU1sO.png" class="img-40px photo img-square normal-shadow"><i class="on b-white bottom"></i></a><div class="clear"><div><a target="_blank" href="../cdn-cgi/l/email-protection.html#6f0e0b0206012f0d000d0d165d575a5d585e411b001f">email</a></div><small class="text-muted"><a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="2140454c484f61434e4343581319141316100f554e51">[email&#160;protected]</a></small></div></li><li class="list-group-item"><a target="_blank" href="tencent://message/?uin=931189261" class="pull-left thumb-sm avatar m-r"><img src="https://s2.ax1x.com/2019/07/20/ZzUlQK.png" class="img-40px photo img-square normal-shadow"><i class="on b-white bottom"></i></a><div class="clear"><div><a target="_blank" href="tencent://message/?uin=931189261">QQ</a></div><small class="text-muted">931189261</small></div></li> </ul>
+<li class="list-group-item"><a target="_blank" href="../cdn-cgi/l/email-protection.html#650401080c0b25070a07071c575d505752544b110a15" class="pull-left thumb-sm avatar m-r"><img src="https://s2.ax1x.com/2019/07/20/ZzU1sO.png" class="img-40px photo img-square normal-shadow"><i class="on b-white bottom"></i></a><div class="clear"><div><a target="_blank" href="../cdn-cgi/l/email-protection.html#ccada8a1a5a28caea3aeaeb5fef4f9fefbfde2b8a3bc">email</a></div><small class="text-muted"><a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="9ffefbf2f6f1dffdf0fdfde6ada7aaada8aeb1ebf0ef">[email&#160;protected]</a></small></div></li><li class="list-group-item"><a target="_blank" href="tencent://message/?uin=931189261" class="pull-left thumb-sm avatar m-r"><img src="https://s2.ax1x.com/2019/07/20/ZzUlQK.png" class="img-40px photo img-square normal-shadow"><i class="on b-white bottom"></i></a><div class="clear"><div><a target="_blank" href="tencent://message/?uin=931189261">QQ</a></div><small class="text-muted">931189261</small></div></li> </ul>
 </div>
 <div class="panel box-shadow-wrap-normal">
 <h4 class="font-thin padder">关于我</h4>
@@ -484,7 +490,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
 </div>
 </div>
 </main>
-<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="01d0724fc894bb64f442fa65-text/javascript">
     var timeTemple = '<div class="m-l-n-md">\n' +
         '          <a class="pull-left thumb-sm avatar">\n' +
         '            <img src="https://static.bobby285271.top/index.php/{IMG_AVATAR}">\n' +
@@ -628,7 +634,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
 
 </script>
 
-<script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script type="01d0724fc894bb64f442fa65-text/javascript">
 (function () {
     window.TypechoComment = {
         dom : function (id) {
@@ -700,7 +706,7 @@ gsettings set org.gnome.desktop.interface monospace-font-name "Noto Sans Mono 11
     };
 })();
 </script>
-<script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script type="01d0724fc894bb64f442fa65-text/javascript">
 var registCommentEvent = function() {
     var event = document.addEventListener ? {
         add: 'addEventListener',
@@ -725,30 +731,36 @@ var registCommentEvent = function() {
                         input.type = 'hidden';
                         input.name = '_';
                             input.value = (function () {
-    var _fP66 = //'SNu'
-'5dd'+'cbc'//'4'
-+//'G'
-'cce'+'f'//'p'
-+//'HJW'
-'3'+//'5KP'
-'d96'+'ce'//'UoB'
-+'d'//'bI0'
-+'35a'//'b4b'
-+//'ah'
-'17d'+'02e'//'h'
-+''///*'7Y'*/'7Y'
-+//'Tqc'
-'59'+'3be'//'bIU'
-+''///*'MbY'*/'MbY'
-+//'TA'
-'TA'+//'gH1'
-'7', _1aHGLRY = [[31,33]];
+    var _FAWzkw = //'62I'
+'5'+'Bu'//'Bu'
++'dd'//'g'
++'Co'//'Co'
++'cb'//'0yd'
++'ccc'//'V'
++/* 'C1Y'//'C1Y' */''+'ef3'//'k6T'
++'9'//'9'
++'d'//'5'
++//'3l'
+'96'+//'Ap'
+'ced'+'35'//'aN'
++//'MUP'
+'a'+//'x9d'
+'17'+//'VrJ'
+'d0'+/* 'A3'//'A3' */''+'NR'//'NR'
++''///*'09F'*/'09F'
++//'H'
+'2'+'e'//'3'
++//'L'
+'5'+''///*'fO'*/'fO'
++'93b'//'C'
++/* 'G2o'//'G2o' */''+//'J'
+'e7', _gFWk = [[1,3],[3,5],[11,12],[24,26]];
     
-    for (var i = 0; i < _1aHGLRY.length; i ++) {
-        _fP66 = _fP66.substring(0, _1aHGLRY[i][0]) + _fP66.substring(_1aHGLRY[i][1]);
+    for (var i = 0; i < _gFWk.length; i ++) {
+        _FAWzkw = _FAWzkw.substring(0, _gFWk[i][0]) + _FAWzkw.substring(_gFWk[i][1]);
     }
 
-    return _fP66;
+    return _FAWzkw;
 })();
                     
                         f.appendChild(input);
@@ -789,21 +801,13 @@ Powered by <a target="_blank" href="http://www.typecho.org">Typecho</a>&nbsp;|&n
 </div>
 </footer>
 </div>
-<script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script type="01d0724fc894bb64f442fa65-text/javascript">
 SearchConfig = {
     url : "https://static.bobby285271.top/usr/plugins/Handsome/cache/search.json"
 }
 </script>
-<link rel="stylesheet" type="text/css" href="../usr/plugins/KirinShiKi/css/kirin.css" /><script src='../usr/plugins/KirinShiKi/js/kirin.js' type="9dd7d752a6cfb352a38df63d-text/javascript"></script><style>
-            #bg{background-image:url(https://tva1.sinaimg.cn/large/9bd9b167gy1g2qkpnqz2ij21hc0u01kx.jpg);}
-            @media screen and (max-width:991px) {
-                #bg { 
-                    background-image:url(https://tva2.sinaimg.cn/large/9bd9b167ly1g2rdn5ehp0j20hs0vkn8e.jpg);
-                }
-            }
-        </style><script type="9dd7d752a6cfb352a38df63d-text/javascript"> setCopyright(0);$(document).on("ready pjax:end", function() { setHref(getHref());colorfulTags();moeTitle();copyTips();});</script>
 
-<script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script type="01d0724fc894bb64f442fa65-text/javascript">
         window['LocalConst'] = {
             COMMENT_NAME_INFO: '必须填写昵称或姓名',
             COMMENT_EMAIL_INFO: '必须填写电子邮箱地址',
@@ -839,13 +843,13 @@ SearchConfig = {
             BASE_SCRIPT_URL: 'https://static.bobby285271.top/usr/themes/handsome/',
             BLOG_URL: 'https://static.bobby285271.top/',
             BLOG_URL_PHP: 'https://static.bobby285271.top/index.php/',
-            THEME_COLOR: '10',
-            THEME_COLOR_EDIT: '',
+            THEME_COLOR: '14',
+            THEME_COLOR_EDIT: 'white-white-white',
             THEME_HEADER_FIX: '1',
             THEME_ASIDE_FIX: '1',
             THEME_ASIDE_FOLDED: '',
             THEME_ASIDE_DOCK: '',
-            THEME_CONTAINER_BOX: '',
+            THEME_CONTAINER_BOX: '1',
             THEME_HIGHLIGHT_CODE: '1',
             THEME_TOC: '1',
             TOC_TITLE: '文章目录',
@@ -875,9 +879,9 @@ SearchConfig = {
 
     </script>
 
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
-<script src="../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
-<script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="01d0724fc894bb64f442fa65-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/jquery.pjax.min.js" type="01d0724fc894bb64f442fa65-text/javascript"></script>
+<script type="01d0724fc894bb64f442fa65-text/javascript">
         $(document).pjax('a[href^="https://static.bobby285271.top/"]:not(a[target="_blank"], a[no-pjax])', {
             container: '#content',
             fragment: '#content',
@@ -913,8 +917,8 @@ SearchConfig = {
     </script>
 
 
-<script src="../usr/themes/handsome/assets/js/features/lazyload.min.js" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
-<script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script src="../usr/themes/handsome/assets/js/features/lazyload.min.js" type="01d0724fc894bb64f442fa65-text/javascript"></script>
+<script type="01d0724fc894bb64f442fa65-text/javascript">
         $("img").lazyload({
             effect: "fadeIn",
             threshold: "200"
@@ -946,27 +950,27 @@ SearchConfig = {
         window.history.pushState('forward', null, '');
         window.history.forward(1);
     </script>
-<script src="../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/feather.min.js%3Fv=6.0.020191205" type="01d0724fc894bb64f442fa65-text/javascript"></script>
 
-<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
-<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js" type="01d0724fc894bb64f442fa65-text/javascript"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.0/config/TeX-AMS-MML_SVG.js" type="01d0724fc894bb64f442fa65-text/javascript"></script>
 
-<script src="../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
-<script src="../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/jquery.fancybox.min.js%3Fv=6.0.020191205" type="01d0724fc894bb64f442fa65-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/easypiechart.min.js%3Fv=6.0.020191205" type="01d0724fc894bb64f442fa65-text/javascript"></script>
 
-<script src="../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/features/OwO.min.js%3Fv=6.0.020191205" type="01d0724fc894bb64f442fa65-text/javascript"></script>
 
 
 
-<script src="../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
-<script src="../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/function.min.js%3Fv=6.0.020191205" type="01d0724fc894bb64f442fa65-text/javascript"></script>
+<script src="../usr/themes/handsome/assets/js/core.min.js%3Fv=6.0.020191205" type="01d0724fc894bb64f442fa65-text/javascript"></script>
 
-<script src="../usr/themes/handsome/assets/js/features/music.min.js%3Fv=6.0.020191205" type="9dd7d752a6cfb352a38df63d-text/javascript"></script>
-<script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script src="../usr/themes/handsome/assets/js/features/music.min.js%3Fv=6.0.020191205" type="01d0724fc894bb64f442fa65-text/javascript"></script>
+<script type="01d0724fc894bb64f442fa65-text/javascript">
                 var player = new skPlayer({"autoplay":false,"listshow":false,"mode":"listloop","music":{"type":"file","source":[{"name":"\u6b69\u3044\u3066\u3082\u6b69\u3044\u3066\u3082\u3001\u591c\u7a7a\u306f\u50d5\u3092\u8ffd\u3044\u304b\u3051\u3066\u304f\u308b","author":"\u9396\u90a3","src":"https:\/\/bobby285271.coding.net\/p\/img\/d\/img\/git\/raw\/master\/%E6%97%A0%E8%AE%BA%E6%80%8E%E4%B9%88%E8%B5%B0%E5%A4%9C%E7%A9%BA%E9%83%BD%E4%BC%9A%E6%9D%A5%E8%BF%BD%E9%80%90%E7%9D%80%E6%88%91.mp3","cover":"https:\/\/bobby285271.coding.net\/p\/img\/d\/img\/git\/raw\/master\/music-background.jpg"}]}});
     </script>
-<script type="9dd7d752a6cfb352a38df63d-text/javascript">
+<script type="01d0724fc894bb64f442fa65-text/javascript">
             </script>
-<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="9dd7d752a6cfb352a38df63d-|49" defer=""></script></body>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="01d0724fc894bb64f442fa65-|49" defer=""></script></body>
 </html>
 
