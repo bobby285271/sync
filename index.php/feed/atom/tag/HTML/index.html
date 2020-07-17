@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+xmlns:thr="http://purl.org/syndication/thread/1.0"
+xml:lang="zh-CN"
+xml:base="https://static.bobby285271.top/index.php/tag/HTML/"
+>
+<title type="text">Dasyatis - HTML</title>
+<subtitle type="text"></subtitle>
+<updated>2020-07-15T12:04:00+00:00</updated>
+<generator uri="http://typecho.org/" version="1.2/18.1.29">Typecho</generator>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/tag/HTML/" />
+<id>https://static.bobby285271.top/index.php/feed/atom/tag/HTML/</id>
+<link rel="self" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/tag/HTML/" />
+<entry>
+<title type="html"><![CDATA[[WIP] Analytics of SoCoding 1024 Website - Introduction to Django]]></title>
+<link rel="alternate" type="text/html" href="https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html" />
+<id>https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html</id>
+<updated>2020-07-15T12:04:00+00:00</updated>
+<published>2020-07-15T12:04:00+00:00</published>
+<author>
+    <name>Bobby Rong</name>
+    <uri>https://static.bobby285271.top</uri>
+</author>
+<summary type="html"><![CDATA[本文尚未完成，正在更新注册页部分，最后更新时间 7 月 17 日。好久没有出文章了，放暑假有点时间，尝试再造一遍 2019 年 SCNUSE 软协 1024 程序员节活动网站（尽量还原，会有一些...]]></summary>
+<content type="html" xml:base="https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html" xml:lang="zh-CN"><![CDATA[
+<blockquote>本文尚未完成，正在更新注册页部分，最后更新时间 7 月 17 日。</blockquote><hr><p>好久没有出文章了，放暑假有点时间，尝试再造一遍 2019 年 SCNUSE 软协 1024 程序员节活动网站（尽量还原，会有一些差别），算是 Django 框架的一个学习项目吧。博主本人的基本功也不怎么扎实，如果下文有任何错误欢迎指出。</p><h2>要实现什么</h2><p>去年也是参与到这个活动中来了，但是只是做了一个关卡，比较划水。这里就略过需求分析系统设计什么的了，简单来说整个网站做的就是注册登录和七个关卡。</p><p>最后具体实现用到的是 Django 框架，使用 MySQL 数据库。</p><h2>铺垫</h2><p>博主认为有一些技能在开始动手之前还是要先掌握的。</p><p>首先是 Python，其实有了程序设计基础之后 Python 的语法其实很简单。完全不会 Python 的推荐看 <a href="https://github.com/jackfrued/Python-100-Days">Python 100 天教程</a> 前 15 天部分的内容，然后找个 Online Judge 做几道水题，最多两个小时应该都能熟悉。</p><p>然后是 Web 前端 HTML、CSS、Javascript 的一些最基本的应用，学校讲的足够用了，这里推荐 <a href="https://www.runoob.com/">菜鸟教程</a>，可以尝试自己写一些小的静态网站。</p><p>接着是 MySQL 基本的增删改查，博主学习这个的时候靠的是下一个 <a href="https://www.adminer.org/">Adminer</a>（其实是 PHPMyAdmin 的继任者），建一个临时的数据库一边玩一边学，当然这需要你事先搭建 PHP 环境。</p><p>最后 Django 本身还是要先做了解的。可以简单浏览 <a href="https://github.com/jackfrued/Python-100-Days">Python 100 天教程</a> 第 14 天和第 41 天的内容，另外也推荐阅读官方推荐的一些 <a href="https://docs.djangoproject.com/zh-hans/3.0/misc/design-philosophies/">设计理念</a> 。</p><h2>准备</h2><p>先来做一些准备工作，包括开发环境的配置、项目和应用的初始化。开发环境可以按照自己的喜好来配置，不一定要按照这里的来；项目和应用的初始化有对应的具体的命令，执行即可。</p><h3>开发环境</h3><p>要做的事情就是安装一个对 Python 支持良好的 IDE 或者为你的代码编辑器添加 Python 支持，然后安装 Django。</p><p>假设你跟我一样已经是 Arch Linux + VS Code 用户。VS Code 下的 Python 支持是需要到 pip 的，pip 是 Python 的包管理器，直接使用 Linux 下的包管理器安装。</p><pre><code># pacman -S python-pip</code></pre><p>pip 既然是包管理器，能条件反射到的是肯定要换源，我们在家目录创建并编辑 <code>.pip/pip.conf</code>：</p><pre><code>$ cd 
+$ mkdir .pip
+$ nano .pip/pip.conf</code></pre><pre><code>[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple</code></pre><p>启动 VS Code，先装上 Python 扩展和 Visual Studio IntelliCode 扩展，然后打开任意 Python 文件，尝试格式化文档，VS Code 就会提示你安装格式化程序，安装就可。可以观察到实质就是调用 pip 安装 <code>autopep8</code>。</p><p>接下来安装 Django，这里有两个方法，一个是继续使用 Linux 下的包管理器安装：</p><pre><code># pacman -S python-django`</code></pre><p>或者是用上面刚刚讲到的 pip：</p><pre><code>$ pip install django</code></pre><p>要注意的是给 Arch Linux 软件包锁版本是不被提倡的，毕竟是滚动更新发行版。所以如果你使用 Pacman 安装 <code>python-django</code> 就得一直跟着系统走用最新版，要考虑其利弊。</p><p>接下来尝试使用 <code>django-admin</code> 命令，测试一下是不是一切都准备妥当了：</p><pre><code>$ django-admin version</code></pre><p>理想情况是输出一个版本号。如果提示命令没有找到，那就是在普通用户下使用 pip 按照 Django 导致 <code>django-admin</code> 不在 PATH 里。解决方法很多，例如改用 root 安装，或是修改 PATH，可以参考 <a href="https://docs.djangoproject.com/en/3.0/faq/troubleshooting/#troubleshooting-django-admin">官方文档</a>。</p><h3>创建项目</h3><p>我们首先使用 <code>django-admin</code> 命令为站点创建一个已经初始化的项目目录，不妨叫 <code>mysite</code>。</p><blockquote>如果你起的名字跟我的不一样，只要看到 <code>mysite</code> 改过来就行，另外不要用保留字命名，后面也是一样的道理。</blockquote><pre><code>$ django-admin startproject mysite
+$ cd mysite</code></pre><p>进入项目目录之后，应该能见到另一个 <code>mysite/</code> 目录和一个 <code>manage.py</code> 文件：</p><ul><li><code>mysite/</code> 包含了 Django 项目实例需要的设置项集合，包括数据库配置、Django 配置和应用配置。</li><li><code>manage.py</code> 就是一个让你用各种方式管理 Django 项目的命令行工具。</li></ul><p>我们约定，后面涉及的所有文件和文件夹均以当前所在的项目目录为基准标注<strong>相对路径</strong>。</p><h3>创建应用</h3><p>在 Django 中，每一个应用都是一个 Python 包。<strong>应用</strong>通常是一个专门做某件事的网络应用程序，比如博客系统、投票程序。<strong>项目</strong>则是一个网站使用的配置和应用的集合。一个项目可以包含很多个应用，但这里我们只创建一个，就叫 <code>myapp</code>：</p><pre><code>$ python manage.py startapp myapp</code></pre><p>接下来往项目添加这个应用。编辑 <code>mysite/settings.py</code>，找到 <code>INSTALLED_APPS</code>：</p><blockquote>这里没有展示整个的完整的文件，只会展示需要改动的代码或是关键的代码，后面也是一样的道理。我们会在文末附上成品的代码，可以结合成品代码理解。</blockquote><pre><code class="lang-python">INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myapp',
+]</code></pre><h2>站点调试</h2><p>我们可以利用 <code>manage.py</code> 运行 Django 自带的用于开发的简易 Web 服务器对我们的网站进行预览和调试。</p><blockquote>不要将这个服务器用于和生产环境相关的任何地方，这个服务器只是为了开发而设计的。</blockquote><pre><code>$ python manage.py runserver</code></pre><p>终端应该会输出类似这样的东西：</p><pre><code>Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.</code></pre><p>按照上面的输出，我们打开浏览器访问 <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>，在下文中我们假设你的服务器设置和我的一样为监听本机内部 IP 的 <code>8000</code> 端口。在一个网页都没有完成的情况下，你应该能看到 Django 自带的测试页面。当我们写好我们的网站之后则应该能看到自己的网站，测试页面就不会再出现了。</p><p>现在我们尝试将测试页面改成中文的，其实是为 Django 设置语言。编辑 <code>mysite/settings.py</code>：</p><pre><code class="lang-python">LANGUAGE_CODE = 'zh-hans'
+TIME_ZONE = 'Asia/Shanghai'</code></pre><p>不必重新启动服务器，直接刷新页面，现在测试页面显示的是中文，你的改动生效了。通常来说服务器会对每一次的访问请求重新载入一遍 Python 代码，但是例外还是有的（如添加新文件）。如果你发现你的改动没有生效，尝试重启服务器就好了。</p><p>如果你想把服务器停掉，就按照终端的提示按下 Ctrl + C 组合键即可，和 Linux 杀死其它命令的方式是一样的。</p><h2>第一个页面</h2><p>几乎所有教程做第一个页面都是 Hello World，虽然这和 1024 站点没啥关联，我们也先实现一下，目标是访问站点首页后显示一行文字 <code>Hello World</code>。</p><p>博主认为虽然是 Hello World，但可能还是会有点难度。其实不需要纠结太多，关键是记住具体的实现，知道哪些地方是套路，哪些地方要改动。我们在后面会制作更多的页面，自然就会熟悉了。</p><h3>响应与视图函数</h3><p><strong>视图函数</strong>（简称视图）是一个简单的 Python 函数，它接受 Web 请求并且返回 Web 响应。响应可以是 HTML、重定向、404、XML、图片等等。无论视图函数本身包含什么逻辑，都要返回响应。我们通常将视图函数放置在 <code>views.py</code> 文件中。</p><p>我们现在只需要在页面上显示上一行 <code>Hello World</code>，所以这个视图函数不需要做什么，直接返回响应就行。既然是首页，不妨将函数命名为 <code>index</code>，我们看看具体的实现。编辑 <code>myapp/views.py</code>：</p><pre><code class="lang-python">from django.shortcuts import render, redirect
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse(&quot;&lt;h1&gt;Hello, World&lt;/h1&gt;&quot;)</code></pre><p>视图函数就写好啦！这里我们用到了 <code>HttpResponse</code> 对象，你可以翻阅 <a href="https://docs.djangoproject.com/en/3.0/ref/request-response/#httpresponse-objects">官方文档</a> 了解这个对象，并尝试将 <code>&lt;h1&gt;Hello, World&lt;/h1&gt;</code> 改成其它内容。</p><h3>URL 的映射</h3><p>接下来我们建立 URL（统一资源定位符）与视图函数 <code>index</code> 的映射。具体可以分成两步，第一步是在应用下面处理自己的映射关系，第二步是进行路由分发。</p><p>博主认为这可以理解为一个相对路径的确定，当然这里的路径指的是我们访问的 URL，和项目文件的放置没有关联。第一步实际上就是将应用根目录的绝对路径作为基准，确定各个网页的相对路径。第二步就是将项目根目录的绝对路径作为基准，确定各个应用根目录的相对路径。</p><p>现在我们想在首页显示 Hello World，我们来看看具体的实现。</p><p>先来做第一步，在 <code>myapp</code> 下面新建一个 <code>urls.py</code>：</p><pre><code class="lang-python">from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]</code></pre><p><code>path('', views.index, name='index')</code> 可以理解为这个网页就位于应用的根目录，响应的是 <code>views.py</code> 文件里的 <code>index</code> 函数。而最后的 <code>name='index'</code> 则是指定 <code>name</code> 属性，这里的 <code>name</code> 和 HTML 下的 <code>name</code> 是类似的，用于指定锚的名称，我们会在后面用到它。</p><p>再来做第二步，编辑 <code>mysite/urls.py</code>：</p><pre><code class="lang-python">from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('', include('myapp.urls')),
+    path('admin/', admin.site.urls),
+]</code></pre><p><code>path('', include('myapp.urls'))</code> 可以理解为 <code>myapp</code> 这个应用的根目录就位于项目的根目录，<code>path('admin/', admin.site.urls)</code> 为 Django 自带的管理页面，可以暂时不用理会。</p><p>当然了这样的理解自然是不严谨的，还是建议大家深入了解 URL 和路由，详情可以查阅 <a href="https://docs.djangoproject.com/en/3.0/topics/http/urls/">官方文档</a>。现在使用 <code>python manage.py runserver</code> 调试，访问 <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>，显示的是 Hello World 页了。</p><p>我们来看看另一个例子，假设我们要在已有的项目 <code>mysite</code> 下创建一个应用 <code>yourapp</code>，这个应用下我想做很多个网页。我希望这些网页都在 <a href="http://127.0.0.1:8000/abcdefg/">http://127.0.0.1:8000/abcdefg/</a> 目录下访问到。</p><p>现在希望你实现其中两个网页：</p><ul><li>一个是 Goodbye World 页面我希望在 <a href="http://127.0.0.1:8000/abcdefg/goodbyeworld/">http://127.0.0.1:8000/abcdefg/goodbyeworld/</a> 访问到它.</li><li>一个是 Hello Django 页面我希望在 <a href="http://127.0.0.1:8000/abcdefg/hellodjango/">http://127.0.0.1:8000/abcdefg/hellodjango/</a> 访问到它。</li></ul><p>页面显示什么无所谓。</p><p>[collapse status="false" title="点击这里查看具体实现"]</p><p>创建应用 <code>yourapp</code>：</p><pre><code>$ python manage.py startapp yourapp</code></pre><p>往项目添加这个应用，编辑 <code>mysite/settings.py</code>，找到 <code>INSTALLED_APPS</code>：</p><pre><code class="lang-python">INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myapp',
+    'yourapp',
+]</code></pre><p>首先是视图函数，函数名不妨用拼音命名法，既然页面显示什么无所谓，我们编辑 <code>yourapp/views.py</code>：</p><pre><code class="lang-python">def zaijianshijie(request):
+    return HttpResponse(&quot;&lt;p&gt;什么无所谓&lt;/p&gt;&quot;)
+
+def nihaodjango(request):
+    return HttpResponse(&quot;&lt;p&gt;什么无所谓&lt;/p&gt;&quot;)</code></pre><p>接下来在应用下面处理自己的映射关系，这里不对 <code>name</code> 属性进行指定，我们新建并编辑 <code>yourapp/urls.py</code>：</p><pre><code class="lang-python">urlpatterns = [
+    path('goodbyeworld/', views.zaijianshijie),
+    path('hellodjango/', views.nihaodjango),
+]</code></pre><p>第二步是进行路由分发，我们编辑 <code>mysite/urls.py</code>：</p><pre><code class="lang-python">urlpatterns = [
+    path('abcdefg/', include('yourapp.urls')),
+    path('', include('myapp.urls')),
+    path('admin/', admin.site.urls),
+]</code></pre><p>尝试访问这两个网页，看看是否能按照你的期望工作？</p><p>好了这个小练习到此结束，我们删除 <code>yourapp</code> 这个应用，因为我们并不需要到它。首先删除 <code>yourapp/</code> 目录，然后编辑 <code>mysite/urls.py</code>，删除 <code>path('abcdefg/', include('yourapp.urls'))</code> 这一行，接下俩编辑 <code>mysite/settings.py</code>，从 <code>INSTALLED_APPS</code> 删除 <code>'yourapp'</code>。</p><p>[/collapse]</p><h2>注册页的实现</h2><h3>准备</h3><p>首先我们再再再做一遍 Hello World，我们希望在访问 <a href="http://127.0.0.1:8000/register/">http://127.0.0.1:8000/register/</a> 能看到「注册页」三个字，路由分发我们在做 Hello World 页的时候已经做好了，我们只需要在 <code>myapp</code> 处理映射关系就行。</p><p>[collapse status="false" title="点击这里查看具体实现"]</p><p>首先是视图函数，我们编辑 <code>myapp/views.py</code>：</p><pre><code class="lang-python">def register(request):
+    return HttpResponse(&quot;&lt;p&gt;注册页&lt;/p&gt;&quot;)</code></pre><p>接下来在应用下面处理自己的映射关系，我们编辑 <code>myapp/urls.py</code>：</p><pre><code class="lang-python">urlpatterns = [
+    path('', views.index, name='index'),
+    path('register/', views.register, name='register'),
+]</code></pre><p>[/collapse]</p><p>现在访问注册页，显示的只有三个字「注册页」，但我们实际需要的是：前端一个表单供用户输入账户密码，后端处理用户输入与数据库交互。接下来，我们会根据实际的需求进一步改造这个注册页，使其达到我们所要的效果。</p><h3>模板</h3><p>首先是前端，刚刚学完 Web 前端，应该不是什么难点。现在的问题讲通俗点就是，怎样做到我访问这个地址就显示一个 HTML 文件呢？</p><p>一个方法是，我把这个 HTML 文件压成一行，换掉 <code>&lt;p&gt;注册页&lt;/p&gt;</code> 。可以是可以，但是一个很最突出的问题是维护起来很难受。事实上这样子其实是将数据与视图混合在一起，我们说是不符合 Django 的 MVC 思想（Model View Controller，具体请百度）。于是我们有了另外一个东西叫做<strong>模板</strong>。我们可以在 <a href="https://docs.djangoproject.com/en/3.0/howto/overriding-templates/">官方文档 How-to 部分</a> 找到相关的文档。</p><p>目前而言，你可以简单地把模板跟 HTML 文件划上等号。模板是有专门地方存放的，在 <code>myapp/</code> 下面建立一个 <code>templates/</code> 文件夹。接下来往里面放你的 HTML 文件。</p><p>例如我把注册页命名为 <code>register.html</code>，也就是说文件的相对路径为 <code>myapp/templates/register.html</code>。就和初学 Web 前端一样，先不要管样式，也不要管按钮链接能不能工作，这些在后面会提及。</p><p>为了节省时间，这里就直接开抄了。以下的代码为去年的代码改动而来：</p><pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;register&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;lg_content&quot;&gt;
+        &lt;table cellspacing=&quot;30px&quot; align=&quot;center&quot;&gt;
+            &lt;form method=&quot;post&quot; action=&quot;#&quot;&gt;
+                &lt;tr&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;
+                        &lt;input type=&quot;text&quot; name=&quot;userid&quot; class=&quot;reg_ip&quot; placeholder=&quot;学号&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;
+                        &lt;input type=&quot;text&quot; name=&quot;username&quot; class=&quot;reg_ip&quot; placeholder=&quot;昵称&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;
+                        &lt;input type=&quot;password&quot; name=&quot;passwd&quot; class=&quot;reg_ip&quot; placeholder=&quot;密码&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td colspan=&quot;2&quot;&gt;
+                        &lt;input type=&quot;password&quot; name=&quot;repasswd&quot; class=&quot;reg_ip&quot; placeholder=&quot;确认密码&quot;&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+
+                &lt;tr&gt;
+                    &lt;td align=&quot;left&quot;&gt;
+
+                        &lt;input type=&quot;submit&quot; value=&quot;注册&quot; style=&quot;position:relative;left:40px;&quot; class=&quot;button&quot;&gt;
+
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/form&gt;
+            &lt;td align=&quot;center&quot; style=&quot;position:relative;left:-50px&quot;&gt;
+                &lt;span class=&quot;font1&quot;&gt;已经注册？&lt;/span&gt;
+                &lt;form method=&quot;post&quot; action=&quot;#&quot;&gt;
+                    &lt;input type=&quot;submit&quot; class=&quot;button&quot; style=&quot;height:25px;width:80px;font-size:12px&quot; value=&quot;直接登录&quot;&gt;
+                &lt;/form&gt;
+            &lt;/td&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre><p>接下来我们把「注册页」三个字换掉，这里我们使用的是 <code>render</code> 方法，它可接收三个参数，一是 <code>request</code> 参数，二是待渲染的 HTML 模板文件，三是保存具体数据的字典参数。它的作用就是将数据填充进模板文件，最后把结果返回给浏览器。编辑 <code>myapp/views.py</code>：</p><pre><code class="lang-python">def register(request):
+    return render(request, 'register.html')</code></pre><p>我们再访问 <a href="http://127.0.0.1:8000/register/">http://127.0.0.1:8000/register/</a>，发现已经有一个注册页面的样子了。</p><h3>静态资源</h3><p>现在我们来做注册页的样式吧！你们可能尝试过在 <code>templates/</code> 直接放一个 CSS 文件，然后在 <code>register.html</code> 直接加 <code>&lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot;&gt;</code>，你会发现是行不通的，它实际请求的是 <a href="http://127.0.0.1:8000/register/style.css">http://127.0.0.1:8000/register/style.css</a>，直接 404。</p><p>注意到 <code>mysite/settings.py</code> 有这么一行：</p><pre><code class="lang-python"># Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+STATIC_URL = '/static/'</code></pre><p>事实上，关于静态资源的存放，<a href="https://docs.djangoproject.com/zh-hans/3.0/howto/static-files/">官方文档 How-to 部分</a> 依然给出了具体的说明。和模板类似，我们要单独建立 <code>static/</code> 目录来存放这些静态资源。通常我们把这个目录放在应用目录下，我们 <code>myapp/</code> 下新建 <code>static/</code> 目录，里面再建一个 <code>css/</code> 目录。</p><p>接下来，我们尝试往 <code>css/</code> 目录里面添加我们的样式。这个样式我们会在后面多次使用，编辑 <code>myapp/static/css/style.css</code>，这里我们继续偷懒开抄：</p><pre><code class="lang-css">body {
+    /* background: url(&quot;../img/bg_img.jpg&quot;); */
+    /* background-size: cover; */
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+.containerDiv {
+    margin-top: 0;
+    margin-bottom: 0;
+    background-size: 100% 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.lg_content {
+    margin-top: 100px;
+}
+
+.titleDiv {
+    width: 100%;
+    height: 150px;
+}
+
+.problemDiv {
+    width: 80%;
+    height: 360px;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative;
+}
+
+.leftDiv {
+    width: 50%;
+    height: 360px;
+    text-align: center;
+    float: left;
+}
+
+.rightDiv {
+    width: 40%;
+    margin-left: 10%;
+    height: 360px;
+    text-align: center;
+    float: left;
+}
+
+.answerDiv {
+    width: 100%;
+    height: 60px;
+    position: relative;
+}
+
+.background {
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.button {
+    width: 68px;
+    height: 34px;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(76, 129, 179);
+    box-shadow: none;
+    border: none;
+    border-style: inline;
+}
+
+.input {
+    height: 40px;
+    width: 250px;
+    font-size: 14px;
+    color: rgba(155, 152, 151, 0.774);
+    border: none;
+    box-shadow: none;
+    border-style: none;
+    border-width: 0px;
+}
+
+.font1 {
+    font-family: &quot;Microsoft YaHei&quot;;
+    font-size: 12px;
+    font-weight: bold;
+    color: azure;
+}
+
+.font2 {
+    font-family: &quot;Microsoft YaHei&quot;;
+    font-size: 22px;
+    width: 400px;
+    color: rgb(88, 99, 192);
+}
+
+#game_div,
+p {
+    width: 400px;
+    margin: auto;
+    margin-top: 0px;
+}</code></pre><p>根据 <code>STATIC_URL = '/static/'</code> 这一线索，我们尝试访问 <a href="http://127.0.0.1:8000/static/css/style.css">http://127.0.0.1:8000/static/css/style.css</a>，发现确实是有这个文件的。</p><p>事实上，只要将 <code>&lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot;&gt;</code> 改成 <code>&lt;link href=&quot;/static/css/style.css&quot; rel=&quot;stylesheet&quot;&gt;</code> 就可以往页面加载样式了。</p><p><strong>但是</strong>，这样后续维护是很困难的。</p><p>一个问题是如果我们后面突然又需要创建应用，需要的是不同的样式呢？想象一下，你有两个应用 <code>myapp</code> 和 <code>yourapp</code>，然后你在 <code>myapp/static/css/style.css</code> 和 <code>yourapp/static/css/style.css</code> 放了不同的样式文件，你访问 <a href="http://127.0.0.1:8000/static/css/style.css">http://127.0.0.1:8000/static/css/style.css</a> 得到的是什么呢？</p><p>对这个问题，官方的解决方案是，在 <code>myapp/static/</code> 下面再建立一个目录 <code>myapp</code>（就是应用本身的名称），然后把静态资源放里面，我们尝试将 <code>myapp/static/css</code> 目录移动到 <code>myapp/static/myapp/css</code>。现在我们在 <a href="http://127.0.0.1:8000/static/myapp/css/style.css">http://127.0.0.1:8000/static/myapp/css/style.css</a> 可以看到我们的样式文件了。</p><p>另一个问题是如果我突然想更换一下映射到静态资源的 URL 呢？也就是说我把 <code>STATIC_URL = '/static/'</code> 改成别的，是不是所有的 HTML 文件我要逐个修改呢？</p><p>所以我们是不建议按照前面的方式去写的，我们有一个船新的方法。编辑 <code>myapp/templates/register.html</code>：</p><pre><code class="lang-html">&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;register&lt;/title&gt;
+    {% load static %}
+    &lt;link href=&quot;{%static 'myapp/css/style.css'%}&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;</code></pre><p>要注意的是 <code>{% load static %}</code> 和 <code>{%static 'myapp/css/style.css'%}</code> 的 <code>static</code> 和 <code>STATIC_URL = '/static/'</code> 中的路径 <code>static</code> 是没有任何联系的，就是静态资源的意思。你可以尝试将 <code>STATIC_URL</code> 改成别的再来试试。</p><p>现在访问 <a href="http://127.0.0.1:8000/register/">http://127.0.0.1:8000/register/</a>，F12 看一下，会发现上面 <code>{% %}</code> 标签的内容都已经被替换掉了。</p><p>接下来是背景图片。同样地，我们将 <code>bg_img.jpg</code> 放置在 <code>myapp/static/myapp/img/</code> 目录中。这回没那么复杂，在 CSS 文件里引用时直接写相对路径即可，因为无论怎么修改 <code>STATIC_URL</code> 都不会对其产生影响：</p><pre><code class="lang-css">body {
+    background: url(&quot;../img/bg_img.jpg&quot;);
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}</code></pre><p>好了，现在注册页看上去跟去年是一个样子了。</p><hr><p>以下部分正在施工。</p><h2>施工区域</h2><p></p>
+]]></content>
+<link rel="replies" type="text/html" href="https://static.bobby285271.top/index.php/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html#comments" thr:count="0" />
+<link rel="replies" type="application/atom+xml" href="https://static.bobby285271.top/index.php/feed/atom/2020/07/15/Analytics-of-SoCoding-1024-Website---Introduction-to-Django.html" thr:count="0"/>
+</entry>
+</feed>
