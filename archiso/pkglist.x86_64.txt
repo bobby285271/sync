@@ -23,7 +23,7 @@ b43-fwcutter 019-3
 base 2-2
 bash 5.0.017-1
 bc 1.07.1-4
-bind-tools 9.16.5-1
+bind 9.16.5-2
 binutils 2.34-5
 bison 3.6.4-1
 bluez-libs 5.54-2
@@ -469,7 +469,7 @@ tumbler 0.2.8-2
 tzdata 2020a-1
 udisks2 2.9.0-1
 upower 0.99.11-3
-usb_modeswitch 2.6.0-2
+usb_modeswitch 2.6.1-1
 usbmuxd 1.1.1-1
 usbutils 012-2
 util-linux 2.35.2-1
