@@ -137,7 +137,7 @@ gtksourceview3 3.24.11+28+g73e57b57-1
 guile 2.2.6-2
 gvfs 1.44.1-4
 gzip 1.10-3
-harfbuzz 2.6.8-3
+harfbuzz 2.7.0-1
 haveged 1.9.13-1
 hdparm 9.58-3
 hicolor-icon-theme 0.17-2
