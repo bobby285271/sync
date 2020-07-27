@@ -134,7 +134,7 @@ in
 [
     dos2unix chromium fcitx fcitx-configtool firefox gcc git gptfdisk libreoffice-fresh neofetch pciutils python transmission vim wget vscode-with-extensions
 ];
-你会发现这里面没有 X11 和 Pantheon 相关的包，事实上， services.xserver.desktopManager.pantheon.enable = true; 这一行已经为你安装了相应的包。可以查看一下包含这个选项声明的文件，我们定位到 config = 往下的内容。虽然有些选项我们没有讨论过，例如 fonts.fontconfig.defaultFonts 等等，但是你可以通过搜索 NixOS Options 或者直接按照它的字面意思知道这些选项是干什么的。有安装软件包的、设置系统服务的、设置字体的等等。有了这么一行，我们也就没有必要在我们自己的 configuration.nix 中设置它了。所以说 NixOS Options 的优先级是会高于 NixOS Packages 的，笔者才会用很大的篇幅介绍前者。当你需要一个软件或功能，首先考虑的应该是有没有对应的 NixOS Option，而不是直接安装一个 Nixpkg。*下面是另外两个比较玄学的案例，都是我安装完成之后才开始折腾的问题，当然了安装的时候也没有必要纠结这些问题，因为安装完后还可以随时编辑 configuration.nix，后面还会再介绍。同样，我会着重说明我是如何找到解决方案的，希望能给到大家一些帮助。介绍这些案例，不是为了劝退，而是为了说明，只要合理利用我在本章介绍的各类资源，善用搜索，必要时勇敢提问、开 Issue，甚至发 PR（这里有笔者本人的例子），大部分的问题都能很快地得到解决。禁用 N 卡单纯出于想要省电的原因，打算禁用 N 卡。网上给出的禁用 N 卡的方案是都是使用 BBSwitch，四处搜索之。最后在 Discourse Forum 里面找到了一个有一定关联的。提到的选项包括 extraModprobeConfig、blacklistedKernelModules、extraModulePackages。我们知道在其它发行版下要使用 BBSwitch 禁用 N 卡是这样操作的：options bbswitch load_state=0 unload_state=1
+你会发现这里面没有 X11 和 Pantheon 相关的包，事实上， services.xserver.desktopManager.pantheon.enable = true; 这一行已经为你安装了相应的包。可以查看一下包含这个选项声明的文件，我们定位到 config = 往下的内容。虽然有些选项我们没有讨论过，例如 fonts.fontconfig.defaultFonts 等等，但是你可以通过搜索 NixOS Options 或者直接按照它的字面意思知道这些选项是干什么的。有安装软件包的、设置系统服务的、设置字体的等等。有了这么一行，我们也就没有必要在我们自己的 configuration.nix 中设置它了。所以说 NixOS Options 的优先级是会高于 NixOS Packages 的，笔者才会用很大的篇幅介绍前者。当你需要一个软件或功能，首先考虑的应该是有没有对应的 NixOS Option，而不是直接安装一个 Nixpkg。下面是另外两个比较玄学的案例，都是我安装完成之后才开始折腾的问题，当然了安装的时候也没有必要纠结这些问题，因为安装完后还可以随时编辑 configuration.nix，后面还会再介绍。同样，我会着重说明我是如何找到解决方案的，希望能给到大家一些帮助。介绍这些案例，不是为了劝退，而是为了说明，只要合理利用我在本章介绍的各类资源，善用搜索，必要时勇敢提问、开 Issue，甚至发 PR（这里有笔者本人的例子），大部分的问题都能很快地得到解决。禁用 N 卡单纯出于想要省电的原因，打算禁用 N 卡。网上给出的禁用 N 卡的方案是都是使用 BBSwitch，四处搜索之。最后在 Discourse Forum 里面找到了一个有一定关联的。提到的选项包括 extraModprobeConfig、blacklistedKernelModules、extraModulePackages。我们知道在其它发行版下要使用 BBSwitch 禁用 N 卡是这样操作的：options bbswitch load_state=0 unload_state=1
 和帖子中 extraModprobeConfig 的值高度类似。而 extraModulePackages 在帖子里的值是 config.boot.kernelPackages.nvidia_x11，我们搜索到 BBSwitch 的 Attribute name 是 linuxPackages.bbswitch，相信也有一定关联。接下来我们去 NixOS Options 继续搜索，发现上面几个选项都在 boot 集合下，查找 boot module 关键词，又发现了一个 boot.kernelModules，我认为这个选项和我的需求也是高度关联的。于是我写下了以下的配置：boot = {
     extraModprobeConfig = ''
         options bbswitch load_state=0 unload_state=1
@@ -216,7 +216,7 @@ Visual Studio Code 插件你可能会问这也要提及？情况是这样的，�
         ];
     } )
 ];
-*相信对于其它的需求大家也能举一反三。这里是我的 configuration.nix，供大家参考。执行安装前面已经提及过 nixos-install 这个命令了，让我们使用它执行安装，不需要带上任何参数：nixos-install
+相信对于其它的需求大家也能举一反三。这里是我的 configuration.nix，供大家参考。执行安装前面已经提及过 nixos-install 这个命令了，让我们使用它执行安装，不需要带上任何参数：nixos-install
 如果 configuration.nix 存在任何错误，安装会在一开始的时候就中断，修改好后重新运行上面的命令即可。网络出现问题同理。接下来安装程序会提示你设置一个密码，这个密码是给管理员用的（密码当然是不能在 configuration.nix 上设置的），盲打两次即可。重启并进入新系统：reboot
 当然，重启后别忘了为你的普通用户设置密码（如 passwd bobby285271）。系统维护笔者之前讲过 configuration.nix 是可以随时修改的。当然了现在你应该处于你的新系统中了，所以你不应该编辑 /mnt/etc/nixos/configuration.nix 了，而是应该编辑 /etc/nixos/configuration.nix。nano /etc/nixos/configuration.nix
 要使这个配置生效，应该使用 nixos-rebuild switch 命令，如果你希望在构建这个配置的时候顺便升级自己的系统（当然如果你不改动 configuration.nix 单纯想升级系统，同样可以执行这个命令） ：nixos-rebuild switch --upgrade
