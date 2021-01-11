@@ -1,3 +1,3 @@
-# Static Mirror of [Dasyatis](https://www.bobby285271.top/)
+# sign-in
 
-哎呀自从改用 Wiki.js 之后，这个仓库就只能用来每日签到了呀（x
+每日签到（大雾
