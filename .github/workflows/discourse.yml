@@ -56,61 +56,61 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-notes.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-notes.git'
+          source-repo: 'git@github.com:discourse/discourse-user-notes.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-user-notes.git'
           
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-canned-replies.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-canned-replies.git'
+          source-repo: 'git@github.com:discourse/discourse-canned-replies.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-canned-replies.git'
           
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-assign.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-assign.git'
+          source-repo: 'git@github.com:discourse/discourse-assign.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-assign.git'
           
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-whos-online.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-whos-online.git'
+          source-repo: 'git@github.com:discourse/discourse-whos-online.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-whos-online.git'
           
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-cakeday.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-cakeday.git'
+          source-repo: 'git@github.com:discourse/discourse-cakeday.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-cakeday.git'
           
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-github.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-github.git'
+          source-repo: 'git@github.com:discourse/discourse-github.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-github.git'
 
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-checklist.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-checklist.git'
+          source-repo: 'git@github.com:discourse/discourse-checklist.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-checklist.git'
       
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-code-review.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-code-review.git'
+          source-repo: 'git@github.com:discourse/discourse-code-review.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-code-review.git'
           
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
         with:
-          source-repo: 'git@github.com:discourse/user-translator.git'
-          destination-repo: 'git@gitee.com:bobby285271/user-translator.git'
+          source-repo: 'git@github.com:discourse/discourse-translator.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-translator.git'
