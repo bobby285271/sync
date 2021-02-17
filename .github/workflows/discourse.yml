@@ -1,0 +1,27 @@
+name: Mirror to Bitbucket Repo
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+jobs:
+  git-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wearerequired/git-mirror-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
+        with:
+          source-repo: 'git@github.com:discourse/discourse.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse.git'
+      - uses: wearerequired/git-mirror-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
+        with:
+          source-repo: 'git@github.com:discourse/discourse-math.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-math.git'
+      - uses: wearerequired/git-mirror-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
+        with:
+          source-repo: 'git@github.com:discourse/discourse-solved.git'
+          destination-repo: 'git@gitee.com:bobby285271/discourse-solved.git'
