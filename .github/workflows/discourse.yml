@@ -1,4 +1,4 @@
-name: Git Repo Mirroring
+name: Git repo mirroring for Discourse
 
 on:
   push:
