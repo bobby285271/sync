@@ -1,7 +1,6 @@
 name: Git repo mirroring for Discourse
 
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron: '0 * * * *'
