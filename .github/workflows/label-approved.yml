@@ -1,0 +1,20 @@
+name: Run label-approved
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 20 11 * * *
+    - cron: 20 23 * * *
+  
+
+env:
+  CUSTOM_GH_TOKEN: ${{ secrets.CUSTOM_GH_TOKEN }}
+
+jobs:
+  label-approved:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v17
+      - run: nix run github:bobby285272/label-approved/byid || true
+      - run: nix run github:bobby285272/label-approved/byupd || true
