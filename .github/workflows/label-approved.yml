@@ -3,7 +3,8 @@ name: Run label-approved
 on:
   workflow_dispatch:
   schedule:
-    - cron: 20 11 * * *
+    - cron: 20 7 * * *
+    - cron: 20 15 * * *
     - cron: 20 23 * * *
   
 
