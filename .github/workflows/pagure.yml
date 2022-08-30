@@ -5,7 +5,7 @@ on:
     - cron: '0 * * * *'
   
 jobs:
-  git-mirror:
+  silverblue:
     runs-on: ubuntu-latest
     steps:
       - uses: wearerequired/git-mirror-action@v1
@@ -14,7 +14,10 @@ jobs:
         with:
           source-repo: 'https://pagure.io/fedora-docs-l10n/fedora-silverblue.git'
           destination-repo: 'git@github.com:bobby285271/fedora-docs-l10n-fedora-silverblue.git'
-          
+   
+  install:
+    runs-on: ubuntu-latest
+    steps:
       - uses: wearerequired/git-mirror-action@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
