@@ -8,20 +8,10 @@ jobs:
   silverblue:
     runs-on: ubuntu-latest
     steps:
-      - uses: wearerequired/git-mirror-action@v1
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
-        with:
-          source-repo: 'https://pagure.io/fedora-docs-l10n/fedora-silverblue.git'
-          destination-repo: 'git@github.com:bobby285271/fedora-docs-l10n-fedora-silverblue.git'
-   
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: wearerequired/git-mirror-action@v1
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE }}
-        with:
-          source-repo: 'https://pagure.io/fedora-docs-l10n/fedora-install-guide.git'
-          destination-repo: 'git@github.com:bobby285271/fedora-docs-l10n-fedora-install-guide.git'
-          
+      - run: git clone https://pagure.io/fedora-docs-l10n/fedora-silverblue.git
+      - run: cd fedora-silverblue
+      - run: git push https://github.com/bobby285271/fedora-docs-l10n-fedora-silverblue.git --force 'refs/heads/*:refs/heads/*'
+      
+      - run: git clone https://pagure.io/fedora-docs-l10n/fedora-install-guide.git
+      - run: cd fedora-install-guide
+      - run: git push https://github.com/bobby285271/fedora-docs-l10n-fedora-install-guide.git --force 'refs/heads/*:refs/heads/*'
