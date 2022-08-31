@@ -9,9 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: git clone https://pagure.io/fedora-docs-l10n/fedora-silverblue.git
-      - run: cd fedora-silverblue
-      - run: git push https://github.com/bobby285271/fedora-docs-l10n-fedora-silverblue.git --force 'refs/heads/*:refs/heads/*'
+      - run: cd fedora-silverblue && git push https://github.com/bobby285271/fedora-docs-l10n-fedora-silverblue.git --force 'refs/heads/*:refs/heads/*'
       
       - run: git clone https://pagure.io/fedora-docs-l10n/fedora-install-guide.git
-      - run: cd fedora-install-guide
-      - run: git push https://github.com/bobby285271/fedora-docs-l10n-fedora-install-guide.git --force 'refs/heads/*:refs/heads/*'
+      - run: cd fedora-install-guide && git push https://github.com/bobby285271/fedora-docs-l10n-fedora-install-guide.git --force 'refs/heads/*:refs/heads/*'
