@@ -5,14 +5,14 @@ on:
     - cron: '0 * * * *'
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CUSTOM_GH_TOKEN: ${{ secrets.CUSTOM_GH_TOKEN }}
   
 jobs:
   silverblue:
     runs-on: ubuntu-latest
     steps:
       - run: git clone https://pagure.io/fedora-docs-l10n/fedora-silverblue.git
-      - run: cd fedora-silverblue && git push https://bobby285271:${GITHUB_TOKEN}@github.com/bobby285271/fedora-docs-l10n-fedora-silverblue.git --force 'refs/heads/*:refs/heads/*'
+      - run: cd fedora-silverblue && git push https://bobby285271:${CUSTOM_GH_TOKEN}@github.com/bobby285271/fedora-docs-l10n-fedora-silverblue.git --force 'refs/heads/*:refs/heads/*'
       
       - run: git clone https://pagure.io/fedora-docs-l10n/fedora-install-guide.git
-      - run: cd fedora-install-guide && git push https://bobby285271:${GITHUB_TOKEN}@github.com/bobby285271/fedora-docs-l10n-fedora-install-guide.git --force 'refs/heads/*:refs/heads/*'
+      - run: cd fedora-install-guide && git push https://bobby285271:${CUSTOM_GH_TOKEN}@github.com/bobby285271/fedora-docs-l10n-fedora-install-guide.git --force 'refs/heads/*:refs/heads/*'
